@@ -5,9 +5,6 @@ This documentation project outlines a reference architecture for automated
 cloud provisioning and management, leveraging a collection of interoperable
 open source tools.
 
-Overview
---------
-
 .. image:: diagrams/architecture.png
 
 Component Projects
@@ -15,7 +12,7 @@ Component Projects
 
 Shipyard
 --------
-`Shipyard <https://github.com/att-comdev/shipyard>` is the directed acyclic
+`Shipyard <https://github.com/att-comdev/shipyard>`_ is the directed acyclic
 graph controller for Kubernetes and OpenStack control plane life cycle
 management.
 
@@ -40,13 +37,13 @@ monitor and control the execution of the workflow.
 
 Drydock
 -------
-`Drydock <https://github.com/att-comdev/drydock>` is a python REST orchestrator
+`Drydock <https://github.com/att-comdev/drydock>`_ is a python REST orchestrator
 to translate a YAML host topology to a provisioned set of hosts and provide a
 set of cloud-init post-provisioning instructions.
 
 Deckhand
 --------
-`Deckhand <https://github.com/att-comdev/deckhand>` is a document-based
+`Deckhand <https://github.com/att-comdev/deckhand>`_ is a document-based
 configuration storage service built with auditability and validation in mind. 
 
 Core Responsibilities
@@ -64,24 +61,24 @@ Core Responsibilities
 
 Armada
 ------
-`Armada <https://github.com/att-comdev/armada>` is a tool for managing multiple
+`Armada <https://github.com/att-comdev/armada>`_ is a tool for managing multiple
 helm charts with dependencies by centralizing all configurations in a single
 Armada yaml and providing lifecycle hooks for all helm releases.
 
 Kubernetes
 ----------
-`Kubernetes <https://github.com/kubernetes/kubernetes>` is an open source system
-for managing containerized applications across multiple hosts, providing basic
-mechanisms for deployment, maintenance, and scaling of applications.
+`Kubernetes <https://github.com/kubernetes/kubernetes>`_ is an open source
+system for managing containerized applications across multiple hosts, providing
+basic mechanisms for deployment, maintenance, and scaling of applications.
 
 Promenade
 ---------
-`Promenade <https://github.com/att-comdev/promenade>` is a tool for 
+`Promenade <https://github.com/att-comdev/promenade>`_ is a tool for 
 bootstrapping a resilient Kubernetes cluster and managing its life-cycle.
 
 Helm
 ----
-`Helm <https://github.com/kubernetes/helm>` is a package manager for Kubernetes.It helps you define, install, and upgrade even the most complex Kubernetes
+`Helm <https://github.com/kubernetes/helm>`_ is a package manager for Kubernetes.It helps you define, install, and upgrade even the most complex Kubernetes
 applications using helm charts.
 
 A chart is a collection of files that describe a related set of Kubernetes
@@ -98,7 +95,7 @@ control the installation and life cycle of Kubernetes applications.
 
 OpenStack-Helm
 --------------
-The `OpenStack-Helm <https://github.com/openstack/openstack-helm>` project
+The `OpenStack-Helm <https://github.com/openstack/openstack-helm>`_ project
 provides a framework to enable the deployment, maintenance, and upgrading of
 loosely coupled OpenStack services and their dependencies individually or as
 part of complex environments.
@@ -115,7 +112,7 @@ Openstack applications into a cloud-native model.
 
 Berth
 -----
-`Berth <https://github.com/att-comdev/berth>` is a deliberately minimalist VM
+`Berth <https://github.com/att-comdev/berth>`_ is a deliberately minimalist VM
 runner for Kubernetes.
 
 Process Flows
