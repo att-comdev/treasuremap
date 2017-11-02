@@ -103,8 +103,19 @@ basic mechanisms for deployment, maintenance, and scaling of applications.
 
 Promenade
 ---------
-`Promenade <https://github.com/att-comdev/promenade>`_ is a tool for 
-bootstrapping a resilient Kubernetes cluster and managing its life cycle.
+`Promenade <https://github.com/att-comdev/promenade>`_ is a tool for
+bootstrapping a resilient, self-hosted Kubernetes cluster and managing its
+life-cycle.
+
+Bootstrapping begins by provisioning a single-node cluster with a complete,
+configurable under cloud system.  After hosts are added to the cluster, the
+original bootstrapping node can be re-provisioned to avoid subtle differences
+that could result in future issues.
+
+Promenade provides cluster resiliency against both node failures and full
+cluster restarts.  It does so by leveraging
+`Helm <https://github.com/kubernetes/helm>`_ charts to manage core Kubernetes
+assets directly on each host, to ensure their availability.
 
 Helm
 ----
