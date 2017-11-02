@@ -43,7 +43,7 @@ set of cloud-init post-provisioning instructions.
 
 Divingbell
 ----------
-`Divingbell <https://github.com/att-comdev/divingbell`_ is a lightweight
+`Divingbell <https://github.com/att-comdev/divingbell>`_ is a lightweight
 solution for:
 1. Bare metal configuration management for a few very targeted use cases
 2. Bare metal package manager orchestration
