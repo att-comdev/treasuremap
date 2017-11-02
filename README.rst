@@ -37,9 +37,23 @@ monitor and control the execution of the workflow.
 
 Drydock
 -------
-`Drydock <https://github.com/att-comdev/drydock>`_ is a python REST orchestrator
-to translate a YAML host topology to a provisioned set of hosts and provide a
-set of cloud-init post-provisioning instructions.
+`Drydock <https://github.com/att-comdev/drydock>`_ is a provisioning orchestrator
+for baremetal servers that translates a YAML-based declaritive site topology into a
+physical undercloud that can be used for building out a enterprise Kubernetes cluster.
+It uses plugins to leverage existing provisioning systems to build the servers allowing
+integration with the provisioning system that best fits the goals and environment of a site.
+
+Capabilities
+^^^^^^^^^^^^
+
+* Initial IPMI configuration for PXE booting new servers.
+* Support for Canonical MAAS 2.2+ provisioning.
+* Configuration of complex network topologies including bonding,
+  tagged VLANs and static routes
+* Support for running behind a corporate proxy
+* Extensible boot action system for placing files and SystemD
+  units on nodes for post-deployment execution
+* Supports Keystone-based authentication and authorization
 
 Divingbell
 ----------
