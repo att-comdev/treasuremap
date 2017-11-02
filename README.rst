@@ -157,6 +157,11 @@ Berth
 `Berth <https://github.com/att-comdev/berth>`_ is a deliberately minimalist VM
 runner for Kubernetes.
 
+Divingbell
+----------
+`Divingbell <https://github.com/att-comdev/divingbell>`_ is a bare bones
+containerized configuration management solution for bare metal.
+
 Process Flows
 =============
 
