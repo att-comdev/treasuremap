@@ -95,6 +95,14 @@ Armada
 Helm charts with dependencies by centralizing all configurations in a single
 Armada YAML and providing life-cycle hooks for all Helm releases.
 
+Core Responsibilities
+^^^^^^^^^^^^^^^^^^^^^
+
+* Multiple Chart Deployments and Upgrades driven by Armada Manifests
+* Manage multiple chart dependencies using Chart Groups
+* Enhancing base Helm functionality
+* Supports Keystone-based authentication and authorization
+
 Kubernetes
 ----------
 `Kubernetes <https://github.com/kubernetes/kubernetes>`_ is an open source
