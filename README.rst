@@ -3,7 +3,7 @@ Treasuremap
 
 This documentation project outlines a reference architecture for automated
 cloud provisioning and management, leveraging a collection of interoperable
-open source tools.
+open-source tools.
 
 .. image:: diagrams/architecture.png
 
@@ -23,7 +23,7 @@ Designs and Secrets
 Site designs, including the configuration of bare metal host nodes, network 
 design, operating systems, Kubernetes nodes, Armada manifests, Helm charts,
 and any other descriptors that define the build out of a group of servers enter
-the UCP via Shipyard. Secrets, such as passwords and certificates use the same
+the UCP via Shipyard. Secrets, such as passwords and certificates, use the same
 mechanism.
 The designs and secrets are stored in UCP's Deckhand, providing for version
 history and secure storage among other document-based conveniences. 
@@ -62,8 +62,8 @@ Core Responsibilities
 Armada
 ------
 `Armada <https://github.com/att-comdev/armada>`_ is a tool for managing multiple
-helm charts with dependencies by centralizing all configurations in a single
-Armada yaml and providing lifecycle hooks for all helm releases.
+Helm charts with dependencies by centralizing all configurations in a single
+Armada YAML and providing life-cycle hooks for all Helm releases.
 
 Kubernetes
 ----------
@@ -74,23 +74,24 @@ basic mechanisms for deployment, maintenance, and scaling of applications.
 Promenade
 ---------
 `Promenade <https://github.com/att-comdev/promenade>`_ is a tool for 
-bootstrapping a resilient Kubernetes cluster and managing its life-cycle.
+bootstrapping a resilient Kubernetes cluster and managing its life cycle.
 
 Helm
 ----
-`Helm <https://github.com/kubernetes/helm>`_ is a package manager for Kubernetes.It helps you define, install, and upgrade even the most complex Kubernetes
-applications using helm charts.
+`Helm <https://github.com/kubernetes/helm>`_ is a package manager for Kubernetes.
+It helps you define, install, and upgrade even the most complex Kubernetes
+applications using Helm charts.
 
 A chart is a collection of files that describe a related set of Kubernetes
-resources. Helm wraps up each charts deployment into a concrete release,
+resources. Helm wraps up each chart's deployment into a concrete release,
 a tidy little box that is a collection of all the Kubernetes resources that
 compose that service, and so you can interact with a collection of Kubernetes
 resources that compose a release as a single unit, either to install, upgrade,
 or remove.
 
-At its core, the value that helm brings to the table at least for us is
+At its core, the value that Helm brings to the table -- at least for us -- is
 allowing us to templatize our experience with Kubernetes resources, providing
-a standard interface for operators or high level software orchestrators to
+a standard interface for operators or high-level software orchestrators to
 control the installation and life cycle of Kubernetes applications.  
 
 OpenStack-Helm
@@ -101,14 +102,14 @@ loosely coupled OpenStack services and their dependencies individually or as
 part of complex environments.
 
 OpenStack-Helm is essentially a marriage of Kubernetes, Helm, and OpenStack,
-and seeks to create helm charts for each OpenStack service.  These helm charts
+and seeks to create Helm charts for each OpenStack service.  These Helm charts
 provide complete life cycle management for these OpenStack services.
 
-Users of OpenStack-Helm either deploy all or individual Openstack components
-along with their required dependencies. It heavily borrows concepts from
+Users of OpenStack-Helm either deploy all or individual OpenStack components
+along with their required dependencies.  It heavily borrows concepts from
 Stackanetes and complex Helm application deployments.  Ideally, at the end of
 the day, this project is meant to be a collaborative project that brings
-Openstack applications into a cloud-native model.
+OpenStack applications into a cloud-native model.
 
 Berth
 -----
