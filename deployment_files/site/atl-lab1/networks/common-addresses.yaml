@@ -1,0 +1,57 @@
+---
+schema: pegleg/CommonAddresses/v1
+metadata:
+  schema: metadata/Document/v1
+  name: common-addresses
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  calico:
+    # TODO(mb874d): match to site
+    ip_autodetection_method: 'interface=bond0.22|ens5'
+    etcd:
+      service_ip: 10.96.232.136
+
+  dns:
+    cluster_domain: cluster.local
+    service_ip: 10.96.0.10
+    # TODO(mb874d): match to site
+    upstream_servers:
+      - 8.8.8.8
+      - 8.8.4.4
+    # TODO(mb874d): update charts/code to handle joining from list, so we can use
+    # the list everywhere
+    upstream_servers_joined: 8.8.8.8
+
+  genesis:
+    hostname: genesis
+    ip: 10.24.20.100
+
+  kubernetes:
+    api_service_ip: 10.96.0.1
+    etcd_service_ip: 10.96.0.2
+    pod_cidr: 10.97.0.0/16
+    service_cidr: 10.96.0.0/16
+
+  masters:
+    - hostname: controller01
+    - hostname: controller02
+    - hostname: worker01
+    - hostname: worker02
+
+  node_ports:
+    drydock_api: 30000
+    maas_api: 30001
+    maas_proxy: 30002
+    shipyard_api: 30003
+    airflow_web: 30004
+
+  ntp:
+    servers_joined: ntp.ubuntu.com
+
+  storage:
+    ceph:
+      public_cidr: 10.24.20.0/24, 10.23.20.0/24
+      cluster_cidr: 10.24.20.0/24, 10.23.20.0/24
