@@ -1,0 +1,602 @@
+#opyright 2017 AT&T Intellectual Property.  All other rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+####################
+#
+# bootstrap_seed.yaml - Site server design definition for physical layer
+#
+####################
+# version the schema in this file so consumers can rationally parse it
+---
+schema: 'drydock/Region/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: cab22-2
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  tag_definitions:
+    - tag: test
+      definition_type: lshw_xpath
+      definition: "//node[@id=\"display\"]/'clock units=\"Hz\"' > 1000000000"
+  authorized_keys:
+    - |
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCq93wW4RHCH753b1YKB6ePbSZNXcbH6PfnNhM56GYOCyGfMJPhVjHSA4K1cWQBhDRhSikk7yq/QbI/Qv3wmMWr3DOkfAaKjMOIYFkLvU5CLgeaamD1qgHmpH4lLDUBk5BFFR6Ru42n+4H9dqC7vs20m+Is678XodPo1RqxF67l0q+2S164tPM2aG8FPU9DsWknKJ4uS7b498avzdPEI/lfY+/cLSGL1PwU2Bn1k+IcfDCKD59Xe72lO9sc95DQJJAZbGjzSDBeCREkhE51GvE902y2jd5jVKWIFY312IWNaBL9/fB0SJtwLn11iOqtIwUE4uWzincNuz8YJ/B9G+WX canderson@canderson-ThinkPad-W530
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: oob
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  labels:
+    noconfig: enabled
+  bonding:
+    mode: disabled
+  mtu: 1500
+  linkspeed: auto
+  trunking:
+    mode: disabled
+    default_network: oob
+  allowed_networks:
+    - oob
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: pxe-cab22
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  bonding:
+    mode: disabled
+  mtu: 1500
+  linkspeed: auto
+  trunking:
+    mode: disabled
+    default_network: pxe-cab22
+  allowed_networks:
+    - pxe-cab22
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: data
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  bonding:
+    mode: 802.3ad
+    hash: layer3+4
+    peer_rate: slow
+  mtu: 9000
+  linkspeed: auto
+  trunking:
+    mode: 802.1q
+  allowed_networks:
+    - mgmt
+    - calico
+    - storage
+    - contrail
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: oob
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vlan_id: 103
+  mtu: 1500
+  cidr: 10.22.104.0/24
+  ranges:
+    - type: static
+      start: 10.22.104.23
+      end: 10.22.104.26
+  routes:
+    - subnet: '0.0.0.0/0'
+      gateway: '10.22.104.1'
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: pxe-cab22
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  # Layer 2 VLAN segment id, could support other segmentations. Optional
+  # vlan_id: '99'
+
+  # MTU for this VLAN interface, if not specified it will be inherited from the link
+  mtu: 1500
+  # Network address
+  cidr: 10.22.80.0/24
+  # Desribe IP address ranges
+  ranges:
+    - type: dhcp
+      start: 10.22.80.24
+      end: 10.22.80.26
+  # Routes defined for this network, including the default route (i.e. default gateway)
+  routes:
+    - subnet: '0.0.0.0/0'
+      gateway: '10.22.80.1'
+      metric: 10
+  # DNS settings for this network
+  dns:
+    # Domain addresses on this network will be registered under
+    domain: cicd.att.com
+    # DNS servers that a server using this network as its default gateway should use
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: mgmt
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vlan: '81'
+  mtu: 1500
+  cidr: 10.22.81.0/24
+  ranges:
+    - type: static
+      start: 10.22.81.23
+      end: 10.22.81.26
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 10.22.81.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: calico
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vlan: '82'
+  mtu: 1500
+  cidr: 10.22.82.0/24
+  ranges:
+    - type: static
+      start: 10.22.82.23
+      end: 10.22.82.26
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 10.22.82.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: storage
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vlan: '83'
+  mtu: 1500
+  cidr: 10.22.83.0/24
+  ranges:
+    - type: static
+      start: 10.22.83.23
+      end: 10.22.83.26
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 10.22.83.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: contrail
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vlan: '84'
+  mtu: 1500
+  cidr: 10.22.84.0/24
+  ranges:
+    - type: static
+      start: 10.22.84.23
+      end: 10.22.84.26
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 10.22.84.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/HardwareProfile/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: DellR720xd
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vendor: Dell
+  generation: '8'
+  hw_version: '3'
+  bios_version: '2.2.3'
+  boot_mode: bios
+  bootstrap_protocol: pxe
+  pxe_interface: 0
+  device_aliases:
+    prim_nic01:
+      address: '0000:00:03.0'
+      dev_type: '82540EM Gigabit Ethernet Controller'
+      bus_type: 'pci'
+    prim_nic02:
+      address: '0000:00:04.0'
+      dev_type: '82540EM Gigabit Ethernet Controller'
+      bus_type: 'pci'
+    primary_boot:
+      address: '2:0.0.0'
+      dev_type: 'VBOX HARDDISK'
+      bus_type: 'scsi'
+---
+schema: 'drydock/HostProfile/v1'
+metadata:
+  name: k8s-node-common
+  schema: 'metadata/Document/v1'
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  hardware_profile: DellR720xd
+
+  oob:
+    type: ipmi
+    network: oob
+    account: root
+    credential: calvin
+
+  platform:
+    image: ubuntu_16.04
+    kernel: generic
+    #kernel_params:
+    #  quiet: true
+    #  console: ttyS2
+
+  storage:
+    physical_devices:
+      sda:
+        labels:
+          bootdrive: 'true'
+
+  metadata:
+    # Explicit tag assignment
+    tags:
+      - 'test'
+    owner_data:
+      foo: bar
+---
+schema: 'drydock/HostProfile/v1'
+metadata:
+  name: k8s-node-control
+  schema: 'metadata/Document/v1'
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-common
+  hardware_profile: DellR720xd
+  storage:
+    physical_devices:
+      sda:
+        labels:
+          bootdrive: 'true'
+        partitions:
+          - name: 'root'
+            size: '20g'
+            bootable: true
+            filesystem:
+              mountpoint: '/'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+          - name: 'boot'
+            size: '1g'
+            filesystem:
+              mountpoint: '/boot'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+          # ceph journals
+          - name: 'cephj01'
+            size: '5g'
+          - name: 'cephj02'
+            size: '5g'
+          - name: 'cephj03'
+            size: '5g'
+          - name: 'cephj04'
+            size: '5g'
+          - name: 'cephj05'
+            size: '5g'
+          - name: 'cephj06'
+            size: '5g'
+          - name: 'cephj07'
+            size: '5g'
+          - name: 'cephj08'
+            size: '5g'
+          - name: 'cephj09'
+            size: '5g'
+          - name: 'cephj10'
+            size: '5g'
+          # the rest for /var
+          - name: 'var'
+            size: '>100g'
+            filesystem:
+              mountpoint: '/var'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+
+  primary_network: pxe-cab22
+  interfaces:
+    eno1:
+      device_link: pxe-cab22
+      slaves:
+        - eno1
+      networks:
+        - pxe-cab22
+    bond0:
+      device_link: data
+      slaves:
+        - enp67s0f0
+        - enp67s0f1
+        - enp68s0f0
+        - enp68s0f1
+      networks:
+        - mgmt
+        - calico
+        - storage
+        - contrail
+---
+schema: 'drydock/HostProfile/v1'
+metadata:
+  name: k8s-node-worker
+  schema: 'metadata/Document/v1'
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-common
+  hardware_profile: DellR720xd
+  storage:
+    physical_devices:
+      sda:
+        labels:
+          bootdrive: 'true'
+        partitions:
+          - name: 'root'
+            size: '20g'
+            bootable: true
+            filesystem:
+              mountpoint: '/'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+          - name: 'boot'
+            size: '1g'
+            filesystem:
+              mountpoint: '/boot'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+          - name: 'var'
+            size: '>100g'
+            filesystem:
+              mountpoint: '/var'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+      sdb:
+        partitions:
+          - name: 'instances'
+            size: '20t'
+            filesystem:
+              mountpoint: '/var/lib/nova/instances'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+
+  primary_network: pxe-cab22
+  interfaces:
+    eno1:
+      device_link: pxe-cab22
+      slaves:
+        - eno1
+      networks:
+        - pxe-cab22
+    bond0:
+      device_link: data
+      slaves:
+        - enp67s0f0
+        - enp67s0f1
+        - enp68s0f0
+        - enp68s0f1
+      networks:
+        - mgmt
+        - calico
+        - storage
+        - contrail
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: controller01
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-control
+  addressing:
+    - network: oob
+      address: 10.22.104.24
+    - network: pxe-cab22
+      address: 10.22.80.24
+    - network: mgmt
+      address: 10.22.81.24
+    - network: calico
+      address: 10.22.82.24
+    - network: storage
+      address: 10.22.83.24
+    - network: contrail
+      address: 10.22.84.24
+  metadata:
+    rack: rack1
+    tags:
+      - 'masters'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: controller02
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-control
+  addressing:
+    - network: oob
+      address: 10.22.104.25
+    - network: pxe-cab22
+      address: 10.22.80.25
+    - network: mgmt
+      address: 10.22.81.25
+    - network: calico
+      address: 10.22.82.25
+    - network: storage
+      address: 10.22.83.25
+    - network: contrail
+      address: 10.22.84.25
+  metadata:
+    rack: rack1
+    tags:
+      - 'masters'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: worker01
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-worker
+  addressing:
+    - network: oob
+      address: 10.22.104.26
+    - network: pxe-cab22
+      address: 10.22.80.26
+    - network: mgmt
+      address: 10.22.81.26
+    - network: calico
+      address: 10.22.82.26
+    - network: storage
+      address: 10.22.83.26
+    - network: contrail
+      address: 10.22.84.26
+  metadata:
+    rack: rack1
+    tags:
+      - 'workers'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: worker02
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-worker
+  addressing:
+    - network: oob
+      address: 10.22.104.23
+    - network: pxe-cab22
+      address: 10.22.80.23
+    - network: mgmt
+      address: 10.22.81.23
+    - network: calico
+      address: 10.22.82.23
+    - network: storage
+      address: 10.22.83.23
+    - network: contrail
+      address: 10.22.84.23
+  metadata:
+    rack: rack1
+    tags:
+      - 'workers'
+---
+schema: 'drydock/BootAction/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: promjoin
+  storagePolicy: 'cleartext'
+  layeringDefinition:
+    abstract: false
+    layer: region
+  labels:
+    application: 'drydock'
+data:
+  node_filter:
+    filter_set_type: 'union'
+    filter_set:
+      - filter_type: 'union'
+        node_names:
+          - 'controller01'
+          - 'controller02'
+          - 'worker01'
+          - 'worker02'
+  assets:
+    - path: /opt/promjoin.sh
+      type: file
+      permissions: '555'
+      location: http://10.22.80.23:6880/join-{{node.hostname}}.sh
+      location_pipeline:
+        - template
+      data_pipeline:
+        - utf8_decode
+    - path: /lib/systemd/system/promjoin.service
+      type: unit
+      permissions: '600'
+      data: |-
+        W1VuaXRdCkRlc2NyaXB0aW9uPVByb21lbmFkZSBJbml0aWFsaXphdGlvbiBTZXJ2aWNlCkFmdGVy
+        PW5ldHdvcmstb25saW5lLnRhcmdldCBsb2NhbC1mcy50YXJnZXQKQ29uZGl0aW9uUGF0aEV4aXN0
+        cz0hL3Zhci9saWIvcHJvbS5kb25lCgpbU2VydmljZV0KVHlwZT1zaW1wbGUKRXhlY1N0YXJ0PS9v
+        cHQvcHJvbWpvaW4uc2gKCltJbnN0YWxsXQpXYW50ZWRCeT1tdWx0aS11c2VyLnRhcmdldAo=
+      data_pipeline:
+        - base64_decode
+        - utf8_decode
+...
+

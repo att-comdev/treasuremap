@@ -1,0 +1,117 @@
+---
+schema: promenade/KubernetesNode/v1
+metadata:
+  schema: metadata/Document/v1
+  name: genesis
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  hostname: genesis
+  ip: 10.22.80.23
+  join_ip: 10.23.20.11
+  labels:
+    static:
+      - node-role.kubernetes.io/master=
+    dynamic:
+      - calico-etcd=enabled
+      - kubernetes-apiserver=enabled
+      - kubernetes-controller-manager=enabled
+      - kubernetes-etcd=enabled
+      - kubernetes-scheduler=enabled
+      - ucp-control-plane=enabled
+      - ceph-mon=enabled
+      - ceph-osd=enabled
+      - ceph-mds=enabled
+      - ceph-rgw=enabled
+---
+schema: promenade/KubernetesNode/v1
+metadata:
+  schema: metadata/Document/v1
+  name: controller01
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  hostname: controller01
+  ip: 10.23.20.11
+  join_ip: 10.22.80.23
+  labels:
+    static:
+      - node-role.kubernetes.io/master=
+    dynamic:
+      - calico-etcd=enabled
+      - kubernetes-apiserver=enabled
+      - kubernetes-controller-manager=enabled
+      - kubernetes-etcd=enabled
+      - kubernetes-scheduler=enabled
+      - ucp-control-plane=enabled
+      - ceph-mon=enabled
+      - ceph-osd=enabled
+      - ceph-mds=enabled
+      - ceph-rgw=enabled
+      - openstack-control-plane=enabled
+      - openvswitch=enabled
+---
+schema: promenade/KubernetesNode/v1
+metadata:
+  schema: metadata/Document/v1
+  name: controller02
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  hostname: controller02
+  ip: 10.23.20.12
+  join_ip: 10.22.80.23
+  labels:
+    static:
+      - node-role.kubernetes.io/master=
+    dynamic:
+      - calico-etcd=enabled
+      - kubernetes-apiserver=enabled
+      - kubernetes-controller-manager=enabled
+      - kubernetes-etcd=enabled
+      - kubernetes-scheduler=enabled
+      - ucp-control-plane=enabled
+      - ceph-mon=enabled
+      - ceph-osd=enabled
+      - ceph-mds=enabled
+      - ceph-rgw=enabled
+      - openstack-control-plane=enabled
+      - openvswitch=enabled
+---
+schema: promenade/KubernetesNode/v1
+metadata:
+  schema: metadata/Document/v1
+  name: worker01
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  hostname: worker01
+  ip: 10.23.20.13
+  join_ip: 10.23.20.11
+  labels:
+    dynamic:
+      - ucp-control-plane=enabled
+      - openstack-compute-node=enabled
+      - openvswitch=enabled
+---
+schema: promenade/KubernetesNode/v1
+metadata:
+  schema: metadata/Document/v1
+  name: worker02
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  hostname: worker02
+  ip: 10.23.20.14
+  join_ip: 10.23.20.12
+  labels:
+    dynamic:
+      - ucp-control-plane=enabled
+      - openstack-compute-node=enabled
+      - openvswitch=enabled
+...
