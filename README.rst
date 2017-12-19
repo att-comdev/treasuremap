@@ -20,27 +20,27 @@ Shipyard provides the entrypoint for the following aspects of the control plane:
 
 Designs and Secrets
 ^^^^^^^^^^^^^^^^^^^
-Site designs, including the configuration of bare metal host nodes, network 
+Site designs, including the configuration of bare metal host nodes, network
 design, operating systems, Kubernetes nodes, Armada manifests, Helm charts,
 and any other descriptors that define the build out of a group of servers enter
 the UCP via Shipyard. Secrets, such as passwords and certificates, use the same
 mechanism.
 The designs and secrets are stored in UCP's Deckhand, providing for version
-history and secure storage among other document-based conveniences. 
+history and secure storage among other document-based conveniences.
 
 Actions
 ^^^^^^^
 Interaction with the site's control plane is done via invocation of actions in
 Shipyard. Each action is backed by a workflow implemented as a directed acyclic
 graph (DAG) that runs using Apache Airflow. Shipyard provides a mechanism to
-monitor and control the execution of the workflow. 
+monitor and control the execution of the workflow.
 
 Drydock
 -------
 `Drydock <https://github.com/att-comdev/drydock>`_ is a provisioning orchestrator
-for baremetal servers that translates a YAML-based declaritive site topology into a
-physical undercloud that can be used for building out a enterprise Kubernetes cluster.
-It uses plugins to leverage existing provisioning systems to build the servers allowing
+for baremetal servers that translates a YAML-based declarative site topology into a
+physical undercloud that can be used for building out an enterprise Kubernetes cluster.
+It uses plugins to leverage existing provisioning systems to build the servers, allowing
 integration with the provisioning system that best fits the goals and environment of a site.
 
 Capabilities
@@ -57,7 +57,8 @@ Capabilities
 
 Divingbell
 ----------
-`Divingbell <https://github.com/att-comdev/divingbell>`_ is a lightweight
+`Divingbell <https://github.com/att-comdev/divingbell>`_ is a bare bones
+containerized configuration management solution for bare metal. It is a lightweight
 solution for:
 
 1. Bare metal configuration management for a few very targeted use cases
@@ -74,7 +75,7 @@ The needs identified for Divingbell were:
 Deckhand
 --------
 `Deckhand <https://github.com/att-comdev/deckhand>`_ is a document-based
-configuration storage service built with auditability and validation in mind. 
+configuration storage service built with auditability and validation in mind.
 
 Core Responsibilities
 ^^^^^^^^^^^^^^^^^^^^^
@@ -141,7 +142,7 @@ or remove.
 At its core, the value that Helm brings to the table -- at least for us -- is
 allowing us to templatize our experience with Kubernetes resources, providing
 a standard interface for operators or high-level software orchestrators to
-control the installation and life cycle of Kubernetes applications.  
+control the installation and life cycle of Kubernetes applications.
 
 OpenStack-Helm
 --------------
@@ -165,15 +166,9 @@ Berth
 `Berth <https://github.com/att-comdev/berth>`_ is a deliberately minimalist VM
 runner for Kubernetes.
 
-Divingbell
-----------
-`Divingbell <https://github.com/att-comdev/divingbell>`_ is a bare bones
-containerized configuration management solution for bare metal.
-
 Process Flows
 =============
 
 .. image:: diagrams/genesis.png
 
 .. image:: diagrams/deploy_site.png
-
