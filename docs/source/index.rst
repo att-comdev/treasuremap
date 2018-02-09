@@ -1,7 +1,28 @@
+..
+      Copyright 2017 AT&T Intellectual Property.
+      All Rights Reserved.
+
+      Licensed under the Apache License, Version 2.0 (the "License"); you may
+      not use this file except in compliance with the License. You may obtain
+      a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+      WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+      License for the specific language governing permissions and limitations
+      under the License.
+
+.. tip::
+
+  This documentation project outlines a reference architecture for automated
+  cloud provisioning and management, leveraging a collection of interoperable
+  open-source tools.
+
 Treasuremap
 ===========
 
-<<<<<<< HEAD
 This documentation project outlines a reference architecture for automated
 cloud provisioning and management, leveraging a collection of interoperable
 open-source tools.
@@ -39,9 +60,9 @@ monitor and control the execution of the workflow.
 Drydock
 -------
 `Drydock <https://github.com/att-comdev/drydock>`_ is a provisioning orchestrator
-for baremetal servers that translates a YAML-based declarative site topology into a
-physical undercloud that can be used for building out an enterprise Kubernetes cluster.
-It uses plugins to leverage existing provisioning systems to build the servers, allowing
+for baremetal servers that translates a YAML-based declaritive site topology into a
+physical undercloud that can be used for building out a enterprise Kubernetes cluster.
+It uses plugins to leverage existing provisioning systems to build the servers allowing
 integration with the provisioning system that best fits the goals and environment of a site.
 
 Capabilities
@@ -58,8 +79,7 @@ Capabilities
 
 Divingbell
 ----------
-`Divingbell <https://github.com/att-comdev/divingbell>`_ is a bare bones
-containerized configuration management solution for bare metal. It is a lightweight
+`Divingbell <https://github.com/att-comdev/divingbell>`_ is a lightweight
 solution for:
 
 1. Bare metal configuration management for a few very targeted use cases
@@ -167,12 +187,27 @@ Berth
 `Berth <https://github.com/att-comdev/berth>`_ is a deliberately minimalist VM
 runner for Kubernetes.
 
+Divingbell
+----------
+`Divingbell <https://github.com/att-comdev/divingbell>`_ is a bare bones
+containerized configuration management solution for bare metal.
+
 Process Flows
 =============
 
 .. image:: diagrams/genesis.png
 
 .. image:: diagrams/deploy_site.png
-=======
-Refer to documentation `here <https://treasuremap.readthedocs.io>`_.
->>>>>>> 6c1b564... WIP - cLCP deployment procedure
+
+.. toctree::
+   :maxdepth: 2
+
+   deployment
+   operations
+
+.. _Helm Homepage: https://helm.sh/
+.. _Kubernetes Homepage: https://kubernetes.io/
+.. _Openstack: https://www.openstack.org/
+.. _Openstack Helm: https://github.com/openstack/openstack-helm
+.. _Treasuremap: https://github.com/att-comdev/treasuremap
+.. _yaml: http://yaml.org/
