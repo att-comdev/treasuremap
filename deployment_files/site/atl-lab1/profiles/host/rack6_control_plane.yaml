@@ -1,0 +1,37 @@
+---
+schema: drydock/HostProfile/v1
+metadata:
+    schema: metadata/Document/v1
+    name: rack6_control_plane
+    storagePolicy: cleartext
+    layeringDefinition:
+        abstract: false
+        layer: site
+        parentSelector:
+            hosttype: base_control_plane
+        actions:
+            - method: replace
+              path: .interfaces.pxe
+            - method: replace
+              path: .interfaces.bond0
+            - method: merge
+              path: .
+data:
+    hardware_profile: DELL_HP_Generic
+    oob:
+        network: rack06-oob
+    primary_network: rack06-mgmt
+    interfaces:
+        pxe:
+            device_link: rack06-pxe
+            networks:
+              - rack06-pxe
+        bond0:
+            device_link: rack06-general
+            networks:
+              - rack06-mgmt
+              - rack06-storage
+              - rack06-ossdn
+              - rack06-calico
+              - rack06-contrail
+...
