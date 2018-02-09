@@ -1,0 +1,141 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: coredns
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.kubernetes.coredns
+      dest:
+        path: .source
+
+    # Images
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .images.kubernetes.coredns
+      dest:
+        path: .values.images
+
+    # Zones
+    - src:
+        schema: pegleg/CommonAddresses/v1
+        name: common-addresses
+        path: .dns.cluster_domain
+      dest:
+        path: .values.conf.coredns.corefile
+        pattern: '(CLUSTER_DOMAIN)'
+    - src:
+        schema: pegleg/CommonAddresses/v1
+        name: common-addresses
+        path: .kubernetes.service_cidr
+      dest:
+        path: .values.conf.coredns.corefile
+        pattern: '(SERVICE_CIDR)'
+    - src:
+        schema: pegleg/CommonAddresses/v1
+        name: common-addresses
+        path: .kubernetes.pod_cidr
+      dest:
+        path:  .values.conf.coredns.corefile
+        pattern: '(POD_CIDR)'
+
+    - src:
+        schema: pegleg/CommonAddresses/v1
+        name: common-addresses
+        path: .dns.upstream_servers[0]
+      dest:
+        path: .values.conf.coredns.corefile
+        pattern: '(UPSTREAM1)'
+    - src:
+        schema: pegleg/CommonAddresses/v1
+        name: common-addresses
+        path: .dns.upstream_servers[1]
+      dest:
+        path: .values.conf.coredns.corefile
+        pattern: '(UPSTREAM2)'
+
+    # Certificates
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: kubernetes
+        path: .
+      dest:
+        path: .values.tls.ca
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: coredns
+        path: .
+      dest:
+        path: .values.tls.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: coredns
+        path: .
+      dest:
+        path: .values.tls.key
+data:
+  chart_name: coredns
+  release: coredns
+  namespace: kube-system
+  timeout: 600
+  wait:
+    timeout: 600
+  upgrade:
+    no_hooks: true
+  values:
+    conf:
+      coredns:
+        # TODO(alanmeadows) this needs to be adjusted to use substition        
+        corefile: |
+          .:53 {
+              errors
+              health
+              autopath @kubernetes
+              kubernetes CLUSTER_DOMAIN SERVICE_CIDR POD_CIDR {
+                pods insecure
+                fallthrough in-addr.arpa ip6.arpa
+                upstream UPSTREAM1
+                upstream UPSTREAM2
+              }
+              prometheus :9153
+              proxy . UPSTREAM1
+              proxy . UPSTREAM2
+              cache 30
+          }
+    network:
+      kubernetes_netloc: 127.0.0.1:6553
+  dependencies:
+    - coredns_htk
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: coredns_htk
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  chart_name: coredns_htk
+  release: coredns_htk
+  namespace: coredns_htk
+  timeout: 100
+  values: {}
+  source:
+    type: git
+    location: https://github.com/openstack/openstack-helm
+    subpath: helm-toolkit
+    reference: e4dd1ba91a9e3c517b0f4594c70eb9a743681432
+  dependencies: []
+...
