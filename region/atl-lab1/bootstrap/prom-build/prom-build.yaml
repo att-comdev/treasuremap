@@ -1,0 +1,40 @@
+heat_template_version: newton
+
+description: Deployment template for Promenade build VM
+
+resources:
+  server:
+    type: OS::Nova::Server
+    properties:
+      image: Ubuntu 16.04
+      flavor: m1.medium
+      key_name: cab24-genesis
+      networks:
+        - port: { get_resource: server_port_pxe }
+
+      user_data:
+        str_replace:
+          template: {get_file: prom-build-user-data.sh}
+          params:
+            $message: Welcome!
+
+  port_security_group:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: prom-build-security-group
+      description: Security group for Promenade build VM
+      rules:
+       - remote_ip_prefix: 0.0.0.0/0
+         protocol: tcp
+         port_range_min: 22
+         port_range_max: 22
+
+  server_port_pxe:
+    type: OS::Neutron::Port
+    properties:
+      network_id: integration-pxe
+      fixed_ips:
+      - ip_address: 10.24.20.99
+      security_groups:
+        - { get_resource: port_security_group }
+
