@@ -1,0 +1,126 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-rabbitmq
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.rabbitmq
+      dest:
+        path: .source
+
+    # Images
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .images.ucp.rabbitmq
+      dest:
+        path: .values.images.tags
+
+    # Endpoints
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: ucp_endpoints
+        path: .ucp.oslo_messaging
+      dest:
+        path: .values.endpoints.oslo_messaging
+
+    # Credentials
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: ucp_service_accounts
+        path: .ucp.oslo_messaging.admin
+      dest:
+        path: .values.endpoints.oslo_messaging.auth.user
+
+    # Secrets
+
+    - src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_rabbitmq_erlang_cookie
+        path: .
+      dest:
+        path: .values.endpoints.oslo_messaging.auth.erlang_cookie
+    - src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_oslo_messaging_password
+        path: .
+      dest:
+        path: .values.endpoints.oslo_messaging.auth.user.password
+data:
+  chart_name: ucp-rabbitmq
+  release: ucp-rabbitmq
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    pod:
+      replicas:
+        server: 1
+    labels:
+      server:
+        node_selector_key: ucp-control-plane
+        node_selector_value: enabled
+      prometheus_rabbitmq_exporter:
+        node_selector_key: ucp-control-plane
+        node_selector_value: enabled
+  dependencies:
+    - ucp_rabbitmq_htk
+...
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-rabbitmq-etcd
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  chart_name: ucp-rabbitmq-etcd
+  release: ucp-rabbitmq-etcd
+  namespace: ucp
+  timeout: 100
+  values:
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled    
+  source:
+    type: git
+    location: https://github.com/openstack/openstack-helm
+    subpath: etcd
+    reference: 7b6685befdf0df46fafaa87b0c2f897118d9f280
+  dependencies:
+    - ucp_rabbitmq_htk
+...
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp_rabbitmq_htk
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  chart_name: ucp_rabbitmq_htk
+  release: ucp_rabbitmq_htk
+  namespace: ucp_rabbitmq_htk
+  timeout: 100
+  values: {}
+  source:
+    type: git
+    location: https://github.com/openstack/openstack-helm
+    subpath: helm-toolkit
+    reference: master
+  dependencies: []
+...

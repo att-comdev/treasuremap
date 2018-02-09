@@ -1,0 +1,2776 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: helm-toolkit
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: helm-toolkit
+  release: helm-toolkit
+  namespace: helm-toolkit
+  timeout: 300
+  values: {}
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: helm-toolkit
+    reference: master
+  dependencies: []
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-infra-helm-toolkit
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: osh-infra-helm-toolkit
+  release: osh-infra-helm-toolkit
+  namespace: helm-toolkit
+  timeout: 300
+  values: {}
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm-infra
+    subpath: helm-toolkit
+    reference: master
+  dependencies: []
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ingress-osh-infra
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: ingress-osh-infra
+  release: ingress-osh-infra
+  namespace: osh-infra
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        entrypoint: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        ingress: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
+        error_pages: gcr.io/google_containers/defaultbackend:1.0
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    pod:
+      replicas:
+        error_page: 2
+        ingress: 2
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: ingress
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ingress-openstack
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: ingress-openstack
+  release: ingress-openstack
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        entrypoint: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        ingress: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
+        error_pages: gcr.io/google_containers/defaultbackend:1.0
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    pod:
+      replicas:
+        error_page: 2
+        ingress: 2
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: ingress
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-ceph-config
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: openstack-ceph-config
+  release: openstack-ceph-config
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: ceph
+            component: namespace-client-key-generator
+  values:
+    images:
+      tags:
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ceph_bootstrap: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        ceph_daemon: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
+        ceph_config_helper: docker.io/port/ceph-config-helper:v1.7.5
+        ceph_rbd_provisioner: quay.io/external_storage/rbd-provisioner:v0.1.1
+        ceph_cephfs_provisioner: quay.io/external_storage/cephfs-provisioner:v0.1.1
+    endpoints:
+      identity:
+        namespace: openstack
+      object_store:
+        namespace: ceph
+      ceph_mon:
+        namespace: ceph
+    labels:
+      jobs:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+    network:
+      public: '135.25.15.64/28, 135.25.15.80/28'
+      cluster: '135.25.15.64/28, 135.25.15.80/28'
+    deployment:
+      storage_secrets: false
+      ceph: false
+      rbd_provisioner: false
+      cephfs_provisioner: false
+      client_secrets: true
+      rgw__user_and_endpoints: false
+    bootstrap:
+      enabled: false
+    conf:
+      rgw_ks:
+        enabled: true
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: ceph
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-infra-ceph-config
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: osh-infra-ceph-config
+  release: osh-infra-ceph-config
+  namespace: osh-infra
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: ceph
+            component: namespace-client-key-generator
+  values:
+    images:
+      tags:
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ceph_bootstrap: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        ceph_daemon: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
+        ceph_config_helper: docker.io/port/ceph-config-helper:v1.7.5
+        ceph_rbd_provisioner: quay.io/external_storage/rbd-provisioner:v0.1.1
+        ceph_cephfs_provisioner: quay.io/external_storage/cephfs-provisioner:v0.1.1
+    endpoints:
+      identity:
+        namespace: openstack
+      object_store:
+        namespace: ceph
+      ceph_mon:
+        namespace: ceph
+    labels:
+      jobs:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+    network:
+      public: '135.25.15.64/28, 135.25.15.80/28'
+      cluster: '135.25.15.64/28, 135.25.15.80/28'
+    deployment:
+      storage_secrets: false
+      ceph: false
+      rbd_provisioner: false
+      cephfs_provisioner: false
+      client_secrets: true
+      rgw_keystone_user_and_endpoints: false
+    bootstrap:
+      enabled: false
+    conf:
+      rgw_ks:
+        enabled: true
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: ceph
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: mariadb
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: mariadb
+  release: mariadb
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    pod:
+      replicas:
+        server: 1
+    images:
+      tags:
+        mariadb: docker.io/mariadb:10.1.23
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_db:
+        auth:
+          admin:
+            password: "<password>"
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: mariadb
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-infra-mariadb
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: osh-infra-mariadb
+  release: osh-infra-mariadb
+  namespace: osh-infra
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    pod:
+      replicas:
+        server: 1
+    images:
+      tags:
+        mariadb: docker.io/mariadb:10.1.23
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_db:
+        auth:
+          admin:
+            password: "<password>"
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: mariadb
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: keystone-memcached
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: keystone-memcached
+  release: keystone-memcached
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        memcached: docker.io/memcached:1.4
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_cache:
+        hosts:
+          default: keystone-memcached
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: memcached
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: keystone-rabbitmq
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: keystone-rabbitmq
+  release: keystone-rabbitmq
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        rabbitmq: docker.io/rabbitmq:3.7
+        prometheus_rabbitmq_exporter: docker.io/kbudde/rabbitmq-exporter:v0.21.0
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_messaging:
+        auth:
+          user:
+            username: keystone-rabbitmq
+            password: "<password>"
+        hosts:
+          default: keystone-rabbitmq
+      prometheus_rabbitmq_exporter:
+        hosts:
+          default: keystone-rabbitmq-exporter
+    monitoring:
+      prometheus:
+        enabled: true
+    labels:
+      server:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      prometheus_rabbitmq_exporter:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: rabbitmq
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: keystone
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: keystone
+  release: keystone
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: keystone
+            component: bootstrap
+        - type: job
+          labels:
+            application: keystone
+            component: credential-setup
+        - name: keystone-db-init
+          type: job
+          labels:
+            application: keystone
+            component: db-init
+        - name: keystone-db-sync
+          type: job
+          labels:
+            application: keystone
+            component: db-sync
+        - name: keystone-fernet-setup
+          type: job
+          labels:
+            application: keystone
+            component: fernet-setup
+  values:
+    images:
+      tags:
+        keystone_bootstrap: docker.io/kolla/ubuntu-source-keystone:3.0.3
+        test: docker.io/kolla/ubuntu-source-rally:4.0.0
+        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        keystone_db_sync: docker.io/kolla/ubuntu-source-keystone:3.0.3
+        db_drop: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        keystone_fernet_setup: docker.io/kolla/ubuntu-source-keystone:3.0.3
+        keystone_fernet_rotate: docker.io/kolla/ubuntu-source-keystone:3.0.3
+        keystone_credential_setup: docker.io/kolla/ubuntu-source-keystone:3.0.3
+        keystone_credential_rotate: docker.io/kolla/ubuntu-source-keystone:3.0.3
+        keystone_api: docker.io/kolla/ubuntu-source-keystone:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    conf:
+      keystone:
+        identity:
+          driver: ldap
+          default_domain_id: default
+          domain_specific_drivers_enabled: true
+          domain_configurations_from_database: true
+          domain_config_dir: /etc/keystonedomains
+        ldap:
+          url: "ldap://its-ad-ldap.it.att.com"
+          user_filter: "(memberof=CN=AP-AICUsers,OU=Application,OU=Groups,DC=ITServices,DC=sbc,DC=com)"
+          user: "<m00000-mechid>@itservices.sbc.com"
+          password: "<password>"
+          suffix: "DC=itservices,DC=sbc,DC=com"
+          page_size: 250
+          user_attribute_ignore: "default_project_id,tenants,projects,password"
+          query_scope: sub
+          user_tree_dn: "DC=ITServices,DC=sbc,DC=com"
+          user_enabled_mask: 2
+          user_enabled_default: 512
+          user_enabled_attribute: userAccountControl
+          user_mail_attribute: mail
+          user_allow_create: false
+          user_allow_delete: false
+          user_allow_update: false
+      ks_domains:
+        aic:
+          identity:
+            driver: sql
+    endpoints:
+      identity:
+        name: keystone
+        namespace: openstack
+        auth:
+          admin:
+            username: "<m00000-mechid>"
+            password: "<password>"
+      oslo_cache:
+        hosts:
+          default: keystone-memcached
+      oslo_db:
+        auth:
+          admin:
+            password: "<password>"
+          keystone:
+            password: "<password>"
+      oslo_messaging:
+        auth:
+          keystone:
+            username: keystone-rabbitmq
+            password: "<password>"
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    pod:
+      replicas:
+        api: 2
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: keystone
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: radosgw-openstack
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: radosgw-openstack
+  release: radosgw-openstack
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: ceph
+            component: ks-user
+        - type: job
+          labels:
+            application: ceph
+            component: ks-service
+        - type: job
+          labels:
+            application: ceph
+            component: ks-endpoints
+  values:
+    images:
+      tags:
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ceph_bootstrap: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        ceph_daemon: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
+        ceph_config_helper: docker.io/port/ceph-config-helper:v1.7.5
+        ceph_rbd_provisioner: quay.io/external_storage/rbd-provisioner:v0.1.1
+        ceph_cephfs_provisioner: quay.io/external_storage/cephfs-provisioner:v0.1.1
+    endpoints:
+      identity:
+        namespace: openstack
+        auth:
+          admin:
+            password: "<password>"
+          swift:
+            password: "<password>"
+          object_store:
+            namespace: ceph
+          ceph_mon:
+            namespace: ceph
+      object_store:
+        namespace: ceph
+      ceph_mon:
+        namespace: ceph
+    labels:
+      rgw:
+        node_selector_key: ceph-rgw
+        node_selector_value: enabled
+    bootstrap:
+      enabled: false
+    conf:
+      rgw_ks:
+        enabled: true
+    network:
+      public: '135.25.15.64/28, 135.25.15.80/28'
+      cluster: '135.25.15.64/28, 135.25.15.80/28'
+    deployment:
+      storage_secrets: false
+      ceph: false
+      rbd_provisioner: false
+      cephfs_provisioner: false
+      client_secrets: false
+      rgw_keystone_user_and_endpoints: true
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: ceph
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: glance-memcached
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: glance-memcached
+  release: glance-memcached
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        memcached: docker.io/memcached:1.4
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_cache:
+        hosts:
+          default: glance-memcached
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: memcached
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: glance-rabbitmq
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: glance-rabbitmq
+  release: glance-rabbitmq
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        rabbitmq: docker.io/rabbitmq:3.7
+        prometheus_rabbitmq_exporter: docker.io/kbudde/rabbitmq-exporter:v0.21.0
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_messaging:
+        auth:
+          user:
+            username: glance-rabbitmq
+            password: "<password>"
+        hosts:
+          default: glance-rabbitmq
+      prometheus_rabbitmq_exporter:
+        hosts:
+          default: glance-rabbitmq-exporter
+    monitoring:
+      prometheus:
+        enabled: true
+    labels:
+      server:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      prometheus_rabbitmq_exporter:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: rabbitmq
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: glance
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: glance
+  release: glance
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: glance
+            component: db-init
+        - type: job
+          labels:
+            application: glance
+            component: db-sync
+        - type: job
+          labels:
+            application: glance
+            component: ks-user
+        - type: job
+          labels:
+            application: glance
+            component: ks-service
+        - type: job
+          labels:
+            application: glance
+            component: ks-endpoints
+        - type: job
+          labels:
+            application: glance
+            component: storage-init
+  values:
+    images:
+      tags:
+        test: docker.io/kolla/ubuntu-source-rally:4.0.0
+        glance_storage_init: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
+        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        glance_db_sync: docker.io/kolla/ubuntu-source-glance-api:3.0.3
+        db_drop: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        glance_api: docker.io/kolla/ubuntu-source-glance-api:3.0.3
+        glance_registry: docker.io/kolla/ubuntu-source-glance-registry:3.0.3
+        bootstrap: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      identity:
+        auth:
+          admin:
+            password: "<password>"
+          glance:
+            password: "<password>"
+      oslo_db:
+        auth:
+          admin:
+            password: "<password>"
+          glance:
+            password: "<password>"
+      oslo_cache:
+        hosts:
+          default: glance-memcached
+      oslo_messaging:
+        auth:
+          glance:
+            username: glance-rabbitmq
+            password: "<password>"
+        hosts:
+          default: glance-rabbitmq
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    pod:
+      replicas:
+        api: 2
+        registry: 2
+    storage: radosgw
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: glance
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: cinder-memcached
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: cinder-memcached
+  release: cinder-memcached
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        memcached: docker.io/memcached:1.4
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_cache:
+        hosts:
+          default: cinder-memcached
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: memcached
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: cinder-rabbitmq
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: cinder-rabbitmq
+  release: cinder-rabbitmq
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        rabbitmq: docker.io/rabbitmq:3.7
+        prometheus_rabbitmq_exporter: docker.io/kbudde/rabbitmq-exporter:v0.21.0
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_messaging:
+        auth:
+          user:
+            username: cinder-rabbitmq
+            password: "<password>"
+        hosts:
+          default: cinder-rabbitmq
+      prometheus_rabbitmq_exporter:
+        hosts:
+          default: cinder-rabbitmq-exporter
+    monitoring:
+      prometheus:
+        enabled: true
+    labels:
+      server:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      prometheus_rabbitmq_exporter:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: rabbitmq
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: cinder
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: cinder
+  release: cinder
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: cinder
+            component: db-init
+        - type: job
+          labels:
+            application: cinder
+            component: db-sync
+        - type: job
+          labels:
+            application: cinder
+            component: ks-user
+        - type: job
+          labels:
+            application: cinder
+            component: ks-service
+        - type: job
+          labels:
+            application: cinder
+            component: ks-endpoints
+        - type: job
+          labels:
+            application: cinder
+            component: storage-init
+  values:
+    images:
+      tags:
+        test: docker.io/kolla/ubuntu-source-rally:4.0.0
+        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        cinder_db_sync: docker.io/kolla/ubuntu-source-cinder-api:3.0.3
+        db_drop: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        cinder_api: docker.io/kolla/ubuntu-source-cinder-api:3.0.3
+        bootstrap: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        cinder_scheduler: docker.io/kolla/ubuntu-source-cinder-scheduler:3.0.3
+        cinder_volume: docker.io/kolla/ubuntu-source-cinder-volume:3.0.3
+        cinder_volume_usage_audit: docker.io/kolla/ubuntu-source-cinder-volume:3.0.3
+        cinder_storage_init: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
+        cinder_backup: docker.io/kolla/ubuntu-source-cinder-backup:3.0.3
+        cinder_backup_storage_init: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      identity:
+        auth:
+          admin:
+            password: "<password>"
+          cinder:
+            password: "<password>"
+      oslo_db:
+        auth:
+          admin:
+            password: "<password>"
+          cinder:
+            password: "<password>"
+      oslo_cache:
+        hosts:
+          default: cinder-memcached
+      oslo_messaging:
+        auth:
+          cinder:
+            username: cinder-rabbitmq
+            password: "<password>"
+        hosts:
+          default: cinder-rabbitmq
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    pod:
+      replicas:
+        api: 2
+        volume: 1
+        scheduler: 1
+        backup: 1
+    conf:
+      cinder:
+        DEFAULT:
+          backup_driver: cinder.backup.drivers.swift
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: cinder
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openvswitch
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: openvswitch
+  release: openvswitch
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        openvswitch_db_server: docker.io/kolla/ubuntu-source-openvswitch-db-server:3.0.3
+        openvswitch_vswitchd: docker.io/kolla/ubuntu-source-openvswitch-vswitchd:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    labels:
+      ovs:
+          node_selector_key: openvswitch
+          node_selector_value: enabled
+    network:
+      interface:
+        external: "bond1.2002"
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: openvswitch
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: libvirt
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: libvirt
+  release: libvirt
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        libvirt: docker.io/kolla/ubuntu-source-nova-libvirt:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    labels:
+      agent:
+        libvirt:
+          node_selector_key: openstack-compute-node
+          node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: libvirt
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: nova-memcached
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: nova-memcached
+  release: nova-memcached
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        memcached: docker.io/memcached:1.4
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_cache:
+        hosts:
+          default: nova-memcached
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: memcached
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: nova-rabbitmq
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: nova-rabbitmq
+  release: nova-rabbitmq
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        rabbitmq: docker.io/rabbitmq:3.7
+        prometheus_rabbitmq_exporter: docker.io/kbudde/rabbitmq-exporter:v0.21.0
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_messaging:
+        auth:
+          user:
+            username: nova-rabbitmq
+            password: "<password>"
+        hosts:
+          default: nova-rabbitmq
+      prometheus_rabbitmq_exporter:
+        hosts:
+          default: nova-rabbitmq-exporter
+    monitoring:
+      prometheus:
+        enabled: true
+    labels:
+      server:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      prometheus_rabbitmq_exporter:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: rabbitmq
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: nova
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: nova
+  release: nova
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: nova
+            component: db-init
+        - type: job
+          labels:
+            application: nova
+            component: db-sync
+        - type: job
+          labels:
+            application: nova
+            component: ks-user
+        - type: job
+          labels:
+            application: nova
+            component: ks-service
+        - type: job
+          labels:
+            application: nova
+            component: ks-endpoints
+        - type: job
+          labels:
+            application: placement
+            component: ks-user
+        - type: job
+          labels:
+            application: placement
+            component: ks-service
+        - type: job
+          labels:
+            application: placement
+            component: ks-endpoints
+        - type: job
+          labels:
+            application: nova
+            component: cell-setup
+  values:
+    images:
+      tags:
+        test: docker.io/kolla/ubuntu-source-rally:4.0.0
+        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        db_sync: docker.io/kolla/ubuntu-source-nova-api:3.0.3
+        db_drop: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        api: docker.io/kolla/ubuntu-source-nova-api:3.0.3
+        conductor: docker.io/kolla/ubuntu-source-nova-conductor:3.0.3
+        scheduler: docker.io/kolla/ubuntu-source-nova-scheduler:3.0.3
+        novncproxy: docker.io/kolla/ubuntu-source-nova-novncproxy:3.0.3
+        novncproxy_assets: docker.io/kolla/ubuntu-source-nova-novncproxy:3.0.3
+        spiceproxy: docker.io/kolla/ubuntu-source-nova-spicehtml5proxy:3.0.3
+        spiceproxy_assets: docker.io/kolla/ubuntu-source-nova-spicehtml5proxy:3.0.3
+        consoleauth: docker.io/kolla/ubuntu-source-nova-consoleauth:3.0.3
+        compute: docker.io/kolla/ubuntu-source-nova-compute:3.0.3
+        compute_ssh: docker.io/kolla/ubuntu-source-nova-ssh:3.0.3
+        placement: docker.io/kolla/ubuntu-source-nova-placement-api:3.0.3-beta.1
+        bootstrap: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        cell_setup: docker.io/kolla/ubuntu-source-nova-api:3.0.3
+    endpoints:
+      identity:
+        name: keystone
+        auth:
+          admin:
+            password: "<password>"
+          nova:
+            password: "<password>"
+          neutron:
+            password: "<password>"
+          placement:
+            password: "<password>"
+      oslo_db:
+        auth:
+          admin:
+            password: "<password>"
+          nova:
+            password: "<password>"
+      oslo_db_api:
+        auth:
+          admin:
+            password: "<password>"
+          nova:
+            password: "<password>"
+      oslo_db_cell0:
+        auth:
+          admin:
+            password: "<password>"
+          nova:
+            password: "<password>"
+      oslo_cache:
+        hosts:
+          default: nova-memcached
+      oslo_messaging:
+        auth:
+          nova:
+            username: nova-rabbitmq
+            password: "<password>"
+        hosts:
+          default: nova-rabbitmq
+    labels:
+      agent:
+        compute:
+          node_selector_key: openstack-compute-node
+          node_selector_value: enabled
+      conductor:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      consoleauth:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      scheduler:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      osapi:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      api_metadata:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      placement:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      job:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      novncproxy:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      spiceproxy:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+    pod:
+      replicas:
+        api_metadata: 1
+        placement: 2
+        osapi: 2
+        conductor: 2
+        consoleauth: 2
+        scheduler: 2
+        novncproxy: 1
+    conf:
+      nova:
+        libvirt:
+          virt_type: qemu
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: nova
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: neutron-memcached
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: neutron-memcached
+  release: neutron-memcached
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        memcached: docker.io/memcached:1.4
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_cache:
+        hosts:
+          default: neutron-memcached
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: memcached
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: neutron-rabbitmq
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: neutron-rabbitmq
+  release: neutron-rabbitmq
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        rabbitmq: docker.io/rabbitmq:3.7
+        prometheus_rabbitmq_exporter: docker.io/kbudde/rabbitmq-exporter:v0.21.0
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_messaging:
+        auth:
+          user:
+            username: neutron-rabbitmq
+            password: "<password>"
+        hosts:
+          default: neutron-rabbitmq
+      prometheus_rabbitmq_exporter:
+        hosts:
+          default: neutron-rabbitmq-exporter
+    monitoring:
+      prometheus:
+        enabled: true
+    labels:
+      server:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      prometheus_rabbitmq_exporter:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: rabbitmq
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: neutron
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: neutron
+  release: neutron
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: neutron
+            component: db-init
+        - type: job
+          labels:
+            application: neutron
+            component: db-sync
+        - type: job
+          labels:
+            application: neutron
+            component: ks-user
+        - type: job
+          labels:
+            application: neutron
+            component: ks-service
+        - type: job
+          labels:
+            application: neutron
+            component: ks-endpoints
+  values:
+    images:
+      tags:
+        bootstrap: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        neutron_test: docker.io/kolla/ubuntu-source-rally:4.0.0
+        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        neutron_db_sync: docker.io/kolla/ubuntu-source-neutron-server:3.0.3
+        db_drop: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        neutron_server: docker.io/kolla/ubuntu-source-neutron-server:3.0.3
+        neutron_dhcp: docker.io/kolla/ubuntu-source-neutron-dhcp-agent:3.0.3
+        neutron_metadata: docker.io/kolla/ubuntu-source-neutron-metadata-agent:3.0.3
+        neutron_l3: docker.io/kolla/ubuntu-source-neutron-l3-agent:3.0.3
+        neutron_openvswitch_agent: docker.io/kolla/ubuntu-source-neutron-openvswitch-agent:3.0.3
+        neutron_linuxbridge_agent: docker.io/kolla/ubuntu-source-neutron-linuxbridge-agent:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      identity:
+        auth:
+          admin:
+            password: "<password>"
+          neutron:
+            password: "<password>"
+          nova:
+            password: "<password>"
+      oslo_db:
+        auth:
+          admin:
+            password: "<password>"
+          neutron:
+            password: "<password>"
+      oslo_cache:
+        hosts:
+          default: neutron-memcached
+      oslo_messaging:
+        auth:
+          neutron:
+            username: neutron-rabbitmq
+            password: "<password>"
+        hosts:
+          default: neutron-rabbitmq
+    pod:
+      replicas:
+        server: 2
+    labels:
+      ovs:
+          node_selector_key: openvswitch
+          node_selector_value: enabled
+      lb:
+          node_selector_key: linuxbridge
+          node_selector_value: enabled
+      server:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      agent:
+        dhcp:
+          node_selector_key: openstack-control-plane
+          node_selector_value: enabled
+        l3:
+          node_selector_key: openstack-control-plane
+          node_selector_value: enabled
+        metadata:
+          node_selector_key: openstack-control-plane
+          node_selector_value: enabled
+    network:
+      interface:
+        tunnel: "eno1"
+        external: "bond0.26"
+    conf:
+      neutron:
+        DEFAULT:
+          l3_ha: True
+          min_l3_agents_per_router: 1
+          max_l3_agents_per_router: 1
+          l3_ha_network_type: vxlan
+          dhcp_agents_per_network: 1
+      plugins:
+        ml2_conf:
+          ml2_type_flat:
+            flat_networks: public
+        openvswitch_agent:
+          agent:
+            tunnel_types: vxlan
+          ovs:
+            bridge_mappings: public:br-ex
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: neutron
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: heat-memcached
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: heat-memcached
+  release: heat-memcached
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        memcached: docker.io/memcached:1.4
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_cache:
+        hosts:
+          default: heat-memcached
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: memcached
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: heat-rabbitmq
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: heat-rabbitmq
+  release: heat-rabbitmq
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        rabbitmq: docker.io/rabbitmq:3.7
+        prometheus_rabbitmq_exporter: docker.io/kbudde/rabbitmq-exporter:v0.21.0
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_messaging:
+        auth:
+          user:
+            username: heat-rabbitmq
+            password: "<password>"
+        hosts:
+          default: heat-rabbitmq
+      prometheus_rabbitmq_exporter:
+        hosts:
+          default: heat-rabbitmq-exporter
+    monitoring:
+      prometheus:
+        enabled: true
+    labels:
+      server:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      prometheus_rabbitmq_exporter:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: rabbitmq
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: heat
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: heat
+  release: heat
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: heat
+            component: db-init
+        - type: job
+          labels:
+            application: heat
+            component: db-sync
+        - type: job
+          labels:
+            application: heat
+            component: ks-user
+        - type: job
+          labels:
+            application: heat
+            component: ks-service
+        - type: job
+          labels:
+            application: heat
+            component: ks-endpoints
+  values:
+    images:
+      tags:
+        bootstrap: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        heat_db_sync: docker.io/kolla/ubuntu-source-heat-api:3.0.3
+        db_drop: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        heat_api: docker.io/kolla/ubuntu-source-heat-api:3.0.3
+        heat_cfn: docker.io/kolla/ubuntu-source-heat-api:3.0.3
+        heat_cloudwatch: docker.io/kolla/ubuntu-source-heat-api:3.0.3
+        heat_engine: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      identity:
+        auth:
+          admin:
+            password: "<password>"
+          heat:
+            password: "<password>"
+          heat_trustee:
+            password: "<password>"
+          heat_stack_user:
+            password: "<password>"
+      oslo_db:
+        auth:
+          admin:
+            password: "<password>"
+          heat:
+            password: "<password>"
+      oslo_cache:
+        hosts:
+          default: heat-memcached
+      oslo_messaging:
+        auth:
+          heat:
+            username: heat-rabbitmq
+            password: "<password>"
+        hosts:
+          default: heat-rabbitmq
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    pod:
+      replicas:
+        api: 2
+        cfn: 2
+        cloudwatch: 2
+        engine: 2
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: heat
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: barbican-memcached
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: barbican-memcached
+  release: barbican-memcached
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        memcached: docker.io/memcached:1.4
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_cache:
+        hosts:
+          default: barbican-memcached
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: memcached
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: barbican-rabbitmq
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: barbican-rabbitmq
+  release: barbican-rabbitmq
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        rabbitmq: docker.io/rabbitmq:3.7
+        prometheus_rabbitmq_exporter: docker.io/kbudde/rabbitmq-exporter:v0.21.0
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_messaging:
+        auth:
+          user:
+            username: barbican-rabbitmq
+            password: "<password>"
+        hosts:
+          default: barbican-rabbitmq
+      prometheus_rabbitmq_exporter:
+        hosts:
+          default: barbican-rabbitmq-exporter
+    monitoring:
+      prometheus:
+        enabled: true
+    labels:
+      server:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      prometheus_rabbitmq_exporter:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: rabbitmq
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: barbican
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: barbican
+  release: barbican
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: barbican
+            component: db-init
+        - type: job
+          labels:
+            application: barbican
+            component: db-sync
+        - type: job
+          labels:
+            application: barbican
+            component: ks-user
+        - type: job
+          labels:
+            application: barbican
+            component: ks-service
+        - type: job
+          labels:
+            application: barbican
+            component: ks-endpoints
+  values:
+    images:
+      tags:
+        bootstrap: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        scripted_test: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        barbican_db_sync: docker.io/kolla/ubuntu-source-barbican-api:3.0.3
+        db_drop: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        barbican_api: docker.io/kolla/ubuntu-source-barbican-api:3.0.3
+    endpoints:
+      identity:
+        auth:
+          admin:
+            password: "<password>"
+          barbican:
+            password: "<password>"
+      oslo_db:
+        auth:
+          admin:
+            password: "<password>"
+          barbican:
+            password: "<password>"
+      oslo_cache:
+        hosts:
+          default: barbican-memcached
+      oslo_messaging:
+        auth:
+          barbican:
+            username: barbican-rabbitmq
+            password: "<password>"
+        hosts:
+          default: barbican-rabbitmq
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    pod:
+      replicas:
+        api: 2
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: barbican
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: elasticsearch
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: elasticsearch
+  release: elasticsearch
+  namespace: osh-infra
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        apache_proxy: docker.io/httpd:2.4
+        memory_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        curator:  docker.io/bobrik/curator:5.2.0
+        elasticsearch: docker.io/elasticsearch:5.6.4
+        helm_tests: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        snapshot_repository: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        image_repo_sync: docker.io/docker:17.07.0
+    endpoints:
+      elasticsearch:
+        auth:
+          admin:
+            password: "<password>"
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    monitoring:
+      prometheus:
+        enabled: true
+    conf:
+      elasticsearch:
+        env:
+          java_opts: "-Xms5g -Xmx5g"
+    storage:
+      elasticsearch:
+        requests:
+          storage: 40Gi
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm-infra
+    subpath: elasticsearch
+    reference: master
+  dependencies:
+    - osh-infra-helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: fluent-logging
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: fluent-logging
+  release: fluent-logging
+  namespace: osh-infra
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        fluentbit: docker.io/fluent/fluent-bit:0.12.9
+        fluentd: docker.io/kolla/ubuntu-source-fluentd:ocata
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        helm_tests: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        image_repo_sync: docker.io/docker:17.07.0
+    endpoints:
+      elasticsearch:
+        auth:
+          admin:
+            password: "<password>"
+    labels:
+      fluentd:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      fluentbit:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+    monitoring:
+      prometheus:
+        enabled: true
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm-infra
+    subpath: fluent-logging
+    reference: master
+  dependencies:
+    - osh-infra-helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kibana
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: kibana
+  release: kibana
+  namespace: osh-infra
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        apache_proxy: docker.io/httpd:2.4
+        kibana: docker.io/kibana:5.4.2
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        image_repo_sync: docker.io/docker:17.07.0
+    network:
+      kibana:
+        node_port:
+          enabled: true
+    endpoints:
+      elasticsearch:
+        auth:
+          admin:
+            password: "<password>"
+      kibana:
+        auth:
+          admin:
+            password: "<password>"
+    labels:
+      kibana:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm-infra
+    subpath: kibana
+    reference: master
+  dependencies:
+    - osh-infra-helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: prometheus
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: prometheus
+  release: prometheus
+  namespace: osh-infra
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        prometheus: docker.io/prom/prometheus:v2.0.0
+        helm_tests: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        image_repo_sync: docker.io/docker:17.07.0
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    pod:
+      replicas:
+        prometheus: 2
+    storage:
+      requests:
+        storage: 40Gi
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm-infra
+    subpath: prometheus
+    reference: master
+  dependencies:
+    - osh-infra-helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: prometheus-kube-state-metrics
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: prometheus-kube-state-metrics
+  release: prometheus-kube-state-metrics
+  namespace: kube-system
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        kube_state_metrics: quay.io/coreos/kube-state-metrics:v1.0.1
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        image_repo_sync: docker.io/docker:17.07.0
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm-infra
+    subpath: prometheus-kube-state-metrics
+    reference: master
+  dependencies:
+    - osh-infra-helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: prometheus-node-exporter
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: prometheus-node-exporter
+  release: prometheus-node-exporter
+  namespace: kube-system
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        node_exporter: docker.io/prom/node-exporter:v0.15.0
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        image_repo_sync: docker.io/docker:17.07.0
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm-infra
+    subpath: prometheus-node-exporter
+    reference: master
+  dependencies:
+    - osh-infra-helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: prometheus-alertmanager
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: prometheus-alertmanager
+  release: prometheus-alertmanager
+  namespace: osh-infra
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        alertmanager: docker.io/prom/alertmanager:v0.11.0
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        image_repo_sync: docker.io/docker:17.07.0
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    storage:
+      enabled: false
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm-infra
+    subpath: prometheus-alertmanager
+    reference: master
+  dependencies:
+    - osh-infra-helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: prometheus-openstack-exporter
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: prometheus-openstack-exporter
+  release: prometheus-openstack-exporter
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: prometheus-openstack-exporter
+            component: ks-user
+  values:
+    images:
+      tags:
+        prometheus_openstack_exporter: docker.io/rakeshpatnaik/prometheus-openstack-exporter:v0.1
+        helm_tests: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        image_repo_sync: docker.io/docker:17.07.0
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+    endpoints:
+      identity:
+        auth:
+          admin:
+            password: "<password>"
+          user:
+            password: "<password>"
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm-infra
+    subpath: prometheus-openstack-exporter
+    reference: master
+  dependencies:
+    - osh-infra-helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: grafana
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: grafana
+  release: grafana
+  namespace: osh-infra
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: grafana
+            component: db-init
+        - type: job
+          labels:
+            application: grafana
+            component: db-session-sync
+        - type: job
+          labels:
+            application: grafana
+            component: datasource
+  values:
+    images:
+      tags:
+        grafana: docker.io/grafana/grafana:4.5.2
+        datasource: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        grafana_db_session_sync: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        image_repo_sync: docker.io/docker:17.07.0
+    endpoints:
+      oslo_db:
+        namespace: osh-infra
+        auth:
+          admin:
+            password: "<password>"
+          user:
+            password: "<password>"
+      oslo_db_session:
+        namespace: osh-infra
+        auth:
+          admin:
+            password: "<password>"
+          user:
+            password: "<password>"
+      grafana:
+        auth:
+          admin:
+            password: "<password>"
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    pod:
+      replicas:
+        grafana: 2
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm-infra
+    subpath: grafana
+    reference: master
+  dependencies:
+    - osh-infra-helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: horizon-memcached
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: horizon-memcached
+  release: horizon-memcached
+  namespace: openstack
+  timeout: 1800
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        memcached: docker.io/memcached:1.4
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    endpoints:
+      oslo_cache:
+        hosts:
+          default: horizon-memcached
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: memcached
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: horizon
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  chart_name: horizon
+  release: horizon
+  namespace: openstack
+  timeout: 300
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - name: horizon-db-init
+          type: job
+          labels:
+            - application: horizon
+            - component: db-init
+            - release_group: osh-horizon
+        - name: horizon-db-sync
+          type: job
+          labels:
+            - application: horizon
+            - component: db-sync
+            - release_group: osh-horizon
+  values:
+    images:
+      tags:
+        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        horizon_db_sync: docker.io/kolla/ubuntu-source-horizon:ocata
+        db_drop: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        horizon: docker.io/kolla/ubuntu-source-horizon:ocata
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    endpoints:
+      oslo_db:
+        auth:
+          admin:
+            password: "<password>"
+          horizon:
+            password: "<password>"
+      oslo_cache:
+        hosts:
+          default: horizon-memcached
+  source:
+    #proxy_server: http://one.proxy.att.com:8888
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: horizon
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ingress-controllers
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "Ingress controllers"
+  sequenced: True
+  chart_group:
+    - ingress-openstack
+    - ingress-osh-infra
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ceph-storage
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "Ceph Storage"
+  sequenced: True
+  chart_group:
+    - openstack-ceph-config
+    - osh-infra-ceph-config
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: deploy-mariadb
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "Mariadb"
+  sequenced: True
+  chart_group:
+    - mariadb
+    - osh-infra-mariadb
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-infra-services
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "OpenStack Infra Services"
+  sequenced: False
+  chart_group:
+    - libvirt
+    - openvswitch
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-keystone
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "Deploy keystone"
+  sequenced: True
+  chart_group:
+    - keystone-memcached
+    - keystone-rabbitmq
+    - keystone
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-glance
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "Deploy glance"
+  sequenced: True
+  chart_group:
+    - glance-memcached
+    - glance-rabbitmq
+    - glance
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-radosgw
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "Deploy rados gateway"
+  sequenced: False
+  chart_group:
+    - radosgw-openstack
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-cinder
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "Deploy cinder"
+  sequenced: True
+  chart_group:
+    - cinder-memcached
+    - cinder-rabbitmq
+    - cinder
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-compute-kit
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "Deploy nova and neutron"
+  sequenced: False
+  chart_group:
+    - nova-memcached
+    - nova-rabbitmq
+    - nova
+    - neutron-memcached
+    - neutron-rabbitmq
+    - neutron
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-heat
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "Deploy heat"
+  sequenced: True
+  chart_group:
+    - heat-memcached
+    - heat-rabbitmq
+    - heat
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-barbican
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "Deploy barbican"
+  sequenced: True
+  chart_group:
+    - barbican-memcached
+    - barbican-rabbitmq
+    - barbican
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-horizon
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: "Deploy horizon"
+  sequenced: True
+  chart_group:
+    - horizon-memcached
+    - horizon
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: logging-infra
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: 'Logging Infrastructure'
+  sequenced: true
+  chart_group:
+    - elasticsearch
+    - fluent-logging
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: monitoring-infra
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: 'Monitoring Infrastructure'
+  sequenced: true
+  chart_group:
+    - prometheus-alertmanager
+    - prometheus-node-exporter
+    - prometheus-kube-state-metrics
+    - prometheus
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: dashboards-infra
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: 'Logging and Monitoring Dashboards'
+  sequenced: false
+  chart_group:
+    - grafana
+    - kibana
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: prometheus-openstack-exporter
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  description: 'Deploy Prometheus OpenStack exporter'
+  sequenced: true
+  chart_group:
+    - prometheus-openstack-exporter
+---
+schema: armada/Manifest/v1
+metadata:
+  schema: metadata/Document/v1
+  name: armada-manifest
+  layeringDefinition:
+    abstract: false
+    layer: region
+  storagePolicy: cleartext
+data:
+  release_prefix: osh
+  chart_groups:
+    - ingress-controllers
+    - ceph-storage
+    - logging-infra
+    - monitoring-infra
+    - deploy-mariadb
+    - dashboards-infra
+    - openstack-infra-services
+    - openstack-keystone
+    - openstack-glance
+    - openstack-radosgw
+    - openstack-cinder
+    - openstack-compute-kit
+    - openstack-heat
+    - openstack-barbican
+    - openstack-horizon
+    - prometheus-openstack-exporter
+...
