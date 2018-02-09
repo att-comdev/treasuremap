@@ -1,0 +1,84 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kubernetes-proxy
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.kubernetes.proxy
+      dest:
+        path: .source
+
+    # Images
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .images.kubernetes.proxy
+      dest:
+        path: .values.images.tags
+
+    # Secrets
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: kubernetes
+        path: .
+      dest:
+        path: .values.secrets.tls.ca
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: proxy
+        path: .
+      dest:
+        path: .values.secrets.tls.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: proxy
+        path: .
+      dest:
+        path: .values.secrets.tls.key
+data:
+  chart_name: proxy
+  release: kubernetes-proxy
+  namespace: kube-system
+  timeout: 600
+  wait:
+    timeout: 600
+  upgrade:
+    no_hooks: true
+  values:
+    network:
+      kubernetes_netloc: 127.0.0.1:6553
+  dependencies:
+    - kube_proxy_htk
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kube_proxy_htk
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  chart_name: kube_proxy_htk
+  release: kube_proxy_htk
+  namespace: kube_proxy_htk
+  timeout: 100
+  values: {}
+  source:
+    type: git
+    location: https://github.com/openstack/openstack-helm
+    subpath: helm-toolkit
+    reference: 9c7f89db1d283b54ecdd516a8e105503a4b48e3d
+  dependencies: []
+...

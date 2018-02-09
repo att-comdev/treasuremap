@@ -1,0 +1,55 @@
+heat_template_version: newton
+
+description: Deployment template for vMX
+
+resources:
+  server:
+    type: OS::Nova::Server
+    properties:
+      image: Ubuntu 16.04
+      flavor: m1.xlarge
+      key_name: cab24-r820-19
+      networks:
+        - port: { get_resource: server_port_pxe }
+        - port: { get_resource: server_port_contrail }
+
+      user_data:
+        str_replace:
+          template: {get_file: vmx-user-data.sh}
+          params:
+            $message: Welcome!
+
+  port_security_group:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: vmx-security-group
+      description: Security group assigned to all vMX networks
+      rules:
+       - remote_ip_prefix: 0.0.0.0/0
+         protocol: tcp
+         port_range_min: 22
+         port_range_max: 22
+       - remote_ip_prefix: 0.0.0.0/0
+         protocol: icmp
+
+
+  ## network 10.<rack>.<vlan>.101
+
+  server_port_pxe:
+    type: OS::Neutron::Port
+    properties:
+      network_id: integration-pxe
+      fixed_ips:
+      - ip_address: 10.24.20.101
+      security_groups:
+        - { get_resource: port_security_group }
+
+  server_port_contrail:
+    type: OS::Neutron::Port
+    properties:
+      network_id: integration-contrail
+      fixed_ips:
+      - ip_address: 10.24.25.101
+      security_groups:
+        - { get_resource: port_security_group }
+

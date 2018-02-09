@@ -1,0 +1,732 @@
+#opyright 2017 AT&T Intellectual Property.  All other rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+####################
+#
+# bootstrap_seed.yaml - Site server design definition for physical layer
+#
+####################
+# version the schema in this file so consumers can rationally parse it
+---
+schema: 'drydock/Region/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: atl-lab1
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  tag_definitions:
+    - tag: test
+      definition_type: lshw_xpath
+      definition: "//node[@id=\"display\"]/'clock units=\"Hz\"' > 1000000000"
+  authorized_keys:
+    - |
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDrUcaxz8UGpuJ4KGuFDmCtEBDfwcGcdyfqH775zY9ReDJFyVKZQBADfaDgbQ3rcK9cuE5UKvjrzNVkDDlcQiIlHyScwkmAEINVcdrofAlUCYEzjzU/Tk6Qg+imr2vERjXZ99Bn7Au0ZLf4MEuMp3JbKfM6iki3V00on3fZYTAbxTY95emkkwK6WX5ItR3BCeqobpNgb6dBnwsqySLHtF2CrQAbbCU1DShr2VWt1B3JlYsS1LhTuOD6EWg1EYcoiBtFY9iLKeAyH3U9LMS+MyHY86utamvpxTu/3mXQIYPOSKV2pdP7G8x1+TEmf7Lj7qkcjMkoqlzh3zMtQZf25trL Generated-by-Nova
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: oob
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  bonding:
+    mode: disabled
+  mtu: 1500
+  linkspeed: auto
+  trunking:
+    mode: disabled
+    default_network: oob
+  allowed_networks:
+    - oob
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: pxe-cab23
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  bonding:
+    mode: disabled
+  mtu: 1500
+  linkspeed: auto
+  trunking:
+    mode: disabled
+    default_network: pxe-cab23
+  allowed_networks:
+    - pxe-cab23
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: pxe-cab24
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  bonding:
+    mode: disabled
+  mtu: 1500
+  linkspeed: auto
+  trunking:
+    mode: disabled
+    default_network: pxe-cab24
+  allowed_networks:
+    - pxe-cab24
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: data
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  bonding:
+    mode: 802.3ad
+    hash: layer3+4
+    peer_rate: slow
+  mtu: 9000
+  linkspeed: auto
+  trunking:
+    mode: 802.1q
+  allowed_networks:
+    - mgmt
+    - calico
+    - storage
+    - ossdn
+    - contrail
+    - public
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: oob
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  cidr: 10.23.104.0/24
+  ranges:
+    - type: static
+      start: 10.23.104.11
+      end: 10.23.104.14
+  routes:
+    - subnet: '0.0.0.0/0'
+      gateway: '10.23.104.1'
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: pxe-cab23
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  # Layer 2 VLAN segment id, could support other segmentations. Optional
+  # vlan_id: '99'
+
+  # If this network utilizes a dhcp relay, where does it forward DHCPDISCOVER requests to?
+  dhcp_relay:
+    # Required if Drydock is configuring a switch with the relay
+    # self_ip: 10.23.20.1
+    # Can refer to a unicast IP
+    upstream_target: 10.24.20.100
+
+  # MTU for this VLAN interface, if not specified it will be inherited from the link
+  mtu: 1500
+  # Network address
+  cidr: 10.23.20.0/24
+  # Desribe IP address ranges
+  ranges:
+    - type: dhcp
+      start: 10.23.20.121
+      end: 10.23.20.131
+  # Routes defined for this network, including the default route (i.e. default gateway)
+  routes:
+    - subnet: '0.0.0.0/0'
+      gateway: '10.23.20.1'
+      metric: 10
+    - subnet: '10.24.20.0/24'
+      gateway: '10.23.20.1'
+      metric: 10
+  # DNS settings for this network
+  dns:
+    # Domain addresses on this network will be registered under
+    domain: cicd.att.com
+    # DNS servers that a server using this network as its default gateway should use
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: pxe-cab24
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  # Layer 2 VLAN segment id, could support other segmentations. Optional
+  # vlan_id: '99'
+  # MTU for this VLAN interface, if not specified it will be inherited from the link
+  mtu: 1500
+  # Network address
+  cidr: 10.24.20.0/24
+  # Desribe IP address ranges
+  ranges:
+    - type: dhcp
+      start: 10.24.20.121
+      end: 10.24.20.131
+  # Routes defined for this network, including the default route (i.e. default gateway)
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 10.24.20.1
+      metric: 10
+  # DNS settings for this network
+  dns:
+    # Domain addresses on this network will be registered under
+    domain: admin.integration-site.att.com
+    # DNS servers that a server using this network as its default gateway should use
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: mgmt
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vlan: '21'
+  mtu: 1500
+  cidr: 10.23.21.0/24
+  ranges:
+    - type: static
+      start: 10.23.21.11
+      end: 10.23.21.14
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 10.23.21.1
+      metric: 10
+    - subnet: 10.24.21.0/24
+      gateway: 10.23.21.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: calico
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vlan: '22'
+  mtu: 1500
+  cidr: 10.23.22.0/24
+  ranges:
+    - type: static
+      start: 10.23.22.11
+      end: 10.23.22.14
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 10.23.22.1
+      metric: 10
+    - subnet: 10.24.22.0/24
+      gateway: 10.23.22.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: storage
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vlan: '23'
+  mtu: 1500
+  cidr: 10.23.23.0/24
+  ranges:
+    - type: static
+      start: 10.23.23.11
+      end: 10.23.23.14
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 10.23.23.1
+      metric: 10
+    - subnet: 10.24.23.0/24
+      gateway: 10.23.23.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: ossdn
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vlan: '24'
+  mtu: 1500
+  cidr: 10.23.24.0/24
+  ranges:
+    - type: static
+      start: 10.23.24.11
+      end: 10.23.24.14
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 10.23.24.1
+      metric: 10
+    - subnet: 10.24.24.0/24
+      gateway: 10.23.24.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: contrail
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vlan: '25'
+  mtu: 1500
+  cidr: 10.23.25.0/24
+  ranges:
+    - type: static
+      start: 10.23.25.11
+      end: 10.23.25.14
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 10.23.25.1
+      metric: 10
+    - subnet: 10.24.25.0/24
+      gateway: 10.23.25.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: public
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vlan: '26'
+  mtu: 1500
+  cidr: 12.37.173.48/28
+  ranges:
+    - type: static
+      start: 12.37.173.51
+      end: 12.37.173.61
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 12.37.173.49
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/HardwareProfile/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: DellR720xd
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  vendor: Dell
+  generation: '8'
+  hw_version: '3'
+  bios_version: '2.2.3'
+  boot_mode: bios
+  bootstrap_protocol: pxe
+  pxe_interface: 0
+  device_aliases:
+    prim_nic01:
+      address: '0000:00:03.0'
+      dev_type: '82540EM Gigabit Ethernet Controller'
+      bus_type: 'pci'
+    prim_nic02:
+      address: '0000:00:04.0'
+      dev_type: '82540EM Gigabit Ethernet Controller'
+      bus_type: 'pci'
+    primary_boot:
+      address: '2:0.0.0'
+      dev_type: 'VBOX HARDDISK'
+      bus_type: 'scsi'
+---
+schema: 'drydock/HostProfile/v1'
+metadata:
+  name: k8s-node-common
+  schema: 'metadata/Document/v1'
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  hardware_profile: DellR720xd
+
+  oob:
+    type: ipmi
+    network: oob
+    account: root
+    credential: calvin
+
+  platform:
+    image: ubuntu_16.04
+    kernel: generic
+    #kernel_params:
+    #  quiet: true
+    #  console: ttyS2
+
+  storage:
+    physical_devices:
+      sda:
+        labels:
+          bootdrive: 'true'
+
+  metadata:
+    # Explicit tag assignment
+    tags:
+      - 'test'
+    owner_data:
+      foo: bar
+---
+schema: 'drydock/HostProfile/v1'
+metadata:
+  name: k8s-node-control
+  schema: 'metadata/Document/v1'
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-common
+  hardware_profile: DellR720xd
+  storage:
+    physical_devices:
+      sda:
+        labels:
+          bootdrive: 'true'
+        partitions:
+          - name: 'root'
+            size: '20g'
+            bootable: true
+            filesystem:
+              mountpoint: '/'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+          - name: 'boot'
+            size: '1g'
+            filesystem:
+              mountpoint: '/boot'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+          # ceph journals
+          - name: 'cephj01'
+            size: '5g'
+          - name: 'cephj02'
+            size: '5g'
+          - name: 'cephj03'
+            size: '5g'
+          - name: 'cephj04'
+            size: '5g'
+          - name: 'cephj05'
+            size: '5g'
+          - name: 'cephj06'
+            size: '5g'
+          - name: 'cephj07'
+            size: '5g'
+          - name: 'cephj08'
+            size: '5g'
+          - name: 'cephj09'
+            size: '5g'
+          - name: 'cephj10'
+            size: '5g'
+          # the rest for /var
+          - name: 'var'
+            size: '>100g'
+            filesystem:
+              mountpoint: '/var'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+
+  primary_network: pxe-cab23
+  interfaces:
+    eno1:
+      device_link: pxe-cab23
+      slaves:
+        - eno1
+      networks:
+        - pxe-cab23
+    bond0:
+      device_link: data
+      slaves:
+        - enp67s0f0
+        - enp67s0f1
+        - enp68s0f0
+        - enp68s0f1
+      networks:
+        - mgmt
+        - calico
+        - storage
+        - ossdn
+        - contrail
+        - public
+---
+schema: 'drydock/HostProfile/v1'
+metadata:
+  name: k8s-node-worker
+  schema: 'metadata/Document/v1'
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-common
+  hardware_profile: DellR720xd
+  storage:
+    physical_devices:
+      sda:
+        labels:
+          bootdrive: 'true'
+        partitions:
+          - name: 'root'
+            size: '20g'
+            bootable: true
+            filesystem:
+              mountpoint: '/'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+          - name: 'boot'
+            size: '1g'
+            filesystem:
+              mountpoint: '/boot'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+          - name: 'var'
+            size: '>100g'
+            filesystem:
+              mountpoint: '/var'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+      sdb:
+        partitions:
+          - name: 'instances'
+            size: '20t'
+            filesystem:
+              mountpoint: '/var/lib/nova/instances'
+              fstype: 'ext4'
+              mount_options: 'defaults'
+
+  primary_network: pxe-cab23
+  interfaces:
+    eno1:
+      device_link: pxe-cab23
+      slaves:
+        - eno1
+      networks:
+        - pxe-cab23
+    bond0:
+      device_link: data
+      slaves:
+        - enp67s0f0
+        - enp67s0f1
+        - enp68s0f0
+        - enp68s0f1
+      networks:
+        - mgmt
+        - calico
+        - storage
+        - ossdn
+        - contrail
+        - public
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: controller01
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-control
+  addressing:
+    - network: oob
+      address: 10.23.104.11
+    - network: pxe-cab23
+      address: 10.23.20.11
+    - network: mgmt
+      address: 10.23.21.11
+    - network: calico
+      address: 10.23.22.11
+    - network: storage
+      address: 10.23.23.11
+    - network: ossdn
+      address: 10.23.24.11
+    - network: contrail
+      address: 10.23.25.11
+  metadata:
+    rack: rack1
+    tags:
+      - 'masters'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: controller02
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-control
+  addressing:
+    - network: oob
+      address: 10.23.104.12
+    - network: pxe-cab23
+      address: 10.23.20.12
+    - network: mgmt
+      address: 10.23.21.12
+    - network: calico
+      address: 10.23.22.12
+    - network: storage
+      address: 10.23.23.12
+    - network: ossdn
+      address: 10.23.24.12
+    - network: contrail
+      address: 10.23.25.12
+  metadata:
+    rack: rack1
+    tags:
+      - 'masters'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: worker01
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-worker
+  addressing:
+    - network: oob
+      address: 10.23.104.13
+    - network: pxe-cab23
+      address: 10.23.20.13
+    - network: mgmt
+      address: 10.23.21.13
+    - network: calico
+      address: 10.23.22.13
+    - network: storage
+      address: 10.23.23.13
+    - network: ossdn
+      address: 10.23.24.13
+    - network: contrail
+      address: 10.23.25.13
+  metadata:
+    rack: rack1
+    tags:
+      - 'workers'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: worker02
+  layeringDefinition:
+    abstract: false
+    layer: region
+data:
+  host_profile: k8s-node-worker
+  addressing:
+    - network: oob
+      address: 10.23.104.14
+    - network: pxe-cab23
+      address: 10.23.20.14
+    - network: mgmt
+      address: 10.23.21.14
+    - network: calico
+      address: 10.23.22.14
+    - network: storage
+      address: 10.23.23.14
+    - network: ossdn
+      address: 10.23.24.14
+    - network: contrail
+      address: 10.23.25.14
+  metadata:
+    rack: rack1
+    tags:
+      - 'workers'
+---
+schema: 'drydock/BootAction/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: promjoin
+  storagePolicy: 'cleartext'
+  layeringDefinition:
+    abstract: false
+    layer: region
+  labels:
+    application: 'drydock'
+data:
+  node_filter:
+    filter_set_type: 'union'
+    filter_set:
+      - filter_type: 'union'
+        node_names:
+          - 'controller01'
+          - 'controller02'
+          - 'worker01'
+          - 'worker02'
+  assets:
+    - path: /opt/promjoin.sh
+      type: file
+      permissions: '555'
+      location: http://10.24.20.100:6880/join-{{node.hostname}}.sh
+      location_pipeline:
+        - template
+      data_pipeline:
+        - utf8_decode
+    - path: /lib/systemd/system/promjoin.service
+      type: unit
+      permissions: '600'
+      data: |-
+        W1VuaXRdCkRlc2NyaXB0aW9uPVByb21lbmFkZSBJbml0aWFsaXphdGlvbiBTZXJ2aWNlCkFmdGVy
+        PW5ldHdvcmstb25saW5lLnRhcmdldCBsb2NhbC1mcy50YXJnZXQKQ29uZGl0aW9uUGF0aEV4aXN0
+        cz0hL3Zhci9saWIvcHJvbS5kb25lCgpbU2VydmljZV0KVHlwZT1zaW1wbGUKRXhlY1N0YXJ0PS9v
+        cHQvcHJvbWpvaW4uc2gKCltJbnN0YWxsXQpXYW50ZWRCeT1tdWx0aS11c2VyLnRhcmdldAo=
+      data_pipeline:
+        - base64_decode
+        - utf8_decode
+...
+

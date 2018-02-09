@@ -1,0 +1,41 @@
+---
+schema: 'drydock/BootAction/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: promjoin
+  storagePolicy: 'cleartext'
+  layeringDefinition:
+    abstract: false
+    layer: region
+  labels:
+    application: 'drydock'
+data:
+  node_filter:
+    filter_set_type: 'union'
+    filter_set:
+      - filter_type: 'union'
+        node_names:
+          - 'controller01'
+          - 'controller02'
+          - 'worker01'
+          - 'worker02'
+  assets:
+    - path: /opt/promjoin.sh
+      type: file
+      permissions: '555'
+      location: http://10.24.20.100:6880/join-{{node.hostname}}.sh
+      location_pipeline:
+        - template
+      data_pipeline:
+        - utf8_decode
+    - path: /lib/systemd/system/promjoin.service
+      type: unit
+      permissions: '600'
+      data: |-
+        W1VuaXRdCkRlc2NyaXB0aW9uPVByb21lbmFkZSBJbml0aWFsaXphdGlvbiBTZXJ2aWNlCkFmdGVy
+        PW5ldHdvcmstb25saW5lLnRhcmdldCBsb2NhbC1mcy50YXJnZXQKQ29uZGl0aW9uUGF0aEV4aXN0
+        cz0hL3Zhci9saWIvcHJvbS5kb25lCgpbU2VydmljZV0KVHlwZT1zaW1wbGUKRXhlY1N0YXJ0PS9v
+        cHQvcHJvbWpvaW4uc2gKCltJbnN0YWxsXQpXYW50ZWRCeT1tdWx0aS11c2VyLnRhcmdldAo=
+      data_pipeline:
+        - base64_decode
+        - utf8_decode

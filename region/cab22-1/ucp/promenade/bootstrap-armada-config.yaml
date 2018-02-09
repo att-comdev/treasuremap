@@ -1,0 +1,1689 @@
+---
+schema: armada/Manifest/v1
+metadata:
+  schema: metadata/Document/v1
+  name: cluster-bootstrap
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  release_prefix: ucp
+  chart_groups:
+    - kubernetes-proxy
+    - container-networking
+    - dns
+    - kubernetes
+    - kubernetes-rbac
+    - ceph
+    - ucp-infra
+    - ucp-services
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kubernetes-proxy
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  description: Kubernetes proxy
+  sequenced: true
+  chart_group:
+    - kubernetes-proxy
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: container-networking
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  description: Container networking via Calico
+  sequenced: true
+  chart_group:
+    - calico-etcd
+    - calico
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: dns
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  description: Cluster DNS
+  chart_group:
+    - coredns
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kubernetes-rbac
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  description: Role Based Access Control configuration for Kubernetes
+  sequenced: true
+  chart_group:
+    - kubernetes-rbac
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kubernetes
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  description: Kubernetes components
+  chart_group:
+    - kubernetes-etcd
+    - kubernetes-apiserver
+    - kubernetes-controller-manager
+    - kubernetes-scheduler
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: helm-toolkit
+data:
+  chart_name: helm-toolkit
+  release: helm-toolkit
+  namespace: helm-toolkit
+  timeout: 600
+  upgrade:
+    no_hooks: true
+  values: {}
+  source:
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: helm-toolkit
+    reference: master
+  dependencies: []
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kubernetes-proxy
+  layeringDefinition:
+    abstract: false
+    layer: site
+  substitutions:
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: kubernetes
+        path: $
+      dest:
+        path: '$.values.secrets.tls.ca'
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: proxy
+        path: $
+      dest:
+        path: '$.values.secrets.tls.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: proxy
+        path: $
+      dest:
+        path: '$.values.secrets.tls.key'
+data:
+  chart_name: proxy
+  release: kubernetes-proxy
+  namespace: kube-system
+  timeout: 600
+  upgrade:
+    no_hooks: true
+  values:
+    secrets:
+      tls:
+        ca: placeholder
+        cert: placeholder
+        key: placeholder
+    images:
+      tags:
+        proxy: gcr.io/google_containers/hyperkube-amd64:v1.8.0
+    network:
+      kubernetes_netloc: apiserver.kubernetes.promenade:6443
+      pod_cidr: 10.97.0.0/16
+  source:
+    type: local
+    location: /etc/genesis/armada/assets/charts
+    subpath: proxy
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: calico-etcd
+  layeringDefinition:
+    abstract: false
+    layer: site
+  substitutions:
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: calico-etcd
+        path: $
+      dest:
+        path: '$.values.secrets.tls.client.ca'
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: calico-etcd-peer
+        path: $
+      dest:
+        path: '$.values.secrets.tls.peer.ca'
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-anchor
+        path: $
+      dest:
+        path: '$.values.secrets.anchor.tls.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-anchor
+        path: $
+      dest:
+        path: '$.values.secrets.anchor.tls.key'
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-genesis
+        path: $
+      dest:
+        path: '$.values.nodes[0].tls.client.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-genesis
+        path: $
+      dest:
+        path: '$.values.nodes[0].tls.client.key'
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-genesis-peer
+        path: $
+      dest:
+        path: '$.values.nodes[0].tls.peer.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-genesis-peer
+        path: $
+      dest:
+        path: '$.values.nodes[0].tls.peer.key'
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-controller01
+        path: $
+      dest:
+        path: '$.values.nodes[1].tls.client.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-controller01
+        path: $
+      dest:
+        path: '$.values.nodes[1].tls.client.key'
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-controller01-peer
+        path: $
+      dest:
+        path: '$.values.nodes[1].tls.peer.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-controller01-peer
+        path: $
+      dest:
+        path: '$.values.nodes[1].tls.peer.key'
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-controller02
+        path: $
+      dest:
+        path: '$.values.nodes[2].tls.client.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-controller02
+        path: $
+      dest:
+        path: '$.values.nodes[2].tls.client.key'
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-controller02-peer
+        path: $
+      dest:
+        path: '$.values.nodes[2].tls.peer.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-controller02-peer
+        path: $
+      dest:
+        path: '$.values.nodes[2].tls.peer.key'
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-worker01
+        path: $
+      dest:
+        path: '$.values.nodes[3].tls.client.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-worker01
+        path: $
+      dest:
+        path: '$.values.nodes[3].tls.client.key'
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-worker01-peer
+        path: $
+      dest:
+        path: '$.values.nodes[3].tls.peer.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-worker01-peer
+        path: $
+      dest:
+        path: '$.values.nodes[3].tls.peer.key'
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-worker02
+        path: $
+      dest:
+        path: '$.values.nodes[4].tls.client.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-worker02
+        path: $
+      dest:
+        path: '$.values.nodes[4].tls.client.key'
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-worker02-peer
+        path: $
+      dest:
+        path: '$.values.nodes[4].tls.peer.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-worker02-peer
+        path: $
+      dest:
+        path: '$.values.nodes[4].tls.peer.key'
+
+data:
+  chart_name: etcd
+  release: calico-etcd
+  namespace: kube-system
+  timeout: 600
+  upgrade:
+    no_hooks: true
+  values:
+    anchor:
+      etcdctl_endpoint: 10.96.232.136
+    labels:
+      anchor:
+        node_selector_key: calico-etcd
+        node_selector_value: enabled
+    secrets:
+      anchor:
+        tls:
+          cert: placeholder
+          key: placeholder
+      tls:
+        client:
+          ca: placeholder
+        peer:
+          ca: placeholder
+    etcd:
+      host_data_path: /var/lib/etcd/calico
+      host_etc_path: /etc/etcd/calico
+    bootstrapping:
+      enabled: true
+      host_directory: /var/lib/anchor
+      filename: calico-etcd-bootstrap
+    images:
+      tags:
+        etcd: quay.io/coreos/etcd:v3.0.17
+        etcdctl: quay.io/coreos/etcd:v3.0.17
+    nodes:
+      - name: genesis
+        tls:
+          client:
+            cert: placeholder
+            key: placeholder
+          peer:
+            cert: placeholder
+            key: placeholder
+      - name: controller01
+        tls:
+          client:
+            cert: placeholder
+            key: placeholder
+          peer:
+            cert: placeholder
+            key: placeholder
+      - name: controller02
+        tls:
+          client:
+            cert: placeholder
+            key: placeholder
+          peer:
+            cert: placeholder
+            key: placeholder
+      # worker01 is here to demonstrate movability of the cluster
+      - name: worker01
+        tls:
+          client:
+            cert: placeholder
+            key: placeholder
+          peer:
+            cert: placeholder
+            key: placeholder
+      - name: worker02
+        tls:
+          client:
+            cert: placeholder
+            key: placeholder
+          peer:
+            cert: placeholder
+            key: placeholder
+    service:
+      name: calico-etcd
+      ip: 10.96.232.136
+    network:
+      service_client:
+        name: service_client
+        port: 6666
+        target_port: 6666
+      service_peer:
+        name: service_peer
+        port: 6667
+        target_port: 6667
+  source:
+    type: local
+    location: /etc/genesis/armada/assets/charts
+    subpath: etcd
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: calico
+  layeringDefinition:
+    abstract: false
+    layer: site
+  substitutions:
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: calico-etcd
+        path: $
+      dest:
+        path: '$.values.etcd.tls.ca'
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-node
+        path: $
+      dest:
+        path: '$.values.etcd.tls.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-node
+        path: $
+      dest:
+        path: '$.values.etcd.tls.key'
+data:
+  chart_name: calico
+  release: calico
+  namespace: kube-system
+  timeout: 600
+  upgrade:
+    no_hooks: true
+  values:
+    calico:
+      ip_autodetection_method: 'interface=bond0.22|ens5'
+      pod_ip_cidr: 10.97.0.0/16
+      ctl:
+        install_on_host: true
+    etcd:
+      service:
+        ip: 10.96.232.136
+        port: 6666
+      tls:
+        ca: placeholder
+        cert: placeholder
+        key: placeholder
+    images:
+      cni: quay.io/calico/cni:v1.11.0
+      ctl: quay.io/calico/ctl:v1.6.1
+      node: quay.io/calico/node:v2.6.1
+      policy_controller: quay.io/calico/kube-controllers:v1.0.0
+  source:
+    type: local
+    location: /etc/genesis/armada/assets/charts
+    subpath: calico
+  dependencies: []
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: coredns
+  layeringDefinition:
+    abstract: false
+    layer: site
+  substitutions:
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: kubernetes
+        path: $
+      dest:
+        path: '$.values.tls.ca'
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: coredns
+        path: $
+      dest:
+        path: '$.values.tls.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: coredns
+        path: $
+      dest:
+        path: '$.values.tls.key'
+data:
+  chart_name: coredns
+  release: coredns
+  namespace: kube-system
+  timeout: 600
+  upgrade:
+    no_hooks: true
+  values:
+    coredns:
+      kubernetes_zones:
+        - cluster.local
+        - 10.96.0.0/16
+        - 10.97.0.0/16
+      upstream_nameservers:
+        - 8.8.8.8
+        - 8.8.4.4
+      zones:
+        - name: promenade
+          services:
+            - bind_name: apiserver.kubernetes
+              service:
+                name: kubernetes-apiserver
+                namespace: kube-system
+            - bind_name: etcd.kubernetes
+              service:
+                name: kubernetes-etcd
+                namespace: kube-system
+            - bind_name: etcd.calico
+              service:
+                name: calico-etcd
+                namespace: kube-system
+    images:
+      anchor: gcr.io/google_containers/hyperkube-amd64:v1.8.0
+      coredns: coredns/coredns:011
+    tls:
+      ca: placeholder
+      cert: placeholder
+      key: placeholder
+    network:
+      kubernetes_netloc: apiserver.kubernetes.promenade:6443
+  source:
+    type: local
+    location: /etc/genesis/armada/assets/charts
+    subpath: coredns
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kubernetes-apiserver
+  layeringDefinition:
+    abstract: false
+    layer: site
+  substitutions:
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: kubernetes
+        path: $
+      dest:
+        path: $.values.secrets.tls.ca
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: apiserver
+        path: $
+      dest:
+        path: $.values.secrets.tls.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: apiserver
+        path: $
+      dest:
+        path: $.values.secrets.tls.key
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: kubernetes-etcd
+        path: $
+      dest:
+        path: $.values.secrets.etcd.tls.ca
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: apiserver-etcd
+        path: $
+      dest:
+        path: $.values.secrets.etcd.tls.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: apiserver-etcd
+        path: $
+      dest:
+        path: $.values.secrets.etcd.tls.key
+    -
+      src:
+        schema: deckhand/PublicKey/v1
+        name: service-account
+        path: $
+      dest:
+        path: $.values.secrets.service_account.public_key
+
+data:
+  chart_name: apiserver
+  release: kubernetes-apiserver
+  namespace: kube-system
+  timeout: 600
+  upgrade:
+    no_hooks: true
+  values:
+    apiserver:
+      etcd:
+        endpoints: https://etcd.kubernetes.promenade:2379
+        tls:
+          ca: placeholder
+          cert: placeholder
+          key: placeholder
+    images:
+      tags:
+        anchor: gcr.io/google_containers/hyperkube-amd64:v1.8.0
+        apiserver: gcr.io/google_containers/hyperkube-amd64:v1.8.0
+    secrets:
+      service_account:
+        public_key: placeholder
+      tls:
+        ca: placeholder
+        cert: placeholder
+        key: placeholder
+      etcd:
+        tls:
+          ca: placeholder
+          cert: placeholder
+          key: placeholder
+    network:
+      kubernetes_service_ip: 10.96.0.1
+      pod_cidr: 10.97.0.0/16
+      service_cidr: 10.96.0.0/16
+
+  source:
+    type: local
+    location: /etc/genesis/armada/assets/charts
+    subpath: apiserver
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kubernetes-controller-manager
+  layeringDefinition:
+    abstract: false
+    layer: site
+  substitutions:
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: kubernetes
+        path: $
+      dest:
+        path: $.values.secrets.tls.ca
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: controller-manager
+        path: $
+      dest:
+        path: $.values.secrets.tls.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: controller-manager
+        path: $
+      dest:
+        path: $.values.secrets.tls.key
+    -
+      src:
+        schema: deckhand/PrivateKey/v1
+        name: service-account
+        path: $
+      dest:
+        path: $.values.secrets.service_account.private_key
+
+data:
+  chart_name: controller_manager
+  release: kubernetes-controller-manager
+  namespace: kube-system
+  timeout: 600
+  upgrade:
+    no_hooks: true
+  values:
+    images:
+      tags:
+        anchor: gcr.io/google_containers/hyperkube-amd64:v1.8.0
+        controller_manager: gcr.io/google_containers/hyperkube-amd64:v1.8.0
+    secrets:
+      service_account:
+        private_key: placeholder
+      tls:
+        ca: placeholder
+        cert: placeholder
+        key: placeholder
+    network:
+      kubernetes_netloc: apiserver.kubernetes.promenade:6443
+      pod_cidr: 10.97.0.0/16
+      service_cidr: 10.96.0.0/16
+  source:
+    type: local
+    location: /etc/genesis/armada/assets/charts
+    subpath: controller_manager
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kubernetes-scheduler
+  layeringDefinition:
+    abstract: false
+    layer: site
+  substitutions:
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: kubernetes
+        path: $
+      dest:
+        path: $.values.secrets.tls.ca
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: scheduler
+        path: $
+      dest:
+        path: $.values.secrets.tls.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: scheduler
+        path: $
+      dest:
+        path: $.values.secrets.tls.key
+
+data:
+  chart_name: scheduler
+  release: kubernetes-scheduler
+  namespace: kube-system
+  timeout: 600
+  upgrade:
+    no_hooks: true
+  values:
+    secrets:
+      tls:
+        ca: placeholder
+        cert: placeholder
+        key: placeholder
+
+    network:
+      kubernetes_netloc: apiserver.kubernetes.promenade:6443
+
+    images:
+      tags:
+        anchor: gcr.io/google_containers/hyperkube-amd64:v1.8.0
+        scheduler: gcr.io/google_containers/hyperkube-amd64:v1.8.0
+
+  source:
+    type: local
+    location: /etc/genesis/armada/assets/charts
+    subpath: scheduler
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kubernetes-etcd
+  layeringDefinition:
+    abstract: false
+    layer: site
+  substitutions:
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: kubernetes-etcd
+        path: $
+      dest:
+        path: '$.values.secrets.tls.client.ca'
+    -
+      src:
+        schema: deckhand/CertificateAuthority/v1
+        name: kubernetes-etcd-peer
+        path: $
+      dest:
+        path: '$.values.secrets.tls.peer.ca'
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: kubernetes-etcd-anchor
+        path: $
+      dest:
+        path: '$.values.secrets.anchor.tls.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: kubernetes-etcd-anchor
+        path: $
+      dest:
+        path: '$.values.secrets.anchor.tls.key'
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: kubernetes-etcd-genesis
+        path: $
+      dest:
+        path: '$.values.nodes[0].tls.client.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: kubernetes-etcd-genesis
+        path: $
+      dest:
+        path: '$.values.nodes[0].tls.client.key'
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: kubernetes-etcd-genesis-peer
+        path: $
+      dest:
+        path: '$.values.nodes[0].tls.peer.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: kubernetes-etcd-genesis-peer
+        path: $
+      dest:
+        path: '$.values.nodes[0].tls.peer.key'
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: kubernetes-etcd-controller01
+        path: $
+      dest:
+        path: '$.values.nodes[1].tls.client.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: kubernetes-etcd-controller01
+        path: $
+      dest:
+        path: '$.values.nodes[1].tls.client.key'
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: kubernetes-etcd-controller01-peer
+        path: $
+      dest:
+        path: '$.values.nodes[1].tls.peer.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: kubernetes-etcd-controller01-peer
+        path: $
+      dest:
+        path: '$.values.nodes[1].tls.peer.key'
+
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: kubernetes-etcd-controller02
+        path: $
+      dest:
+        path: '$.values.nodes[2].tls.client.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: kubernetes-etcd-controller02
+        path: $
+      dest:
+        path: '$.values.nodes[2].tls.client.key'
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: kubernetes-etcd-controller02-peer
+        path: $
+      dest:
+        path: '$.values.nodes[2].tls.peer.cert'
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: kubernetes-etcd-controller02-peer
+        path: $
+      dest:
+        path: '$.values.nodes[2].tls.peer.key'
+
+data:
+  chart_name: etcd
+  release: kubernetes-etcd
+  namespace: kube-system
+  timeout: 600
+  upgrade:
+    no_hooks: true
+  values:
+    anchor:
+      etcdctl_endpoint: 10.96.0.2
+    labels:
+      anchor:
+        node_selector_key: kubernetes-etcd
+        node_selector_value: enabled
+    secrets:
+      anchor:
+        tls:
+          cert: placeholder
+          key: placeholder
+      tls:
+        client:
+          ca: placeholder
+        peer:
+          ca: placeholder
+    etcd:
+      host_data_path: /var/lib/etcd/kubernetes
+      host_etc_path: /etc/etcd/kubernetes
+    images:
+      tags:
+        etcd: quay.io/coreos/etcd:v3.0.17
+        etcdctl: quay.io/coreos/etcd:v3.0.17
+    nodes:
+      - name: genesis
+        tls:
+          client:
+            cert: placeholder
+            key: placeholder
+          peer:
+            cert: placeholder
+            key: placeholder
+      - name: controller01
+        tls:
+          client:
+            cert: placeholder
+            key: placeholder
+          peer:
+            cert: placeholder
+            key: placeholder
+      - name: controller02
+        tls:
+          client:
+            cert: placeholder
+            key: placeholder
+          peer:
+            cert: placeholder
+            key: placeholder
+    service:
+      name: kubernetes-etcd
+      ip: 10.96.0.2
+    network:
+      service_client:
+        name: service_client
+        port: 2379
+        target_port: 2379
+      service_peer:
+        name: service_peer
+        port: 2380
+        target_port: 2380
+  source:
+    type: local
+    location: /etc/genesis/armada/assets/charts
+    subpath: etcd
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: kubernetes-rbac
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  chart_name: rbac
+  release: rbac
+  namespace: kube-system
+  timeout: 600
+  values: {}
+  upgrade:
+    no_hooks: true
+  source:
+    type: local
+    location: /etc/genesis/armada/assets/charts
+    subpath: rbac
+  dependencies: []
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ceph
+data:
+  chart_name: ceph
+  release: ceph
+  namespace: ceph
+  timeout: 3600
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - name: ceph-bootstrap
+          type: job
+          labels:
+            - application: ceph
+            - component: bootstrap
+            - release_group: armada-ucp
+        - name: ceph-mds-keyring-generator
+          type: job
+          labels:
+            - application: ceph
+            - component: mds-keyring-generator
+            - release_group: armada-ucp
+        - name: ceph-mon-keyring-generator
+          type: job
+          labels:
+            - application: ceph
+            - component: mon-keyring-generator
+            - release_group: armada-ucp
+        - name: ceph-rgw-keyring-generator
+          type: job
+          labels:
+            - application: ceph
+            - component: rgw-keyring-generator
+            - release_group: armada-ucp
+        - name: ceph-storage-keys-generator
+          type: job
+          labels:
+            - application: ceph
+            - component: storage-keys-generator
+            - release_group: armada-ucp
+        - name: ceph-osd-keyring-generator
+          type: job
+          labels:
+            - application: ceph
+            - component: osd-keyring-generator
+            - release_group: armada-ucp
+  values:
+    labels:
+      jobs:
+        node_selector_key: ucp-control-plane
+        node_selector_value: enabled
+    endpoints:
+      identity:
+        namespace: ucp
+      object_store:
+        namespace: ceph
+      ceph_mon:
+        namespace: ceph
+    ceph:
+      rgw_keystone_auth: true
+      storage:
+        osd_directory: /var/lib/openstack-helm/ceph/osd
+    network:
+      public: 10.24.20.0/24, 10.23.20.0/24
+      cluster: 10.24.20.0/24, 10.23.20.0/24
+    deployment:
+      storage_secrets: true
+      ceph: true
+      rbd_provisioner: true
+      client_secrets: false
+      rgw_keystone_user_and_endpoints: false
+    bootstrap:
+      enabled: true
+  source:
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: ceph
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-ceph-config
+data:
+  chart_name: ucp-ceph-config
+  release: ucp-ceph-config
+  namespace: ucp
+  timeout: 3600
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - name: ceph-namespace-client-key-generator
+          type: job
+          labels:
+            - application: ceph
+            - component: namespace-client-key-generator
+            - release_group: armada-ucp
+  values:
+    labels:
+      jobs:
+        node_selector_key: ucp-control-plane
+        node_selector_value: enabled
+    endpoints:
+      identity:
+        namespace: ucp
+      object_store:
+        namespace: ceph
+      ceph_mon:
+        namespace: ceph
+    ceph:
+      rgw_keystone_auth: true
+    network:
+      public: 10.24.20.0/24, 10.23.20.0/24
+      cluster: 10.24.20.0/24, 10.23.20.0/24
+    deployment:
+      storage_secrets: false
+      ceph: false
+      rbd_provisioner: false
+      client_secrets: true
+      rgw_keystone_user_and_endpoints: false
+  source:
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: ceph
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-mariadb
+data:
+  chart_name: ucp-mariadb
+  release: ucp-mariadb
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+    replicas:
+      server: 1
+  source:
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: mariadb
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-memcached
+data:
+  chart_name: ucp-memcached
+  release: ucp-memcached
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+  source:
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: memcached
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-keystone
+data:
+  chart_name: ucp-keystone
+  release: keystone
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  pre:
+    delete:
+      - name: keystone-db-sync
+        type: job
+        labels:
+          - job-name: keystone-db-sync
+      - name: keystone-db-init
+        type: job
+        labels:
+          - job-name: keystone-db-init
+  post:
+    delete: []
+    create: []
+  values:
+    conf:
+      keystone:
+        override:
+      paste:
+        override:
+    replicas: 2
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+  source:
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: keystone
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: maas-postgresql
+data:
+  chart_name: maas-postgresql
+  release: maas-postgresql
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  pre:
+    delete: []
+    create: []
+  post:
+    delete: []
+    create: []
+  values:
+    development:
+      enabled: false
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+  source:
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: postgresql
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: maas
+data:
+  chart_name: maas
+  release: maas
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    bootdata_url: http://10.24.20.100:31000/api/v1.0/bootdata/
+    labels:
+      rack:
+        node_selector_key: ucp-control-plane
+        node_selector_value: enabled
+      region:
+        node_selector_key: ucp-control-plane
+        node_selector_value: enabled
+    network:
+      proxy:
+        node_port:
+          enabled: true
+          port: 31800
+      gui:
+        node_port:
+          enabled: true
+          port: 31900
+    conf:
+      cache:
+        enabled: false
+      curtin:
+        override: true
+      drydock:
+        bootaction_url: http://10.24.20.100:31000/api/v1.0/bootactions/nodes/
+      maas:
+        credentials:
+          secret:
+            namespace: ucp
+        url:
+          maas_url: http://10.24.20.100:31900/MAAS
+        proxy:
+          proxy_enabled: 'false'
+          proxy_server: http://one.proxy.att.com:8080
+        ntp:
+          use_external_only: 'false'
+          ntp_servers: ntp.ubuntu.com
+        dns:
+          require_dnssec: 'no'
+          dns_servers: 8.8.8.8
+    secrets:
+      maas_region:
+        value: 3858a12230ac3c915f300c664f12063f
+  source:
+    type: git
+    location: https://github.com/att-comdev/maas
+    subpath: charts/maas
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: drydock
+data:
+  chart_name: drydock
+  release: drydock
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        drydock: quay.io/attcomdev/drydock:master
+        drydock_db_sync: quay.io/attcomdev/drydock:master
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+    network:
+      drydock:
+        node_port:
+          enabled: true
+          port: 31000
+    endpoints:
+      physicalprovisioner:
+        port:
+          api:
+            nodeport: 31000
+    conf:
+      drydock:
+        maasdriver:
+          maas_api_url: http://10.24.20.100:31900/MAAS/api/2.0/
+        plugins:
+          ingester: drydock_provisioner.ingester.plugins.deckhand.DeckhandIngester
+      uwsgi:
+        workers: 1
+        threads: 4
+  source:
+    type: git
+    location: https://github.com/att-comdev/drydock
+    subpath: charts/drydock
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: deckhand
+data:
+  chart_name: deckhand
+  release: deckhand
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        deckhand: quay.io/attcomdev/deckhand:master
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+    conf:
+      deckhand:
+        DEFAULT:
+          debug: true
+          use_stderr: true
+          use_syslog: true
+        keystone_authtoken:
+          memcache_security_strategy: None
+  source:
+    type: git
+    location: https://github.com/att-comdev/deckhand
+    subpath: charts/deckhand
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-barbican
+data:
+  chart_name: ucp-barbican
+  release: barbican
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  pre:
+    delete: []
+  post:
+    delete: []
+    create: []
+  values:
+    pod:
+      replicas:
+        api: 1
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+  source:
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: barbican
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: shipyard
+data:
+  chart_name: shipyard
+  release: shipyard
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    prod_environment: true
+    images:
+      tags:
+        airflow: 10.24.20.19:30092/ucp/airflow:latest
+        shipyard: 10.24.20.19:30092/ucp/shipyard:latest
+        airflow_db_sync: 10.24.20.19:30092/ucp/airflow:latest
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+    network:
+      shipyard:
+        node_port: 31901
+        enable_node_port: true
+      airflow:
+        web:
+          node_port: 32080
+          enable_node_port: true
+    conf:
+      shipyard:
+        keystone_authtoken:
+          memcache_security_strategy: None
+  source:
+    type: git
+    location: https://github.com/att-comdev/shipyard
+    subpath: charts/shipyard
+    reference: refs/changes/91/391291/1
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: armada
+data:
+  chart_name: armada
+  release: armada
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    images:
+      tags:
+        api: quay.io/attcomdev/armada
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+    conf:
+      armada:
+        DEFAULT:
+          tiller_namespace: openstack
+    network:
+      api:
+        node_port:
+          enabled: true
+          port: 31903
+  source:
+    type: git
+    location: https://github.com/att-comdev/armada
+    subpath: charts/armada
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: promenade
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  chart_name: promenade
+  release: promenade
+  namespace: ucp
+  timeout: 600
+  values:
+    conf:
+      paste:
+        filter:authtoken:
+          paste.filter_factory: 'keystonemiddleware.auth_token:filter_factory'
+          admin_password: password
+          admin_tenant_name: service
+          admin_user: promenade
+          identity_uri: 'http://keystone-api.ucp.svc.cluster.local/'
+          service_token_roles_required: true
+
+    images:
+      tags:
+        api: 10.24.20.19:30092/ucp/promenade
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+  upgrade:
+    no_hooks: true
+  source:
+    type: local
+    location: /etc/genesis/armada/assets/charts
+    subpath: promenade
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-etcd-rabbitmq
+data:
+  chart_name: ucp-etcd-rabbitmq
+  release: etcd-rabbitmq
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  pre:
+    delete: []
+  post:
+    delete: []
+    create: []
+  values:
+    pod:
+      replicas:
+        etcd: 1
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+  source:
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: etcd
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-rabbitmq
+data:
+  chart_name: ucp-rabbitmq
+  release: rabbitmq
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  pre:
+    delete: []
+  post:
+    delete: []
+    create: []
+  values:
+    pod:
+      replicas:
+        server: 1
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+  source:
+    type: git
+    location: https://git.openstack.org/openstack/openstack-helm
+    subpath: rabbitmq
+    reference: master
+  dependencies:
+    - helm-toolkit
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ceph
+data:
+  description: 'Storage Backend'
+  sequenced: true
+  chart_group:
+    - ceph
+    - ucp-ceph-config
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-infra
+data:
+  description: 'UCP Infrastructure'
+  chart_group:
+    - ucp-mariadb
+    - ucp-memcached
+    - maas-postgresql
+    - ucp-etcd-rabbitmq
+    - ucp-rabbitmq
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-services
+data:
+  description: 'UCP Services'
+  chart_group:
+    - maas
+    - drydock
+    - deckhand
+    - shipyard
+    - armada
+    - promenade
+    - ucp-keystone
+    - ucp-barbican
+...
+
