@@ -1,0 +1,37 @@
+---
+schema: drydock/HostProfile/v1
+metadata:
+    schema: metadata/Document/v1
+    name: cp_large
+    labels:
+        hosttype: cp
+    storagePolicy: cleartext
+    layeringDefinition:
+        abstract: true
+        layer: type
+        parentSelector:
+            hosttype: cp
+        actions:
+            - method: merge
+              path: .
+data:
+    primary_network: 'mgmt'
+    interfaces:
+        pxe:
+            device_link: pxe
+            slaves:
+                - 'pxe-nic'
+            networks:
+                - 'provisioning'
+        bond1:
+            device_link: gp-10gbps
+            slaves:
+                - 'bond1-slave1'
+                - 'bond1-slave2'
+            networks:
+                - 'mgmt'
+                - 'calico'
+                - 'storage'
+                - 'ossdn'
+                - 'contrail'
+...

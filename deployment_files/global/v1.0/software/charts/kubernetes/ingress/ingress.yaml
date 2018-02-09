@@ -1,0 +1,61 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ingress-kube-system
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.kubernetes.ingress
+      dest:
+        path: .source
+data:
+  chart_name: ingress
+  release: ingress
+  namespace: kube-system
+  timeout: 300
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    labels:
+      node_selector_key: kube-ingress
+      node_selector_value: enabled
+    deployment:
+      mode: cluster
+      type: DaemonSet
+    network:
+      host_namespace: true
+    pod:
+      replicas:
+        error_page: 2
+  dependencies:
+    - cluster-ingress-htk
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: cluster-ingress-htk
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  chart_name: cluster-ingress-htk
+  release: cluster-ingress-htk
+  namespace: cluster-ingress-htk
+  timeout: 100
+  values: {}
+  source:
+    type: git
+    location: https://github.com/openstack/openstack-helm
+    subpath: helm_toolkit
+    reference: e4dd1ba91a9e3c517b0f4594c70eb9a743681432
+  dependencies: []
