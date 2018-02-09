@@ -1,0 +1,57 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-ingress
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.ingress
+      dest:
+        path: .source
+data:
+  chart_name: ingress
+  release: ingress
+  namespace: ucp
+  timeout: 300
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    labels:
+      node_selector_key: ucp-control-plane
+      node_selector_value: enabled
+    pod:
+      replicas:
+        ingress: 2
+        error_page: 2
+  dependencies:
+    - ucp-ingress-htk
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-ingress-htk
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  chart_name: ucp-ingress-htk
+  release: ucp-ingress-htk
+  namespace: ucp-ingress-htk
+  timeout: 100
+  values: {}
+  source:
+    type: git
+    location: https://github.com/openstack/openstack-helm
+    subpath: helm-toolkit
+    reference: e4dd1ba91a9e3c517b0f4594c70eb9a743681432
+  dependencies: []
