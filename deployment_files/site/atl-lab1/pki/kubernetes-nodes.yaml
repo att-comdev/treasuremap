@@ -1,0 +1,70 @@
+# NOTE(mb874d): These documents are only used as the basis for certificate/key
+# generation.  Therefore, they only need to contain the minimal information for
+# that task (hostname and ip).
+
+---
+schema: promenade/KubernetesNode/v1
+metadata:
+  schema: metadata/Document/v1
+  name: genesis
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  hostname: genesis
+  ip: 10.24.20.100
+  join_ip: 10.23.20.12
+---
+schema: promenade/KubernetesNode/v1
+metadata:
+  schema: metadata/Document/v1
+  name: controller01
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  hostname: controller01
+  ip: 10.23.20.11
+  join_ip: 10.24.20.100
+---
+schema: promenade/KubernetesNode/v1
+metadata:
+  schema: metadata/Document/v1
+  name: controller02
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  hostname: controller02
+  ip: 10.23.20.12
+  join_ip: 10.24.20.100
+---
+schema: promenade/KubernetesNode/v1
+metadata:
+  schema: metadata/Document/v1
+  name: worker01
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  hostname: worker01
+  ip: 10.23.20.13
+  join_ip: 10.23.20.12
+---
+schema: promenade/KubernetesNode/v1
+metadata:
+  schema: metadata/Document/v1
+  name: worker02
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  hostname: worker02
+  ip: 10.23.20.14
+  join_ip: 10.23.20.12
+...
