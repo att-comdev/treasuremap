@@ -1,0 +1,17 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-promenade
+  layeringDefinition:
+    abstract: false
+    layer: type
+    parentSelector:
+        name: ucp-promenade-global
+    actions:
+        - method: merge
+          path: .        
+  storagePolicy: cleartext
+
+data: {}
+...
