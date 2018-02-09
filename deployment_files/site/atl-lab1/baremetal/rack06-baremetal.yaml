@@ -1,0 +1,121 @@
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: controller01
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  host_profile: rack6_control_plane
+  addressing:
+    - network: rack06-oob
+      address: 10.23.104.11
+    - network: rack06-pxe
+      address: 10.23.20.11
+    - network: rack06-mgmt
+      address: 10.23.21.11
+    - network: rack06-calico
+      address: 10.23.22.11
+    - network: rack06-storage
+      address: 10.23.23.11
+    - network: rack06-ossdn
+      address: 10.23.24.11
+    - network: rack06-contrail
+      address: 10.23.25.11
+  metadata:
+    rack: rack1
+    tags:
+      - 'masters'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: controller02
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  host_profile: rack6_control_plane
+  addressing:
+    - network: rack06-oob
+      address: 10.23.104.12
+    - network: rack06-pxe
+      address: 10.23.20.12
+    - network: rack06-mgmt
+      address: 10.23.21.12
+    - network: rack06-calico
+      address: 10.23.22.12
+    - network: rack06-storage
+      address: 10.23.23.12
+    - network: rack06-ossdn
+      address: 10.23.24.12
+    - network: rack06-contrail
+      address: 10.23.25.12
+  metadata:
+    rack: rack1
+    tags:
+      - 'masters'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: worker01
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  host_profile: rack6_control_plane
+  addressing:
+    - network: rack06-oob
+      address: 10.23.104.13
+    - network: rack06-pxe
+      address: 10.23.20.13
+    - network: rack06-mgmt
+      address: 10.23.21.13
+    - network: rack06-calico
+      address: 10.23.22.13
+    - network: rack06-storage
+      address: 10.23.23.13
+    - network: rack06-ossdn
+      address: 10.23.24.13
+    - network: rack06-contrail
+      address: 10.23.25.13
+  metadata:
+    rack: rack1
+    tags:
+      - 'workers'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: worker02
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  host_profile: rack6_control_plane
+  addressing:
+    - network: rack06-oob
+      address: 10.23.104.14
+    - network: rack06-pxe
+      address: 10.23.20.14
+    - network: rack06-mgmt
+      address: 10.23.21.14
+    - network: rack06-calico
+      address: 10.23.22.14
+    - network: rack06-storage
+      address: 10.23.23.14
+    - network: rack06-ossdn
+      address: 10.23.24.14
+    - network: rack06-contrail
+      address: 10.23.25.14
+  metadata:
+    rack: rack1
+    tags:
+      - 'workers'
+...

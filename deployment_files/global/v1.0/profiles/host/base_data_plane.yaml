@@ -1,0 +1,66 @@
+---
+schema: drydock/HostProfile/v1
+metadata:
+    schema: metadata/Document/v1
+    name: gv-global
+    labels:
+        hosttype: gv-global
+    layeringDefinition:
+        abstract: true
+        layer: global
+    storagePolicy: cleartext
+    substitutions:
+        - dest:
+            path: .oob.credential
+          src:
+            schema: deckhand/Passphrase/v1
+            name: ipmi_admin_password
+            path: .
+data:
+    oob:
+        type: 'ipmi'
+        network: 'oob'
+        account: 'admin'
+    storage:
+        physical_devices:
+            sda:
+                labels:
+                    bootdrive: 'true'
+                partitions:
+                    - name: 'root'
+                      size: '30g'
+                      bootable: true
+                      filesystem:
+                        mountpoint: '/'
+                        fstype: 'ext4'
+                        mount_options: 'defaults'
+                    - name: 'boot'
+                      size: '1g'
+                      filesystem:
+                        mountpoint: '/boot'
+                        fstype: 'ext4'
+                        mount_options: 'defaults'
+                    - name: 'var'
+                      size: '>100g'
+                      filesystem:
+                        mountpoint: '/var'
+                        fstype: 'ext4'
+                        mount_options: 'defaults'
+            sdb:
+                partitions:
+                  - name: 'instances'
+                    size: '20t'
+                    filesystem:
+                      mountpoint: '/var/lib/nova/instances'
+                      fstype: 'ext4'
+                      mount_options: 'defaults'
+    platform:
+        image: 'xenial'
+        kernel: 'ga-16.04'
+        kernel_params:
+            console: 'ttyS1,115200n8'
+    metadata:
+        owner_data:
+            openstack-nova-compute: enabled
+            openvswitch: enabled
+...

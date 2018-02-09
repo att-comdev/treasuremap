@@ -1,0 +1,127 @@
+heat_template_version: newton
+
+description: Deployment template for Genesis
+
+resources:
+  server:
+    type: OS::Nova::Server
+    properties:
+      image: Ubuntu 16.04
+      flavor: m1.xxlarge
+      key_name: cab24-genesis
+      networks:
+        - port: { get_resource: server_port_pxe }
+        - port: { get_resource: server_port_mgmt }
+        - port: { get_resource: server_port_calico }
+        - port: { get_resource: server_port_storage }
+        - port: { get_resource: server_port_ossdn }
+        - port: { get_resource: server_port_contrail }
+
+      user_data:
+        str_replace:
+          template: {get_file: genesis-user-data.sh}
+          params:
+            $message: Welcome!
+
+
+  ## note protocol 4 (IP over IP) for calico
+
+  port_security_group:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: genesis-security-group
+      description: Security group assigned to all Genesis networks
+      rules:
+       - remote_ip_prefix: 0.0.0.0/0
+         protocol: tcp
+         port_range_min: 1
+         port_range_max: 65535
+       - remote_ip_prefix: 0.0.0.0/0
+         protocol: udp
+         port_range_min: 1
+         port_range_max: 65535
+       - remote_ip_prefix: 0.0.0.0/0
+         protocol: icmp
+       - remote_ip_prefix: 0.0.0.0/0
+         protocol: 4 # calico
+
+
+  ## network 10.<rack>.<vlan>.100
+
+  server_port_pxe:
+    type: OS::Neutron::Port
+    properties:
+      network_id: integration-pxe
+      fixed_ips:
+      - ip_address: 10.24.20.100
+      security_groups:
+        - { get_resource: port_security_group }
+
+  server_port_mgmt:
+    type: OS::Neutron::Port
+    properties:
+      network_id: integration-mgmt
+      fixed_ips:
+      - ip_address: 10.24.21.100
+      security_groups:
+        - { get_resource: port_security_group }
+
+  server_port_calico:
+    type: OS::Neutron::Port
+    properties:
+      network_id: integration-calico
+      fixed_ips:
+      - ip_address: 10.24.22.100
+      security_groups:
+        - { get_resource: port_security_group }
+
+  server_port_storage:
+    type: OS::Neutron::Port
+    properties:
+      network_id: integration-storage
+      fixed_ips:
+      - ip_address: 10.24.23.100
+      security_groups:
+        - { get_resource: port_security_group }
+
+  server_port_ossdn:
+    type: OS::Neutron::Port
+    properties:
+      network_id: integration-ossdn
+      fixed_ips:
+      - ip_address: 10.24.24.100
+      security_groups:
+        - { get_resource: port_security_group }
+
+  server_port_contrail:
+    type: OS::Neutron::Port
+    properties:
+      network_id: integration-contrail
+      fixed_ips:
+      - ip_address: 10.24.25.100
+      security_groups:
+        - { get_resource: port_security_group }
+
+
+  ## volumes for Ceph OSDs
+
+  ceph_vol1:
+    type: OS::Cinder::Volume
+    properties:
+      size: 40
+  ceph_vol1_att:
+    type: OS::Cinder::VolumeAttachment
+    properties:
+      volume_id: { get_resource: ceph_vol1 }
+      instance_uuid: { get_resource: server }
+
+  ceph_vol2:
+    type: OS::Cinder::Volume
+    properties:
+      size: 40
+  ceph_vol2_att:
+    type: OS::Cinder::VolumeAttachment
+    properties:
+      volume_id: { get_resource: ceph_vol2 }
+      instance_uuid: { get_resource: server }
+
