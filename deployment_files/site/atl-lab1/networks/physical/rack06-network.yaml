@@ -1,0 +1,279 @@
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: 'rack06-oob'
+  layeringDefinition:
+    abstract: false
+    layer: 'site'
+data:
+  labels:
+    noconfig: 'enabled'
+  bonding:
+    mode: 'disabled'
+  mtu: 1500
+  linkspeed: 'auto'
+  trunking:
+    mode: 'disabled'
+    default_network: 'rack06-oob'
+  allowed_networks:
+    - 'rack06-oob'
+...
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: 'rack06-oob'
+  layeringDefinition:
+    abstract: false
+    layer: 'site'
+data:
+  cidr: '10.23.104.0/24'
+  routes:
+  - subnet: '0.0.0.0/0'
+    gateway: '10.23.104.1'
+    metric: 100
+  ranges:
+  - type: 'reserved'
+    start: '10.23.104.11'
+    end: '10.23.104.14'
+...
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: 'rack06-pxe'
+  layeringDefinition:
+    abstract: false
+    layer: 'site'
+data:
+  bonding:
+    mode: 'disabled'
+  mtu: 1500
+  linkspeed: 'auto'
+  trunking:
+    mode: 'disabled'
+    default_network: 'rack06-pxe'
+  allowed_networks:
+    - 'rack06-pxe'
+...
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: 'rack06-pxe'
+  layeringDefinition:
+    abstract: false
+    layer: 'site'
+data:
+  dhcp_relay:
+    upstream_target: '10.24.20.100'
+  routedomain: 'provisioning'
+  cidr: '10.23.20.0/24'
+  routes:
+  - routedomain: 'provisioning'
+    gateway: '10.23.20.1'
+    metric: 100
+  - routedomain: 'provisioning'
+    subnet: '10.24.20.0/24'
+    gateway: '10.23.20.1'
+    metric: 100
+  ranges:
+  - type: 'reserved'
+    start: '10.23.20.0'
+    end: '10.23.20.10'
+  - type: 'static'
+    start: '10.23.20.11'
+    end: '10.23.20.49'
+  - type: 'dhcp'
+    start: '10.23.20.121'
+    end: '10.23.20.131'
+...
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: 'rack06-general'
+  layeringDefinition:
+    abstract: false
+    layer: 'site'
+data:
+  bonding:
+    mode: '802.3ad'
+    hash: 'layer3+4'
+    peer_rate: 'slow'
+    mon_rate: 100
+    up_delay: 1000
+    down_delay: 3000
+  mtu: 9000
+  linkspeed: 'auto'
+  trunking:
+    mode: '802.1q'
+  allowed_networks:
+    - 'rack06-mgmt'
+    - 'rack06-storage'
+    - 'rack06-calico'
+    - 'rack06-ossdn'
+    - 'rack06-contrail'
+    - 'rack06-public'
+...
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: 'rack06-mgmt'
+  layeringDefinition:
+    abstract: false
+    layer: 'site'
+data:
+  vlan: '21'
+  cidr: '10.23.21.0/24'
+  routes:
+  - subnet: '0.0.0.0/0'
+    gateway: '10.23.21.1'
+    metric: 100
+  - subnet: '10.24.21.0/24'
+    gateway: '10.23.21.1'
+    metric: 100
+  ranges:
+  - type: 'reserved'
+    start: '10.23.21.0'
+    end: '10.23.21.10'
+  - type: 'static'
+    start: '10.23.21.11'
+    end: '10.23.21.14'
+  dns:
+    domain: cicd.att.com
+    servers: 8.8.8.8, 8.8.4.4
+...
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: 'rack06-storage'
+  layeringDefinition:
+    abstract: false
+    layer: 'site'
+data:
+  vlan: '23'
+  routedomain: 'storage'
+  cidr: '10.23.23.0/24'
+  routes:
+  - routedomain: 'storage'
+    gateway: '10.23.23.1'
+    metric: 100
+  - subnet: '10.24.23.0/24'
+    gateway: '10.23.23.1'
+    metric: 100
+  ranges:
+  - type: 'reserved'
+    start: '10.23.23.0'
+    end: '10.23.23.10'
+  - type: 'static'
+    start: '10.23.23.11'
+    end: '10.23.23.14'
+...
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: 'rack06-ossdn'
+  layeringDefinition:
+    abstract: false
+    layer: 'site'
+data:
+  vlan: '24'
+  routedomain: 'overlay'
+  cidr: '10.23.24.0/24'
+  routes:
+  - routedomain: 'overlay'
+    gateway: '10.23.24.1'
+    metric: 100
+  - subnet: '10.24.24.0/24'
+    gateway: '10.23.24.1'
+    metric: 100
+  ranges:
+  - type: 'reserved'
+    start: '10.23.24.0'
+    end: '10.23.24.10'
+  - type: 'static'
+    start: '10.23.24.11'
+    end: '10.23.24.14'
+...
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: 'rack06-calico'
+  layeringDefinition:
+    abstract: false
+    layer: 'site'
+data:
+  vlan: '22'
+  routedomain: 'calico'
+  cidr: '10.23.22.0/24'
+  routes:
+  - routedomain: 'calico'
+    gateway: '10.23.22.1'
+    metric: 100
+  - subnet: '10.24.22.0/24'
+    gateway: '10.23.22.1'
+    metric: 100
+  ranges:
+  - type: 'reserved'
+    start: '10.23.22.0'
+    end: '10.23.22.10'
+  - type: 'static'
+    start: '10.23.22.11'
+    end: '10.23.22.14'
+...
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: 'rack06-contrail'
+  layeringDefinition:
+    abstract: false
+    layer: 'site'
+data:
+  vlan: '25'
+  mtu: 1500
+  cidr: '10.23.25.0/24'
+  routes:
+  - routedomain: 'contrail'
+    gateway: '10.23.25.1'
+    metric: 100
+  - subnet: '10.24.25.0/24'
+    gateway: '10.23.25.1'
+    metric: 100
+  ranges:
+  - type: 'reserved'
+    start: '10.23.25.0'
+    end: '10.23.25.10'
+  - type: 'static'
+    start: '10.23.25.11'
+    end: '10.23.25.14'
+...
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: 'rack06-public'
+  layeringDefinition:
+    abstract: false
+    layer: 'site'
+data:
+  vlan: '26'
+  cidr: '12.37.173.48/28'
+  routes:
+  - routedomain: 'contrail'
+    gateway: '12.37.173.49'
+    metric: 100
+  - subnet: '0.0.0.0/0'
+    gateway: '12.37.173.49'
+    metric: 100
+  ranges:
+  - type: 'static'
+    start: '12.37.173.51'
+    end: '12.37.173.61'
+...
