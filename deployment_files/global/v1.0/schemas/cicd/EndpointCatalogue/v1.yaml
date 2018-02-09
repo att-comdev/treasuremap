@@ -1,0 +1,74 @@
+---
+schema: 'deckhand/DataSchema/v1'
+metadata:
+  schema: metadata/Control/v1
+  name: EndpointCatalogue/v1
+data:
+  $schema: 'http://json-schema.org/schema#'
+  type: 'object'
+  # Namespace the list of endpoints
+  additionalProperties:
+    type: 'object'
+    additionalProperties:
+      type: 'object'
+      properties:
+        name:
+          type: string
+        auth:
+          type: object
+        hosts:
+          type: object
+          properties:
+            default:
+              type: string
+            public:
+              type: string
+            internal:
+              type: string
+          additionalProperties: string
+        host_fqdn_override:
+          type: object
+          properties:
+            default:
+              type: string
+            public:
+              type: string
+            internal:
+              type: string
+          additionalProperties:
+            type: string
+        path:
+          type: object
+          properties:
+            default:
+              type: string
+            public:
+              type: string
+            internal:
+              type: string
+          additionalProperties:
+            type: string
+        scheme:
+          type: object
+          properties:
+            default:
+              type: string
+            public:
+              type: string
+            internal:
+              type: string
+          additionalProperties:
+            type: string
+        port:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              default:
+                type: string
+              public:
+                type: string
+              internal:
+                type: string
+            additionalProperties:
+              type: string
