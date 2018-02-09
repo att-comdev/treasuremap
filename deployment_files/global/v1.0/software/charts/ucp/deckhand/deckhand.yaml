@@ -1,0 +1,167 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-deckhand
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.deckhand
+      dest:
+        path: .source
+
+    # Images
+
+    - src:
+        schema: SoftwareVersions/v1
+        name: software-versions
+        path: .images.ucp.deckhand
+      dest:
+        path: .values.images.tags
+
+    # Endpoints
+    - src:
+        schema: EndpointCatalogue/v1
+        name: ucp_endpoints
+        path: .ucp.identity
+      dest:
+        path: .values.endpoints.identity
+    - src:
+        schema: EndpointCatalogue/v1
+        name: ucp_endpoints
+        path: .ucp.postgresql
+      dest:
+        path: .values.endpoints.postgresql
+    - src:
+        schema: EndpointCatalogue/v1
+        name: ucp_endpoints
+        path: .ucp.deckhand
+      dest:
+        path: .values.endpoints.deckhand
+    - src:
+        schema: EndpointCatalogue/v1
+        name: ucp_endpoints
+        path: .ucp.key_manager
+      dest:
+        path: .values.endpoints.key_manager
+    - src:
+        schema: EndpointCatalogue/v1
+        name: ucp_endpoints
+        path: .ucp.oslo_cache
+      dest:
+        path: .values.endpoints.oslo_cache
+    # Credentials
+    - src:
+        schema: AccountCatalogue/v1
+        name: ucp_service_accounts
+        path: .ucp.postgres.admin
+      dest:
+        path: .values.endpoints.postgresql.auth.admin
+    - src:
+        schema: AccountCatalogue/v1
+        name: ucp_service_accounts
+        path: .ucp.deckhand.postgres
+      dest:
+        path: .values.endpoints.postgresql.auth.user
+    - src:
+        schema: AccountCatalogue/v1
+        name: ucp_service_accounts
+        path: .ucp.deckhand.postgres.database
+      dest:
+        path: .values.endpoints.postgresql.path
+        pattern: DB_NAME
+    - src:
+        schema: AccountCatalogue/v1
+        name: ucp_service_accounts
+        path: .ucp.deckhand.keystone
+      dest:
+        path: .values.endpoints.identity.auth.user
+    - src:
+        schema: AccountCatalogue/v1
+        name: ucp_service_accounts
+        path: .ucp.keystone.admin
+      dest:
+        path: .values.endpoints.identity.auth.admin
+
+    # Secrets
+    - dest:
+        path: .values.endpoints.identity.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_keystone_admin_password
+        path: .
+    - dest:
+        path: .values.endpoints.postgresql.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_postgres_admin_password
+        path: .
+    - dest:
+        path: .values.endpoints.identity.auth.user.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_deckhand_keystone_password
+        path: .
+    - dest:
+        path: .values.endpoints.postgresql.auth.user.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_deckhand_postgres_password
+        path: .
+data:
+  chart_name: ucp-deckhand
+  release: ucp-deckhand
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  pre:
+    delete: []
+    create: []
+  post:
+    delete: []
+    create: []
+  values:
+    pod:
+      replicas:
+        api: 2
+    conf:
+      deckhand:
+        DEFAULT:
+          debug: true
+          use_stderr: true
+          use_syslog: true
+        keystone_authtoken:
+          memcache_security_strategy: None
+  dependencies:
+    - deckhand_htk
+...
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: deckhand_htk
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  chart_name: deckhand_htk
+  release: deckhand_htk
+  namespace: deckhand_htk
+  timeout: 100
+  values: {}
+  source:
+    type: git
+    location: https://github.com/openstack/openstack-helm
+    subpath: helm_toolkit
+    reference: e4dd1ba91a9e3c517b0f4594c70eb9a743681432
+  dependencies: []
+...
