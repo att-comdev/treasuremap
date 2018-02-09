@@ -1,0 +1,34 @@
+---
+schema: drydock/HostProfile/v1
+metadata:
+    schema: metadata/Document/v1
+    name: example2_base_data_plane
+    storagePolicy: cleartext
+    layeringDefinition:
+        abstract: false
+        layer: site
+        parentSelector:
+            hosttype: base_data_plane
+        actions:
+            - method: merge
+              path: .
+            - method: replace
+              path: .interfaces.pxe.slaves
+            - method: replace
+              path: .interfaces.bond0.slaves
+            - method: replace
+              path: .interfaces.bond1.slaves
+data:
+    interfaces:
+        pxe:
+            slaves:
+                - 'eno1'
+        bond0:
+            slaves:
+                - 'enp67s0f0'
+                - 'enp67s0f1'
+        bond1:
+            slaves:
+                - 'enp68s0f0'
+                - 'enp68s0f1'
+...

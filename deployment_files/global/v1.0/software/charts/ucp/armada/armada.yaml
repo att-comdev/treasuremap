@@ -1,0 +1,107 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-armada
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.armada
+      dest:
+        path: .source
+
+    # Images
+    - src:
+        schema: SoftwareVersions/v1
+        name: software-versions
+        path: .images.ucp.armada
+      dest:
+        path: .values.images.tags
+
+    # Endpoints
+    - src:
+        schema: EndpointCatalogue/v1
+        name: ucp_endpoints
+        path: .ucp.identity
+      dest:
+        path: .values.endpoints.identity
+    - src:
+        schema: EndpointCatalogue/v1
+        name: ucp_endpoints
+        path: .ucp.armada
+      dest
+        path: .values.endpoints.armada
+
+    # Credentials
+    - src:
+        schema: AccountCatalogue/v1
+        name: ucp_service_accounts
+        path: .ucp.keystone.admin
+      dest:
+        path: .values.endpoints.identity.auth.admin
+    - src:
+        schema: AccountCatalogue/v1
+        name: ucp_service_accounts
+        path: .ucp.armada.keystone
+      dest:
+        path: .values.endpoints.identity.auth.user
+
+    # Secrets
+    - dest:
+        path: values.endpoints.identity.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_keystone_admin_password
+        path: .
+    - dest:
+        path: values.endpoints.identity.auth.user.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_armada_keystone_password
+        path: .
+data:
+  chart_name: armada
+  release: ucp-armada
+  namespace: ucp
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    armada:
+      DEFAULT:
+        debug: true
+    manifests:
+      deployment_tiller: false
+      service_tiller: false
+  dependencies:
+    - armada_htk
+...
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: armada_htk
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  chart_name: armada_htk
+  release: armada_htk
+  namespace: armada_htk
+  timeout: 100
+  values: {}
+  source:
+    type: git
+    location: https://github.com/openstack/openstack-helm
+    subpath: helm_toolkit
+    reference: e4dd1ba91a9e3c517b0f4594c70eb9a743681432
+  dependencies: []
+...
