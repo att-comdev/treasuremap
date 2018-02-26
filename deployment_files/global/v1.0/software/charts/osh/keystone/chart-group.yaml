@@ -1,0 +1,15 @@
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-keystone
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  description: OSH Keystone
+  chart_group:
+    - osh-keystone-memcached
+    - osh-keystone-rabbitmq
+    - osh-keystone

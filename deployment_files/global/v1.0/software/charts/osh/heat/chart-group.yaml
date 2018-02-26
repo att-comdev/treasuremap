@@ -1,0 +1,15 @@
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-heat
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  description: OSH Heat
+  chart_group:
+    - osh-heat-memcached
+    - osh-heat-rabbitmq
+    - osh-heat

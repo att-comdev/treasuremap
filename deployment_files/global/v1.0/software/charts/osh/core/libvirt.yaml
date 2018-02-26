@@ -1,0 +1,34 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-libvirt
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.osh.libvirt
+      dest:
+        path: .source
+data:
+  chart_name: osh-libvirt
+  release: libvirt
+  namespace: openstack
+  timeout: 300
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    labels:
+      agent:
+        libvirt:
+          node_selector_key: openstack-compute-node
+          node_selector_value: enabled
+  dependencies:
+    - osh-helm-toolkit

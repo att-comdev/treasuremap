@@ -1,0 +1,15 @@
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-nova
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  description: OSH Nova
+  chart_group:
+    - osh-nova-memcached
+    - osh-nova-rabbitmq
+    - osh-nova

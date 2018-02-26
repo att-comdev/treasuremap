@@ -1,0 +1,15 @@
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-neutron
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  description: OSH Neutron
+  chart_group:
+    - osh-neutron-memcached
+    - osh-neutron-rabbitmq
+    - osh-neutron
