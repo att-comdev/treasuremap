@@ -1,0 +1,14 @@
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-compute-services
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  description: OpenStack Compute Services
+  chart_group:
+    - libvirt
+    - openvswitch
