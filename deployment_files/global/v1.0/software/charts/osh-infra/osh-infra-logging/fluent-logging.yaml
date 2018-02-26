@@ -1,0 +1,96 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: fluent-logging
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.osh_infra.fluent_logging
+      dest:
+        path: .source
+
+    # Images
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .images.osh_infra.fluent_logging
+      dest:
+        path: .values.images.tags
+
+    # Endpoints
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_infra_endpoints
+        path: .osh_infra.elasticsearch
+      dest:
+        path: .values.endpoints.elasticsearch
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_infra_endpoints
+        path: .osh_infra.fluentd
+      dest:
+        path: .values.endpoints.fluentd
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_infra_endpoints
+        path: .osh_infra.prometheus_fluentd_exporter
+      dest:
+        path: .values.endpoints.prometheus_fluentd_exporter
+    # Accounts
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_infra_service_accounts
+        path: .osh_infra.elasticsearch.admin
+      dest:
+        path: .values.endpoints.elasticsearch.auth.admin
+
+    # Secrets
+    - dest:
+        path: .values.endpoints.elasticsearch.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_infra_elasticsearch_admin_password
+        path: .
+
+data:
+  chart_name: fluent-logging
+  release: fluent-logging
+  namespace: osh-infra
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete: []
+      create: []
+    post:
+      create: []
+  values:
+    labels:
+      fluentd:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      fluentbit:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      prometheus_fluentd_exporter:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+    manifests:
+      job_elasticsearch_template: false
+    dependencies:
+      static:
+        fluentbit:
+          services:
+            - endpoint: internal
+              service: fluentd
+  dependencies:
+    - osh-infra-helm-toolkit
+...
