@@ -71,4 +71,7 @@ data:
     ceph:
       public_cidr: 10.24.20.0/24, 10.23.20.0/24
       cluster_cidr: 10.24.20.0/24, 10.23.20.0/24
+
+  neutron:
+    tunnel_device: "changeme"
 ...
