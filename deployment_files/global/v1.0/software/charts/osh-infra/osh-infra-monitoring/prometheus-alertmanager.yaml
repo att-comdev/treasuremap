@@ -1,0 +1,49 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: prometheus-alertmanager
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.osh_infra.alertmanager
+      dest:
+        path: .source
+
+    # Images
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .images.osh_infra.alertmanager
+      dest:
+        path: .values.images.tags
+
+    # Endpoints
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_infra_endpoints
+        path: .osh_infra.alerts
+      dest:
+        path: .values.endpoints.alerts
+
+data:
+  chart_name: prometheus-alertmanager
+  release: prometheus-alertmanager
+  namespace: osh-infra
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+  dependencies:
+    - osh-helm-infra-toolkit
+...
