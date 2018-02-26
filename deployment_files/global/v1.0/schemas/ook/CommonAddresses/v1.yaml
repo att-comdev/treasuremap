@@ -64,6 +64,13 @@ data:
         properties:
           hostname:
             type: string
+    neutron:
+      type: object
+      properties:
+        tunnel_device:
+          type: string
+        external_iface:
+          type: string
     node_ports:
       type: object
       properties:
@@ -81,6 +88,11 @@ data:
       type: object
       properties:
         servers_joined:
+          type: string
+    openvswitch:
+      type: object
+      properties:
+        external_iface:
           type: string
     storage:
       type: object
