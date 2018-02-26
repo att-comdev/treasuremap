@@ -1,0 +1,31 @@
+---
+schema: armada/Manifest/v1
+metadata:
+  schema: metadata/Document/v1
+  name: full-site
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  release_prefix: osh
+  chart_groups:
+    - osh-infra-ingress-controller
+    - osh-infra-ceph-config
+    - osh-infra-logging
+    - osh-infra-monitoring
+    - osh-infra-mariadb
+    - osh-infra-dashboards
+    - openstack-ingress-controller
+    - openstack-ceph-config
+    - openstack-mariadb
+    - openstack-compute-services
+    - openstack-keystone
+    - openstack-glance
+    - openstack-radosgw
+    - openstack-cinder
+    - openstack-compute-kit
+    - openstack-heat
+    - osh-infra-prometheus-openstack-exporter
+    - openstack-horizon
+    - openstack-barbican
