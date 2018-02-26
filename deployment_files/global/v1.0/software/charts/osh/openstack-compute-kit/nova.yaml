@@ -1,0 +1,363 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: nova
+  labels:
+    component: nova
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.osh.nova
+      dest:
+        path: .source
+
+    # Images
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .images.osh.nova
+      dest:
+        path: .values.images.tags
+
+    # Endpoints
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.identity
+      dest:
+        path: .values.endpoints.identity
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.oslo_db
+      dest:
+        path: .values.endpoints.oslo_db
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.oslo_db
+      dest:
+        path: .values.endpoints.oslo_db_api
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.oslo_db
+      dest:
+        path: .values.endpoints.oslo_db_cell0
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.nova_oslo_messaging
+      dest:
+        path: .values.endpoints.oslo_messaging
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.nova_oslo_cache
+      dest:
+        path: .values.endpoints.oslo_cache
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.image
+      dest:
+        path: .values.endpoints.image
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.compute
+      dest:
+        path: .values.endpoints.compute
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.compute_metadata
+      dest:
+        path: .values.endpoints.compute_metadata
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.compute_novnc_proxy
+      dest:
+        path: .values.endpoints.compute_novnc_proxy
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.compute_spice_proxy
+      dest:
+        path: .values.endpoints.compute_spice_proxy
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.placement
+      dest:
+        path: .values.endpoints.placement
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh.network
+      dest:
+        path: .values.endpoints.network
+
+    # Service Accounts
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.keystone.admin
+      dest:
+        path: .values.endpoints.identity.auth.admin
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.nova.nova
+      dest:
+        path: .values.endpoints.identity.auth.nova
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.neutron.neutron
+      dest:
+        path: .values.endpoints.identity.auth.neutron
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.nova.placement
+      dest:
+        path: .values.endpoints.identity.auth.placement
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.nova.oslo_messaging.admin
+      dest:
+        path: .values.endpoints.oslo_messaging.auth.admin
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.nova.oslo_messaging.nova
+      dest:
+        path: .values.endpoints.oslo_messaging.auth.nova
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.nova.oslo_db
+      dest:
+        path: .values.endpoints.oslo_db.auth.nova
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.nova.oslo_db.database
+      dest:
+        path: .values.endpoints.oslo_db.path
+        pattern: DB_NAME
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.nova.oslo_db_api
+      dest:
+        path: .values.endpoints.oslo_db_api.auth.nova
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.nova.oslo_db_api.database
+      dest:
+        path: .values.endpoints.oslo_db_api.path
+        pattern: DB_NAME
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.nova.oslo_db_cell0
+      dest:
+        path: .values.endpoints.oslo_db_cell0.auth.nova
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_service_accounts
+        path: .osh.nova.oslo_db_cell0.database
+      dest:
+        path: .values.endpoints.oslo_db_cell0.path
+        pattern: DB_NAME
+
+    # Secrets
+    - dest:
+        path: .values.endpoints.identity.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_keystone_admin_password
+        path: .
+    - dest:
+        path: .values.endpoints.identity.auth.nova.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_nova_password
+        path: .
+    - dest:
+        path: .values.endpoints.identity.auth.neutron.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_neutron_password
+        path: .
+    - dest:
+        path: .values.endpoints.identity.auth.placement.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_placement_password
+        path: .
+    - dest:
+        path: .values.endpoints.oslo_messaging.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_nova_oslo_messaging_admin_password
+        path: .
+    - dest:
+        path: .values.endpoints.oslo_messaging.auth.nova.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_nova_oslo_messaging_password
+        path: .
+    - dest:
+        path: .values.endpoints.oslo_db.auth.nova.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_nova_oslo_db_password
+        path: .
+    - dest:
+        path: .values.endpoints.oslo_db_api.auth.nova.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_nova_oslo_db_password
+        path: .
+    - dest:
+        path: .values.endpoints.oslo_db_cell0.auth.nova.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_nova_oslo_db_password
+        path: .
+    - dest:
+        path: .values.endpoints.oslo_db.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_oslo_db_admin_password
+        path: .
+    - dest:
+        path: .values.endpoints.oslo_db_api.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_oslo_db_admin_password
+        path: .
+    - dest:
+        path: .values.endpoints.oslo_db_cell0.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_oslo_db_admin_password
+        path: .
+data:
+  chart_name: nova
+  release: nova
+  namespace: openstack
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: nova
+            component: db-init
+        - type: job
+          labels:
+            application: nova
+            component: db-sync
+        - type: job
+          labels:
+            application: nova
+            component: ks-user
+        - type: job
+          labels:
+            application: nova
+            component: ks-service
+        - type: job
+          labels:
+            application: nova
+            component: ks-endpoints
+        - type: job
+          labels:
+            application: placement
+            component: ks-user
+        - type: job
+          labels:
+            application: placement
+            component: ks-service
+        - type: job
+          labels:
+            application: placement
+            component: ks-endpoints
+        - type: job
+          labels:
+            application: nova
+            component: cell-setup
+        - type: job
+          labels:
+            application: nova
+            component: rabbit-init
+  post:
+    delete: []
+    create: []
+  values:
+    labels:
+      agent:
+        compute:
+          node_selector_key: openstack-compute-node
+          node_selector_value: enabled
+      api_metadata:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      conductor:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      consoleauth:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      job:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      novncproxy:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      osapi:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      placement:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      scheduler:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      spiceproxy:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      test:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+    pod:
+      replicas:
+        api_metadata: 1
+        placement: 2
+        osapi: 2
+        conductor: 2
+        consoleauth: 2
+        scheduler: 2
+        novncproxy: 1
+    conf:
+      nova:
+        libvirt:
+          virt_type: qemu
+  dependencies:
+    - osh-helm-toolkit
+...
