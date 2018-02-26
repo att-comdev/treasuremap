@@ -1,0 +1,18 @@
+---
+schema: armada/Manifest/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-helm-infra
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  release_prefix: osh-infra
+  chart_groups:
+    - osh-infra-ingress-controller
+    - osh-infra-ceph-config
+    - osh-infra-logging
+    - osh-infra-monitoring
+    - osh-infra-mariadb
+    - osh-infra-dashboards

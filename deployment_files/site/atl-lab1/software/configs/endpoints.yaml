@@ -233,3 +233,597 @@ data:
       scheme:
         default: http
 ...
+---
+schema: pegleg/EndpointCatalogue/v1
+metadata:
+    schema: metadata/Document/v1
+    name: osh_endpoints
+    layeringDefinition:
+        abstract: false
+        layer: site
+    storagePolicy: cleartext
+data:
+  osh:
+    identity:
+      namespace: openstack
+      name: keystone
+      hosts:
+        default: keystone-api
+        public: keystone
+      host_fqdn_override:
+        default: null
+      path:
+        default: /v3
+      scheme:
+        default: http
+      port:
+        admin:
+          default: 35357
+        api:
+          default: 80
+    oslo_db:
+      namespace: openstack
+      hosts:
+        default: mariadb
+      host_fqdn_override:
+        default: null
+      path: /DB_NAME
+      scheme: mysql+pymysql
+      port:
+        mysql:
+          default: 3306
+    keystone_oslo_messaging:
+      namespace: openstack
+      hosts:
+        default: keystone-rabbitmq
+      host_fqdn_override:
+        default: null
+      path: /openstack
+      scheme: rabbit
+      port:
+        amqp:
+          default: 5672
+    keystone_oslo_cache:
+      namespace: openstack
+      hosts:
+        default: keystone-memcached
+      host_fqdn_override:
+        default: null
+      port:
+        memcache:
+          default: 11211
+    image:
+      name: glance
+      hosts:
+        default: glance-api
+        public: glance
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: http
+      port:
+        api:
+          default: 9292
+          public: 80
+    image_registry:
+      name: glance-registry
+      hosts:
+        default: glance-registry
+        public: glance-reg
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: 'http'
+      port:
+        api:
+          default: 9191
+          public: 80
+    volume:
+      name: cinder
+      hosts:
+        default: cinder-api
+        public: cinder
+      host_fqdn_override:
+        default: null
+      path:
+        default: '/v1/%(tenant_id)s'
+      scheme:
+        default:  'http'
+      port:
+        api:
+          default: 8776
+          public: 80
+    volumev2:
+      name: cinder
+      hosts:
+        default: cinder-api
+        public: cinder
+      host_fqdn_override:
+        default: null
+      path:
+        default: '/v2/%(tenant_id)s'
+      scheme:
+        default:  'http'
+      port:
+        api:
+          default: 8776
+          public: 80
+    volumev3:
+      name: cinder
+      hosts:
+        default: cinder-api
+        public: cinder
+      host_fqdn_override:
+        default: null
+      path:
+        default: '/v3/%(tenant_id)s'
+      scheme:
+        default: 'http'
+      port:
+        api:
+          default: 8776
+          public: 80
+    cinder_oslo_messaging:
+      hosts:
+        default: cinder-rabbitmq
+      host_fqdn_override:
+        default: null
+      path: /
+      scheme: rabbit
+      port:
+        amqp:
+          default: 5672
+    cinder_oslo_cache:
+      hosts:
+        default: cinder-memcached
+      host_fqdn_override:
+        default: null
+      port:
+        memcache:
+          default: 11211
+    ceph_object_store:
+      name: radosgw
+      namespace: ceph
+      hosts:
+        default: ceph-rgw
+      host_fqdn_override:
+        default: null
+      path:
+        default: /auth/v1.0
+      scheme:
+        default: http
+      port:
+        api:
+          default: 8088
+    orchestration:
+      name: heat
+      hosts:
+        default: heat-api
+        public: heat
+      host_fqdn_override:
+        default: null
+      path:
+        default: '/v1/%(project_id)s'
+      scheme:
+        default: 'http'
+      port:
+        api:
+          default: 8004
+          public: 80
+    cloudformation:
+      name: heat-cfn
+      hosts:
+        default: heat-cfn
+        public: cloudformation
+      host_fqdn_override:
+        default: null
+      path:
+        default: /v1
+      scheme:
+        default: 'http'
+      port:
+        api:
+          default: 8000
+          public: 80
+    cloudwatch:
+      name: heat-cloudwatch
+      hosts:
+        default: heat-cloudwatch
+        public: cloudwatch
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      type: null
+      scheme:
+        default: 'http'
+      port:
+        api:
+          default: 8003
+          public: 80
+    heat_oslo_cache:
+      hosts:
+        default: heat-memcached
+      host_fqdn_override:
+        default: null
+      port:
+        memcache:
+          default: 11211
+    heat_oslo_messaging:
+      hosts:
+        default: heat-rabbitmq
+      host_fqdn_override:
+        default: null
+      path: /
+      scheme: rabbit
+      port:
+        amqp:
+          default: 5672
+    neutron_oslo_messaging:
+      hosts:
+        default: neutron-rabbitmq
+      host_fqdn_override:
+        default: null
+      path: /
+      scheme: rabbit
+      port:
+        amqp:
+          default: 5672
+    neutron_oslo_cache:
+      hosts:
+        default: neutron-memcached
+      host_fqdn_override:
+        default: null
+      port:
+        memcache:
+          default: 11211
+    compute:
+      name: nova
+      hosts:
+        default: nova-api
+        public: nova
+      host_fqdn_override:
+        default: null
+      path:
+        default: "/v2/%(tenant_id)s"
+      scheme:
+        default: 'http'
+      port:
+        api:
+          default: 8774
+          public: 80
+        novncproxy:
+          default: 6080
+    compute_metadata:
+      name: nova
+      hosts:
+        default: nova-metadata
+        public: metadata
+      host_fqdn_override:
+        default: null
+      path:
+        default: /
+      scheme:
+        default: 'http'
+      port:
+        metadata:
+          default: 8775
+          public: 80
+    network:
+      name: neutron
+      hosts:
+        default: neutron-server
+        public: neutron
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: 'http'
+      port:
+        api:
+          default: 9696
+          public: 80
+    compute:
+      name: nova
+      hosts:
+        default: nova-api
+        public: nova
+      host_fqdn_override:
+        default: null
+      path:
+        default: "/v2/%(tenant_id)s"
+      scheme:
+        default: 'http'
+      port:
+        api:
+          default: 8774
+          public: 80
+        novncproxy:
+          default: 6080
+    compute_metadata:
+      name: nova
+      hosts:
+        default: nova-metadata
+        public: metadata
+      host_fqdn_override:
+        default: null
+      path:
+        default: /
+      scheme:
+        default: 'http'
+      port:
+        metadata:
+          default: 8775
+          public: 80
+    compute_novnc_proxy:
+      name: nova
+      hosts:
+        default: nova-novncproxy
+      host_fqdn_override:
+        default: null
+      path:
+        default: /vnc_auto.html
+      scheme:
+        default: 'http'
+      port:
+        novnc_proxy:
+          default: 6080
+    compute_spice_proxy:
+      name: nova
+      hosts:
+        default: nova-spiceproxy
+      host_fqdn_override:
+        default: null
+      path:
+        default: /spice_auto.html
+      scheme:
+        default: 'http'
+      port:
+        spice_proxy:
+          default: 6082
+    placement:
+      name: placement
+      hosts:
+        default: placement-api
+        public: placement
+      host_fqdn_override:
+        default: null
+      path:
+        default: /
+      scheme:
+        default: 'http'
+      port:
+        api:
+          default: 8778
+          public: 80
+    baremetal:
+      name: ironic
+      hosts:
+        default: ironic-api
+        public: ironic
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: http
+      port:
+        api:
+          default: 6385
+          public: 80
+    horizon_oslo_cache:
+      hosts:
+        default: horizon-memcached
+      host_fqdn_override:
+        default: null
+      port:
+        memcache:
+          default: 11211
+    dashboard:
+      name: horizon
+      hosts:
+        default: horizon-int
+        public: horizon
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: http
+      port:
+        web:
+          default: 80
+...
+---
+schema: pegleg/EndpointCatalogue/v1
+metadata:
+    schema: metadata/Document/v1
+    name: osh_infra_endpoints
+    layeringDefinition:
+        abstract: false
+        layer: site
+    storagePolicy: cleartext
+data:
+  osh_infra:
+    elasticsearch:
+      name: elasticsearch
+      namespace: osh-infra
+      hosts:
+        data: elasticsearch-data
+        default: elasticsearch-logging
+        discovery: elasticsearch-discovery
+        public: elasticsearch
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: http
+      port:
+        client:
+          default: 9200
+        http:
+          default: 80
+        discovery:
+          default: 9300
+    prometheus_elasticsearch_exporter:
+      namespace: null
+      hosts:
+        default: elasticsearch-exporter
+      host_fqdn_override:
+        default: null
+      path:
+        default: /metrics
+      scheme:
+        default: 'http'
+      port:
+        metrics:
+          default: 9108
+    fluentd:
+      namespace: osh-infra
+      name: fluentd
+      hosts:
+        default: fluentd-logging
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: http
+      port:
+        service:
+          default: 24224
+        metrics:
+          default: 24220
+    prometheus_fluentd_exporter:
+      namespace: osh-infra
+      hosts:
+        default: fluentd-exporter
+      host_fqdn_override:
+        default: null
+      path:
+        default: /metrics
+      scheme:
+        default: 'http'
+      port:
+        metrics:
+          default: 9309
+    oslo_db:
+      namespace: osh-infra
+      hosts:
+        default: mariadb
+      host_fqdn_override:
+        default: null
+      path: /DB
+      scheme: mysql+pymysql
+      port:
+        mysql:
+          default: 3306
+    grafana:
+      name: grafana
+      namespace: osh-infra
+      hosts:
+        default: grafana-dashboard
+        public: grafana
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: http
+      port:
+        grafana:
+          default: 3000
+    monitoring:
+      name: prometheus
+      namespace: osh-infra
+      hosts:
+        default: prom-metrics
+        public: prometheus
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: http
+      port:
+        api:
+          default: 9090
+          public: 80
+    kibana:
+      name: kibana
+      namespace: osh-infra
+      hosts:
+        default: kibana-dash
+        public: kibana
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: http
+      port:
+        kibana:
+          default: 5601
+    alerts:
+      name: alertmanager
+      namespace: osh-infra
+      hosts:
+        default: alerts-engine
+        public: alertmanager
+        discovery: alertmanager-discovery
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: 'http'
+      port:
+        api:
+          default: 9093
+          public: 80
+        mesh:
+          default: 6783
+    kube_state_metrics:
+      namespace: kube-system
+      hosts:
+        default: kube-state-metrics
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: 'http'
+      port:
+        http:
+          default: 8080
+    kube_scheduler:
+      scheme:
+        default: 'http'
+      path:
+        default: /metrics
+    kube_controller_manager:
+      scheme:
+        default: 'http'
+      path:
+        default: /metrics
+    node_metrics:
+      namespace: kube-system
+      hosts:
+        default: node-exporter
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: 'http'
+      port:
+        metrics:
+          default: 9100
+        prometheus_port:
+          default: 9100
