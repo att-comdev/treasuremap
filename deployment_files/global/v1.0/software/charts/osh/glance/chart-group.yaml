@@ -1,0 +1,15 @@
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-glance
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  description: OSH Glance
+  chart_group:
+    - osh-glance-memcached
+    - osh-glance-rabbitmq
+    - osh-glance

@@ -1,0 +1,15 @@
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-cinder
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  description: OSH Cinder
+  chart_group:
+    - osh-cinder-memcached
+    - osh-cinder-rabbitmq
+    - osh-cinder
