@@ -1,0 +1,21 @@
+---
+schema: armada/Manifest/v1
+metadata:
+  schema: metadata/Document/v1
+  name: openstack-helm
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  release_prefix: osh
+  chart_groups:
+    - osh-ceph-config
+    - osh-core
+    - osh-keystone
+    - osh-cinder
+    - osh-glance
+    - osh-heat
+    - osh-nova
+    - osh-neutron
+    - osh-horizon

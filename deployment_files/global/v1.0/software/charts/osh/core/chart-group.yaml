@@ -1,0 +1,16 @@
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-core
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+data:
+  description: Common OpenStack Components
+  chart_group:
+    - osh-ingress
+    - osh-mariadb
+    - osh-libvirt
+    - osh-openvswitch

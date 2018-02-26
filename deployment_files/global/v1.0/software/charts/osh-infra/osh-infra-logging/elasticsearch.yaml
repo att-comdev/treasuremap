@@ -1,0 +1,81 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: osh-infra-elasticsearch
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.osh_infra.elasticsearch
+      dest:
+        path: .source
+
+    # Images
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .images.osh_infra.elasticsearch
+      dest:
+        path: .values.images.tags
+
+    # Endpoints
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh_infra.elasticsearch
+      dest:
+        path: .values.endpoints.elasticsearch
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_endpoints
+        path: .osh_infra.prometheus_elasticsearch_exporter
+      dest:
+        path: .values.endpoints.prometheus_elasticsearch_exporter
+    # Accounts
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_infra_service_accounts
+        path: .osh_infra.elasticsearch.admin
+      dest:
+        path: .values.endpoints.elasticsearch.auth.admin
+
+    # Secrets
+    - dest:
+        path: .values.endpoints.elasticsearch.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_infra_elasticsearch_admin_password
+        path: .
+
+data:
+  chart_name: osh-infra-elasticsearch
+  release: elasticsearch
+  namespace: osh-infra
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+  values:
+    labels:
+      node_selector_key: openstack-control-plane
+      node_selector_value: enabled
+    monitoring:
+      prometheus:
+        enabled: true
+    conf:
+      elasticsearch:
+        env:
+          java_opts: "-Xms5g -Xmx5g"
+    storage:
+      elasticsearch:
+        requests:
+          storage: 40Gi
+  dependencies:
+    - osh-helm-infra-toolkit
+...
