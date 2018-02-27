@@ -50,9 +50,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'pegleg'
+project = u'Treasuremap'
 copyright = u'2017 AT&T Intellectual Property.'
-author = u'pegleg Authors'
+author = u'Treasuremap Authors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

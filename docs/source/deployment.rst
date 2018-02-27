@@ -22,11 +22,11 @@ Terminology
 
 **Cloud**: A platform that provides a standard set of interfaces for `IaaS <https://en.wikipedia.org/wiki/Infrastructure_as_a_service>`_ consumers.
 
-**`UCP <https://github.com/att-comdev>`_**: (UnderCloud Platform) is a broad integration of several components enabling
+**UCP**: (`UnderCloud Platform <https://github.com/att-comdev>`_) is a broad integration of several components enabling
 an automated, resilient Kubernetes-based infrastructure for hosting Helm-deployed
 containerized workloads.
 
-**`OSH <https://docs.openstack.org/openstack-helm/latest/>`_**: (OpenStack Helm) is a collection of Helm charts used to deploy OpenStack
+**OSH**: (`OpenStack Helm <https://docs.openstack.org/openstack-helm/latest/>`_) is a collection of Helm charts used to deploy OpenStack
 on kubernetes.
 
 **Undercloud/Overcloud**: Terms used to distinguish which cloud is deployed on
