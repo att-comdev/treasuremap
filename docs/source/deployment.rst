@@ -478,8 +478,9 @@ Check if ntp is already installed/running::
 
     ntpq -p
 
-If this prodcues an output, ensure that the ``offset`` field is less than 50.000
-(miliseconds) for the primary time source (indicated by ``*`` at the line start)::
+If this prodcues an output, ensure that the ``offset`` and ``jitter`` fields are
+less than 50.000 (miliseconds) for the primary time source (indicated by ``*``
+at the line start)::
 
     .    remote           refid      st t when poll reach   delay   offset  jitter
     ==============================================================================
