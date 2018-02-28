@@ -477,8 +477,9 @@ Check if ntp is already installed/running::
 
     ntpq -p
 
-If this prodcues an output, ensure that the ``offset`` field is less than 50.000
-(miliseconds) for the primary time source (indicated by ``*`` at the line start)::
+If this prodcues an output, ensure that the ``offset`` and ``jitter`` fields are
+less than 50.000 (miliseconds) for the primary time source (indicated by ``*``
+at the line start)::
 
     .    remote           refid      st t when poll reach   delay   offset  jitter
     ==============================================================================
@@ -496,8 +497,9 @@ Otherwise, install and run ntpdate prior to installing ntp::
 
 and verify the node begins to sync to upstream NTP sources, indicated by non-zero
 ``reach`` value for the primary time source (indicated by ``*`` at the line
-start).
-
+start). Proceed when ``offset`` and ``jitter`` are below 50 ms. If these values
+do not converge below 50 ms, stop to troubleshoot your connection to your
+upstream time sources (and/or the time sources themselves if they are internal).
 
 Promenade bootstrap
 ^^^^^^^^^^^^^^^^^^^
