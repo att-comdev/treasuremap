@@ -428,6 +428,12 @@ highlights:
   in ``rack06-baremetal.yaml``, and in ``common-address.yaml`` in the case of the
   ``genesis`` node. Ensure IPs are correct for their hostnames.
 
+OSH
+---
+
+Instructions for OSH will be added after the following patchset is finalized /
+merged: https://review.gerrithub.io/#/c/401497/
+
 Generating site YAML files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -561,5 +567,6 @@ Estimated runtime: **1h30m**
 Troubleshooting placeholder
 
 The message ``Site Successfully Deployed`` is the expected output at the end of a
-successful deployment.
+successful deployment. In this example, this means that UCP and OSH should be
+fully deployed.
 
