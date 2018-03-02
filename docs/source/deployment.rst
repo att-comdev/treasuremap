@@ -183,8 +183,8 @@ site elements (i.e., ``site`` folder).
 To gain a full understanding of the pegleg strutcure, it is highly recommended
 to read pegleg documentation on this `here <https://pegleg.readthedocs.io/en/latest/artifacts.html/>`_.
 
-Change directory to the pegleg/site folder and copy an existing site to use as a
-reference for $NEW_SITE::
+Change directory to the ``treasuremap/deployment_files`` folder and copy an existing
+site to use as a reference for $NEW_SITE::
 
     NEW_SITE=mySite
     cd treasuremap/deployment_files
