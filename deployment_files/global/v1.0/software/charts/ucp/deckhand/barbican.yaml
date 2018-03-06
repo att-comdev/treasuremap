@@ -87,7 +87,7 @@ metadata:
         name: ucp_service_accounts
         path: .ucp.barbican.oslo_messaging
       dest:
-        path: .values.endpoints.oslo_messaging.auth.barbican
+        path: .values.endpoints.oslo_messaging.auth
 
     # Secrets
     - dest:
@@ -115,6 +115,12 @@ metadata:
         name: ucp_barbican_oslo_db_password
         path: .
     - dest:
+        path: .values.endpoints.oslo_messaging.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_oslo_messaging_password
+        path: .
+    - dest:
         path: .values.endpoints.oslo_messaging.auth.barbican.password
       src:
         schema: deckhand/Passphrase/v1
@@ -128,45 +134,49 @@ data:
     no_hooks: false
   upgrade:
     no_hooks: false
-  pre:
-    delete: []
-    create: []
-  post:
-    delete: []
-    create: []
+    pre:
+      delete: []
+      create: []
+    post:
+      create: []
   values:
     labels:
+      api:
+        node_selector_key: ucp-control-plane
+        node_selector_value: enabled
       job:
         node_selector_key: ucp-control-plane
         node_selector_value: enabled
-      api:
+      test:
         node_selector_key: ucp-control-plane
         node_selector_value: enabled
     pod:
       replicas:
         api: 2
   dependencies:
-    - ucp_barbican_htk
+    - ucp-barbican-htk
 ...
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: ucp_barbican_htk
+  name: ucp-barbican-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.barbican-htk
+      dest:
+        path: .source
 data:
-  chart_name: ucp_barbican_htk
-  release: ucp_barbican_htk
-  namespace: ucp_barbican_htk
+  chart_name: ucp-barbican-htk
+  release: ucp-barbican-htk
+  namespace: ucp-barbican-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: master
   dependencies: []
 ...

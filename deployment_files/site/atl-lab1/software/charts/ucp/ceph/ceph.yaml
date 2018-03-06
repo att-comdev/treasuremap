@@ -16,131 +16,7 @@ metadata:
         - method: merge
           path: .
   storagePolicy: cleartext
-  substitutions:
-    # Chart source
-    - src:
-        schema: pegleg/SoftwareVersions/v1
-        name: software-versions
-        path: .charts.ucp.ceph
-      dest:
-        path: .source
-
-    # Images
-    - src:
-        schema: pegleg/SoftwareVersions/v1
-        name: software-versions
-        path: .images.ceph.ceph
-      dest:
-        path: .values.images.tags
-
-    # IP addresses
-    - src:
-        schema: pegleg/CommonAddresses/v1
-        name: common-addresses
-        path: .storage.ceph.public_cidr
-      dest:
-        path: .values.network.public
-    - src:
-        schema: pegleg/CommonAddresses/v1
-        name: common-addresses
-        path: .storage.ceph.cluster_cidr
-      dest:
-        path: .values.network.cluster
-    - src:
-        schema: pegleg/EndpointCatalogue/v1
-        name: ucp_endpoints
-        path: .ucp.identity
-      dest:
-        path: .values.endpoints.identity
-    - src:
-        schema: pegleg/EndpointCatalogue/v1
-        name: ucp_endpoints
-        path: .ceph.object_store
-      dest:
-        path: .values.endpoints.object_store
-    - src:
-        schema: pegleg/EndpointCatalogue/v1
-        name: ucp_endpoints
-        path: .ceph.ceph_mon
-      dest:
-        path: .values.endpoints.ceph_mon
-    - src:
-        schema: pegleg/EndpointCatalogue/v1
-        name: ucp_endpoints
-        path: .ceph.ceph_mgr
-      dest:
-        path: .values.endpoints.ceph_mgr
-    - src:
-        schema: pegleg/AccountCatalogue/v1
-        name: ucp_service_accounts
-        path: .ucp.keystone.admin
-      dest:
-        path: .values.endpoints.identity.auth.admin
-    - src:
-        schema: pegleg/AccountCatalogue/v1
-        name: ucp_service_accounts
-        path: .ceph.swift.keystone
-      dest:
-        path: .values.endpoints.identity.auth.swift
-
-    # Secrets
-    - dest:
-        path: .values.endpoints.identity.auth.admin.password
-      src:
-        schema: deckhand/Passphrase/v1
-        name: ucp_keystone_admin_password
-        path: .
-    - dest:
-        path: .values.endpoints.identity.auth.swift.password
-      src:
-        schema: deckhand/Passphrase/v1
-        name: ceph_swift_keystone_password
-        path: .
 data:
-  chart_name: ceph
-  release: ucp-ceph
-  namespace: ceph
-  # NOTE(alanmeadows): Armada seems to wait forever for ceph
-  # requiring the operator to wait for the timeout or kill
-  # armada to re-run it
-  #
-  # as far as I can tell, its "up" and ready after a few
-  # minutes
-  timeout: 300
-  wait:
-    timeout: 300
-    labels:
-      release_group: ucp-ceph
-  install:
-    no_hooks: false
-  upgrade:
-    no_hooks: false
-    pre:
-      delete:
-        - type: job
-          labels:
-            - application: ceph
-            - component: bootstrap
-        - type: job
-          labels:
-            - application: ceph
-            - component: mds-keyring-generator
-        - type: job
-          labels:
-            - application: ceph
-            - component: mon-keyring-generator
-        - type: job
-          labels:
-            - application: ceph
-            - component: rgw-keyring-generator
-        - type: job
-          labels:
-            - application: ceph
-            - component: storage-keys-generator
-        - type: job
-          labels:
-            - application: ceph
-            - component: osd-keyring-generator
   values:
     labels:
       job:
@@ -272,6 +148,70 @@ data:
       overrides:
         ceph_osd:
           hosts:
+            - name: controller01
+              conf:
+                storage:
+                  osd:
+                    - data:
+                        type: block-logical
+                        location: /dev/sdb
+                      journal:
+                        type: directory
+                        location: /var/lib/openstack-helm/ceph/osd/journal-sdb
+                    - data:
+                        type: block-logical
+                        location: /dev/sdc
+                      journal:
+                        type: directory
+                        location: /var/lib/openstack-helm/ceph/osd/journal-sdc
+                    - data:
+                        type: block-logical
+                        location: /dev/sdd
+                      journal:
+                        type: directory
+                        location: /var/lib/openstack-helm/ceph/osd/journal-sdd
+                    - data:
+                        type: block-logical
+                        location: /dev/sde
+                      journal:
+                        type: directory
+                        location: /var/lib/openstack-helm/ceph/osd/journal-sde
+                    - data:
+                        type: block-logical
+                        location: /dev/sdf
+                      journal:
+                        type: directory
+                        location: /var/lib/openstack-helm/ceph/osd/journal-sdf
+                    - data:
+                        type: block-logical
+                        location: /dev/sdg
+                      journal:
+                        type: directory
+                        location: /var/lib/openstack-helm/ceph/osd/journal-sdg
+                    - data:
+                        type: block-logical
+                        location: /dev/sdh
+                      journal:
+                        type: directory
+                        location: /var/lib/openstack-helm/ceph/osd/journal-sdh
+                    - data:
+                        type: block-logical
+                        location: /dev/sdi
+                      journal:
+                        type: directory
+                        location: /var/lib/openstack-helm/ceph/osd/journal-sdi
+                    - data:
+                        type: block-logical
+                        location: /dev/sdj
+                      journal:
+                        type: directory
+                        location: /var/lib/openstack-helm/ceph/osd/journal-sdj
+                    - data:
+                        type: block-logical
+                        location: /dev/sdk
+                      journal:
+                        type: directory
+                        location: /var/lib/openstack-helm/ceph/osd/journal-sdk
             - name: controller02
               conf:
                 storage:
@@ -336,6 +276,7 @@ data:
                       journal:
                         type: directory
                         location: /var/lib/openstack-helm/ceph/osd/journal-sdk
+
   dependencies:
     - ceph_htk
 ...

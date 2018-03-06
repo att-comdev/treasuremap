@@ -2,30 +2,19 @@
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: coredns-global
+  name: coredns
   layeringDefinition:
     abstract: false
-    layer: global
-  labels:
-    name: coredns-global
+    layer: site
+    parentSelector:
+        name: coredns-global
+    actions:
+        - method: replace
+          path: .values.conf.coredns.corefile
+        - method: merge
+          path: .
   storagePolicy: cleartext
   substitutions:
-    # Chart source
-    - src:
-        schema: pegleg/SoftwareVersions/v1
-        name: software-versions
-        path: .charts.kubernetes.coredns
-      dest:
-        path: .source
-
-    # Images
-    - src:
-        schema: pegleg/SoftwareVersions/v1
-        name: software-versions
-        path: .images.kubernetes.coredns
-      dest:
-        path: .values.images
-
     # Zones
     - src:
         schema: pegleg/CommonAddresses/v1
@@ -63,15 +52,14 @@ metadata:
       dest:
         path: .values.conf.coredns.corefile
         pattern: '(UPSTREAM2)'
+    - src:
+        schema: pegleg/CommonAddresses/v1
+        name: common-addresses
+        path: .dns.upstream_servers[2]
+      dest:
+        path: .values.conf.coredns.corefile
+        pattern: '(UPSTREAM3)'
 data:
-  chart_name: coredns
-  release: coredns
-  namespace: kube-system
-  timeout: 600
-  wait:
-    timeout: 600
-  upgrade:
-    no_hooks: true
   values:
     conf:
       coredns:
@@ -82,40 +70,14 @@ data:
               health
               autopath @kubernetes
               kubernetes CLUSTER_DOMAIN SERVICE_CIDR POD_CIDR {
-                pods insecure
+                pods verified
                 fallthrough in-addr.arpa ip6.arpa
                 upstream UPSTREAM1
                 upstream UPSTREAM2
               }
-              prometheus :9153
+              prometheus :9253
               proxy . UPSTREAM1
               proxy . UPSTREAM2
               cache 30
           }
-
-  dependencies:
-    - coredns-htk
----
-schema: armada/Chart/v1
-metadata:
-  schema: metadata/Document/v1
-  name: coredns-htk
-  layeringDefinition:
-    abstract: false
-    layer: global
-  storagePolicy: cleartext
-  substitutions:
-    - src:
-        schema: pegleg/SoftwareVersions/v1
-        name: software-versions
-        path: .charts.kubernetes.coredns-htk
-      dest:
-        path: .source
-data:
-  chart_name: coredns-htk
-  release: coredns-htk
-  namespace: coredns-htk
-  timeout: 100
-  values: {}
-  dependencies: []
 ...

@@ -24,29 +24,6 @@ metadata:
         path: .images.kubernetes.haproxy
       dest:
         path: .values.images
-
-    # Certificates
-    -
-      src:
-        schema: deckhand/CertificateAuthority/v1
-        name: kubernetes
-        path: .
-      dest:
-        path: .values.secrets.tls.ca
-    -
-      src:
-        schema: deckhand/Certificate/v1
-        name: kubernetes
-        path: .
-      dest:
-        path: .values.secrets.tls.cert
-    -
-      src:
-        schema: deckhand/CertificateKey/v1
-        name: kubernetes
-        path: .
-      dest:
-        path: .values.secrets.tls.key
 data:
   chart_name: haproxy
   release: haproxy
@@ -86,26 +63,28 @@ data:
                   - mode tcp
                   - option tcpka
   dependencies:
-    - haproxy_htk
+    - haproxy-htk
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: haproxy_htk
+  name: haproxy-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.kubernetes.haproxy-htk
+      dest:
+        path: .source
 data:
-  chart_name: haproxy_htk
-  release: haproxy_htk
-  namespace: haproxy_htk
+  chart_name: haproxy-htk
+  release: haproxy-htk
+  namespace: haproxy-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: 9c7f89db1d283b54ecdd516a8e105503a4b48e3d
   dependencies: []
 ...

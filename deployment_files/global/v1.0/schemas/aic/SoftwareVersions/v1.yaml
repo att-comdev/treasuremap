@@ -10,60 +10,57 @@ data:
     charts:
       type: object
       properties:
-        dependencies:
-          type: object
-          properties:
-            osh-helm-toolkit:
-              type: object
-              properties:
-                type:
-                  type: string
-                location:
-                  type: string
-                subpath:
-                  type: string
-                reference:
-                  type: string
-            ucp-helm-toolkit:
-              type: object
-              properties:
-                type:
-                  type: string
-                location:
-                  type: string
-                subpath:
-                  type: string
-                reference:
-                  type: string
-        calico:
-          type: object
-          properties:
-            etcd:
-              type: object
-              properties:
-                type:
-                  type: string
-                location:
-                  type: string
-                subpath:
-                  type: string
-                reference:
-                  type: string
-            calico:
-              type: object
-              properties:
-                type:
-                  type: string
-                location:
-                  type: string
-                subpath:
-                  type: string
-                reference:
-                  type: string
         kubernetes:
           type: object
           properties:
+            calico:
+              type: object
+              properties:
+                etcd:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    location:
+                      type: string
+                    subpath:
+                      type: string
+                    reference:
+                      type: string
+                etcd-htk:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    location:
+                      type: string
+                    subpath:
+                      type: string
+                    reference:
+                      type: string
+                calico:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    location:
+                      type: string
+                    subpath:
+                      type: string
+                    reference:
+                      type: string
             apiserver:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
+            apiserver-htk:
               type: object
               properties:
                 type:
@@ -85,7 +82,29 @@ data:
                   type: string
                 reference:
                   type: string
+            controller-manager-htk:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
             coredns:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
+            coredns-htk:
               type: object
               properties:
                 type:
@@ -105,7 +124,27 @@ data:
                   type: string
                 subpath:
                   type: string
+            haroxy-htk:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
             etcd:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
+            etcd-htk:
               type: object
               properties:
                 type:
@@ -127,6 +166,17 @@ data:
                   type: string
                 reference:
                   type: string
+            ingress-htk:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
             proxy:
               type: object
               properties:
@@ -138,7 +188,29 @@ data:
                   type: string
                 reference:
                   type: string
+            proxy-htk:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
             scheduler:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
+            scheduler-htk:
               type: object
               properties:
                 type:

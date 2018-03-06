@@ -44,27 +44,29 @@ data:
         node_selector_key: ucp-control-plane
         node_selector_value: enabled
   dependencies:
-    - ucp_memcached_htk
+    - ucp-memcached-htk
 ...
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: ucp_memcached_htk
+  name: ucp-memcached-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.memcached-htk
+      dest:
+        path: .source
 data:
-  chart_name: ucp_memcached_htk
-  release: ucp_memcached_htk
-  namespace: ucp_memcached_htk
+  chart_name: ucp-memcached-htk
+  release: ucp-memcached-htk
+  namespace: ucp-memcached-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: e4dd1ba91a9e3c517b0f4594c70eb9a743681432
   dependencies: []
 ...

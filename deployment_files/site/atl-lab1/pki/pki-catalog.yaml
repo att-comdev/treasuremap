@@ -94,6 +94,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
         - document_name: kubernetes-etcd-genesis
           common_name: kubernetes-etcd-genesis
           hosts:
@@ -102,6 +103,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
         - document_name: kubernetes-etcd-controller01
           common_name: kubernetes-etcd-controller01
           hosts:
@@ -110,6 +112,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
         - document_name: kubernetes-etcd-controller02
           common_name: kubernetes-etcd-controller02
           hosts:
@@ -118,6 +121,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
         - document_name: kubernetes-etcd-worker01
           common_name: kubernetes-etcd-worker01
           hosts:
@@ -126,6 +130,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
         - document_name: kubernetes-etcd-worker02
           common_name: kubernetes-etcd-worker02
           hosts:
@@ -134,6 +139,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
     kubernetes-etcd-peer:
       certificates:
         - document_name: kubernetes-etcd-genesis-peer
@@ -144,6 +150,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
         - document_name: kubernetes-etcd-genesis-peer
           common_name: kubernetes-etcd-genesis-peer
           hosts:
@@ -152,6 +159,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
         - document_name: kubernetes-etcd-controller01-peer
           common_name: kubernetes-etcd-controller01-peer
           hosts:
@@ -160,6 +168,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
         - document_name: kubernetes-etcd-controller02-peer
           common_name: kubernetes-etcd-controller02-peer
           hosts:
@@ -168,6 +177,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
         - document_name: kubernetes-etcd-worker01-peer
           common_name: kubernetes-etcd-worker01-peer
           hosts:
@@ -176,6 +186,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
         - document_name: kubernetes-etcd-worker02-peer
           common_name: kubernetes-etcd-worker02-peer
           hosts:
@@ -184,6 +195,7 @@ data:
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
+            - 10.96.0.2
     calico-etcd:
       description: Certificates for Calico etcd client traffic
       certificates:

@@ -7,6 +7,8 @@ metadata:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  labels:
+    name: ucp-ceph-global
   substitutions:
     # Chart source
     - src:
@@ -97,11 +99,9 @@ data:
   #
   # as far as I can tell, its "up" and ready after a few
   # minutes
-  timeout: 300
+  timeout: 900
   wait:
-    timeout: 300
-    labels:
-      release_group: ucp-ceph
+    timeout: 900
   install:
     no_hooks: false
   upgrade:
@@ -110,28 +110,29 @@ data:
       delete:
         - type: job
           labels:
-            - application: ceph
-            - component: bootstrap
+            application: ceph
+            component: bootstrap
         - type: job
           labels:
-            - application: ceph
-            - component: mds-keyring-generator
+            application: ceph
+            component: mds-keyring-generator
         - type: job
           labels:
-            - application: ceph
-            - component: mon-keyring-generator
+            application: ceph
+            component: mon-keyring-generator
         - type: job
           labels:
-            - application: ceph
-            - component: rgw-keyring-generator
+            application: ceph
+            component: rgw-keyring-generator
         - type: job
           labels:
-            - application: ceph
-            - component: storage-keys-generator
+            application: ceph
+            component: storage-keys-generator
         - type: job
           labels:
-            - application: ceph
-            - component: osd-keyring-generator
+            application: ceph
+            component: osd-keyring-generator
+
   # TODO(alanmeadows) we do not pass network
   values:
     labels:
@@ -143,7 +144,7 @@ data:
         node_selector_value: enabled
     endpoints:
       identity:
-        namespace: ucp
+        namespace: openstack
       object_store:
         namespace: ceph
       ceph_mon:
@@ -187,43 +188,45 @@ data:
           pg_per_osd: 100
 
         default:
-            # NOTE(alanmeadows): This is required ATM for bootstrapping a Ceph
-            # cluster with only one OSD.  Depending on OSD targeting & site
-            # configuration this can be changed.
+          # NOTE(alanmeadows): This is required ATM for bootstrapping a Ceph
+          # cluster with only one OSD.  Depending on OSD targeting & site
+          # configuration this can be changed.
           crush_rule: same_host
 
       ceph:
-          global:
-            # NOTE(mb874d): This is required ATM for bootstrapping a Ceph
-            # cluster with only one OSD.  Depending on OSD targeting & site
-            # configuration this can be changed.
-            osd_pool_default_size: 1
+        global:
+          # NOTE(mb874d): This is required ATM for bootstrapping a Ceph
+          # cluster with only one OSD.  Depending on OSD targeting & site
+          # configuration this can be changed.
+          osd_pool_default_size: 1
 
-            # specify fsid
-            fsid: '88904ebb-f6fc-48b1-80ec-e1915cfa84a9'
+          # specify fsid
+          fsid: '88904ebb-f6fc-48b1-80ec-e1915cfa84a9'
 
   dependencies:
-    - ceph_htk
+    - ceph-htk
 ...
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: ceph_htk
+  name: ceph-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.ceph-htk
+      dest:
+        path: .source
 data:
-  chart_name: ceph_htk
-  release: ceph_htk
-  namespace: ceph_htk
+  chart_name: ceph-htk
+  release: ceph-htk
+  namespace: ceph-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: d5f880c1ee5111c0e6889323fa4b7138c36f2673
   dependencies: []
 ...

@@ -63,7 +63,7 @@ metadata:
         name: ucp_service_accounts
         path: .ucp.keystone.oslo_messaging
       dest:
-        path: .values.endpoints.oslo_messaging.auth.keystone
+        path: .values.endpoints.oslo_messaging.auth
     - src:
         schema: pegleg/AccountCatalogue/v1
         name: ucp_service_accounts
@@ -92,6 +92,12 @@ metadata:
         name: ucp_oslo_messaging_password
         path: .
     - dest:
+        path: .values.endpoints.oslo_messaging.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_oslo_messaging_password
+        path: .
+    - dest:
         path: .values.endpoints.oslo_db.auth.keystone.password
       src:
         schema: deckhand/Passphrase/v1
@@ -105,25 +111,24 @@ metadata:
         path: .
 data:
   chart_name: ucp-keystone
-  release: keystone
+  release: ucp-keystone
   namespace: ucp
   install:
     no_hooks: false
   upgrade:
     no_hooks: false
-  pre:
-    delete:
-      - type: job
-        labels:
-          job-name: keystone-db-sync
-      - type: job
-        labels:
-          job-name: keystone-db-init
-  post:
-    delete: []
-    create: []
+    pre:
+      delete:
+        - type: job
+          labels:
+            job-name: keystone-db-sync
+        - type: job
+          labels:
+            job-name: keystone-db-init
+    post:
+      create: []
   values:
-    pod:
+    pods:
       replicas:
         api: 2
     labels:
@@ -133,28 +138,32 @@ data:
       job:
         node_selector_key: ucp-control-plane
         node_selector_value: enabled
+
+
   dependencies:
-    - ucp_keystone_htk
+    - ucp-keystone-htk
 ...
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name:  ucp_keystone_htk
+  name:  ucp-keystone-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.keystone-htk
+      dest:
+        path: .source
 data:
-  chart_name: ucp_keystone_htk
-  release: ucp_keystone_htk
-  namespace: ucp_keystone_htk
+  chart_name: ucp-keystone-htk
+  release: ucp-keystone-htk
+  namespace: ucp-keystone-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: master
   dependencies: []
 ...
