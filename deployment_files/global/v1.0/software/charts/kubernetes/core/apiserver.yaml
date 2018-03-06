@@ -30,19 +30,19 @@ metadata:
         name: common-addresses
         path: .kubernetes.api_service_ip
       dest:
-        path: .network.kubernetes_service_ip
+        path: .values.network.kubernetes_service_ip
     - src:
         schema: pegleg/CommonAddresses/v1
         name: common-addresses
         path: .kubernetes.pod_cidr
       dest:
-        path: .network.pod_cidr
+        path: .values.network.pod_cidr
     - src:
         schema: pegleg/CommonAddresses/v1
         name: common-addresses
         path: .kubernetes.service_cidr
       dest:
-        path: .network.service_cidr
+        path: .values.network.service_cidr
 
     # CA
     -
@@ -111,26 +111,28 @@ data:
       etcd:
         endpoints: https://127.0.0.1:2378
   dependencies:
-    - kube_api_htk
+    - kubernetes-apiserver-htk
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: kube_api_htk
+  name: kubernetes-apiserver-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.kubernetes.apiserver-htk
+      dest:
+        path: .source
 data:
-  chart_name: kube_api_htk
-  release: kube_api_htk
-  namespace: kube_api_htk
+  chart_name: kubernetes-apiserver-htk
+  release: kubernetes-apiserver-htk
+  namespace: kubernetes-apiserver-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: e4dd1ba91a9e3c517b0f4594c70eb9a743681432
   dependencies: []
 ...

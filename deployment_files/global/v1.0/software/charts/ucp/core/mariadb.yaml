@@ -63,28 +63,33 @@ data:
       prometheus_mysql_exporter:
         node_selector_key: ucp-control-plane
         node_selector_value: enabled
+    pod:
+      replicas:
+        server: 1
   dependencies:
-    - mariadb_htk
+    - mariadb-htk
 ...
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: mariadb_htk
+  name: mariadb-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.mariadb-htk
+      dest:
+        path: .source
 data:
-  chart_name: mariadb_htk
-  release: mariadb_htk
-  namespace: mariadb_htk
+  chart_name: mariadb-htk
+  release: mariadb-htk
+  namespace: mariadb-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: e4dd1ba91a9e3c517b0f4594c70eb9a743681432
   dependencies: []
 ...

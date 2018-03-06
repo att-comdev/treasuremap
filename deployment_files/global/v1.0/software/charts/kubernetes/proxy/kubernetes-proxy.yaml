@@ -32,20 +32,6 @@ metadata:
         path: .
       dest:
         path: .values.secrets.tls.ca
-    -
-      src:
-        schema: deckhand/Certificate/v1
-        name: proxy
-        path: .
-      dest:
-        path: .values.secrets.tls.cert
-    -
-      src:
-        schema: deckhand/CertificateKey/v1
-        name: proxy
-        path: .
-      dest:
-        path: .values.secrets.tls.key
 data:
   chart_name: proxy
   release: kubernetes-proxy
@@ -59,26 +45,28 @@ data:
     network:
       kubernetes_netloc: 127.0.0.1:6553
   dependencies:
-    - kube_proxy_htk
+    - kubernetes-proxy-htk
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: kube_proxy_htk
+  name: kubernetes-proxy-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.kubernetes.proxy-htk
+      dest:
+        path: .source
 data:
-  chart_name: kube_proxy_htk
-  release: kube_proxy_htk
-  namespace: kube_proxy_htk
+  chart_name: kubernetes-proxy-htk
+  release: kubernetes-proxy-htk
+  namespace: kubernetes-proxy-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: 9c7f89db1d283b54ecdd516a8e105503a4b48e3d
   dependencies: []
 ...

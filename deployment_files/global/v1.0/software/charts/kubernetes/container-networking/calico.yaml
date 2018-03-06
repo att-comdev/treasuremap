@@ -12,7 +12,7 @@ metadata:
     - src:
         schema: pegleg/SoftwareVersions/v1
         name: software-versions
-        path: .charts.calico.calico
+        path: .charts.kubernetes.calico.calico
       dest:
         path: .source
 

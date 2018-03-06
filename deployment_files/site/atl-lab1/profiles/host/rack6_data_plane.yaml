@@ -2,13 +2,13 @@
 schema: drydock/HostProfile/v1
 metadata:
     schema: metadata/Document/v1
-    name: rack6_control_plane
+    name: rack6_data_plane
     storagePolicy: cleartext
     layeringDefinition:
         abstract: false
         layer: site
         parentSelector:
-            hosttype: base_control_plane
+            hosttype: base_data_plane
         actions:
             - method: merge
               path: .

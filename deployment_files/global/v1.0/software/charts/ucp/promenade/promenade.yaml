@@ -4,7 +4,7 @@ metadata:
   schema: metadata/Document/v1
   name: ucp-promenade-global
   layeringDefinition:
-    abstract: true
+    abstract: false
     layer: global
   labels:
     name: ucp-promenade-global
@@ -90,27 +90,29 @@ data:
           identity_uri: http://keystone-api.ucp.svc.cluster.local/
           service_token_roles_required: true
   dependencies:
-    - promenade_htk
+    - promenade-htk
 ...
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: promenade_htk
+  name: promenade-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.promenade-htk
+      dest:
+        path: .source
 data:
-  chart_name: promenade_htk
-  release: promenade_htk
-  namespace: promenade_htk
+  chart_name: promenade-htk
+  release: promenade-htk
+  namespace: promenade-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: e4dd1ba91a9e3c517b0f4594c70eb9a743681432
   dependencies: []
 ...

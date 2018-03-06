@@ -14,7 +14,7 @@ data:
       address: 10.23.104.11
     - network: rack06-pxe
       address: 10.23.20.11
-    - network: rack06-mgmt
+    - network: rack06_mgmt
       address: 10.23.21.11
     - network: rack06-calico
       address: 10.23.22.11
@@ -44,7 +44,7 @@ data:
       address: 10.23.104.12
     - network: rack06-pxe
       address: 10.23.20.12
-    - network: rack06-mgmt
+    - network: rack06_mgmt
       address: 10.23.21.12
     - network: rack06-calico
       address: 10.23.22.12
@@ -68,13 +68,13 @@ metadata:
     layer: site
   storagePolicy: cleartext
 data:
-  host_profile: rack6_control_plane
+  host_profile: rack6_data_plane
   addressing:
     - network: rack06-oob
       address: 10.23.104.13
     - network: rack06-pxe
       address: 10.23.20.13
-    - network: rack06-mgmt
+    - network: rack06_mgmt
       address: 10.23.21.13
     - network: rack06-calico
       address: 10.23.22.13
@@ -98,13 +98,13 @@ metadata:
     layer: site
   storagePolicy: cleartext
 data:
-  host_profile: rack6_control_plane
+  host_profile: rack6_data_plane
   addressing:
     - network: rack06-oob
       address: 10.23.104.14
     - network: rack06-pxe
       address: 10.23.20.14
-    - network: rack06-mgmt
+    - network: rack06_mgmt
       address: 10.23.21.14
     - network: rack06-calico
       address: 10.23.22.14

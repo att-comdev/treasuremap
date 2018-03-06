@@ -10,6 +10,4 @@ metadata:
 data:
   description: Shipyard
   chart_group:
-    - ucp-rabbitmq-etcd
-    - ucp-rabbitmq
     - ucp-shipyard
