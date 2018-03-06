@@ -63,7 +63,7 @@ metadata:
         path: .ip
 data:
   armada:
-    target_manifest: bootstrap
+    target_manifest: cluster-bootstrap
   labels:
     dynamic:
       - calico-etcd=enabled
@@ -83,3 +83,4 @@ data:
     - path: /var/lib/anchor/calico-etcd-bootstrap
       content: "# placeholder for triggering calico etcd bootstrapping\n# this file will be deleted"
       mode: 0644
+...

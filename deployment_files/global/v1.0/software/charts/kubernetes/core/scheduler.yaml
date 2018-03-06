@@ -24,40 +24,6 @@ metadata:
       dest:
         path: .values.images.tags
 
-    # IP addresses
-    - src:
-        schema: pegleg/CommonAddresses/v1
-        name: common-addresses
-        path: .kubernetes.api_service_ip
-      dest:
-        path: .network.kubernetes_service_ip
-    - src:
-        schema: pegleg/CommonAddresses/v1
-        name: common-addresses
-        path: .kubernetes.pod_cidr
-      dest:
-        path: .network.pod_cidr
-    - src:
-        schema: pegleg/CommonAddresses/v1
-        name: common-addresses
-        path: .kubernetes.service_cidr
-      dest:
-        path: .network.service_cidr
-
-    # IP addresses
-    - src:
-        schema: pegleg/CommonAddresses/v1
-        name: common-addresses
-        path: .kubernetes.pod_cidr
-      dest:
-        path: .network.pod_cidr
-    - src:
-        schema: pegleg/CommonAddresses/v1
-        name: common-addresses
-        path: .kubernetes.service_cidr
-      dest:
-        path: .network.service_cidr
-
     # CA
     -
       src:
@@ -96,26 +62,28 @@ data:
     network:
       kubernetes_netloc: 127.0.0.1:6553
   dependencies:
-    - kube_sched_htk
+    - kubernetes-scheduler-htk
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: kube_sched_htk
+  name: kubernetes-scheduler-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.kubernetes.scheduler-htk
+      dest:
+        path: .source
 data:
-  chart_name: kube_sched_htk
-  release: kube_sched_htk
-  namespace: kube_sched_htk
+  chart_name: kubernetes-scheduler-htk
+  release: kubernetes-scheduler-htk
+  namespace: kubernetes-scheduler-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: 9c7f89db1d283b54ecdd516a8e105503a4b48e3d
   dependencies: []
 ...

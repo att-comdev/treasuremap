@@ -2,9 +2,9 @@
 schema: drydock/HostProfile/v1
 metadata:
     schema: metadata/Document/v1
-    name: gv-global
+    name: base_data_plane
     labels:
-        hosttype: gv-global
+        hosttype: base_data_plane
     layeringDefinition:
         abstract: true
         layer: global
@@ -63,4 +63,6 @@ data:
         owner_data:
             openstack-nova-compute: enabled
             openvswitch: enabled
+            ucp-control-plane: enabled
+            openstack-compute-node: enabled
 ...

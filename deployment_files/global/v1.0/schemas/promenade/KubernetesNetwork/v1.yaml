@@ -49,23 +49,6 @@ data:
         - service_ip
       additionalProperties: false
 
-    etcd:
-      type: object
-      properties:
-        service_ip:
-          $ref: '#/definitions/ip_address'
-        container_port:
-          type: number
-          minimum: 0
-        haproxy_port:
-          type: number
-          minimum: 0
-      required:
-        - service_ip
-        - container_port
-        - haproxy_port
-      additionalProperties: false
-
     kubernetes:
       type: object
       properties:
@@ -86,6 +69,22 @@ data:
         - service_cidr
         - service_ip
         - apiserver_port
+        - haproxy_port
+      additionalProperties: false
+    etcd:
+      type: object
+      properties:
+        service_ip:
+          $ref: '#/definitions/ip_address'
+        container_port:
+          type: number
+          minimum: 0
+        haproxy_port:
+          type: number
+          minimum: 0
+      required:
+        - service_ip
+        - container_port
         - haproxy_port
       additionalProperties: false
     hosts_entries:

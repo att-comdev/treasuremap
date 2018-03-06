@@ -2,16 +2,12 @@
 schema: armada/ChartGroup/v1
 metadata:
   schema: metadata/Document/v1
-  name: ucp-core
+  name: ucp-divingbell
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
 data:
-  description: Common UCP Components
+  description: Divingbell
   chart_group:
-    - ucp-ingress
-    - ucp-mariadb
-    - ucp-postgresql
-    - ucp-rabbitmq
-...
+    - ucp-divingbell

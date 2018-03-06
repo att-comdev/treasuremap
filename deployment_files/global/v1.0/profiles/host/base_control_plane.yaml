@@ -100,11 +100,11 @@ data:
             ucp-ceph-rgw: enabled
             ucp-ceph-mon: enabled
             ucp-maas: enabled
-            kube-apiserver: enabled
-            kube-dns: enabled
-            kube-proxy: enabled
-            kube-scheduler: enabled
-            kube-controller-manager: enabled
+            kubernetes-apiserver: enabled
+            kubernetes-dns: enabled
+            kubernetes-proxy: enabled
+            kubernetes-scheduler: enabled
+            kubernetes-controller-manager: enabled
             tiller-helm: enabled
             kube-etcd: enabled
             calico-policy: enabled
@@ -126,5 +126,4 @@ data:
             elasticsearch-data: enabled
             postgresql: enabled
             kube-ingress: enabled
-
 ...

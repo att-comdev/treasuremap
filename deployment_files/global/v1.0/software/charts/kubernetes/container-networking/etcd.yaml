@@ -15,7 +15,7 @@ metadata:
     - src:
         schema: pegleg/SoftwareVersions/v1
         name: software-versions
-        path: .charts.calico.etcd
+        path: .charts.kubernetes.calico.etcd
       dest:
         path: .source
 
@@ -108,26 +108,28 @@ data:
         port: 6667
         target_port: 6667
   dependencies:
-    - calico_etcd_htk
+    - kubernetes-calico-etcd-htk
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: calico_etcd_htk
+  name: kubernetes-calico-etcd-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.kubernetes.calico.etcd-htk
+      dest:
+        path: .source
 data:
-  chart_name: calico_etcd_htk
-  release: calico_etcd_htk
-  namespace: calico_etcd_htk
+  chart_name: kubernetes-calico-etcd-htk
+  release: kubernetes-calico-etcd-htk
+  namespace: kubernetes-calico-etcd-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: 9c7f89db1d283b54ecdd516a8e105503a4b48e3d
   dependencies: []
 ...

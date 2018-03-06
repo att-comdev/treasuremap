@@ -122,12 +122,11 @@ data:
     no_hooks: false
   upgrade:
     no_hooks: false
-  pre:
-    delete: []
-    create: []
-  post:
-    delete: []
-    create: []
+    pre:
+      delete: []
+      create: []
+    post:
+      create: []
   values:
     pod:
       replicas:
@@ -141,27 +140,29 @@ data:
         keystone_authtoken:
           memcache_security_strategy: None
   dependencies:
-    - deckhand_htk
+    - deckhand-htk
 ...
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: deckhand_htk
+  name: deckhand-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.deckhand-htk
+      dest:
+        path: .source
 data:
-  chart_name: deckhand_htk
-  release: deckhand_htk
-  namespace: deckhand_htk
+  chart_name: deckhand-htk
+  release: deckhand-htk
+  namespace: deckhand-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: e4dd1ba91a9e3c517b0f4594c70eb9a743681432
   dependencies: []
 ...

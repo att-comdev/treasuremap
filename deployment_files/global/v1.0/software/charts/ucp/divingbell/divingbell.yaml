@@ -2,7 +2,7 @@
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: ucp-tiller
+  name: ucp-divingbell
   layeringDefinition:
     abstract: false
     layer: global
@@ -12,36 +12,41 @@ metadata:
     - src:
         schema: pegleg/SoftwareVersions/v1
         name: software-versions
-        path: .charts.ucp.tiller
+        path: .charts.ucp.divingbell
       dest:
         path: .source
-
-    # Images
-    - src:
-        schema: pegleg/SoftwareVersions/v1
-        name: software-versions
-        path: .images.ucp.tiller
-      dest:
-        path: .values.images.tags
-
 data:
-  chart_name: tiller
-  release: ucp-tiller
-  namespace: kube-system
-  timeout: 100
+  chart_name: divingbell
+  release: divingbell
+  namespace: ucp
+  timeout: 300
   install:
     no_hooks: false
   upgrade:
     no_hooks: false
-  values: {}
+  values:
+    conf:
+      overrides:
+        divingbell_mounts:
+          labels:
+          - label:
+              key: hosttype
+              values:
+              - "nd-global"
+              - "nv-global"
+            conf:
+              mounts:
+                mnt1:
+                  mnt_tgt: /hugepages
+                  device: hugetlbfs
+                  type: hugetlbfs
   dependencies:
-    - tiller-htk
-...
+    - ucp-divingbell-htk
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: tiller-htk
+  name: ucp-divingbell-htk
   layeringDefinition:
     abstract: false
     layer: global
@@ -50,14 +55,13 @@ metadata:
     - src:
         schema: pegleg/SoftwareVersions/v1
         name: software-versions
-        path: .charts.ucp.tiller-htk
+        path: .charts.ucp.divingbell-htk
       dest:
         path: .source
 data:
-  chart_name: tiller-htk
-  release: tiller-htk
-  namespace: tiller-htk
+  chart_name: ucp-divingbell-htk
+  release: ucp-divingbell-htk
+  namespace: ucp-divingbell-htk
   timeout: 100
   values: {}
   dependencies: []
-...

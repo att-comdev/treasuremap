@@ -57,6 +57,13 @@ data:
           type: number
         haproxy_port:
           type: number
+    etcd:
+      type: object
+      properties:
+        container_port:
+          type: number
+        haproxy_port:
+          type: number
     masters:
       type: array
       items:

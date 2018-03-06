@@ -36,6 +36,10 @@ data:
       replicas:
         ingress: 2
         error_page: 2
+    network:
+      ingress:
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
   dependencies:
     - ucp-ingress-htk
 ---
@@ -47,15 +51,17 @@ metadata:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.ingress-htk
+      dest:
+        path: .source
 data:
   chart_name: ucp-ingress-htk
   release: ucp-ingress-htk
   namespace: ucp-ingress-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: 9c7f89db1d283b54ecdd516a8e105503a4b48e3d
   dependencies: []

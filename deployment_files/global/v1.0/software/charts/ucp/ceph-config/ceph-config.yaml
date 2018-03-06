@@ -30,13 +30,13 @@ metadata:
         name: common-addresses
         path: .storage.ceph.public_cidr
       dest:
-        path: .network.public
+        path: .values.network.public
     - src:
         schema: pegleg/CommonAddresses/v1
         name: common-addresses
         path: .storage.ceph.cluster_cidr
       dest:
-        path: .network.cluster
+        path: .values.network.cluster
 
     # Endpoints
     - src:
@@ -103,12 +103,10 @@ data:
     no_hooks: false
     pre:
       delete:
-        - name: ceph-namespace-client-key-generator
-          type: job
+        - type: job
           labels:
-            - application: ceph
-            - component: namespace-client-key-generator
-            - release_group: armada-ucp
+            application: ceph
+            component: namespace-client-key-generator
   values:
     labels:
       job:
@@ -127,5 +125,5 @@ data:
       client_secrets: true
       rgw_keystone_user_and_endpoints: false
   dependencies:
-    - ceph_htk
+    - ceph-htk
 ...

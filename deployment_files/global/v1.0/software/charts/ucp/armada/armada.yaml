@@ -81,33 +81,30 @@ data:
     manifests:
       deployment_tiller: false
       service_tiller: false
-    network:
-      api:
-        node_port:
-          enabled: true
-          port: 31903
   dependencies:
-    - armada_htk
+    - armada-htk
 ...
 ---
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: armada_htk
+  name: armada-htk
   layeringDefinition:
     abstract: false
     layer: global
   storagePolicy: cleartext
+  substitutions:
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.ucp.armada-htk
+      dest:
+        path: .source
 data:
-  chart_name: armada_htk
-  release: armada_htk
-  namespace: armada_htk
+  chart_name: armada-htk
+  release: armada-htk
+  namespace: armada-htk
   timeout: 100
   values: {}
-  source:
-    type: git
-    location: https://github.com/openstack/openstack-helm
-    subpath: helm-toolkit
-    reference: e4dd1ba91a9e3c517b0f4594c70eb9a743681432
   dependencies: []
 ...

@@ -34,6 +34,49 @@ data:
     default_network: rack06-pxe
   allowed_networks:
     - rack06-pxe
+...
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: pxe-cab24
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  bonding:
+    mode: disabled
+  mtu: 1500
+  linkspeed: auto
+  trunking:
+    mode: disabled
+    default_network: pxe-cab24
+  allowed_networks:
+    - pxe-cab24
+...
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: pxe-cab24
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  mtu: 1500
+  cidr: 10.24.20.0/24
+  ranges:
+    - type: dhcp
+      start: 10.24.20.121
+      end: 10.24.20.131
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 10.24.20.1
+      metric: 10
+  dns:
+    domain: admin.integration-site.att.com
+    servers: '8.8.8.8 8.8.4.4'
+...
 ---
 schema: 'drydock/NetworkLink/v1'
 metadata:
@@ -52,7 +95,7 @@ data:
   trunking:
     mode: 802.1q
   allowed_networks:
-    - rack06-mgmt
+    - rack06_mgmt
     - rack06-calico
     - rack06-storage
     - rack06-ossdn
@@ -110,7 +153,7 @@ data:
 schema: 'drydock/Network/v1'
 metadata:
   schema: 'metadata/Document/v1'
-  name: rack06-mgmt
+  name: rack06_mgmt
   layeringDefinition:
     abstract: false
     layer: site

@@ -25,7 +25,7 @@ data:
               type: string
             internal:
               type: string
-          additionalProperties: 
+          additionalProperties:
             type: string
         host_fqdn_override:
           oneOf:
