@@ -182,7 +182,7 @@ in order to separate common site elements (i.e., ``global`` folder) from unique
 site elements (i.e., ``site`` folder).
 
 To gain a full understanding of the pegleg strutcure, it is highly recommended
-to read pegleg documentation on this `here <https://pegleg.readthedocs.io/en/latest/artifacts.html/>`_.
+to read pegleg documentation on this `here <https://pegleg.readthedocs.io/en/latest/artifacts.html>`_.
 
 Change directory to the ``treasuremap/deployment_files`` folder and copy an existing
 site to use as a reference for $NEW_SITE::
