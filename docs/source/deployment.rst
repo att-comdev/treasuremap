@@ -162,7 +162,8 @@ Establishing build node environment
     sudo apt -y install docker.io git
 
 2. Clone and link the required git repos as follows::
-
+ 
+    cd ~
     git clone https://github.com/att-comdev/pegleg
     git clone https://github.com/att-comdev/treasuremap
 
@@ -209,13 +210,14 @@ components that do not yet support setting a custom passphrase::
 
 Move the secrets to your $NEW_SITE's location for passphrase secrets::
 
+    mkdir -p site/$NEW_SITE/secrets/passphrases
     mv secrets_tools/*.yaml site/$NEW_SITE/secrets/passphrases
 
 Public SSH keys for environment access are stored under
 ``site/$NEW_SITE/secrets/publickey/``. Make copies of ``ca846m_ssh_public_key.yaml``
-and name the copies according to each ssh key you wish to specify. Delete any
-unneeded keys leftover from ``atl-lab1``. Modify the contents of each remaining
-file as follows:
+and name the copies according to each ssh key you wish to specify that will have
+bare metal SSH acess. Delete any unneeded keys leftover from ``atl-lab1``.
+Modify the contents of each remaining file as follows:
 
 - metadata/name: Specify the name of public SSH key
 - data: Specify the public SSH key (``ssh-rsa ...``)
@@ -439,8 +441,8 @@ Generating site YAML files
 After constituent YAML configurations are finalized, use pegleg to perform the
 merge that will yield the combined global + site type + site YAML::
 
-    mkdir ~/$NEW_SITE_yaml
-    sudo tools/pegleg.sh site collect $NEW_SITE > ~/${NEW_SITE}_yaml/$NEW_SITE.yaml
+    mkdir ~/${NEW_SITE}_yaml
+    sudo sh -c "tools/pegleg.sh site collect $NEW_SITE > ~/${NEW_SITE}_yaml/$NEW_SITE.yaml"
 
 Building the Promenade bundle
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
