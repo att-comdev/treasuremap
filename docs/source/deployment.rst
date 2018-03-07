@@ -182,7 +182,7 @@ in order to separate common site elements (i.e., ``global`` folder) from unique
 site elements (i.e., ``site`` folder).
 
 To gain a full understanding of the pegleg strutcure, it is highly recommended
-to read pegleg documentation on this `here <https://pegleg.readthedocs.io/en/latest/artifacts.html/>`_.
+to read pegleg documentation on this `here <https://pegleg.readthedocs.io/en/latest/artifacts.html>`_.
 
 Change directory to the ``treasuremap/deployment_files`` folder and copy an existing
 site to use as a reference for $NEW_SITE::
@@ -223,7 +223,7 @@ Modify the contents of each remaining file as follows:
 - data: Specify the public SSH key (``ssh-rsa ...``)
 
 site/$NEW_SITE/profiles/region.yaml
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 File containing the Drydock region definition for this site. Setting highlights:
 
@@ -253,7 +253,7 @@ File containing the Drydock region definition for this site. Setting highlights:
   publickey secrets from the previous section.
 
 site/$NEW_SITE/site-definition.yaml
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The root level site definition file. Setting highlights:
 
@@ -265,7 +265,7 @@ The root level site definition file. Setting highlights:
 - metadata/name: Set to the desired site name (e.g., ``$NEW_SITE``)
 
 site/$NEW_SITE/networks/physical/rack06-network.yaml
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 File containing Drydock definitions of NetworkLink and Network elements.
 
@@ -336,7 +336,7 @@ Drydock/MaaS, as this network is assumed to already be in place and managed by
 existing infrastructure as a prerequisite to site deployment.
 
 site/$NEW_SITE/networks/common-address.yaml
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 File containing a number of high-level UCP network related parameters. Setting
 highlights:
@@ -363,7 +363,7 @@ highlights:
 - data/storage/ceph/public_cidr: Set the same as above.
 
 site/$NEW_SITE/profiles/hardware/hw_generic.yaml
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 File containg the generic HardwareProfile for this site.
 
@@ -372,7 +372,7 @@ manufacturer, firmware versions, and PCI IDs for NICs. Currently these values
 are not used, but some dummy values need to be present. Use this file as-is.
 
 site/$NEW_SITE/profiles/host/
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This directory contains a list of files that define ``drydock/HostProfile/v1``
 elements. This example demonstrates layering of host profiles, as it defines a
@@ -386,19 +386,19 @@ with its own CIDRs, we could inherit the same base host profiles to avoid
 unnecessary duplication of information.
 
 site/$NEW_SITE/profiles/host/base_control_plane.yaml
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 An example host profile that defines a desired bonding configuration for control
 plane nodes.
 
 site/$NEW_SITE/profiles/host/rack6_control_plane.yaml
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 An exapmle host profile that defines a desired bonding configuration for data-
 plane nodes.
 
 site/$NEW_SITE/baremetal/rack6.yaml
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 File containing the ``drydock/BareMetalNode/v1`` resources for this site.
 
@@ -415,20 +415,23 @@ environment. Setting highlights:
   IPs within the static ranges specified for the same networks in
   ``rack06-network.yaml``.
 
-site/$NEW_SITE/pki/kubernetes-nodes.yaml
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+site/$NEW_SITE/pki/pki-catalog.yaml
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 File containing management IPs and hostnames of nodes. Each node in the
-environment will require its own ``promenade/KubernetesNode/v1`` element. Setting
-highlights:
+environment will require its own certificate definition for each of the defined
+certificate authorities (kubernetes, kubernetes-etcd, kubernetes-etcd-peer,
+calico-etcd, calico-etcd-peer, etc. Setting highlights:
 
-- data/hostname: Hostname of the node that is used to generate certificates.
-  Ensure this matches what has been specified in ``rack06-baremetal.yaml`` for
-  each node. In addition, there needs to be an entry for the ``genesis`` node.
-- metadata/name: Repeat the hostname of the node here.
-- data/ip: Use the IP defined for the management network of the node specified
-  in ``rack06-baremetal.yaml``, and in ``common-address.yaml`` in the case of the
-  ``genesis`` node. Ensure IPs are correct for their hostnames.
+- data/certificate_authorities/\*/certificates/common_name: Hostname of the node
+  that is used to generate certificates. Ensure this matches what has been
+  specified in ``rack06-baremetal.yaml`` for each node. In addition, there needs
+  to be an entry for the ``genesis`` node.
+- data/certificate_authorities/\*/certificates/document_name: Repeat the
+  hostname of the node here.
+- data/certificate_authorities/\*/certificates/hosts: A YAML list containing the
+  node's hostname and IP address(es). Update hostname and IP information
+  according to your environment.
 
 OSH
 ---
