@@ -71,7 +71,7 @@ data:
                   type: string
                 reference:
                   type: string
-            osh-helm-infra-toolkit:
+            osh-infra-helm-toolkit:
               type: object
               properties:
                 type:
