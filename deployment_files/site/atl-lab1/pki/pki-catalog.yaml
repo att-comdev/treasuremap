@@ -27,39 +27,32 @@ data:
             - 10.24.20.100
           groups:
             - system:nodes
-        - document_name: kubelet-genesis
-          common_name: system:node:genesis
-          hosts:
-            - genesis
-            - 10.24.20.100
-          groups:
-            - system:nodes
         - document_name: kubelet-controller01
           common_name: system:node:controller01
           hosts:
             - controller01
-            - 10.23.20.11
+            - 10.23.21.11
           groups:
             - system:nodes
         - document_name: kubelet-controller02
           common_name: system:node:controller02
           hosts:
             - controller02
-            - 10.23.20.12
+            - 10.23.21.12
           groups:
             - system:nodes
         - document_name: kubelet-worker01
           common_name: system:node:worker01
           hosts:
             - worker01
-            - 10.23.20.13
+            - 10.23.21.13
           groups:
             - system:nodes
         - document_name: kubelet-worker02
           common_name: system:node:worker02
           hosts:
             - worker02
-            - 10.23.20.14
+            - 10.23.21.14
           groups:
             - system:nodes
         - document_name: scheduler
@@ -95,20 +88,11 @@ data:
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
             - 10.96.0.2
-        - document_name: kubernetes-etcd-genesis
-          common_name: kubernetes-etcd-genesis
-          hosts:
-            - genesis
-            - 10.24.20.100
-            - 127.0.0.1
-            - localhost
-            - kubernetes-etcd.kube-system.svc.cluster.local
-            - 10.96.0.2
         - document_name: kubernetes-etcd-controller01
           common_name: kubernetes-etcd-controller01
           hosts:
             - controller01
-            - 10.23.20.11
+            - 10.23.21.11
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
@@ -117,7 +101,7 @@ data:
           common_name: kubernetes-etcd-controller02
           hosts:
             - controller02
-            - 10.23.20.12
+            - 10.23.21.12
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
@@ -126,7 +110,7 @@ data:
           common_name: kubernetes-etcd-worker01
           hosts:
             - worker01
-            - 10.23.20.13
+            - 10.23.21.13
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
@@ -135,7 +119,7 @@ data:
           common_name: kubernetes-etcd-worker02
           hosts:
             - worker02
-            - 10.23.20.14
+            - 10.23.21.14
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
@@ -151,20 +135,11 @@ data:
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
             - 10.96.0.2
-        - document_name: kubernetes-etcd-genesis-peer
-          common_name: kubernetes-etcd-genesis-peer
-          hosts:
-            - genesis
-            - 10.24.20.100
-            - 127.0.0.1
-            - localhost
-            - kubernetes-etcd.kube-system.svc.cluster.local
-            - 10.96.0.2
         - document_name: kubernetes-etcd-controller01-peer
           common_name: kubernetes-etcd-controller01-peer
           hosts:
             - controller01
-            - 10.23.20.11
+            - 10.23.21.11
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
@@ -173,7 +148,7 @@ data:
           common_name: kubernetes-etcd-controller02-peer
           hosts:
             - controller02
-            - 10.23.20.12
+            - 10.23.21.12
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
@@ -182,7 +157,7 @@ data:
           common_name: kubernetes-etcd-worker01-peer
           hosts:
             - worker01
-            - 10.23.20.13
+            - 10.23.21.13
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
@@ -191,7 +166,7 @@ data:
           common_name: kubernetes-etcd-worker02-peer
           hosts:
             - worker02
-            - 10.23.20.14
+            - 10.23.21.14
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
@@ -214,7 +189,7 @@ data:
           common_name: calico-etcd-controller01
           hosts:
             - controller01
-            - 10.23.20.11
+            - 10.23.21.11
             - 127.0.0.1
             - localhost
             - 10.96.232.136
@@ -222,7 +197,7 @@ data:
           common_name: calico-etcd-controller02
           hosts:
             - controller02
-            - 10.23.20.12
+            - 10.23.21.12
             - 127.0.0.1
             - localhost
             - 10.96.232.136
@@ -230,7 +205,7 @@ data:
           common_name: calico-etcd-worker01
           hosts:
             - worker01
-            - 10.23.20.13
+            - 10.23.21.13
             - 127.0.0.1
             - localhost
             - 10.96.232.136
@@ -238,7 +213,7 @@ data:
           common_name: calico-etcd-worker02
           hosts:
             - worker02
-            - 10.23.20.14
+            - 10.23.21.14
             - 127.0.0.1
             - localhost
             - 10.96.232.136
@@ -259,7 +234,7 @@ data:
           common_name: calico-etcd-controller01-peer
           hosts:
             - controller01
-            - 10.23.20.11
+            - 10.23.21.11
             - 127.0.0.1
             - localhost
             - 10.96.232.136
@@ -267,7 +242,7 @@ data:
           common_name: calico-etcd-controller02-peer
           hosts:
             - controller02
-            - 10.23.20.12
+            - 10.23.21.12
             - 127.0.0.1
             - localhost
             - 10.96.232.136
@@ -275,7 +250,7 @@ data:
           common_name: calico-etcd-worker01-peer
           hosts:
             - worker01
-            - 10.23.20.13
+            - 10.23.21.13
             - 127.0.0.1
             - localhost
             - 10.96.232.136
@@ -283,7 +258,7 @@ data:
           common_name: calico-etcd-worker02-peer
           hosts:
             - worker02
-            - 10.23.20.14
+            - 10.23.21.14
             - 127.0.0.1
             - localhost
             - 10.96.232.136
