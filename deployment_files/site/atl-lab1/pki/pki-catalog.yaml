@@ -27,7 +27,7 @@ data:
             - 10.24.20.100
           groups:
             - system:nodes
-        - document_name: kubelet-genesis
+        - document_name: kubelet-controller00
           common_name: system:node:genesis
           hosts:
             - genesis
@@ -95,8 +95,8 @@ data:
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
             - 10.96.0.2
-        - document_name: kubernetes-etcd-genesis
-          common_name: kubernetes-etcd-genesis
+        - document_name: kubernetes-etcd-controller00
+          common_name: kubernetes-etcd-controller00
           hosts:
             - genesis
             - 10.24.20.100
@@ -151,8 +151,8 @@ data:
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
             - 10.96.0.2
-        - document_name: kubernetes-etcd-genesis-peer
-          common_name: kubernetes-etcd-genesis-peer
+        - document_name: kubernetes-etcd-controller00-peer
+          common_name: kubernetes-etcd-controller00-peer
           hosts:
             - genesis
             - 10.24.20.100

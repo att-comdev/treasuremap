@@ -78,6 +78,7 @@ data:
     armada:
       DEFAULT:
         debug: true
+        tiller_namespace: kube-system
     manifests:
       deployment_tiller: false
       service_tiller: false
