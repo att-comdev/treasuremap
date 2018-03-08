@@ -71,7 +71,7 @@ data:
                   type: string
                 reference:
                   type: string
-            osh-helm-infra-toolkit:
+            osh-infra-helm-toolkit:
               type: object
               properties:
                 type:
@@ -335,7 +335,7 @@ data:
                 reference:
                   type: string
             prometheus_openstack_exporter:
->>>>>>> e8a3484... WIP: Add manifest for osh-infra and osh:deployment_files/global/v1.0/schemas/ook/SoftwareVersions/v1.yaml
+##   >>>>>>> e8a3484... WIP: Add manifest for osh-infra and osh:deployment_files/global/v1.0/schemas/ook/SoftwareVersions/v1.yaml
               type: object
               properties:
                 type:
