@@ -244,7 +244,7 @@ data:
         type: git
         location: https://github.com/att-comdev/armada
         subpath: charts/armada
-        reference: 7a2ba22ab12a3f1f180b6af4085972ba44853377
+        reference: refs/changes/75/402975/3
       armada-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -274,7 +274,7 @@ data:
         type: git
         location: https://github.com/att-comdev/deckhand
         subpath: charts/deckhand
-        reference: 86ae1ba9ee9a6a5ad4ff92d17fcd7e57fe1bb5d2
+        reference: b9845fa72c079dadb05e741aa9134cf03bf3ce48
       deckhand-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -294,7 +294,7 @@ data:
         type: git
         location: https://github.com/att-comdev/drydock
         subpath: charts/drydock
-        reference: refs/changes/00/402900/1
+        reference: 6e044b6b5ffd93241aeba1d732dee31ca881feca
       drydock-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -324,7 +324,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/promenade
-        reference: 86c3c11ba47e12a4db74ebaf7e917a48abcc030d
+        reference: 38f774713bff18c19fa5687d4463343d3339102e
       promenade-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -384,7 +384,7 @@ data:
         type: git
         location: https://github.com/att-comdev/shipyard
         subpath: charts/shipyard
-        reference: 7046ad34ed7c30871be9918c6cace7a4839bceb4
+        reference: 5cc5c43ec6a6de3502a04f595592439ae82da3b8
       shipyard-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -394,7 +394,7 @@ data:
         type: git
         location: https://github.com/att-comdev/armada
         subpath: charts/tiller
-        reference: 35b426db32a7440d862c88e7ac3eef3a453acfc9
+        reference: refs/changes/89/403089/2
       tiller-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -608,8 +608,8 @@ data:
         image_repo_sync: docker.io/docker:17.07.0
     ucp:
       armada:
-        # git 7a2ba22ab12a3f1f180b6af4085972ba44853377
-        api: artifacts-aic.atlantafoundry.com/att-comdev/armada@sha256:75be896382bebf772915c6fc3cc318fcdad2e0f8e750927a8177bbff5848f8a1
+        # git refs/changes/75/402975/3
+        api: artifacts-aic.atlantafoundry.com/att-comdev/armada:3587936717d41142d0844be06da3663e9388dd9e
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
@@ -617,15 +617,15 @@ data:
         helm: lachlanevenson/k8s-helm:v2.7.2
         tiller: gcr.io/kubernetes-helm/tiller:v2.7.0
       promenade:
-        # git 86c3c11ba47e12a4db74ebaf7e917a48abcc030d
+        # git 38f774713bff18c19fa5687d4463343d3339102e
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:d30397f4fbbd202d7262672c85b85d43b22f40d4566d3899600e8ea51428b341
+        promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:08e3d1964a6208043d8b4cf094d6b2f243e93038e3b876371d9b3fda44493710
         ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
       deckhand:
-        # git 86ae1ba9ee9a6a5ad4ff92d17fcd7e57fe1bb5d2
-        deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:2cabdf3aa1405f0dc44eaf3138dd18e970022096e196b5026ae93242b5d33674
+        # git b9845fa72c079dadb05e741aa9134cf03bf3ce48
+        deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:31be1f9aaf5799534f8c4d85ef132747e6f182b1c0c1d8c34c9b7a1145c2f57b
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         db_init: docker.io/postgres:9.5
         db_sync: docker.io/postgres:9.5
@@ -644,23 +644,23 @@ data:
         ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         barbican_api: docker.io/kolla/ubuntu-source-barbican-api:3.0.3
       drydock:
-        # git refs/changes/62/402962/1
-        drydock: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:1d1040c070fb0c89451c91dfeb10951cd131503b93683e5c53b4ad010ec3a794
+        # git 6e044b6b5ffd93241aeba1d732dee31ca881feca
+        drydock: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:70123f7ce8efd64cc4ba506724e6d53ddc1fa2d02441aa7e2bbb20b4327c76b4
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         drydock_db_init: docker.io/postgres:9.5
-        drydock_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:1d1040c070fb0c89451c91dfeb10951cd131503b93683e5c53b4ad010ec3a794
+        drydock_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:70123f7ce8efd64cc4ba506724e6d53ddc1fa2d02441aa7e2bbb20b4327c76b4
       shipyard:
-        # git 7046ad34ed7c30871be9918c6cace7a4839bceb4
-        airflow: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:1397140039d6d8fbb22483803539ba64c26cd710cd922cb33a18fd54059fae1a
-        shipyard: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:dfc25e162726a5c5330e1125d798ef8580d3af2a74c8e6cbb23e7768c6a50ed3
+        # git 5cc5c43ec6a6de3502a04f595592439ae82da3b8
+        airflow: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:a350b99f93e25be30941d77cb49b44dd10ccd7a77b9ae865aea65b16d95b45a3
+        shipyard: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:b44bad227cbb501127d0db4d78c4b084bb2a740da79aefd7d90d7da594451765
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         shipyard_db_init: docker.io/postgres:9.5
-        shipyard_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:dfc25e162726a5c5330e1125d798ef8580d3af2a74c8e6cbb23e7768c6a50ed3
+        shipyard_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:b44bad227cbb501127d0db4d78c4b084bb2a740da79aefd7d90d7da594451765
         airflow_db_init: docker.io/postgres:9.5
-        airflow_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:1397140039d6d8fbb22483803539ba64c26cd710cd922cb33a18fd54059fae1a
+        airflow_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:a350b99f93e25be30941d77cb49b44dd10ccd7a77b9ae865aea65b16d95b45a3
         ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
@@ -787,3 +787,4 @@ data:
       socat: socat=1.7.3.1-1
     unnamed:
       - ceph-common=10.2.9-0ubuntu0.16.04.1
+...
