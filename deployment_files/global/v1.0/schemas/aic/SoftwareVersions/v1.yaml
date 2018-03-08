@@ -71,6 +71,28 @@ data:
                   type: string
                 reference:
                   type: string
+            osh-infra-helm-toolkit:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
+            ucp-helm-toolkit:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
             controller-manager:
               type: object
               properties:
@@ -239,6 +261,7 @@ data:
                 reference:
                   type: string
             barbican:
+            prometheus_openstack_exporter:
               type: object
               properties:
                 type:
