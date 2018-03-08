@@ -9,6 +9,22 @@ metadata:
   storagePolicy: cleartext
 data:
   charts:
+    dependencies:
+      osh-helm-toolkit:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: helm-toolkit
+        reference: master
+      osh-infra-helm-toolkit:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm-infra
+        subpath: helm-toolkit
+        reference: d6e9fa2c5adeaeb2da36b585ef758e8d818876d7
+      ucp-helm-toolkit:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: helm-toolkit
+        reference: 16c6d31155a9831bf040ddf934b6626247d43583
     kubernetes:
       calico:
         etcd:
@@ -106,13 +122,129 @@ data:
         location: https://github.com/openstack/openstack-helm
         subpath: helm-toolkit
         reference: 16c6d31155a9831bf040ddf934b6626247d43583
-    osh: {}
+    osh_infra:
+      elasticsearch:
+        type: git
+        location: https://github.com/openstack/openstack-helm-infra
+        subpath: elasticsearch
+        reference: d6e9fa2c5adeaeb2da36b585ef758e8d818876d7
+      fluent_logging:
+        type: git
+        location: https://github.com/openstack/openstack-helm-infra
+        subpath: fluent-logging
+        reference: d6e9fa2c5adeaeb2da36b585ef758e8d818876d7
+      kibana:
+        type: git
+        location: https://github.com/openstack/openstack-helm-infra
+        subpath: kibana
+        reference: d6e9fa2c5adeaeb2da36b585ef758e8d818876d7
+      prometheus:
+        type: git
+        location: https://github.com/openstack/openstack-helm-infra
+        subpath: prometheus
+        reference: d6e9fa2c5adeaeb2da36b585ef758e8d818876d7
+      prometheus_node_exporter:
+        type: git
+        location: https://github.com/openstack/openstack-helm-infra
+        subpath: prometheus-node-exporter
+        reference: d6e9fa2c5adeaeb2da36b585ef758e8d818876d7
+      prometheus_kube_state_metrics:
+        type: git
+        location: https://github.com/openstack/openstack-helm-infra
+        subpath: prometheus-kube-state-metrics
+        reference: d6e9fa2c5adeaeb2da36b585ef758e8d818876d7
+      prometheus_alertmanager:
+        type: git
+        location: https://github.com/openstack/openstack-helm-infra
+        subpath: prometheus-alertmanager
+        reference: d6e9fa2c5adeaeb2da36b585ef758e8d818876d7
+      grafana:
+        type: git
+        location: https://github.com/openstack/openstack-helm-infra
+        subpath: grafana
+        reference: d6e9fa2c5adeaeb2da36b585ef758e8d818876d7
+      prometheus_openstack_exporter:
+        type: git
+        location: https://github.com/openstack/openstack-helm-infra
+        subpath: prometheus-openstack-exporter
+        reference: d6e9fa2c5adeaeb2da36b585ef758e8d818876d7
+    osh:
+      barbican:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: barbican
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      cinder:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: cinder
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      glance:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: glance
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      heat:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: heat
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      horizon:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: horizon
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      ingress:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: ingress
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      keystone:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: keystone
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      libvirt:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: libvirt
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      mariadb:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: mariadb
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      memcached:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: memcached
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      neutron:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: neutron
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      nova:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: nova
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      openvswitch:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: openvswitch
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
+      rabbitmq:
+        type: git
+        location: https://git.openstack.org/openstack/openstack-helm
+        subpath: rabbitmq
+        reference: e25342ddd0f85bd9034b3dc6f5b1e50a2ee076fe
     ucp:
       armada:
         type: git
         location: https://github.com/att-comdev/armada
         subpath: charts/armada
-        reference: 7a2ba22ab12a3f1f180b6af4085972ba44853377
+        reference: 13c4e3372abcf0af77ad92d28a95b49cf9c791c8
       armada-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -142,7 +274,7 @@ data:
         type: git
         location: https://github.com/att-comdev/deckhand
         subpath: charts/deckhand
-        reference: 86ae1ba9ee9a6a5ad4ff92d17fcd7e57fe1bb5d2
+        reference: d82d0cfaf7602d43fc83f2ee0f4aaa844c4e2ab9
       deckhand-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -162,7 +294,7 @@ data:
         type: git
         location: https://github.com/att-comdev/drydock
         subpath: charts/drydock
-        reference: refs/changes/00/402900/1
+        reference: b8e5d932d3133b10bc83e514ed184289f2eee349
       drydock-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -192,7 +324,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/promenade
-        reference: 86c3c11ba47e12a4db74ebaf7e917a48abcc030d
+        reference: e2dd5369d5e87e910f2c83ff3db7091726b9110a
       promenade-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -252,7 +384,7 @@ data:
         type: git
         location: https://github.com/att-comdev/shipyard
         subpath: charts/shipyard
-        reference: 7046ad34ed7c30871be9918c6cace7a4839bceb4
+        reference: ba1e1439e454eebbf158c6b89beb426a04025474
       shipyard-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -262,7 +394,7 @@ data:
         type: git
         location: https://github.com/att-comdev/armada
         subpath: charts/tiller
-        reference: 35b426db32a7440d862c88e7ac3eef3a453acfc9
+        reference: refs/changes/54/403354/2
       tiller-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -272,35 +404,237 @@ data:
     kubelet: https://dl.k8s.io/v1.8.6/kubernetes-node-linux-amd64.tar.gz
 
   images:
+    osh:
+      memcached:
+        dep_check: 'artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc'
+        memcached: 'artifacts-aic.atlantafoundry.com/memcached@sha256:0b8e866753119c1fce440f34796232b3fff25d027bd7448bcdc7d016d99620bb'
+      barbican:
+        bootstrap: docker.io/openstackhelm/heat:newton
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        scripted_test: docker.io/openstackhelm/heat:newton
+        db_init: docker.io/openstackhelm/heat:newton
+        barbican_db_sync: docker.io/openstackhelm/barbican:newton
+        db_drop: docker.io/openstackhelm/heat:newton
+        ks_user: docker.io/openstackhelm/heat:newton
+        ks_service: docker.io/openstackhelm/heat:newton
+        ks_endpoints: docker.io/openstackhelm/heat:newton
+        barbican_api: docker.io/openstackhelm/barbican:newton
+        rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq@sha256:f7ec4762a2380110db33add11609bce416605a1d6fc4f9c162a1298cbb6b67c3
+      cinder:
+        test: docker.io/kolla/ubuntu-source-rally:4.0.0
+        db_init: docker.io/openstackhelm/heat:newton
+        cinder_db_sync: docker.io/openstackhelm/cinder:newton
+        db_drop: docker.io/openstackhelm/heat:newton
+        ks_user: docker.io/openstackhelm/heat:newton
+        ks_service: docker.io/openstackhelm/heat:newton
+        ks_endpoints: docker.io/openstackhelm/heat:newton
+        cinder_api: docker.io/openstackhelm/cinder:newton
+        bootstrap: docker.io/openstackhelm/heat:newton
+        cinder_scheduler: docker.io/openstackhelm/cinder:newton
+        cinder_volume: docker.io/openstackhelm/cinder:newton
+        cinder_volume_usage_audit: docker.io/openstackhelm/cinder:newton
+        cinder_storage_init: artifacts-aic.atlantafoundry.com/ceph/daemon@sha256:687056228e899ecbfd311854e3864db0b46dd4a9a6d4eb4b47c815ca413f25ee
+        cinder_backup: docker.io/openstackhelm/cinder:newton
+        cinder_backup_storage_init: artifacts-aic.atlantafoundry.com/ceph/daemon@sha256:687056228e899ecbfd311854e3864db0b46dd4a9a6d4eb4b47c815ca413f25ee
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq@sha256:f7ec4762a2380110db33add11609bce416605a1d6fc4f9c162a1298cbb6b67c3
+      glance:
+        test: docker.io/kolla/ubuntu-source-rally:4.0.0
+        glance_storage_init: artifacts-aic.atlantafoundry.com/ceph/daemon@sha256:687056228e899ecbfd311854e3864db0b46dd4a9a6d4eb4b47c815ca413f25ee
+        db_init: docker.io/openstackhelm/heat:newton
+        glance_db_sync: docker.io/openstackhelm/glance:newton
+        db_drop: docker.io/openstackhelm/heat:newton
+        ks_user: docker.io/openstackhelm/heat:newton
+        ks_service: docker.io/openstackhelm/heat:newton
+        ks_endpoints: docker.io/openstackhelm/heat:newton
+        glance_api: docker.io/openstackhelm/glance:newton
+        glance_registry: docker.io/openstackhelm/glance:newton
+        # Bootstrap image requires curl
+        bootstrap: docker.io/openstackhelm/heat:newton
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq@sha256:f7ec4762a2380110db33add11609bce416605a1d6fc4f9c162a1298cbb6b67c3
+      heat:
+        bootstrap: docker.io/openstackhelm/heat:newton
+        db_init: docker.io/openstackhelm/heat:newton
+        heat_db_sync: docker.io/openstackhelm/heat:newton
+        db_drop: docker.io/openstackhelm/heat:newton
+        ks_user: docker.io/openstackhelm/heat:newton
+        ks_service: docker.io/openstackhelm/heat:newton
+        ks_endpoints: docker.io/openstackhelm/heat:newton
+        heat_api: docker.io/openstackhelm/heat:newton
+        heat_cfn: docker.io/openstackhelm/heat:newton
+        heat_cloudwatch: docker.io/openstackhelm/heat:newton
+        heat_engine: docker.io/openstackhelm/heat:newton
+        heat_engine_cleaner: docker.io/openstackhelm/heat:newton
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq@sha256:f7ec4762a2380110db33add11609bce416605a1d6fc4f9c162a1298cbb6b67c3
+      horizon:
+        db_init: docker.io/openstackhelm/heat:newton
+        horizon_db_sync: docker.io/openstackhelm/horizon:newton
+        db_drop: docker.io/openstackhelm/heat:newton
+        horizon: docker.io/openstackhelm/horizon:newton
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+      ingress:
+        entrypoint: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        ingress: artifacts-aic.atlantafoundry.com/kubernetes-ingress-controller/nginx-ingress-controller@sha256:bf61eb2624c6c6b143925e4c494caf6e76c55ee41c405c0852b228582f3f1a4f
+        error_pages: artifacts-aic.atlantafoundry.com/google_containers/defaultbackend@sha256:ee3aa1187023d0197e3277833f19d9ef7df26cee805fef32663e06c7412239f9
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+      keystone:
+        bootstrap: docker.io/openstackhelm/heat:newton
+        test: docker.io/kolla/ubuntu-source-rally:4.0.0
+        db_init: docker.io/openstackhelm/heat:newton
+        keystone_db_sync: docker.io/openstackhelm/keystone:newton
+        db_drop: docker.io/openstackhelm/heat:newton
+        ks_user: docker.io/openstackhelm/heat:newton
+        keystone_fernet_setup: docker.io/openstackhelm/keystone:newton
+        keystone_fernet_rotate: docker.io/openstackhelm/keystone:newton
+        keystone_credential_setup: docker.io/openstackhelm/keystone:newton
+        keystone_credential_rotate: docker.io/openstackhelm/keystone:newton
+        keystone_api: docker.io/openstackhelm/keystone:newton
+        keystone_domain_manage: docker.io/openstackhelm/keystone:newton
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq@sha256:f7ec4762a2380110db33add11609bce416605a1d6fc4f9c162a1298cbb6b67c3
+      libvirt:
+        libvirt: docker.io/openstackhelm/libvirt:ubuntu-xenial-1.3.1
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+      mariadb:
+        mariadb: artifacts-aic.atlantafoundry.com/mariadb@sha256:02df012048c820331f2aed41acae569cb674ccd86b38cd54543c74e31a73ae55
+        prometheus_create_mysql_user: artifacts-aic.atlantafoundry.com/mariadb@sha256:02df012048c820331f2aed41acae569cb674ccd86b38cd54543c74e31a73ae55
+        prometheus_mysql_exporter: artifacts-aic.atlantafoundry.com/prom/mysqld-exporter@sha256:d62c9509861a6f6131d1a82f04e8f95b673d2f96a9c50ad571c3cf2632e69550
+        prometheus_mysql_exporter_helm_tests: docker.io/openstackhelm/heat:newton
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+      neutron:
+        bootstrap: docker.io/openstackhelm/heat:newton
+        test: docker.io/kolla/ubuntu-source-rally:4.0.0
+        db_init: docker.io/openstackhelm/heat:newton
+        neutron_db_sync: docker.io/openstackhelm/neutron:newton
+        db_drop: docker.io/openstackhelm/heat:newton
+        ks_user: docker.io/openstackhelm/heat:newton
+        ks_service: docker.io/openstackhelm/heat:newton
+        ks_endpoints: docker.io/openstackhelm/heat:newton
+        neutron_server: docker.io/openstackhelm/neutron:newton
+        neutron_dhcp: docker.io/openstackhelm/neutron:newton
+        neutron_metadata: docker.io/openstackhelm/neutron:newton
+        neutron_l3: docker.io/openstackhelm/neutron:newton
+        neutron_openvswitch_agent: docker.io/openstackhelm/neutron:newton
+        neutron_linuxbridge_agent: docker.io/openstackhelm/neutron:newton
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq@sha256:f7ec4762a2380110db33add11609bce416605a1d6fc4f9c162a1298cbb6b67c3
+      nova:
+        bootstrap: docker.io/openstackhelm/heat:newton
+        db_drop: docker.io/openstackhelm/heat:newton
+        db_init: docker.io/openstackhelm/heat:newton
+        dep_check: 'artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc'
+        ks_user: docker.io/openstackhelm/heat:newton
+        ks_service: docker.io/openstackhelm/heat:newton
+        ks_endpoints: docker.io/openstackhelm/heat:newton
+        nova_api: docker.io/openstackhelm/nova:newton
+        nova_cell_setup: docker.io/openstackhelm/nova:newton
+        nova_compute: docker.io/openstackhelm/nova:newton
+        nova_compute_ironic: 'docker.io/kolla/ubuntu-source-nova-compute-ironic:3.0.3'
+        nova_compute_ssh: docker.io/openstackhelm/nova:newton
+        nova_conductor: docker.io/openstackhelm/nova:newton
+        nova_consoleauth: docker.io/openstackhelm/nova:newton
+        nova_db_sync: docker.io/openstackhelm/nova:newton
+        nova_novncproxy: docker.io/openstackhelm/nova:newton
+        nova_novncproxy_assets: 'docker.io/kolla/ubuntu-source-nova-novncproxy:3.0.3'
+        nova_placement: docker.io/openstackhelm/nova:newton
+        nova_scheduler: docker.io/openstackhelm/nova:newton
+        nova_spiceproxy: docker.io/openstackhelm/nova:newton
+        nova_spiceproxy_assets: 'docker.io/kolla/ubuntu-source-nova-spicehtml5proxy:3.0.3'
+        test: 'docker.io/kolla/ubuntu-source-rally:4.0.0'
+        rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq@sha256:f7ec4762a2380110db33add11609bce416605a1d6fc4f9c162a1298cbb6b67c3
+      openvswitch:
+        openvswitch_db_server: docker.io/openstackhelm/openvswitch:v2.8.1
+        openvswitch_vswitchd: docker.io/openstackhelm/openvswitch:v2.8.1
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+      rabbitmq:
+        prometheus_rabbitmq_exporter: artifacts-aic.atlantafoundry.com/kbudde/rabbitmq-exporter@sha256:1c972d2282b3eff886c316b85628f458846913b45909d60b00984f0128ddbce8
+        prometheus_rabbitmq_exporter_helm_tests: docker.io/openstackhelm/heat:newton
+        rabbitmq: artifacts-aic.atlantafoundry.com/rabbitmq@sha256:cc7015cf1084fa0a18b356cc38e254e2633770c78c60a6f8d86d5dbe79034f4d
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+    osh_infra:
+      elasticsearch:
+        apache_proxy: artifacts-aic.atlantafoundry.com/httpd@sha256:6a457fe47eaa405ea173ca61d29c4367a593e8b092ed2e6c0fda0c77d801c485
+        memory_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        curator:  artifacts-aic.atlantafoundry.com/bobrik/curator@sha256:ab2fae9cd522a56207719529fe865be819307799963f1a8eb955f1d6f64a018d
+        elasticsearch: artifacts-aic.atlantafoundry.com/elasticsearch@sha256:f8a535e39e0dec2bcfc64d4832af3bb718827740289f66f4108f229ec3e9bd00
+        helm_tests: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        prometheus_elasticsearch_exporter: artifacts-aic.atlantafoundry.com/justwatch/elasticsearch_exporter@sha256:d846ee80e06df2aa2630dbb716bfe03adc7e5d14c5b6bf7957790281c58154d3
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        snapshot_repository: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        image_repo_sync: artifacts-aic.atlantafoundry.com/docker@sha256:9ab81227d2fc49f34e62c54f7e3d03164add16ae424e53ded3ef19f6509f079b
+      fluent_logging:
+        fluentbit: artifacts-aic.atlantafoundry.com/fluent/fluent-bit@sha256:c419d5d6dc60ae2c731cf026fdd25039e90a37f7f62650228e29a3ca1d6cd806
+        fluentd: docker.io/kolla/ubuntu-source-fluentd:ocata
+        prometheus_fluentd_exporter: artifacts-aic.atlantafoundry.com/srwilkers/fluentd_exporter@sha256:77f10270fe1b654c64358f2ec29bc42c1d7bb214764b672c6d32232002ea42f3
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        helm_tests: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        elasticsearch_template: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        image_repo_sync: artifacts-aic.atlantafoundry.com/docker@sha256:9ab81227d2fc49f34e62c54f7e3d03164add16ae424e53ded3ef19f6509f079b
+      kibana:
+        apache_proxy: artifacts-aic.atlantafoundry.com/httpd@sha256:6a457fe47eaa405ea173ca61d29c4367a593e8b092ed2e6c0fda0c77d801c485
+        kibana: artifacts-aic.atlantafoundry.com/kibana@sha256:76384e058244f717df18b5b10e707bf1cc2922fe8db7a313392d03a5d086285a
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        image_repo_sync: artifacts-aic.atlantafoundry.com/docker@sha256:9ab81227d2fc49f34e62c54f7e3d03164add16ae424e53ded3ef19f6509f079b
+      prometheus:
+        prometheus: artifacts-aic.atlantafoundry.com/prom/prometheus@sha256:193dd98fa9cd906b6ae6cc2c2dace1b9307c6f66bf69e936d34f60a4a92b7c8e
+        helm_tests: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        image_repo_sync: artifacts-aic.atlantafoundry.com/docker@sha256:9ab81227d2fc49f34e62c54f7e3d03164add16ae424e53ded3ef19f6509f079b
+      prometheus_node_exporter:
+        node_exporter: artifacts-aic.atlantafoundry.com/prom/node-exporter@sha256:40a0aeeafa691fed4a61343350e851d4467738398b28d11609687ee79fbc3a74
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        image_repo_sync: artifacts-aic.atlantafoundry.com/docker@sha256:9ab81227d2fc49f34e62c54f7e3d03164add16ae424e53ded3ef19f6509f079b
+      prometheus_kube_state_metrics:
+        kube_state_metrics: artifacts-aic.atlantafoundry.com/coreos/kube-state-metrics@sha256:346de426e081f709086a1d377f60266ab323a69d885bdb8e6ce4f06cb4512006
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        image_repo_sync: artifacts-aic.atlantafoundry.com/docker@sha256:9ab81227d2fc49f34e62c54f7e3d03164add16ae424e53ded3ef19f6509f079b
+      prometheus_alertmanager:
+        alertmanager: artifacts-aic.atlantafoundry.com/prom/alertmanager@sha256:bd038b791ee0ba8c792c5cb0fe69b08298bcd7edb3bf07c8f1cbbc81fe7ad21c
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        image_repo_sync: artifacts-aic.atlantafoundry.com/docker@sha256:9ab81227d2fc49f34e62c54f7e3d03164add16ae424e53ded3ef19f6509f079b
+      prometheus_openstack_exporter:
+        prometheus_openstack_exporter: artifacts-aic.atlantafoundry.com/rakeshpatnaik/prometheus-openstack-exporter@sha256:4ed8075a58c77369e35d59817d578bfcb2a4561f4ad0b08c62110bc3ee4be1e8
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        image_repo_sync: artifacts-aic.atlantafoundry.com/docker@sha256:9ab81227d2fc49f34e62c54f7e3d03164add16ae424e53ded3ef19f6509f079b
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+      grafana:
+        grafana: artifacts-aic.atlantafoundry.com/grafana/grafana@sha256:c94bc174dc2f56f7cbff229e45851287a6899e85e227f862fdee6319c7f85ff5
+        datasource: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        grafana_db_session_sync: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        image_repo_sync: artifacts-aic.atlantafoundry.com/docker@sha256:9ab81227d2fc49f34e62c54f7e3d03164add16ae424e53ded3ef19f6509f079b
     ucp:
       armada:
-        # git 7a2ba22ab12a3f1f180b6af4085972ba44853377
-        api: artifacts-aic.atlantafoundry.com/att-comdev/armada@sha256:75be896382bebf772915c6fc3cc318fcdad2e0f8e750927a8177bbff5848f8a1
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        # git 13c4e3372abcf0af77ad92d28a95b49cf9c791c8
+        api: artifacts-aic.atlantafoundry.com/att-comdev/armada@sha256:33acd636ba4f4bc76ded48d0b7b3cb25dd29c8e7b8c3bb80450c1753b11e78e4
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
         ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        helm: lachlanevenson/k8s-helm:v2.7.2
-        tiller: gcr.io/kubernetes-helm/tiller:v2.7.0
+        helm: artifacts-aic.atlantafoundry.com/lachlanevenson/k8s-helm@sha256:ce1986ec1a44480708f1bbc2b81a7d4fb89e178fb92bf08ec38ccf46f62020f0
+        tiller: artifacts-aic.atlantafoundry.com/kubernetes-helm/tiller@sha256:1becf867016f6e7652908518729e140845107c5344afc237718e3ed3b6ca63c7
       promenade:
-        # git 86c3c11ba47e12a4db74ebaf7e917a48abcc030d
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:d30397f4fbbd202d7262672c85b85d43b22f40d4566d3899600e8ea51428b341
+        # git e2dd5369d5e87e910f2c83ff3db7091726b9110a
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:abcea923f500cf3dbfc75914aeb9ffd6a4ab0cb6b8a7066e5d7e0dca3eb05f31
         ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
       deckhand:
-        # git 86ae1ba9ee9a6a5ad4ff92d17fcd7e57fe1bb5d2
-        deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:2cabdf3aa1405f0dc44eaf3138dd18e970022096e196b5026ae93242b5d33674
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        db_init: docker.io/postgres:9.5
-        db_sync: docker.io/postgres:9.5
+        # git d82d0cfaf7602d43fc83f2ee0f4aaa844c4e2ab9
+        deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:5181889eed0097b3a59e2c0d3d8768a5776a4ee9762ed4e82e1696e0dd36ae9e
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        db_init: artifacts-aic.atlanatafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
+        db_sync: artifacts-aic.atlanatafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
       barbican:
         bootstrap: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
         scripted_test: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         barbican_db_sync: docker.io/kolla/ubuntu-source-barbican-api:3.0.3
@@ -310,36 +644,36 @@ data:
         ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         barbican_api: docker.io/kolla/ubuntu-source-barbican-api:3.0.3
       drydock:
-        # git refs/changes/62/402962/1
-        drydock: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:1d1040c070fb0c89451c91dfeb10951cd131503b93683e5c53b4ad010ec3a794
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        # git b8e5d932d3133b10bc83e514ed184289f2eee349
+        drydock: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:ee0960ec943df77ce912463fc29e41dd4f6c5ca997da99f9624804fc4c8b750a
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
         ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        drydock_db_init: docker.io/postgres:9.5
-        drydock_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:1d1040c070fb0c89451c91dfeb10951cd131503b93683e5c53b4ad010ec3a794
+        drydock_db_init: artifacts-aic.atlanatafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
+        drydock_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:ee0960ec943df77ce912463fc29e41dd4f6c5ca997da99f9624804fc4c8b750a
       shipyard:
-        # git 7046ad34ed7c30871be9918c6cace7a4839bceb4
-        airflow: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:1397140039d6d8fbb22483803539ba64c26cd710cd922cb33a18fd54059fae1a
-        shipyard: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:dfc25e162726a5c5330e1125d798ef8580d3af2a74c8e6cbb23e7768c6a50ed3
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        shipyard_db_init: docker.io/postgres:9.5
-        shipyard_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:dfc25e162726a5c5330e1125d798ef8580d3af2a74c8e6cbb23e7768c6a50ed3
-        airflow_db_init: docker.io/postgres:9.5
-        airflow_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:1397140039d6d8fbb22483803539ba64c26cd710cd922cb33a18fd54059fae1a
+        # git ba1e1439e454eebbf158c6b89beb426a04025474
+        airflow: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:b280bd7401b3775fa7dd29185c73fc329ab57da417854c233e9af9b84faffa16
+        shipyard: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:dd46444798fe61e46f2fb3ce84664f6af578c6a536d3fd4b6a8d2849dee25814
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        shipyard_db_init: artifacts-aic.atlanatafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
+        shipyard_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:dd46444798fe61e46f2fb3ce84664f6af578c6a536d3fd4b6a8d2849dee25814
+        airflow_db_init: artifacts-aic.atlanatafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
+        airflow_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:b280bd7401b3775fa7dd29185c73fc329ab57da417854c233e9af9b84faffa16
         ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
       maas:
         # git bde0e4260e0e68c7d1a72b100e499b655f4238c0
-        db_init: docker.io/postgres:9.5
+        db_init: artifacts-aic.atlanatafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         db_sync: artifacts-aic.atlantafoundry.com/att-comdev/maas-region-controller@sha256:f3a3045e72785d78121ae1523e718efa89966259b994b5899be9ebb2119c8c25
         maas_rack: artifacts-aic.atlantafoundry.com/att-comdev/maas-rack-controller@sha256:0e33a5807621c4ed7d3d58ea3e719f89c80036907917ce130d9762acba723168
         maas_region: artifacts-aic.atlantafoundry.com/att-comdev/maas-region-controller@sha256:f3a3045e72785d78121ae1523e718efa89966259b994b5899be9ebb2119c8c25
         bootstrap: artifacts-aic.atlantafoundry.com/att-comdev/maas-region-controller@sha256:f3a3045e72785d78121ae1523e718efa89966259b994b5899be9ebb2119c8c25
         export_api_key: artifacts-aic.atlantafoundry.com/att-comdev/maas-region-controller@sha256:f3a3045e72785d78121ae1523e718efa89966259b994b5899be9ebb2119c8c25
         maas_cache: artifacts-aic.atlantafoundry.com/att-comdev/sstream-cache@sha256:70aa6cc9cdf0d07ed933c99f232ecc82cb89048ffdb030811e44a537bdfad67e
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
       keystone:
         keystone_bootstrap: docker.io/kolla/ubuntu-source-keystone:3.0.3
         test: docker.io/kolla/ubuntu-source-rally:4.0.0
@@ -351,65 +685,65 @@ data:
         keystone_credential_setup: docker.io/kolla/ubuntu-source-keystone:3.0.3
         keystone_credential_rotate: docker.io/kolla/ubuntu-source-keystone:3.0.3
         keystone_api: docker.io/kolla/ubuntu-source-keystone:3.0.3
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
       tiller:
-        tiller: gcr.io/kubernetes-helm/tiller:v2.7.2
+        tiller: artifacts-aic.atlantafoundry.com/kubernetes-helm/tiller@sha256:df7f227fa722afc4931c912c1cad2c47856ec94f4d052ccceebcb16dd483dad8
       mariadb:
-        mariadb: docker.io/mariadb:10.1.23
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        mariadb: artifacts-aic.atlantafoundry.com/mariadb@sha256:02df012048c820331f2aed41acae569cb674ccd86b38cd54543c74e31a73ae55
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
       postgresql:
-        postgresql: docker.io/postgres:9.5
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        postgresql: artifacts-aic.atlanatafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
       memcached:
-        memcached: docker.io/memcached:1.5.5
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        memcached: artifacts-aic.atlantafoundry.com/memcached@sha256:0b8e866753119c1fce440f34796232b3fff25d027bd7448bcdc7d016d99620bb
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
       rabbitmq:
-        rabbitmq: docker.io/rabbitmq:3.7
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        rabbitmq: artifacts-aic.atlantafoundry.com/rabbitmq@sha256:cc7015cf1084fa0a18b356cc38e254e2633770c78c60a6f8d86d5dbe79034f4d
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
     ceph:
       ceph:
         ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
         ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ceph_bootstrap: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        ceph_daemon: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
-        ceph_config_helper: docker.io/port/ceph-config-helper:v1.7.5
-        ceph_rbd_provisioner: quay.io/external_storage/rbd-provisioner:v0.1.1
-        ceph_cephfs_provisioner: quay.io/external_storage/cephfs-provisioner:v0.1.1
+        ceph_bootstrap: artifacts-aic.atlantafoundry.com/ceph/daemon@sha256:687056228e899ecbfd311854e3864db0b46dd4a9a6d4eb4b47c815ca413f25ee
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
+        ceph_daemon: artifacts-aic.atlantafoundry.com/ceph/daemon@sha256:687056228e899ecbfd311854e3864db0b46dd4a9a6d4eb4b47c815ca413f25ee
+        ceph_config_helper: artifacts-aic.atlantafoundry.com/openstack-helm/ceph-config-helper@sha256:fa1913f710e6d651c1c028881e29120dd41ab1ea07d1732d879f3abbbaf96bcd
+        ceph_rbd_provisioner: artifacts-aic.atlantafoundry.com/external_storage/rbd-provisioner@sha256:5a89d9c1e3e839fcdc154ffbe867fb6ff688506cd8401a4dd2de2f4c843b4280
+        ceph_cephfs_provisioner: artifacts-aic.atlantafoundry.com/external_storage/cephfs-provisioner@sha256:9b81ebef907543c27eded3bdbea5f1c757929674aa9c7255f1d03c18f67eaa07
     kubernetes:
       apiserver:
-        anchor: gcr.io/google_containers/hyperkube-amd64:v1.8.6
-        apiserver: gcr.io/google_containers/hyperkube-amd64:v1.8.6
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+        apiserver: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
       controller-manager:
-        anchor: gcr.io/google_containers/hyperkube-amd64:v1.8.6
-        controller_manager: gcr.io/google_containers/hyperkube-amd64:v1.8.6
-        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+        controller_manager: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:e29394198f838ca5752764463429bad8e832cc255ec0594be9a72bcd3e38c1fc
       coredns:
-        coredns: coredns/coredns:1.0.5
+        coredns: artifacts-aic.atlantafoundry.com/coredns/coredns@sha256:9a4903382f7708d7b64cdeaf840a431e274586857780fb1e226cb8d05c6489c8
       haproxy:
-        haproxy: haproxy:1.8.3
-        anchor: gcr.io/google_containers/hyperkube-amd64:v1.8.6
+        haproxy: artifacts-aic.atlantafoundry.com/haproxy@sha256:f1fa47ac2b294984fb7a269b94561495514d31b754b8540e6e3d965d5ec17d45
+        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
       etcd:
-        etcd: quay.io/coreos/etcd:v3.2.14
-        etcdctl: quay.io/coreos/etcd:v3.2.14
-      kubectl: gcr.io/google_containers/hyperkube-amd64:v1.8.6
-      pause: gcr.io/google_containers/pause-amd64:3.0
+        etcd: artifacts-aic.atlantafoundry.com/coreos/etcd@sha256:23dac1a0bcf36fab42ca739c6f675bdd20c4c89fd9c786ef2f6f85fa571d714a
+        etcdctl: artifacts-aic.atlantafoundry.com/coreos/etcd@sha256:23dac1a0bcf36fab42ca739c6f675bdd20c4c89fd9c786ef2f6f85fa571d714a
+      kubectl: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+      pause: artifacts-aic.atlantafoundry.com/google_containers/pause-amd64@sha256:59eec8837a4d942cc19a52b8c09ea75121acc38114a2c68b98983ce9356b8610
       scheduler:
-        anchor: gcr.io/google_containers/hyperkube-amd64:v1.8.6
-        scheduler: gcr.io/google_containers/hyperkube-amd64:v1.8.6
+        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+        scheduler: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
       proxy:
-        proxy: gcr.io/google_containers/hyperkube-amd64:v1.8.6
+        proxy: haproxy:1.8.3
     calico:
       etcd:
-        etcd: quay.io/coreos/etcd:v3.2.14
-        etcdctl: quay.io/coreos/etcd:v3.2.14
+        etcd: artifacts-aic.atlantafoundry.com/coreos/etcd@sha256:23dac1a0bcf36fab42ca739c6f675bdd20c4c89fd9c786ef2f6f85fa571d714a
+        etcdctl: artifacts-aic.atlantafoundry.com/coreos/etcd@sha256:23dac1a0bcf36fab42ca739c6f675bdd20c4c89fd9c786ef2f6f85fa571d714a
       calico:
-        cni: quay.io/calico/cni:v1.11.2
-        ctl: quay.io/calico/ctl:v1.6.3
-        node: quay.io/calico/node:v2.6.5
-        policy_controller: quay.io/calico/kube-controllers:v1.0.2
+        cni: artifacts-aic.atlantafoundry.com/calico/cni@sha256:178c971443ce407152da82e879e8a3400da8c6d29841744037a0f10c7018d048
+        ctl: artifacts-aic.atlantafoundry.com/calico/ctl@sha256:1c9e59e8b949cb8d0f13bcb8d4836e9baee554d6870327e8c3bc7aeb46b8c22b
+        node: artifacts-aic.atlantafoundry.com/calico/node@sha256:2c57b79ab6645d5ac1653349899e3310b0de3164dd2166a3b27f1de7567f5288
+        policy_controller: artifacts-aic.atlantafoundry.com/calico/kube-controllers@sha256:e793677e8f30d6a0eb743d356a52b58ee2798c8e21aa247acde223170a9b2234
   packages:
     repositories:
       - name: docker
@@ -453,3 +787,4 @@ data:
       socat: socat=1.7.3.1-1
     unnamed:
       - ceph-common=10.2.9-0ubuntu0.16.04.1
+...
