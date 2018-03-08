@@ -71,6 +71,31 @@ data:
                   type: string
                 reference:
                   type: string
+<<<<<<< HEAD
+=======
+            osh-infra-helm-toolkit:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
+            ucp-helm-toolkit:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
+>>>>>>> bbcd1a6... Update UCP versions and remove duplicates
             controller-manager:
               type: object
               properties:
@@ -238,7 +263,12 @@ data:
                   type: string
                 reference:
                   type: string
+<<<<<<< HEAD
             barbican:
+=======
+            prometheus_openstack_exporter:
+##   >>>>>>> e8a3484... WIP: Add manifest for osh-infra and osh:deployment_files/global/v1.0/schemas/ook/SoftwareVersions/v1.yaml
+>>>>>>> bbcd1a6... Update UCP versions and remove duplicates
               type: object
               properties:
                 type:
