@@ -409,27 +409,27 @@ data:
         dep_check: 'quay.io/stackanetes/kubernetes-entrypoint:v0.2.1'
         memcached: 'docker.io/memcached:1.5.5'
       barbican:
-        bootstrap: docker.io/openstackhelm/heat:newton
+        bootstrap: 'docker.io/openstackhelm/heat:newton'
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        scripted_test: docker.io/openstackhelm/heat:newton
-        db_init: docker.io/openstackhelm/heat:newton
+        scripted_test: 'docker.io/openstackhelm/heat:newton'
+        db_init: 'docker.io/openstackhelm/heat:newton'
         barbican_db_sync: docker.io/openstackhelm/barbican:newton
-        db_drop: docker.io/openstackhelm/heat:newton
-        ks_user: docker.io/openstackhelm/heat:newton
-        ks_service: docker.io/openstackhelm/heat:newton
-        ks_endpoints: docker.io/openstackhelm/heat:newton
+        db_drop: 'docker.io/openstackhelm/heat:newton'
+        ks_user: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
         barbican_api: docker.io/openstackhelm/barbican:newton
         rabbit_init: docker.io/rabbitmq:3.7-management
       cinder:
         test: docker.io/kolla/ubuntu-source-rally:4.0.0
-        db_init: docker.io/openstackhelm/heat:newton
+        db_init: 'docker.io/openstackhelm/heat:newton'
         cinder_db_sync: docker.io/openstackhelm/cinder:newton
-        db_drop: docker.io/openstackhelm/heat:newton
-        ks_user: docker.io/openstackhelm/heat:newton
-        ks_service: docker.io/openstackhelm/heat:newton
-        ks_endpoints: docker.io/openstackhelm/heat:newton
+        db_drop: 'docker.io/openstackhelm/heat:newton'
+        ks_user: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
         cinder_api: docker.io/openstackhelm/cinder:newton
-        bootstrap: docker.io/openstackhelm/heat:newton
+        bootstrap: 'docker.io/openstackhelm/heat:newton'
         cinder_scheduler: docker.io/openstackhelm/cinder:newton
         cinder_volume: docker.io/openstackhelm/cinder:newton
         cinder_volume_usage_audit: docker.io/openstackhelm/cinder:newton
@@ -441,37 +441,37 @@ data:
       glance:
         test: docker.io/kolla/ubuntu-source-rally:4.0.0
         glance_storage_init: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
-        db_init: docker.io/openstackhelm/heat:newton
+        db_init: 'docker.io/openstackhelm/heat:newton'
         glance_db_sync: docker.io/openstackhelm/glance:newton
-        db_drop: docker.io/openstackhelm/heat:newton
-        ks_user: docker.io/openstackhelm/heat:newton
-        ks_service: docker.io/openstackhelm/heat:newton
-        ks_endpoints: docker.io/openstackhelm/heat:newton
+        db_drop: 'docker.io/openstackhelm/heat:newton'
+        ks_user: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
         glance_api: docker.io/openstackhelm/glance:newton
         glance_registry: docker.io/openstackhelm/glance:newton
         # Bootstrap image requires curl
-        bootstrap: docker.io/openstackhelm/heat:newton
+        bootstrap: 'docker.io/openstackhelm/heat:newton'
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         rabbit_init: docker.io/rabbitmq:3.7-management
       heat:
-        bootstrap: docker.io/openstackhelm/heat:newton
-        db_init: docker.io/openstackhelm/heat:newton
-        heat_db_sync: docker.io/openstackhelm/heat:newton
-        db_drop: docker.io/openstackhelm/heat:newton
-        ks_user: docker.io/openstackhelm/heat:newton
-        ks_service: docker.io/openstackhelm/heat:newton
-        ks_endpoints: docker.io/openstackhelm/heat:newton
-        heat_api: docker.io/openstackhelm/heat:newton
-        heat_cfn: docker.io/openstackhelm/heat:newton
-        heat_cloudwatch: docker.io/openstackhelm/heat:newton
-        heat_engine: docker.io/openstackhelm/heat:newton
-        heat_engine_cleaner: docker.io/openstackhelm/heat:newton
+        bootstrap: 'docker.io/openstackhelm/heat:newton'
+        db_init: 'docker.io/openstackhelm/heat:newton'
+        heat_db_sync: 'docker.io/openstackhelm/heat:newton'
+        db_drop: 'docker.io/openstackhelm/heat:newton'
+        ks_user: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
+        heat_api: 'docker.io/openstackhelm/heat:newton'
+        heat_cfn: 'docker.io/openstackhelm/heat:newton'
+        heat_cloudwatch: 'docker.io/openstackhelm/heat:newton'
+        heat_engine: 'docker.io/openstackhelm/heat:newton'
+        heat_engine_cleaner: 'docker.io/openstackhelm/heat:newton'
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         rabbit_init: docker.io/rabbitmq:3.7-management
       horizon:
-        db_init: docker.io/openstackhelm/heat:newton
+        db_init: 'docker.io/openstackhelm/heat:newton'
         horizon_db_sync: docker.io/openstackhelm/horizon:newton
-        db_drop: docker.io/openstackhelm/heat:newton
+        db_drop: 'docker.io/openstackhelm/heat:newton'
         horizon: docker.io/openstackhelm/horizon:newton
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
       ingress:
@@ -480,12 +480,12 @@ data:
         error_pages: gcr.io/google_containers/defaultbackend:1.0
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
       keystone:
-        bootstrap: docker.io/openstackhelm/heat:newton
+        bootstrap: 'docker.io/openstackhelm/heat:newton'
         test: docker.io/kolla/ubuntu-source-rally:4.0.0
-        db_init: docker.io/openstackhelm/heat:newton
+        db_init: 'docker.io/openstackhelm/heat:newton'
         keystone_db_sync: docker.io/openstackhelm/keystone:newton
-        db_drop: docker.io/openstackhelm/heat:newton
-        ks_user: docker.io/openstackhelm/heat:newton
+        db_drop: 'docker.io/openstackhelm/heat:newton'
+        ks_user: 'docker.io/openstackhelm/heat:newton'
         keystone_fernet_setup: docker.io/openstackhelm/keystone:newton
         keystone_fernet_rotate: docker.io/openstackhelm/keystone:newton
         keystone_credential_setup: docker.io/openstackhelm/keystone:newton
@@ -501,17 +501,17 @@ data:
         mariadb: docker.io/mariadb:10.1.23
         prometheus_create_mysql_user: docker.io/mariadb:10.1.23
         prometheus_mysql_exporter: docker.io/prom/mysqld-exporter:v0.10.0
-        prometheus_mysql_exporter_helm_tests: docker.io/openstackhelm/heat:newton
+        prometheus_mysql_exporter_helm_tests: 'docker.io/openstackhelm/heat:newton'
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
       neutron:
-        bootstrap: docker.io/openstackhelm/heat:newton
+        bootstrap: 'docker.io/openstackhelm/heat:newton'
         test: docker.io/kolla/ubuntu-source-rally:4.0.0
-        db_init: docker.io/openstackhelm/heat:newton
+        db_init: 'docker.io/openstackhelm/heat:newton'
         neutron_db_sync: docker.io/openstackhelm/neutron:newton
-        db_drop: docker.io/openstackhelm/heat:newton
-        ks_user: docker.io/openstackhelm/heat:newton
-        ks_service: docker.io/openstackhelm/heat:newton
-        ks_endpoints: docker.io/openstackhelm/heat:newton
+        db_drop: 'docker.io/openstackhelm/heat:newton'
+        ks_user: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
         neutron_server: docker.io/openstackhelm/neutron:newton
         neutron_dhcp: docker.io/openstackhelm/neutron:newton
         neutron_metadata: docker.io/openstackhelm/neutron:newton
@@ -521,13 +521,13 @@ data:
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         rabbit_init: docker.io/rabbitmq:3.7-management
       nova:
-        bootstrap: docker.io/openstackhelm/heat:newton
-        db_drop: docker.io/openstackhelm/heat:newton
-        db_init: docker.io/openstackhelm/heat:newton
+        bootstrap: 'docker.io/openstackhelm/heat:newton'
+        db_drop: 'docker.io/openstackhelm/heat:newton'
+        db_init: 'docker.io/openstackhelm/heat:newton'
         dep_check: 'quay.io/stackanetes/kubernetes-entrypoint:v0.2.1'
-        ks_user: docker.io/openstackhelm/heat:newton
-        ks_service: docker.io/openstackhelm/heat:newton
-        ks_endpoints: docker.io/openstackhelm/heat:newton
+        ks_user: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
         nova_api: docker.io/openstackhelm/nova:newton
         nova_cell_setup: docker.io/openstackhelm/nova:newton
         nova_compute: docker.io/openstackhelm/nova:newton
@@ -550,27 +550,27 @@ data:
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
       rabbitmq:
         prometheus_rabbitmq_exporter: docker.io/kbudde/rabbitmq-exporter:v0.21.0
-        prometheus_rabbitmq_exporter_helm_tests: docker.io/openstackhelm/heat:newton
+        prometheus_rabbitmq_exporter_helm_tests: 'docker.io/openstackhelm/heat:newton'
         rabbitmq: docker.io/rabbitmq:3.7
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
     osh_infra:
       elasticsearch:
         apache_proxy: docker.io/httpd:2.4
-        memory_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        memory_init: 'docker.io/openstackhelm/heat:newton'
         curator:  docker.io/bobrik/curator:5.2.0
         elasticsearch: docker.io/elasticsearch:5.6.4
-        helm_tests: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        helm_tests: 'docker.io/openstackhelm/heat:newton'
         prometheus_elasticsearch_exporter: docker.io/justwatch/elasticsearch_exporter:1.0.1
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        snapshot_repository: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        snapshot_repository: 'docker.io/openstackhelm/heat:newton'
         image_repo_sync: docker.io/docker:17.07.0
       fluent_logging:
         fluentbit: docker.io/fluent/fluent-bit:0.12.14
         fluentd: docker.io/kolla/ubuntu-source-fluentd:ocata
         prometheus_fluentd_exporter: docker.io/srwilkers/fluentd_exporter:v0.1
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        helm_tests: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        elasticsearch_template: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        helm_tests: 'docker.io/openstackhelm/heat:newton'
+        elasticsearch_template: 'docker.io/openstackhelm/heat:newton'
         image_repo_sync: docker.io/docker:17.07.0
       kibana:
         apache_proxy: docker.io/httpd:2.4
@@ -579,7 +579,7 @@ data:
         image_repo_sync: docker.io/docker:17.07.0
       prometheus:
         prometheus: docker.io/prom/prometheus:v2.0.0
-        helm_tests: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        helm_tests: 'docker.io/openstackhelm/heat:newton'
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         image_repo_sync: docker.io/docker:17.07.0
       prometheus_node_exporter:
@@ -598,58 +598,58 @@ data:
         prometheus_openstack_exporter: docker.io/rakeshpatnaik/prometheus-openstack-exporter:v0.1
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         image_repo_sync: docker.io/docker:17.07.0
-        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_user: 'docker.io/openstackhelm/heat:newton'
       grafana:
         grafana: docker.io/grafana/grafana:4.5.2
-        datasource: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        datasource: 'docker.io/openstackhelm/heat:newton'
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        grafana_db_session_sync: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        db_init: 'docker.io/openstackhelm/heat:newton'
+        grafana_db_session_sync: 'docker.io/openstackhelm/heat:newton'
         image_repo_sync: docker.io/docker:17.07.0
     ucp:
       armada:
         # git refs/changes/75/402975/3
         api: artifacts-aic.atlantafoundry.com/att-comdev/armada:3587936717d41142d0844be06da3663e9388dd9e
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_user: 'docker.io/openstackhelm/heat:newton'
         helm: lachlanevenson/k8s-helm:v2.7.2
         tiller: gcr.io/kubernetes-helm/tiller:v2.7.0
       promenade:
         # git 38f774713bff18c19fa5687d4463343d3339102e
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:08e3d1964a6208043d8b4cf094d6b2f243e93038e3b876371d9b3fda44493710
-        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_user: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
       deckhand:
         # git b9845fa72c079dadb05e741aa9134cf03bf3ce48
         deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:31be1f9aaf5799534f8c4d85ef132747e6f182b1c0c1d8c34c9b7a1145c2f57b
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         db_init: docker.io/postgres:9.5
         db_sync: docker.io/postgres:9.5
-        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_user: 'docker.io/openstackhelm/heat:newton'
       barbican:
-        bootstrap: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        bootstrap: 'docker.io/openstackhelm/heat:newton'
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        scripted_test: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        scripted_test: 'docker.io/openstackhelm/heat:newton'
+        db_init: 'docker.io/openstackhelm/heat:newton'
         barbican_db_sync: docker.io/kolla/ubuntu-source-barbican-api:3.0.3
-        db_drop: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        db_drop: 'docker.io/openstackhelm/heat:newton'
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_user: 'docker.io/openstackhelm/heat:newton'
         barbican_api: docker.io/kolla/ubuntu-source-barbican-api:3.0.3
       drydock:
         # git 6e044b6b5ffd93241aeba1d732dee31ca881feca
         drydock: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:70123f7ce8efd64cc4ba506724e6d53ddc1fa2d02441aa7e2bbb20b4327c76b4
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
-        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_user: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
         drydock_db_init: docker.io/postgres:9.5
         drydock_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:70123f7ce8efd64cc4ba506724e6d53ddc1fa2d02441aa7e2bbb20b4327c76b4
       shipyard:
@@ -661,9 +661,9 @@ data:
         shipyard_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:b44bad227cbb501127d0db4d78c4b084bb2a740da79aefd7d90d7da594451765
         airflow_db_init: docker.io/postgres:9.5
         airflow_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:a350b99f93e25be30941d77cb49b44dd10ccd7a77b9ae865aea65b16d95b45a3
-        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_user: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
       maas:
         # git bde0e4260e0e68c7d1a72b100e499b655f4238c0
         db_init: docker.io/postgres:9.5
@@ -677,9 +677,9 @@ data:
       keystone:
         keystone_bootstrap: docker.io/kolla/ubuntu-source-keystone:3.0.3
         test: docker.io/kolla/ubuntu-source-rally:4.0.0
-        db_init: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        db_init: 'docker.io/openstackhelm/heat:newton'
         keystone_db_sync: docker.io/kolla/ubuntu-source-keystone:3.0.3
-        db_drop: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        db_drop: 'docker.io/openstackhelm/heat:newton'
         keystone_fernet_setup: docker.io/kolla/ubuntu-source-keystone:3.0.3
         keystone_fernet_rotate: docker.io/kolla/ubuntu-source-keystone:3.0.3
         keystone_credential_setup: docker.io/kolla/ubuntu-source-keystone:3.0.3
@@ -702,9 +702,9 @@ data:
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
     ceph:
       ceph:
-        ks_endpoints: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_service: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        ks_endpoints: 'docker.io/openstackhelm/heat:newton'
+        ks_service: 'docker.io/openstackhelm/heat:newton'
+        ks_user: 'docker.io/openstackhelm/heat:newton'
         ceph_bootstrap: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
         dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
         ceph_daemon: docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
