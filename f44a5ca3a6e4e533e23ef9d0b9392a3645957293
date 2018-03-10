@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c184c7b_79a92165",
+        "filename": "deployment_files/global/v1.0/software/config/versions.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1008770
+      },
+      "writtenOn": "2018-03-10T19:32:42Z",
+      "side": 1,
+      "message": "are there reasons some of these have quotes and others not?",
+      "range": {
+        "startLine": 705,
+        "startChar": 22,
+        "endLine": 705,
+        "endChar": 23
+      },
+      "revId": "f44a5ca3a6e4e533e23ef9d0b9392a3645957293",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
