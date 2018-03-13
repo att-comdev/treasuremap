@@ -433,6 +433,17 @@ calico-etcd, calico-etcd-peer, etc. Setting highlights:
   node's hostname and IP address(es). Update hostname and IP information
   according to your environment.
 
+site/$NEW_SITE/baremetal/bootactions.yaml
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+File containing defined tasks to run after PXE boot (boot actions), so that
+newly provisioned bare metal can retrieve their ``join-<NODE>.sh`` scripts and
+run them, without a manual execution. (This script will join the node to the UCP
+kubernetes cluster.) Setting highlights:
+
+- data/assets/location: URL where ``join-<NODE>.sh`` script will be found.
+  Replace ``rack06_mgmt`` with the name of your management network, if different.
+
 OSH
 ---
 
@@ -525,25 +536,6 @@ provisioning of the genesis node::
     sudo ./validate-genesis.sh
 
 Estimated runtime: **2m**
-
-Nginx server workaround (no longer needed??)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Currently it is necessary to setup a web server to host the other Promenade
-bundle build artifacts, so that new nodes PXE booted into the environment can
-retrieve their ``join-<NODE>.sh`` scripts and run them, without a manual
-execution. (This script will join the node to the UCP kubernetes cluster.)
-
-At present, you may use the genesis node for this purpose (and defer genesis
-teardown until some later time when this workaround is no longer necessary).
-
-Copy all of the Promenade build artifacts to the genesis node, then run the
-following after substituting local disk path to the promenade artifacts that
-were copioed onto the genesis node::
-
-    sudo docker run -d -v $PATH_TO_PROMENADE_BUNDLE:/usr/share/nginx/html -p 6880:80 nginx
-
-Estimated runtime: **5s**
 
 Deploy Site with Shipyard
 ^^^^^^^^^^^^^^^^^^^^^^^^^
