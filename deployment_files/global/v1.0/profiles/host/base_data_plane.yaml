@@ -63,6 +63,8 @@ data:
         owner_data:
             openstack-nova-compute: enabled
             openvswitch: enabled
+            openstack-libvirt: kernel
             ucp-control-plane: enabled
             openstack-compute-node: enabled
+            beta.kubernetes.io/fluentd-ds-ready: 'true'
 ...
