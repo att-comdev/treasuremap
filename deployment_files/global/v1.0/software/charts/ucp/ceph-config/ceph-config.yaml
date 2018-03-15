@@ -124,6 +124,5 @@ data:
       cephfs_provisioner: false
       client_secrets: true
       rgw_keystone_user_and_endpoints: false
-  dependencies:
-    - ceph-htk
 ...
+
