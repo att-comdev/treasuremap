@@ -92,13 +92,15 @@ data:
             openstack-cinder-control: enabled
             openstack-cinder-volume: control
             openstack-neutron: enabled
+            openstack-l3-agent: enabled
             ucp-barbican: enabled
-            ucp-ceph-bootstrap: enabled
-            ucp-ceph-mon: enabled
-            ucp-ceph-osd: enabled
-            ucp-ceph-mds: enabled
-            ucp-ceph-rgw: enabled
-            ucp-ceph-mon: enabled
+            ceph-bootstrap: enabled
+            ceph-mon: enabled
+            ceph-osd: enabled
+            ceph-mds: enabled
+            ceph-mgr: enabled
+            ceph-rgw: enabled
+            ceph-mon: enabled
             ucp-maas: enabled
             kubernetes-apiserver: enabled
             kubernetes-dns: enabled
