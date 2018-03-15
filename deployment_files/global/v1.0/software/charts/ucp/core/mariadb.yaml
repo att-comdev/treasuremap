@@ -66,30 +66,4 @@ data:
     pod:
       replicas:
         server: 1
-  dependencies:
-    - mariadb-htk
-...
----
-schema: armada/Chart/v1
-metadata:
-  schema: metadata/Document/v1
-  name: mariadb-htk
-  layeringDefinition:
-    abstract: false
-    layer: global
-  storagePolicy: cleartext
-  substitutions:
-    - src:
-        schema: pegleg/SoftwareVersions/v1
-        name: software-versions
-        path: .charts.ucp.mariadb-htk
-      dest:
-        path: .source
-data:
-  chart_name: mariadb-htk
-  release: mariadb-htk
-  namespace: mariadb-htk
-  timeout: 100
-  values: {}
-  dependencies: []
 ...
