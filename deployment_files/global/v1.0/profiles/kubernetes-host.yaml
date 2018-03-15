@@ -65,6 +65,14 @@ metadata:
         path: .packages.unnamed
       dest:
         path: .packages.additional
+    # Artifacoty authorization
+    - src:
+        schema: deckhand/Passphrase/v1
+        path: .
+        name: artifactory_docker_key
+      dest:
+        path: .files[2].content
+        pattern: DH_SUB_ARTIFACTORY_DOCKER_KEY
 
 data:
   files:
@@ -88,6 +96,17 @@ data:
             su root root
             rotate 1
         }
+    - path: /var/lib/kubelet/.dockercfg
+      mode: 0400
+      content: |-
+        {
+          "auths": {
+             "docker-aic.atlantafoundry.com": {
+               "auth": "DH_SUB_ARTIFACTORY_DOCKER_KEY"
+               }
+            }
+        }
+
   packages:
     # NOTE(mb874d): This method for specified repositories and keys will be
     # change to align with Drydock's approach.  Until then, we will specify
