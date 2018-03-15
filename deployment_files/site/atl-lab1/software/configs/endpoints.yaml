@@ -65,6 +65,17 @@ data:
           default: 5432
       host_fqdn_override:
         default: null
+    postgresql_airflow_celery:
+      name: postgresql_airflow_celery_db
+      hosts:
+        default: postgresql
+      path: /DB_NAME
+      scheme: db+postgresql
+      port:
+        postgresql:
+          default: 5432
+      host_fqdn_override:
+        default: null
     oslo_db:
       hosts:
         default: mariadb

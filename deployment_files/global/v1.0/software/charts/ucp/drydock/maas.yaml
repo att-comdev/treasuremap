@@ -172,7 +172,7 @@ data:
           enabled: true
     conf:
       cache:
-        enabled: false
+        enabled: true
       drydock:
         bootaction_url: http://DRYDOCK_IP:DRYDOCK_PORT/api/v1.0/bootactions/nodes/
       maas:
