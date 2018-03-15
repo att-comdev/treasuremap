@@ -33,7 +33,11 @@ data:
     no_hooks: false
   upgrade:
     no_hooks: false
-  values: {}
+  values:
+    conf:
+      tiller:
+        verbosity: 99
+        trace: true
   dependencies:
     - tiller-htk
 ...
