@@ -203,30 +203,4 @@ data:
           # specify fsid
           fsid: '88904ebb-f6fc-48b1-80ec-e1915cfa84a9'
 
-  dependencies:
-    - ceph-htk
-...
----
-schema: armada/Chart/v1
-metadata:
-  schema: metadata/Document/v1
-  name: ceph-htk
-  layeringDefinition:
-    abstract: false
-    layer: global
-  storagePolicy: cleartext
-  substitutions:
-    - src:
-        schema: pegleg/SoftwareVersions/v1
-        name: software-versions
-        path: .charts.ucp.ceph-htk
-      dest:
-        path: .source
-data:
-  chart_name: ceph-htk
-  release: ceph-htk
-  namespace: ceph-htk
-  timeout: 100
-  values: {}
-  dependencies: []
 ...

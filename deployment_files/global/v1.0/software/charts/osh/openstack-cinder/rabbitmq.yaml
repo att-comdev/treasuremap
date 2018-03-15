@@ -78,6 +78,4 @@ data:
     monitoring:
       prometheus:
         enabled: true
-  dependencies:
-    - osh-helm-toolkit
 ...

@@ -60,6 +60,12 @@ metadata:
     - src:
         schema: pegleg/EndpointCatalogue/v1
         name: ucp_endpoints
+        path: .ucp.postgresql_airflow_celery
+      dest:
+        path: .values.endpoints.postgresql_airflow_celery_db
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: ucp_endpoints
         path: .ucp.shipyard
       dest:
         path: .values.endpoints.shipyard
@@ -103,6 +109,13 @@ metadata:
       dest:
         path: .values.endpoints.postgresql_airflow_db.path
         pattern: 'DB_NAME'
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: ucp_service_accounts
+        path: .ucp.airflow.postgres.database
+      dest:
+        path: .values.endpoints.postgresql_airflow_celery_db.path
+        pattern: 'DB_NAME'
     # Credentials
     - src:
         schema: pegleg/AccountCatalogue/v1
@@ -116,6 +129,12 @@ metadata:
         path: .ucp.postgres.admin
       dest:
         path: .values.endpoints.postgresql_airflow_db.auth.admin
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: ucp_service_accounts
+        path: .ucp.postgres.admin
+      dest:
+        path: .values.endpoints.postgresql_airflow_celery_db.auth.admin
     - src:
         schema: pegleg/AccountCatalogue/v1
         name: ucp_service_accounts
@@ -134,6 +153,12 @@ metadata:
         path: .ucp.airflow.postgres
       dest:
         path: .values.endpoints.postgresql_airflow_db.auth.user
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: ucp_service_accounts
+        path: .ucp.airflow.postgres
+      dest:
+        path: .values.endpoints.postgresql_airflow_celery_db.auth.user
     - src:
         schema: pegleg/AccountCatalogue/v1
         name: ucp_service_accounts
@@ -161,6 +186,12 @@ metadata:
         name: ucp_postgres_admin_password
         path: .
     - dest:
+        path: .values.endpoints.postgresql_airflow_celery_db.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_postgres_admin_password
+        path: .
+    - dest:
         path: .values.endpoints.identity.auth.user.password
       src:
         schema: deckhand/Passphrase/v1
@@ -174,6 +205,12 @@ metadata:
         path: .
     - dest:
         path: .values.endpoints.postgresql_airflow_db.auth.user.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: ucp_airflow_postgres_password
+        path: .
+    - dest:
+        path: .values.endpoints.postgresql_airflow_celery_db.auth.user.password
       src:
         schema: deckhand/Passphrase/v1
         name: ucp_airflow_postgres_password
@@ -240,30 +277,5 @@ data:
       shipyard:
         keystone_authtoken:
           memcache_security_strategy: None
-  dependencies:
-    - shipyard-htk
 ...
----
-schema: armada/Chart/v1
-metadata:
-  schema: metadata/Document/v1
-  name: shipyard-htk
-  layeringDefinition:
-    abstract: false
-    layer: global
-  storagePolicy: cleartext
-  substitutions:
-    - src:
-        schema: pegleg/SoftwareVersions/v1
-        name: software-versions
-        path: .charts.ucp.shipyard-htk
-      dest:
-        path: .source
-data:
-  chart_name: shipyard-htk
-  release: shipyard-htk
-  namespace: shipyard-htk
-  timeout: 100
-  values: {}
-  dependencies: []
-...
+
