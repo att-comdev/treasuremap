@@ -260,6 +260,5 @@ data:
             tunnel_types: vxlan
           ovs:
             bridge_mappings: public:br-ex
-  dependencies:
-    - osh-helm-toolkit
+  dependencies: []
 ...
