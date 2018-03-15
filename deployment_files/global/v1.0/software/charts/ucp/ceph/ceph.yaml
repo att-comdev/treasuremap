@@ -203,8 +203,7 @@ data:
           # specify fsid
           fsid: '88904ebb-f6fc-48b1-80ec-e1915cfa84a9'
 
-  dependencies:
-    - ceph-htk
+  dependencies: []
 ...
 ---
 schema: armada/Chart/v1
@@ -228,5 +227,4 @@ data:
   namespace: ceph-htk
   timeout: 100
   values: {}
-  dependencies: []
 ...
