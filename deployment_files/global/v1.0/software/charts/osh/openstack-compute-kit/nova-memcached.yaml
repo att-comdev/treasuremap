@@ -43,6 +43,5 @@ data:
       server:
         node_selector_key: openstack-control-plane
         node_selector_value: enabled
-  dependencies:
-    - osh-helm-toolkit
+  dependencies: []
 ...

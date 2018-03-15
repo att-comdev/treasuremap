@@ -75,36 +75,13 @@ data:
   upgrade:
     no_hooks: false
   values:
-    armada:
-      DEFAULT:
-        debug: true
+    conf:
+      armada:
+        DEFAULT:
+          debug: true
+          tiller_namespace: kube-system
     manifests:
       deployment_tiller: false
-      service_tiller: false
-  dependencies:
-    - armada-htk
-...
----
-schema: armada/Chart/v1
-metadata:
-  schema: metadata/Document/v1
-  name: armada-htk
-  layeringDefinition:
-    abstract: false
-    layer: global
-  storagePolicy: cleartext
-  substitutions:
-    - src:
-        schema: pegleg/SoftwareVersions/v1
-        name: software-versions
-        path: .charts.ucp.armada-htk
-      dest:
-        path: .source
-data:
-  chart_name: armada-htk
-  release: armada-htk
-  namespace: armada-htk
-  timeout: 100
-  values: {}
+      service_tiller_deploy: false
   dependencies: []
 ...
