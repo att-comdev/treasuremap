@@ -37,5 +37,5 @@ data:
         libvirt:
           node_selector_key: openstack-compute-node
           node_selector_value: enabled
-  dependencies:
-    - osh-helm-toolkit
+  dependencies: []
+...

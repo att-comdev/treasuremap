@@ -92,30 +92,5 @@ data:
               proxy . UPSTREAM2
               cache 30
           }
-
-  dependencies:
-    - coredns-htk
----
-schema: armada/Chart/v1
-metadata:
-  schema: metadata/Document/v1
-  name: coredns-htk
-  layeringDefinition:
-    abstract: false
-    layer: global
-  storagePolicy: cleartext
-  substitutions:
-    - src:
-        schema: pegleg/SoftwareVersions/v1
-        name: software-versions
-        path: .charts.kubernetes.coredns-htk
-      dest:
-        path: .source
-data:
-  chart_name: coredns-htk
-  release: coredns-htk
-  namespace: coredns-htk
-  timeout: 100
-  values: {}
   dependencies: []
 ...
