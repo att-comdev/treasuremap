@@ -68,7 +68,11 @@ data:
   upgrade:
     no_hooks: false
     pre:
-      delete: []
+      delete:
+        - type: job
+          labels:
+            application: fluent
+            component: elasticsearch-template
       create: []
     post:
       create: []
@@ -83,15 +87,9 @@ data:
       prometheus_fluentd_exporter:
         node_selector_key: openstack-control-plane
         node_selector_value: enabled
-    manifests:
-      job_elasticsearch_template: false
-    dependencies:
-      static:
-        fluentbit:
-          jobs: null
-          services:
-            - endpoint: internal
-              service: fluentd
+      elasticsearch_template:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
   dependencies:
     - osh-infra-helm-toolkit
 ...
