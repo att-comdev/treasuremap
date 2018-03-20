@@ -461,15 +461,38 @@ merge that will yield the combined global + site type + site YAML::
 Building the Promenade bundle
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Checkout promenade and run the ``simple-deployment.sh`` script::
+Clone the Promenade repo::
 
     cd ~
-    mkdir ~/${NEW_SITE}_bundle
     git clone https://github.com/att-comdev/promenade.git
+
+Refer to the ``data/charts/ucp/promenade/reference`` field in
+``treasuremap/deployment_files/global/v1.0/software/config/versions.yaml``. If
+this is a pinned reference (i.e., any reference that's not ``master``), then you
+should checkout the same version of the Promenade repository. For example, if
+the Promenade reference was ``86c3c11...`` in the versions file, checkout the
+same version of the Promenade repo which was cloned previously::
+
+    (cd promenade && git checkout 86c3c11)
+
+Likewise, before running the ``simple-deployment.sh`` script, you should refer
+to the ``data/images/ucp/promenade/promenade`` field in
+``treasuremap/deployment_files/global/v1.0/software/config/versions.yaml``. If
+there is a pinned reference (i.e., any image reference that's not ``latest``),
+then this reference should be used to set the ``IMAGE_PROMENADE`` environment
+variable. For example, if the Promenade image was pinned to
+``artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:d30397f...`` in
+the versions file, then export the previously mentioned environment variable::
+
+    export IMAGE_PROMENADE=artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:d30397f...
+
+Now, create an output directory for Promenade bundles and run the
+``simple-deployment.sh`` script::
+
+    mkdir ~/${NEW_SITE}_bundle
     sudo promenade/tools/simple-deployment.sh ~/${NEW_SITE}_yaml ~/${NEW_SITE}_bundle
 
-Estimated runtime: About **1 minute** plus **20 seconds per node** defined in
-``joining-host-config.yaml``.
+Estimated runtime: About **1 minute**
 
 Genesis node
 ------------
@@ -543,6 +566,26 @@ Deploy Site with Shipyard
 Start by cloning the shipyard repository to the Genesis node::
 
     git clone https://review.gerrithub.io/att-comdev/shipyard
+
+Refer to the ``data/charts/ucp/shipyard/reference`` field in
+``treasuremap/deployment_files/global/v1.0/software/config/versions.yaml``. If
+this is a pinned reference (i.e., any reference that's not ``master``), then you
+should checkout the same version of the Shipyard repository. For example, if
+the Shipyard reference was ``7046ad3...`` in the versions file, checkout the
+same version of the Shipyard repo which was cloned previously::
+
+    (cd shipyard && git checkout 7046ad3)
+
+Likewise, before running the ``deckhand_load_yaml.sh`` script, you should refer
+to the ``data/images/ucp/shipyard/shipyard`` field in
+``treasuremap/deployment_files/global/v1.0/software/config/versions.yaml``. If
+there is a pinned reference (i.e., any image reference that's not ``latest``),
+then this reference should be used to set the ``SHIPYARD_IMAGE`` environment
+variable. For example, if the Shipyard image was pinned to
+``artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:dfc25e1...`` in
+the versions file, then export the previously mentioned environment variable::
+
+    export SHIPYARD_IMAGE=artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:dfc25e1...
 
 Next, run the deckhand_load_yaml.sh script as follows::
 
