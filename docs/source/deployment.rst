@@ -201,13 +201,6 @@ Generate the passphrases used in your environment as follows::
 
     (cd secrets_tools && ./gen.sh)
 
-Manually modify the ``data`` key to ``data: password`` for the following
-components that do not yet support setting a custom passphrase::
-
-    secrets_tools/ucp_shipyard_postgres_password.yaml
-    secrets_tools/ucp_airflow_postgres_password.yaml
-    secrets_tools/ucp_armada_keystone_password.yaml
-
 Move the secrets to your $NEW_SITE's location for passphrase secrets::
 
     mkdir -p site/$NEW_SITE/secrets/passphrases
