@@ -587,6 +587,18 @@ the versions file, then export the previously mentioned environment variable::
 
     export SHIPYARD_IMAGE=artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:dfc25e1...
 
+Export valid login credentials for one of the UCP Keystone users defined for the
+site. Currently there is no authorization checks in place, so the credentials
+for any of the site-defined users will work. For example, we can use the
+``shipyard`` user, with the password that was defined in
+``site/$NEW_SITE/secrets/passphrases/ucp_shipyard_keystone_password.yaml``. Ex::
+
+    export OS_USERNAME=shipyard
+    export OS_PASSWORD=46a75e4...
+
+(Note: Default auth variables are defined `here <https://github.com/att-comdev/shipyard/blob/master/tools/shipyard_docker_base_command.sh>`_, and should otherwise be
+correct, barring any customizations of these site parameters).
+
 Next, run the deckhand_load_yaml.sh script as follows::
 
     sudo ./shipyard/tools/deckhand_load_yaml.sh $REGION $PATH_TO_ALL_YAMLS
