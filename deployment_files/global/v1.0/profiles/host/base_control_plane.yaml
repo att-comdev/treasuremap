@@ -93,6 +93,7 @@ data:
             openstack-cinder-volume: control
             openstack-neutron: enabled
             openstack-l3-agent: enabled
+            openvswitch: enabled
             ucp-barbican: enabled
             ceph-bootstrap: enabled
             ceph-mon: enabled
