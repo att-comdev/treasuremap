@@ -505,33 +505,18 @@ generate the configuration with the correct hostname.
 Install ntpdate/ntp
 ^^^^^^^^^^^^^^^^^^^
 
-Check if ntp is already installed/running::
+Install and run ntpdate, to ensure a reasonably sane time on genesis host before
+proceeding::
 
-    ntpq -p
-
-If this prodcues an output, ensure that the ``offset`` and ``jitter`` fields are
-less than 50.000 (miliseconds) for the primary time source (indicated by ``*``
-at the line start)::
-
-    .    remote           refid      st t when poll reach   delay   offset  jitter
-    ==============================================================================
-    +time.tritn.com  63.145.169.3     2 u   48   64  377   54.875    3.533   2.392
-    +mis.wci.com     216.218.254.202  2 u   53   64  377   73.954   -2.089   2.538
-    *97-127-86-125.m .PPS.            1 u   43   64  377   24.638    0.122   2.686
-
-Otherwise, install and run ntpdate prior to installing ntp::
-
-    type ntpd && sudo service ntp stop && RESTART=true
     sudo apt -y install ntpdate
     sudo ntpdate ntp.ubuntu.com
-    sudo apt -y install ntp
-    [ -n $RESTART ] && sudo service ntp restart
 
-and verify the node begins to sync to upstream NTP sources, indicated by non-zero
-``reach`` value for the primary time source (indicated by ``*`` at the line
-start). Proceed when ``offset`` and ``jitter`` are below 50 ms. If these values
-do not converge below 50 ms, stop to troubleshoot your connection to your
-upstream time sources (and/or the time sources themselves if they are internal).
+If your network policy does not allow time sync with external time sources,
+specify a local NTP server instead of using ``ntp.ubuntu.com``.
+
+Do not install an NTP client on the genesis host. This would conflict with the
+NTP client running in the MaaS chart on this node in privileged, host
+networking mode.
 
 Promenade bootstrap
 ^^^^^^^^^^^^^^^^^^^

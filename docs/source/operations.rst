@@ -92,3 +92,44 @@ To troulbeshoot a Kubernetes issue with the pod, use the following command::
     sudo kubectl describe pod $POD_NAME --namespace=$POD_NAMESPACE
 
 This will provide details as to any Kubernetes related failures.
+
+Troubleshooting time sync issues
+--------------------------------
+
+On MaaS-provisioned nodes, ntpd is installed on the bare metal and can be
+checked by running the following::
+
+    ntpq -p
+
+Re-run as needed until the ``reach`` is 377 for all of the time sources (i.e.,
+the last eight polls to the NTP server were successful). A reach of 0 indicates
+an NTP server with no working connection, whereas a reach inbetween that never
+reaches 377 likely indicates a network flapping or similar network reliability
+issue that should be resolved before proceeding.
+
+For time sources with a 377 ``reach``, ensure that the ``offset`` and ``jitter``
+fields are less than 10.000 (miliseconds). Ex::
+
+    .    remote           refid      st t when poll reach   delay   offset  jitter
+    ==============================================================================
+    +time.tritn.com  63.145.169.3     2 u   48   64  377   54.875    3.533   2.392
+    +mis.wci.com     216.218.254.202  2 u   53   64  377   73.954   -2.089   2.538
+    *97-127-86-125.m .PPS.            1 u   43   64  377   24.638    0.122   2.686
+
+If the offset is outside tolerance (10.000 ms) but the jitter is not, then the
+system time should eventually converge with UTC, and the offset should slowly
+reduce over this period.
+
+However, if the jitter is outside tolerance, then there is a problem with the
+time sources and/or the network connection to them, and the system time will not
+converge nor the offset be reduced until these NTP servers and/or network issues
+are resolved.
+
+If the reported offset exceeds 1,000,000 ms (ntpd panic threshold), you should
+attempt a one-time correction as follows. (This assumes all workloads have been
+suspended or evacuated)::
+
+    sudo apt -y install ntpdate
+    sudo service ntp stop
+    sudo ntpdate ntp.ubuntu.com  # Or use a local NTP server if this fails
+    sudo service ntp start
