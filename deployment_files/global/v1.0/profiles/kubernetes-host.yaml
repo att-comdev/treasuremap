@@ -66,13 +66,13 @@ metadata:
       dest:
         path: .packages.additional
     # Artifacoty authorization
-    - src:
-        schema: deckhand/Passphrase/v1
-        path: .
-        name: artifactory_docker_key
-      dest:
-        path: .files[2].content
-        pattern: DH_SUB_ARTIFACTORY_DOCKER_KEY
+   # - src:
+   #     schema: deckhand/Passphrase/v1
+   #     path: .
+   #     name: artifactory_docker_key
+   #   dest:
+   #     path: .files[2].content
+   #     pattern: DH_SUB_ARTIFACTORY_DOCKER_KEY
 
 data:
   files:
