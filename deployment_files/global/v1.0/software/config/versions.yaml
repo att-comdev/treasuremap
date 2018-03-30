@@ -606,7 +606,7 @@ data:
       armada:
         # git e42333c8bd01cca6576727ff489cf501e9819e03
         api: artifacts-aic.atlantafoundry.com/att-comdev/armada@sha256:9c4f81c8d7e4be415ab907a40e1165ab82aa91167599045906a187be4a6e87b0
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
@@ -614,7 +614,7 @@ data:
         tiller: artifacts-aic.atlantafoundry.com/kubernetes-helm/tiller@sha256:1becf867016f6e7652908518729e140845107c5344afc237718e3ed3b6ca63c7
       promenade:
         # git 3faccce445267c7ecc00f96823c2330010d04bb7
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:9eebdc4c5b762351b512454bce27a30fcdbb32243ce95a965b07e8595b2cecc0
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
@@ -622,7 +622,7 @@ data:
       deckhand:
         # git d82d0cfaf7602d43fc83f2ee0f4aaa844c4e2ab9
         deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:5181889eed0097b3a59e2c0d3d8768a5776a4ee9762ed4e82e1696e0dd36ae9e
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         db_sync: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
@@ -630,7 +630,7 @@ data:
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
       barbican:
         bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         scripted_test: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         barbican_db_sync: docker.io/kolla/ubuntu-source-barbican-api:3.0.3
@@ -642,7 +642,7 @@ data:
       drydock:
         # git 12650c7909cf813e1a7994107164252b79e42b40
         drydock: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:871d96333080fe642115c00fd6668c82df08a9ea1718ec87eaf219809333e9aa
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
@@ -652,7 +652,7 @@ data:
         # git d40e9776d3fe3b24c33ec0256632632025d03c39
         airflow: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:6959293848c5a72bd2e03537e36fb218b6f9b89204f9c13d81199e3688971e0f
         shipyard: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:f830ab3b4f6acb11c794e9a55e47c88b62bbd7483035bd7284da1c744a608920
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         shipyard_db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         shipyard_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:f830ab3b4f6acb11c794e9a55e47c88b62bbd7483035bd7284da1c744a608920
         airflow_db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
@@ -669,7 +669,7 @@ data:
         bootstrap: artifacts-aic.atlantafoundry.com/att-comdev/maas-region-controller@sha256:b9643ff8de10ab5001e4e9cc7821f40e466375d4ae9c4225e19459c5d59cebfa
         export_api_key: artifacts-aic.atlantafoundry.com/att-comdev/maas-region-controller@sha256:b9643ff8de10ab5001e4e9cc7821f40e466375d4ae9c4225e19459c5d59cebfa
         maas_cache: artifacts-aic.atlantafoundry.com/att-comdev/sstream-cache@sha256:220be13b07a90e72fb6e0f70a313bcfbca4c6335a93c939e253a41cfdd66d79e
-        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       keystone:
         keystone_bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
         test: docker.io/kolla/ubuntu-source-rally:4.0.0
@@ -681,21 +681,21 @@ data:
         keystone_credential_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
         keystone_credential_rotate: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
         keystone_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       tiller:
         tiller: artifacts-aic.atlantafoundry.com/kubernetes-helm/tiller@sha256:df7f227fa722afc4931c912c1cad2c47856ec94f4d052ccceebcb16dd483dad8
       mariadb:
         mariadb: artifacts-aic.atlantafoundry.com/mariadb:10.1.23
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       postgresql:
         postgresql: artifacts-aic.atlantafoundry.com/postgres:9.5
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       memcached:
         memcached: artifacts-aic.atlantafoundry.com/memcached:1.5.5
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       rabbitmq:
         rabbitmq: artifacts-aic.atlantafoundry.com/rabbitmq:3.7
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
     ceph:
       ceph:
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
