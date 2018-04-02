@@ -501,19 +501,19 @@ data:
         bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         test: docker.io/kolla/ubuntu-source-rally:4.0.0
         db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        neutron_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:cc177789c8c64eaa6d668a3444c0233b983c032ceb2918f98f56dc4924c350b4
+        neutron_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ee465f8130bc0f3dd53ad0747a75bb2a4c470f9a2dd3642b713c27ec9052edd8
         db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        neutron_server: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:cc177789c8c64eaa6d668a3444c0233b983c032ceb2918f98f56dc4924c350b4
-        neutron_dhcp: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:cc177789c8c64eaa6d668a3444c0233b983c032ceb2918f98f56dc4924c350b4
-        neutron_metadata: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:cc177789c8c64eaa6d668a3444c0233b983c032ceb2918f98f56dc4924c350b4
-        neutron_l3: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:cc177789c8c64eaa6d668a3444c0233b983c032ceb2918f98f56dc4924c350b4
-        neutron_openvswitch_agent: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:cc177789c8c64eaa6d668a3444c0233b983c032ceb2918f98f56dc4924c350b4
-        neutron_linuxbridge_agent: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:cc177789c8c64eaa6d668a3444c0233b983c032ceb2918f98f56dc4924c350b4
-        neutron_sriov_agent: docker-aic.atlantafoundry.com/ocata/loci/mos/mos-neutron-sriov@sha256:7ee0e5e6a150cf04f338a13ab83ac3017f4495bbad3c0e2a99d496ad1f57c2bc
-        neutron_sriov_agent_init: docker-aic.atlantafoundry.com/ocata/loci/mos/mos-neutron-sriov@sha256:7ee0e5e6a150cf04f338a13ab83ac3017f4495bbad3c0e2a99d496ad1f57c2bc
+        neutron_server: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ee465f8130bc0f3dd53ad0747a75bb2a4c470f9a2dd3642b713c27ec9052edd8
+        neutron_dhcp: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ee465f8130bc0f3dd53ad0747a75bb2a4c470f9a2dd3642b713c27ec9052edd8
+        neutron_metadata: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ee465f8130bc0f3dd53ad0747a75bb2a4c470f9a2dd3642b713c27ec9052edd8
+        neutron_l3: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ee465f8130bc0f3dd53ad0747a75bb2a4c470f9a2dd3642b713c27ec9052edd8
+        neutron_openvswitch_agent: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ee465f8130bc0f3dd53ad0747a75bb2a4c470f9a2dd3642b713c27ec9052edd8
+        neutron_linuxbridge_agent: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ee465f8130bc0f3dd53ad0747a75bb2a4c470f9a2dd3642b713c27ec9052edd8
+        neutron_sriov_agent: docker-aic.atlantafoundry.com/ocata/loci/mos/mos-neutron-sriov@sha256:3a153a8ab6fe95af461a7d320bd66c28885b11c0343fb331e2a00114a48b9b46
+        neutron_sriov_agent_init: docker-aic.atlantafoundry.com/ocata/loci/mos/mos-neutron-sriov@sha256:3a153a8ab6fe95af461a7d320bd66c28885b11c0343fb331e2a00114a48b9b46
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
       nova:
@@ -524,18 +524,18 @@ data:
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        nova_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:181af638cdd57592669f0ec61c3d83f4fc738b92f90f99e5a3faad8098610846
-        nova_cell_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:181af638cdd57592669f0ec61c3d83f4fc738b92f90f99e5a3faad8098610846
-        nova_compute: docker-aic.atlantafoundry.com/ocata/loci/mos/mos-nova-1804@sha256:a411829122493f55d6f502706c1d097904e23fd5e5f4b13c5430beb69ba02c16
-        nova_compute_ssh: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:181af638cdd57592669f0ec61c3d83f4fc738b92f90f99e5a3faad8098610846
-        nova_conductor: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:181af638cdd57592669f0ec61c3d83f4fc738b92f90f99e5a3faad8098610846
-        nova_consoleauth: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:181af638cdd57592669f0ec61c3d83f4fc738b92f90f99e5a3faad8098610846
-        nova_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:181af638cdd57592669f0ec61c3d83f4fc738b92f90f99e5a3faad8098610846
-        nova_novncproxy: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:181af638cdd57592669f0ec61c3d83f4fc738b92f90f99e5a3faad8098610846
-        nova_novncproxy_assets: docker.io/kolla/ubuntu-source-nova-novncproxy:3.0.3
-        nova_placement: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:181af638cdd57592669f0ec61c3d83f4fc738b92f90f99e5a3faad8098610846
-        nova_scheduler: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:181af638cdd57592669f0ec61c3d83f4fc738b92f90f99e5a3faad8098610846
-        nova_spiceproxy: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:181af638cdd57592669f0ec61c3d83f4fc738b92f90f99e5a3faad8098610846
+        nova_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:fc190ec2ea7a1ad801d518c3abba425bca09636f059cb4f61cf0cb5de5504ba3
+        nova_cell_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:fc190ec2ea7a1ad801d518c3abba425bca09636f059cb4f61cf0cb5de5504ba3
+        nova_compute: docker-aic.atlantafoundry.com/ocata/loci/mos/mos-nova-1804@sha256:e98d3a310bed979cb0bf4db4362b16b12731effad53215466d1e2bc4cd010fb1
+        nova_compute_ssh: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:fc190ec2ea7a1ad801d518c3abba425bca09636f059cb4f61cf0cb5de5504ba3
+        nova_conductor: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:fc190ec2ea7a1ad801d518c3abba425bca09636f059cb4f61cf0cb5de5504ba3
+        nova_consoleauth: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:fc190ec2ea7a1ad801d518c3abba425bca09636f059cb4f61cf0cb5de5504ba3
+        nova_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:fc190ec2ea7a1ad801d518c3abba425bca09636f059cb4f61cf0cb5de5504ba3
+        nova_novncproxy: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:fc190ec2ea7a1ad801d518c3abba425bca09636f059cb4f61cf0cb5de5504ba3
+        nova_novncproxy_assets: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-nova-novncproxy:3.0.3
+        nova_placement: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:fc190ec2ea7a1ad801d518c3abba425bca09636f059cb4f61cf0cb5de5504ba3
+        nova_scheduler: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:fc190ec2ea7a1ad801d518c3abba425bca09636f059cb4f61cf0cb5de5504ba3
+        nova_spiceproxy: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:fc190ec2ea7a1ad801d518c3abba425bca09636f059cb4f61cf0cb5de5504ba3
         nova_spiceproxy_assets: docker.io/kolla/ubuntu-source-nova-spicehtml5proxy:3.0.3
         test: docker.io/kolla/ubuntu-source-rally:4.0.0
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
@@ -648,6 +648,11 @@ data:
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         drydock_db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         drydock_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:871d96333080fe642115c00fd6668c82df08a9ea1718ec87eaf219809333e9aa
+      ingress:
+        entrypoint: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
+        ingress: artifacts-aic.atlantafoundry.com/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
+        error_pages: artifacts-aic.atlantafoundry.com/google_containers/defaultbackend:1.0
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       shipyard:
         # git d40e9776d3fe3b24c33ec0256632632025d03c39
         airflow: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:6959293848c5a72bd2e03537e36fb218b6f9b89204f9c13d81199e3688971e0f
@@ -724,6 +729,11 @@ data:
       etcd:
         etcd: artifacts-aic.atlantafoundry.com/coreos/etcd:v3.2.14
         etcdctl: artifacts-aic.atlantafoundry.com/coreos/etcd:v3.2.14
+      ingress:
+        entrypoint: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
+        ingress: artifacts-aic.atlantafoundry.com/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
+        error_pages: artifacts-aic.atlantafoundry.com/google_containers/defaultbackend:1.0
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       kubectl: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
       pause: artifacts-aic.atlantafoundry.com/google_containers/pause-amd64@sha256:3b3a29e3c90ae7762bdf587d19302e62485b6bef46e114b741f7d75dba023bd3
       scheduler:
