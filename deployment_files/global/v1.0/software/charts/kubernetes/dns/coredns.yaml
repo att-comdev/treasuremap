@@ -24,7 +24,7 @@ metadata:
         name: software-versions
         path: .images.kubernetes.coredns
       dest:
-        path: .values.images
+        path: .values.images.tags
 
     # Zones
     - src:
