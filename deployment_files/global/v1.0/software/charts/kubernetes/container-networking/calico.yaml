@@ -24,7 +24,7 @@ metadata:
         name: software-versions
         path: .images.calico.calico
       dest:
-        path: .values.images
+        path: .values.images.tags
 
     # IP addresses
     -
