@@ -23,7 +23,7 @@ metadata:
         name: software-versions
         path: .images.kubernetes.haproxy
       dest:
-        path: .values.images
+        path: .values.images.tags
 data:
   chart_name: haproxy
   release: haproxy
