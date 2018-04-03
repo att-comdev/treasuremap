@@ -3,7 +3,9 @@ ucp_armada_keystone_password
 maas-region-key
 ucp_rabbitmq_erlang_cookie
 ceph_swift_keystone_password
+maas-region-key
 ucp_postgres_admin_password
+ucp_rabbitmq_erlang_cookie
 ucp_oslo_db_admin_password
 ucp_deckhand_postgres_password
 ucp_deckhand_keystone_password
