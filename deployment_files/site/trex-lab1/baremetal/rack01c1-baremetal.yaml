@@ -1,0 +1,121 @@
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: controller01
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  host_profile: rack1c1_control_plane
+  addressing:
+    - network: rack01c1-oob
+      address: 172.16.0.23
+    - network: rack01c1-pxe
+      address: 192.168.1.23
+    - network: rack01c1_mgmt
+      address: 64.39.233.23
+    - network: rack01c1-calico
+      address: 192.168.26.23
+    - network: rack01c1-storage
+      address: 192.168.16.23
+    - network: rack01c1-ossdn
+      address: 192.168.11.23
+    - network: rack01c1-contrail
+      address: 192.168.21.23
+  metadata:
+    rack: rack1
+    tags:
+      - 'masters'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: controller02
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  host_profile: rack1c1_control_plane
+  addressing:
+    - network: rack01c1-oob
+      address: 172.16.0.24
+    - network: rack01c1-pxe
+      address: 192.168.1.24
+    - network: rack01c1_mgmt
+      address: 64.39.233.24
+    - network: rack01c1-calico
+      address: 192.168.26.24
+    - network: rack01c1-storage
+      address: 192.168.16.24
+    - network: rack01c1-ossdn
+      address: 192.168.11.24
+    - network: rack01c1-contrail
+      address: 192.168.21.24
+  metadata:
+    rack: rack1
+    tags:
+      - 'masters'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: worker01
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  host_profile: rack1c1_data_plane
+  addressing:
+    - network: rack01c1-oob
+      address: 172.16.0.25
+    - network: rack01c1-pxe
+      address: 192.168.1.25
+    - network: rack01c1_mgmt
+      address: 64.39.233.25
+    - network: rack01c1-calico
+      address: 192.168.26.25
+    - network: rack01c1-storage
+      address: 192.168.16.25
+    - network: rack01c1-ossdn
+      address: 192.168.11.25
+    - network: rack01c1-contrail
+      address: 192.168.21.25
+  metadata:
+    rack: rack1
+    tags:
+      - 'workers'
+---
+schema: 'drydock/BaremetalNode/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: worker02
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  host_profile: rack1c1_data_plane
+  addressing:
+    - network: rack01c1-oob
+      address: 172.16.0.26
+    - network: rack01c1-pxe
+      address: 192.168.1.26
+    - network: rack01c1_mgmt
+      address: 64.39.233.26
+    - network: rack01c1-calico
+      address: 192.168.26.26
+    - network: rack01c1-storage
+      address: 192.168.16.26
+    - network: rack01c1-ossdn
+      address: 192.168.11.26
+    - network: rack01c1-contrail
+      address: 192.168.21.26
+  metadata:
+    rack: rack1
+    tags:
+      - 'workers'
+...
