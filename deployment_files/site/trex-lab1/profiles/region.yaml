@@ -1,0 +1,20 @@
+---
+schema: 'drydock/Region/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: trex-lab1
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+  substitutions:
+    - dest:
+        path: .authorized_keys[0]
+      src:
+        schema: deckhand/PublicKey/v1
+        name: tp6510_ssh_public_key
+        path: .
+data:
+  tag_definitions: []
+  authorized_keys: []
+...
