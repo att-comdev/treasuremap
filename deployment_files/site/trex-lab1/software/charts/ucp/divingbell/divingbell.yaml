@@ -1,0 +1,30 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-divingbell
+  layeringDefinition:
+    abstract: false
+    layer: site
+    parentSelector:
+      name: ucp-divingbell-global
+    actions:
+      - method: merge
+        path: .
+  storagePolicy: cleartext
+  substitutions:
+    - dest:
+        path: .values.conf.uamlite.users[0].user_sshkeys[0]
+      src:
+        schema: deckhand/PublicKey/v1
+        name: tp6510_ssh_public_key
+        path: .
+data:
+  values:
+    conf:
+      uamlite:
+        users:
+          - user_name: tp6510
+            user_sudo: true
+            user_sshkeys: []
+...
