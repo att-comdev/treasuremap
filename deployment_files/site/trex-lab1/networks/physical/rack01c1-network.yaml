@@ -1,0 +1,241 @@
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: rack01c1-oob
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  bonding:
+    mode: disabled
+  mtu: 1500
+  linkspeed: auto
+  trunking:
+    mode: disabled
+    default_network: rack01c1-oob
+  allowed_networks:
+    - rack01c1-oob
+...
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: rack01c1-pxe
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  bonding:
+    mode: disabled
+  mtu: 1500
+  linkspeed: auto
+  trunking:
+    mode: disabled
+    default_network: rack01c1-pxe
+  allowed_networks:
+    - rack01c1-pxe
+...
+---
+schema: 'drydock/NetworkLink/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: rack01c1-general
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  bonding:
+    mode: 802.3ad
+    hash: layer3+4
+    peer_rate: slow
+  mtu: 9000
+  linkspeed: auto
+  trunking:
+    mode: 802.1q
+  allowed_networks:
+    - rack01c1_mgmt
+    - rack01c1-calico
+    - rack01c1-storage
+    - rack01c1-ossdn
+    - rack01c1-contrail
+    - rack01c1-public
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: rack01c1-oob
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  cidr: 172.16.0.0/24
+  ranges:
+    - type: static
+      start: 172.16.0.23
+      end: 172.16.0.26
+  routes:
+    - subnet: '0.0.0.0/0'
+      gateway: '172.16.0.1'
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: rack01c1-pxe
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  dhcp_relay:
+    upstream_target: 10.24.20.100
+  mtu: 1500
+  cidr: 192.168.1.0/24
+  ranges:
+    - type: dhcp
+      start:  192.168.1.241
+      end:  192.168.1.251
+  routes:
+    - subnet: '0.0.0.0/0'
+      gateway: ' 192.168.1.1'
+      metric: 10
+    - subnet: '10.24.20.0/24'
+      gateway: '192.168.1.1'
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: rack01c1_mgmt
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  vlan: '2101'
+  mtu: 1500
+  cidr: 64.39.233.0/24
+  ranges:
+    - type: static
+      start: 64.39.233.23
+      end: 64.39.233.27
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 64.39.233.1
+      metric: 10
+    - subnet: 10.24.21.0/24
+      gateway: 64.39.233.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: rack01c1-calico
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  vlan: '2106'
+  mtu: 1500
+  cidr: 192.168.26.0/24
+  ranges:
+    - type: static
+      start: 192.168.26.23
+      end: 192.168.26.27
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 192.168.26.1
+      metric: 10
+    - subnet: 0.0.0.0/24
+      gateway: 192.168.26.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: rack01c1-storage
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  vlan: '2103'
+  mtu: 1500
+  cidr: 192.1168.16.0/24
+  ranges:
+    - type: static
+      start: 192.168.16.23
+      end: 192.168.16.27
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 192.168.16.1
+      metric: 10
+    - subnet: 0.0.0.0/0
+      gateway: 192.168.16.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: rack01c1-ossdn
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  vlan: '2102'
+  mtu: 1500
+  cidr: 192.168.11.0/24
+  ranges:
+    - type: static
+      start: 192.168.11.23
+      end: 192.168.11.27
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 192.168.11.1
+      metric: 10
+    - subnet: 0.0.0.0/24
+      gateway: 192.168.11.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+---
+schema: 'drydock/Network/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: rack01c1-contrail
+  layeringDefinition:
+    abstract: false
+    layer: site
+data:
+  vlan: '2104'
+  mtu: 1500
+  cidr: 192.168.21.0/24
+  ranges:
+    - type: static
+      start: 192.168.21.23
+      end: 192.168.21.27
+  routes:
+    - subnet: 0.0.0.0/0
+      gateway: 192.168.21.1
+      metric: 10
+    - subnet: 0.0.0.0/0
+      gateway: 192.168.21.1
+      metric: 10
+  dns:
+    domain: cicd.att.com
+    servers: '8.8.8.8 8.8.4.4'
+...
