@@ -1,0 +1,28 @@
+---
+schema: pegleg/SoftwareVersions/v1
+metadata:
+  schema: metadata/Document/v1
+  name: software-versions-site
+  layeringDefinition:
+    abstract: false
+    layer: site
+    parentSelector:
+      name: software-versions-global
+    actions:
+      - method: merge
+        path: .
+  storagePolicy: cleartext
+data:
+  charts:
+    jenkins:
+      type: git
+      location: https://git.openstack.org/openstack/openstack-helm-addons
+      subpath: jenkins
+      reference: refs/changes/80/544780/24
+  images:
+    osh_infra_addons:
+      jenkins:
+        jenkins: jenkins/jenkins:2.89.4
+        ks_user: docker.io/kolla/ubuntu-source-heat-engine:3.0.3
+        dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.2.1
+...
