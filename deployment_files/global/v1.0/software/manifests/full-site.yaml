@@ -29,3 +29,5 @@ data:
     - osh-infra-prometheus-openstack-exporter
     - openstack-horizon
     - openstack-barbican
+    - osh-infra-addons-jenkins
+...
