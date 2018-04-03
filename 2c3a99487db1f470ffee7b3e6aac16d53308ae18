@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1b9c5bb_25e6d69d",
+        "filename": "deployment_files/site/trex-lab1/networks/common-addresses.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1013845
+      },
+      "writtenOn": "2018-04-03T19:43:25Z",
+      "side": 1,
+      "message": "Please remove trailing whitespace.",
+      "range": {
+        "startLine": 30,
+        "startChar": 19,
+        "endLine": 30,
+        "endChar": 20
+      },
+      "revId": "2c3a99487db1f470ffee7b3e6aac16d53308ae18",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "885d86b5_7f812248",
+        "filename": "deployment_files/site/trex-lab1/networks/physical/rack01c1-network.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1013845
+      },
+      "writtenOn": "2018-04-03T19:43:25Z",
+      "side": 1,
+      "message": "should be 0.0.0.0/0",
+      "range": {
+        "startLine": 157,
+        "startChar": 22,
+        "endLine": 157,
+        "endChar": 24
+      },
+      "revId": "2c3a99487db1f470ffee7b3e6aac16d53308ae18",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e23c5a70_c863fafd",
+        "filename": "deployment_files/site/trex-lab1/networks/physical/rack01c1-network.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1013845
+      },
+      "writtenOn": "2018-04-03T19:43:25Z",
+      "side": 1,
+      "message": "Should be 0.0.0.0/0",
+      "range": {
+        "startLine": 209,
+        "startChar": 22,
+        "endLine": 209,
+        "endChar": 24
+      },
+      "revId": "2c3a99487db1f470ffee7b3e6aac16d53308ae18",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
