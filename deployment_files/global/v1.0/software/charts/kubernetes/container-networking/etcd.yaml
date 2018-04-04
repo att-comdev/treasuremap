@@ -47,14 +47,14 @@ metadata:
     -
       src:
         schema: deckhand/CertificateAuthority/v1
-        name: calico-etcd
+        name: kubernetes-etcd
         path: .
       dest:
         path: .values.secrets.tls.client.ca
     -
       src:
         schema: deckhand/CertificateAuthority/v1
-        name: calico-etcd-peer
+        name: kubernetes-etcd-peer
         path: .
       dest:
         path: .values.secrets.tls.peer.ca
@@ -63,14 +63,14 @@ metadata:
     -
       src:
         schema: deckhand/Certificate/v1
-        name: calico-etcd-anchor
+        name: kubernetes-etcd-anchor
         path: .
       dest:
         path: .values.secrets.anchor.tls.cert
     -
       src:
         schema: deckhand/CertificateKey/v1
-        name: calico-etcd-anchor
+        name: kubernetes-etcd-anchor
         path: .
       dest:
         path: .values.secrets.anchor.tls.key
