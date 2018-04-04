@@ -29,3 +29,20 @@ data:
     - osh-infra-prometheus-openstack-exporter
     - openstack-horizon
     - openstack-barbican
+    - kubernetes-proxy
+    - kubernetes-container-networking
+    - kubernetes-dns
+    - kubernetes-etcd
+    - kubernetes-haproxy
+    - kubernetes-core
+    - ingress-kube-system
+    - ucp-ceph
+    - ucp-ceph-config
+    - ucp-core
+    - ucp-keystone
+    - ucp-divingbell
+    - ucp-armada
+    - ucp-deckhand
+    - ucp-drydock
+    - ucp-promenade
+    - ucp-shipyard
