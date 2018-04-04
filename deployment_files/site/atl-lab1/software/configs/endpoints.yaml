@@ -179,7 +179,7 @@ data:
       scheme:
         default: http
       host_fqdn_override:
-        default: null
+        default: shipyard-api.ucp.svc.cluster.local
     airflow_web:
       name: airflow-web
       hosts:
