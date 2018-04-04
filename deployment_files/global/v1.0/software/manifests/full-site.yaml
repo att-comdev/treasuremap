@@ -10,6 +10,23 @@ metadata:
 data:
   release_prefix: osh
   chart_groups:
+    - kubernetes-proxy
+    - kubernetes-container-networking
+    - kubernetes-dns
+    - kubernetes-etcd
+    - kubernetes-haproxy
+    - kubernetes-core
+    - ingress-kube-system
+    - ucp-ceph-update
+    - ucp-ceph-config
+    - ucp-core
+    - ucp-keystone
+    - ucp-divingbell
+    - ucp-armada
+    - ucp-deckhand
+    - ucp-drydock
+    - ucp-promenade
+    - ucp-shipyard
     - osh-infra-ingress-controller
     - osh-infra-ceph-config
     - osh-infra-logging
