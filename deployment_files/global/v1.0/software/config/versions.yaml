@@ -15,7 +15,7 @@ data:
           type: git
           location: https://github.com/att-comdev/promenade
           subpath: charts/etcd
-          reference: 31c2fc8346c6e6418c74860c0a31d73c7d154ca5
+          reference: 3faccce445267c7ecc00f96823c2330010d04bb7
         etcd-htk:
           type: git
           location: https://github.com/openstack/openstack-helm
@@ -70,7 +70,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/etcd
-        reference: 31c2fc8346c6e6418c74860c0a31d73c7d154ca5
+        reference: 3faccce445267c7ecc00f96823c2330010d04bb7
       etcd-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
