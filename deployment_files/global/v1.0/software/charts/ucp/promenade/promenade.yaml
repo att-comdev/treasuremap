@@ -80,6 +80,9 @@ data:
   upgrade:
     no_hooks: false
   values:
+    pod:
+      replicas:
+        api: 2
     conf:
       paste:
         filter:authtoken:
