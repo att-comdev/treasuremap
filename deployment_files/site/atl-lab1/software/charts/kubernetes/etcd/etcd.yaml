@@ -105,28 +105,28 @@ metadata:
     -
       src:
         schema: deckhand/Certificate/v1
-        name: calico-etcd-genesis
+        name: kubernetes-etcd-genesis
         path: .
       dest:
         path: '.values.nodes[2].tls.client.cert'
     -
       src:
         schema: deckhand/CertificateKey/v1
-        name: calico-etcd-genesis
+        name: kubernetes-etcd-genesis
         path: .
       dest:
         path: '.values.nodes[2].tls.client.key'
     -
       src:
         schema: deckhand/Certificate/v1
-        name: calico-etcd-genesis-peer
+        name: kubernetes-etcd-genesis-peer
         path: .
       dest:
         path: '.values.nodes[2].tls.peer.cert'
     -
       src:
         schema: deckhand/CertificateKey/v1
-        name: calico-etcd-genesis-peer
+        name: kubernetes-etcd-genesis-peer
         path: .
       dest:
         path: '.values.nodes[2].tls.peer.key'
@@ -134,28 +134,28 @@ metadata:
     -
       src:
         schema: deckhand/Certificate/v1
-        name: calico-etcd-controller01
+        name: kubernetes-etcd-controller01
         path: .
       dest:
         path: '.values.nodes[0].tls.client.cert'
     -
       src:
         schema: deckhand/CertificateKey/v1
-        name: calico-etcd-controller01
+        name: kubernetes-etcd-controller01
         path: .
       dest:
         path: '.values.nodes[0].tls.client.key'
     -
       src:
         schema: deckhand/Certificate/v1
-        name: calico-etcd-controller01-peer
+        name: kubernetes-etcd-controller01-peer
         path: .
       dest:
         path: '.values.nodes[0].tls.peer.cert'
     -
       src:
         schema: deckhand/CertificateKey/v1
-        name: calico-etcd-controller01-peer
+        name: kubernetes-etcd-controller01-peer
         path: .
       dest:
         path: '.values.nodes[0].tls.peer.key'
@@ -163,28 +163,28 @@ metadata:
     -
       src:
         schema: deckhand/Certificate/v1
-        name: calico-etcd-controller02
+        name: kubernetes-etcd-controller02
         path: .
       dest:
         path: '.values.nodes[1].tls.client.cert'
     -
       src:
         schema: deckhand/CertificateKey/v1
-        name: calico-etcd-controller02
+        name: kubernetes-etcd-controller02
         path: .
       dest:
         path: '.values.nodes[1].tls.client.key'
     -
       src:
         schema: deckhand/Certificate/v1
-        name: calico-etcd-controller02-peer
+        name: kubernetes-etcd-controller02-peer
         path: .
       dest:
         path: '.values.nodes[1].tls.peer.cert'
     -
       src:
         schema: deckhand/CertificateKey/v1
-        name: calico-etcd-controller02-peer
+        name: kubernetes-etcd-controller02-peer
         path: .
       dest:
         path: '.values.nodes[1].tls.peer.key'

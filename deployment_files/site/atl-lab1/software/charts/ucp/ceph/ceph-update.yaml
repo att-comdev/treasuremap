@@ -2,7 +2,7 @@
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: ucp-ceph
+  name: ucp-ceph-update
   layeringDefinition:
     abstract: false
     layer: site
@@ -21,9 +21,9 @@ data:
     conf:
       pool:
         target:
-          osd: 2
+          osd: 22
         default:
-          crush_rule: same_host
+          crush_rule: replicated_rule
         spec:
           # RBD pool
           - name: rbd
@@ -248,4 +248,18 @@ data:
 
   dependencies:
     - ceph-htk
+...
+---
+schema: armada/ChartGroup/v1
+metadata:
+  schema: metadata/Document/v1
+  name: ucp-ceph-update
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+data:
+  description: Ceph post-intall update
+  chart_group:
+    - ucp-ceph-update
 ...
