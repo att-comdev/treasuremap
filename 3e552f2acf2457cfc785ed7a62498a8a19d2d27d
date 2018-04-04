@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f0acd91_efcf3cfd",
+        "filename": "deployment_files/site/trex-lab1/profiles/host/rack1_data_plane",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1013122
+      },
+      "writtenOn": "2018-04-04T15:33:06Z",
+      "side": 1,
+      "message": "Minor, but this may be a good place to ensure uniform indenting",
+      "revId": "3e552f2acf2457cfc785ed7a62498a8a19d2d27d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48a0f127_50a081e3",
+        "filename": "deployment_files/site/trex-lab1/software/charts/kubernetes/container-networking/calico.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1013122
+      },
+      "writtenOn": "2018-04-04T15:33:06Z",
+      "side": 1,
+      "message": "I think this can be subbed from CommonAddresses",
+      "revId": "3e552f2acf2457cfc785ed7a62498a8a19d2d27d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5d34da0_3a50d628",
+        "filename": "deployment_files/site/trex-lab1/software/charts/ucp/ceph/ceph.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1013122
+      },
+      "writtenOn": "2018-04-04T15:33:06Z",
+      "side": 1,
+      "message": "A lot of these values likely exist in \"ucp-ceph-global\" - your site ceph doc might be able to be a lot simpler if you take advantage of the inheritance from global",
+      "revId": "3e552f2acf2457cfc785ed7a62498a8a19d2d27d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f035c23d_de3917d3",
+        "filename": "deployment_files/site/trex-lab1/software/charts/ucp/ceph/ceph.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1013122
+      },
+      "writtenOn": "2018-04-04T15:33:06Z",
+      "side": 1,
+      "message": "I\u0027ve been treating this as a secret - unique per site.",
+      "revId": "3e552f2acf2457cfc785ed7a62498a8a19d2d27d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf10237_767555c7",
+        "filename": "deployment_files/site/trex-lab1/software/charts/ucp/ceph/ceph.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1013122
+      },
+      "writtenOn": "2018-04-04T15:33:06Z",
+      "side": 1,
+      "message": "This # doesn\u0027t seem to match your definitions below.",
+      "revId": "3e552f2acf2457cfc785ed7a62498a8a19d2d27d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e8a0224_231a5788",
+        "filename": "deployment_files/site/trex-lab1/software/charts/ucp/ceph/ceph.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1013122
+      },
+      "writtenOn": "2018-04-04T15:33:06Z",
+      "side": 1,
+      "message": "This may not be needed if it\u0027s in the global doc",
+      "revId": "3e552f2acf2457cfc785ed7a62498a8a19d2d27d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a42c381_538f056c",
+        "filename": "deployment_files/site/trex-lab1/software/charts/ucp/ceph/ceph.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1013122
+      },
+      "writtenOn": "2018-04-04T15:33:06Z",
+      "side": 1,
+      "message": "This could probably be changed to sub in from the versions file.",
+      "revId": "3e552f2acf2457cfc785ed7a62498a8a19d2d27d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
