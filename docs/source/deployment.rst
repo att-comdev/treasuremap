@@ -347,6 +347,8 @@ highlights:
 - data/masters: Designate nodes that will run kubernetes master services. You
   should specify the same list of nodes which will run UCP services (control
   plane nodes).
+- data/workers: Designate nodes that will not run kubernetes master services and
+  will be used for hosting user workloads (e.g., compute nodes)
 - data/ntp/servers_joined: Upstream NTP servers. You may specify corporate NTP
   servers here if available.
 - data/storage/ceph/cluster_cidr: CIDR(s) for Ceph internal traffic. Set this to
@@ -436,6 +438,138 @@ kubernetes cluster.) Setting highlights:
 
 - data/assets/location: URL where ``join-<NODE>.sh`` script will be found.
   Replace ``rack06_mgmt`` with the name of your management network, if different.
+
+site/$NEW_SITE/software/charts/kubernetes/container-networking/etcd.yaml
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+File containing calico-etcd certificates and certificate keys. Setting hilights:
+
+- metadata/substitutions: Substitutions for Node names should be done as follows::
+
+    -
+      src:
+        schema: pegleg/CommonAddresses/v1
+        name: common-addresses
+        path: .masters[0].hostname
+      dest:
+        path: .values.nodes[0].name
+    -
+      src:
+        schema: pegleg/CommonAddresses/v1
+        name: common-addresses
+        path: .masters[1].hostname
+      dest:
+        path: .values.nodes[1].name
+    -
+      src:
+        schema: pegleg/CommonAddresses/v1
+        name: common-addresses
+        path: .genesis.hostname
+      dest:
+        path: .values.nodes[2].name
+
+The list does not need to include all nodes in your environment. Only nodes with
+``calico-etcd`` set to ``enabled`` (as defined in host profile metadata) need to
+be listed. Usually this is just the control plane nodes plus the genesis node.
+
+Adjust the list of node names according to your environment. Cross-reference the
+``site/$NEW_SITE/networks/common-address.yaml`` file to ensure the correct node
+count.
+
+Then for the same list of nodes, perform the tls cert and key substitutions for
+both tls peer and tls client, e.g.::
+
+    # Master node 1 certs
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-${MASTER_1_HOSTNAME}
+        path: .
+      dest:
+        path: .values.nodes[0].tls.client.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-${MASTER_1_HOSTNAME}
+        path: .
+      dest:
+        path: .values.nodes[0].tls.client.key
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-${MASTER_1_HOSTNAME}-peer
+        path: .
+      dest:
+        path: .values.nodes[0].tls.peer.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-${MASTER_1_HOSTNAME}-peer
+        path: .
+      dest:
+        path: .values.nodes[0].tls.peer.key
+
+    # Master node 2 certs
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-${MASTER_2_HOSTNAME}
+        path: .
+      dest:
+        path: .values.nodes[1].tls.client.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-${MASTER_2_HOSTNAME}
+        path: .
+      dest:
+        path: .values.nodes[1].tls.client.key
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-${MASTER_2_HOSTNAME}-peer
+        path: .
+      dest:
+        path: .values.nodes[1].tls.peer.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-${MASTER_2_HOSTNAME}-peer
+        path: .
+      dest:
+        path: .values.nodes[1].tls.peer.key
+
+    # Genesis certs
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-${GENESIS_HOSTNAME}
+        path: .
+      dest:
+        path: .values.nodes[2].tls.client.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-${GENESIS_HOSTNAME}
+        path: .
+      dest:
+        path: .values.nodes[2].tls.client.key
+    -
+      src:
+        schema: deckhand/Certificate/v1
+        name: calico-etcd-${GENESIS_HOSTNAME}-peer
+        path: .
+      dest:
+        path: .values.nodes[2].tls.peer.cert
+    -
+      src:
+        schema: deckhand/CertificateKey/v1
+        name: calico-etcd-${GENESIS_HOSTNAME}-peer
+        path: .
+      dest:
+        path: .values.nodes[2].tls.peer.key
+
+and substituting node hostnames where prompted by environment variable syntax.
 
 OSH
 ---
