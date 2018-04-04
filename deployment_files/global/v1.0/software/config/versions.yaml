@@ -15,7 +15,7 @@ data:
           type: git
           location: https://github.com/att-comdev/promenade
           subpath: charts/etcd
-          reference: 31c2fc8346c6e6418c74860c0a31d73c7d154ca5
+          reference: 3faccce445267c7ecc00f96823c2330010d04bb7
         etcd-htk:
           type: git
           location: https://github.com/openstack/openstack-helm
@@ -70,7 +70,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/etcd
-        reference: 31c2fc8346c6e6418c74860c0a31d73c7d154ca5
+        reference: 3faccce445267c7ecc00f96823c2330010d04bb7
       etcd-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -268,7 +268,7 @@ data:
         type: git
         location: https://github.com/att-comdev/deckhand
         subpath: charts/deckhand
-        reference: d82d0cfaf7602d43fc83f2ee0f4aaa844c4e2ab9
+        reference: refs/changes/62/406462/2
       deckhand-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -416,8 +416,8 @@ data:
         ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
       deckhand:
-        # git d82d0cfaf7602d43fc83f2ee0f4aaa844c4e2ab9
-        deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:5181889eed0097b3a59e2c0d3d8768a5776a4ee9762ed4e82e1696e0dd36ae9e
+        # git 74528a518dde35b707fc6b59e2dbac008114ffda
+        deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:ce5aa21e870212eb81a4a3ebaf5cfcb8c6b43291a211f2566d6d6aebce536341
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         db_sync: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
