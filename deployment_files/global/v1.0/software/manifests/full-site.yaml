@@ -8,7 +8,7 @@ metadata:
     layer: global
   storagePolicy: cleartext
 data:
-  release_prefix: osh
+  release_prefix: clcp
   chart_groups:
     - osh-infra-ingress-controller
     - osh-infra-ceph-config
