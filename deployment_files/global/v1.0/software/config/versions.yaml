@@ -268,7 +268,7 @@ data:
         type: git
         location: https://github.com/att-comdev/deckhand
         subpath: charts/deckhand
-        reference: d82d0cfaf7602d43fc83f2ee0f4aaa844c4e2ab9
+        reference: 35f15ee601ebf89b93d657a1b78fedb3a8ebbe38
       deckhand-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -318,7 +318,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/promenade
-        reference: 3faccce445267c7ecc00f96823c2330010d04bb7
+        reference: refs/changes/15/407015/1
       promenade-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -409,15 +409,15 @@ data:
         helm: artifacts-aic.atlantafoundry.com/lachlanevenson/k8s-helm@sha256:ce1986ec1a44480708f1bbc2b81a7d4fb89e178fb92bf08ec38ccf46f62020f0
         tiller: artifacts-aic.atlantafoundry.com/kubernetes-helm/tiller@sha256:1becf867016f6e7652908518729e140845107c5344afc237718e3ed3b6ca63c7
       promenade:
-        # git 3faccce445267c7ecc00f96823c2330010d04bb7
+        # git refs/changes/15/407015/1
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
-        promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:9eebdc4c5b762351b512454bce27a30fcdbb32243ce95a965b07e8595b2cecc0
+        promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:c941b136efd192bebe5afeb604f5b66d7d0f50c551b7ce6e6d7737b6988e6c69
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
       deckhand:
-        # git d82d0cfaf7602d43fc83f2ee0f4aaa844c4e2ab9
-        deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:5181889eed0097b3a59e2c0d3d8768a5776a4ee9762ed4e82e1696e0dd36ae9e
+        # git 35f15ee601ebf89b93d657a1b78fedb3a8ebbe38
+        deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:de3600481a9921c4943ae73eb0e0e9e771ec4333f1628926b6e014badb0131ea
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         db_sync: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
