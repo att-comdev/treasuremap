@@ -278,7 +278,7 @@ data:
         type: git
         location: https://github.com/att-comdev/divingbell
         subpath: divingbell
-        reference: 82254b99e11ed8065439b3f8731b42bccf8e63bf
+        reference: 73e7437b9bbecbcdd006b8ee33460843d2baa593
       divingbell-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -436,6 +436,8 @@ data:
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         barbican_api: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-barbican-api:3.0.3
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
+      divingbell:
+        divingbell: artifacts-aic.atlantafoundry.com/ubuntu:16.04
       drydock:
         # git 12650c7909cf813e1a7994107164252b79e42b40
         drydock: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:871d96333080fe642115c00fd6668c82df08a9ea1718ec87eaf219809333e9aa
