@@ -130,7 +130,7 @@ data:
   values:
     pod:
       replicas:
-        api: 2
+        deckhand: 2
     conf:
       deckhand:
         DEFAULT:
