@@ -5,7 +5,7 @@ metadata:
   name: DELL_HP_Generic
   layeringDefinition:
     abstract: false
-    layer: site
+    layer: global
 data:
   vendor: Dell
   generation: '8'
