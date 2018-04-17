@@ -697,7 +697,7 @@ restart the NTP service::
 
     sudo service ntp restart
 
-Refer to `operationsNTP`_ to ensure that the NTP stats are healthy on genesis
+Refer to `troubleshooting <operations.html#Troubleshooting time sync issues>`__ to ensure that the NTP stats are healthy on genesis
 node before proceeding. If you cannot get good time to your selected time
 servers, consider using alternate time sources for your deployment.
 
