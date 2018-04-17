@@ -93,8 +93,6 @@ To troulbeshoot a Kubernetes issue with the pod, use the following command::
 
 This will provide details as to any Kubernetes related failures.
 
-.. _operationsNTP:
-
 Troubleshooting time sync issues
 --------------------------------
 
@@ -135,3 +133,71 @@ node have been suspended or evacuated)::
     sudo service ntp stop
     sudo ntpdate ntp.ubuntu.com  # Or use a local NTP server if this fails
     sudo service ntp start
+
+Troubleshooting IPMI issues
+---------------------------
+
+Manual Validation
+^^^^^^^^^^^^^^^^^
+
+Drydock already performs validation of IPMI credentials for bare metal nodes it
+has configuration data for. However if Drydock is not installed yet, or you want
+to do a manual validation, then the following steps show how to do this. This
+section also provides troubleshooting steps for how to resolve issues with non-
+working IPMI functionality on bare metal nodes.
+
+First install needed utilities on the Genesis host::
+
+    sudo apt -y install ipmitool nmap
+
+Run ipmitool against each out-of-band interface defined in your site manifests,
+substituting the IP address, username, and password that are specified in them
+(Note: This assumes you can route to out-of-band IPs from the genesis node)::
+
+    ipmitool -I lanplus -H $OOB_IP_ADDR -U $USER -P $PASS chassis status
+
+If successful, an output similar to the following should be received::
+
+    System Power         : on
+    Power Overload       : false
+    Power Interlock      : inactive
+    Main Power Fault     : false
+    Power Control Fault  : false
+    Power Restore Policy : always-off
+    Last Power Event     : command
+    Chassis Intrusion    : inactive
+    Front-Panel Lockout  : inactive
+    Drive Fault          : false
+    Cooling/Fan Fault    : false
+    Sleep Button Disable : not allowed
+    Diag Button Disable  : allowed
+    Reset Button Disable : not allowed
+    Power Button Disable : allowed
+    Sleep Button Disabled: false
+    Diag Button Disabled : true
+    Reset Button Disabled: false
+    Power Button Disabled: false
+
+In this case, IPMI connection and authentication is working properly on this
+node. However if unsuccessful, an output similar to the following may be
+received::
+
+    Error: Unable to establish IPMI v2 / RMCP+ session
+
+If this happens, check the access to the IPMI port on the target server as
+follows::
+
+    sudo nmap -sU -p 623 $OOB_IP_ADDR
+
+If ``nmap`` reports that the port is open, then this can indicate an
+authorization issue. Ensure your IPMI credentials are correct and that the node
+is running the latest firmware. If the issue still persists, try performing an
+iDrac/iLo restart, followed by a password reset.
+(Note - UDP scanning is prone to false-positives.)
+
+If ``nmap`` reports that the port is closed, then you should ensure that
+``IPMI over LAN`` or equivalent is enabled for the target server. (This allows
+the IPMI service to bind to the same IP address used for iDrac/iLo, but on a
+different port - UDP 623). Ensure the node is running the latest firmware. If
+the issue persists, try performing an iDrac/iLo reset, and toggling the
+``IPMI over LAN`` option off and on again.
