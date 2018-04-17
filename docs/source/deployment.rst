@@ -621,6 +621,16 @@ Now, create an output directory for Promenade bundles and run the
 
 Estimated runtime: About **1 minute**
 
+After the bundle has been successfully created, copy the generated certificates
+into your site definition. Ex::
+
+    mkdir -p ~/treasuremap/deployment_files/site/$NEW_SITE/secrets/certificates/
+    sudo cp ~/${NEW_SITE}_bundle/certificates.yaml \
+    ~/treasuremap/deployment_files/site/$NEW_SITE/secrets/certificates/certificates.yaml
+
+Commit the entire site configuration to the source control system identified in
+the `Pre-req`_ section to track configuration documents.
+
 Genesis node
 ------------
 
