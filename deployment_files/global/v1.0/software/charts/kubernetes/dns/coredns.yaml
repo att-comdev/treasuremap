@@ -2,12 +2,10 @@
 schema: armada/Chart/v1
 metadata:
   schema: metadata/Document/v1
-  name: coredns-global
+  name: coredns
   layeringDefinition:
     abstract: false
     layer: global
-  labels:
-    name: coredns-global
   storagePolicy: cleartext
   substitutions:
     # Chart source
@@ -33,21 +31,21 @@ metadata:
         path: .dns.cluster_domain
       dest:
         path: .values.conf.coredns.corefile
-        pattern: '(CLUSTER_DOMAIN)'
+        pattern: CLUSTER_DOMAIN
     - src:
         schema: pegleg/CommonAddresses/v1
         name: common-addresses
         path: .kubernetes.service_cidr
       dest:
         path: .values.conf.coredns.corefile
-        pattern: '(SERVICE_CIDR)'
+        pattern: SERVICE_CIDR
     - src:
         schema: pegleg/CommonAddresses/v1
         name: common-addresses
         path: .kubernetes.pod_cidr
       dest:
         path:  .values.conf.coredns.corefile
-        pattern: '(POD_CIDR)'
+        pattern: POD_CIDR
 
     - src:
         schema: pegleg/CommonAddresses/v1
@@ -55,14 +53,14 @@ metadata:
         path: .dns.upstream_servers[0]
       dest:
         path: .values.conf.coredns.corefile
-        pattern: '(UPSTREAM1)'
+        pattern: UPSTREAM1
     - src:
         schema: pegleg/CommonAddresses/v1
         name: common-addresses
         path: .dns.upstream_servers[1]
       dest:
         path: .values.conf.coredns.corefile
-        pattern: '(UPSTREAM2)'
+        pattern: UPSTREAM2
 data:
   chart_name: coredns
   release: coredns
