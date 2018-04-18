@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "10c0bcc8_75592c38",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1013122
+      },
+      "writtenOn": "2018-04-18T14:10:21Z",
+      "side": 1,
+      "message": "I just ran into a situation like this the other day, actually. However, my creds were correct (could get into iDrac no issue) and the latest firmware was being used. The key to get it working? Reset the iDrac password to exactly what it was before. Then it magically would give me chassis status through ipmitool and update_site succeeded (previously threw some ipmi connection errors). Would we potentially be able to add trying a password reset out if all else fails?",
+      "revId": "79990da7977cf606b512ba01640bc113322b9028",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
