@@ -579,11 +579,39 @@ TBD
 Generating site YAML files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-After constituent YAML configurations are finalized, use pegleg to perform the
-merge that will yield the combined global + site type + site YAML::
+After constituent YAML configurations are finalized, use Pegleg to lint your
+manifests, and resolve any issues that result from linting before proceeding::
 
-    mkdir ~/${NEW_SITE}_yaml
-    sudo sh -c "tools/pegleg.sh site collect $NEW_SITE > ~/${NEW_SITE}_yaml/$NEW_SITE.yaml"
+    sudo sh -c "WORKSPACE=~/treasuremap/deployment_files ~/pegleg/tools/pegleg.sh \
+      lint -p /workspace"
+
+Note: ``P001`` linting errors are expected for missing certificates, as they are
+not generated until the next section. You may suppress this warning by appending
+``-x P001`` to the lint command.
+
+Next, use pegleg to perform the merge that will yield the combined global +
+site type + site YAML::
+
+    mkdir -p ~/${NEW_SITE}_yaml
+    sudo sh -c "WORKSPACE=~/treasuremap/deployment_files ~/pegleg/tools/pegleg.sh \
+      site -p /workspace collect $NEW_SITE -s /workspace"
+    mv ~/treasuremap/deployment_files/workspace.yaml ~/${NEW_SITE}_yaml/$NEW_SITE.yaml
+
+Perform a visual inspection of the output. If any errors are discovered, you may
+fix your manifests and re-run the ``lint`` and ``collect`` commands. It is this
+output which will be used in subsequent steps.
+
+Lastly, you should also perform a ``render`` on the documents. The resulting
+render from Pegleg will not be used as input in subsequent steps, but is useful
+for understanding what the document will look like once Deckhand has performed
+all substitutions, replacements, etc. This is also useful for troubleshooting,
+and addressing any Deckhand errors prior to submitting via Shipyard::
+
+    sudo sh -c "WORKSPACE=~/treasuremap/deployment_files \
+      ~/pegleg/tools/pegleg.sh site -p /workspace render $NEW_SITE"
+
+Inspect the rendered document for any errors. If there are errors, address them
+in your manifests and re-run this section of the document.
 
 Building the Promenade bundle
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
