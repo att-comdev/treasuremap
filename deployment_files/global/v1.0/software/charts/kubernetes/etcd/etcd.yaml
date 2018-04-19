@@ -35,6 +35,13 @@ metadata:
         path: .kubernetes.etcd_service_ip
       dest:
         path: .values.service.ip
+    -
+      src:
+        schema: pegleg/CommonAddresses/v1
+        name: common-addresses
+        path: .kubernetes.etcd_service_ip
+      dest:
+        path: .values.anchor.etcdctl_endpoint
 
     # CAs
     -
@@ -77,8 +84,6 @@ data:
   upgrade:
     no_hooks: true
   values:
-    anchor:
-      etcdctl_endpoint: kubernetes-etcd.kube-system.svc.cluster.local
     labels:
       anchor:
         node_selector_key: kubernetes-etcd
