@@ -1,0 +1,40 @@
+---
+schema: pegleg/CommonAddresses/v1
+metadata:
+  schema: metadata/Document/v1
+  name: common-addresses-type
+  layeringDefinition:
+    abstract: true
+    layer: type
+    parentSelector:
+      name: common-addresses-global
+    actions:
+      - method: merge
+        path: .
+  labels:
+    name: common-addresses-type
+  storagePolicy: cleartext
+data:
+  calico:
+    # TODO(mb874d): match to site
+    ip_autodetection_method: 'interface=bond0.22|ens5'
+
+  dns:
+    # TODO(mb874d): match to site
+    upstream_servers:
+      - 8.8.8.8
+      - 8.8.4.4
+    # TODO(mb874d): update charts/code to handle joining from list, so we can use
+    # the list everywhere
+    upstream_servers_joined: 8.8.8.8,8.8.4.4
+
+  ntp:
+    servers_joined: ntp.ubuntu.com
+
+  neutron:
+    tunnel_device: eno1
+    external_iface: bond0.26
+
+  openvswitch:
+    external_iface: bond0.26
+...

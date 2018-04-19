@@ -113,7 +113,7 @@ metadata:
   name: calico-htk
   layeringDefinition:
     abstract: false
-    layer: global
+    layer: site
   storagePolicy: cleartext
   substitutions:
     - src:
