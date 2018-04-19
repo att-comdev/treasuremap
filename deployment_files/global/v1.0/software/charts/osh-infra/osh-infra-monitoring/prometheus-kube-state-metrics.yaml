@@ -59,8 +59,12 @@ data:
       create: []
   values:
     labels:
-      node_selector_key: openstack-control-plane
-      node_selector_value: enabled
+      kube_state_metrics:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      job:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
   dependencies:
     - osh-infra-helm-toolkit
 ...

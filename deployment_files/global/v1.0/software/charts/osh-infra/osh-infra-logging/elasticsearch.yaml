@@ -68,8 +68,12 @@ data:
       create: []
   values:
     labels:
-      node_selector_key: openstack-control-plane
-      node_selector_value: enabled
+      elasticsearch:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      job:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
     monitoring:
       prometheus:
         enabled: true
@@ -77,6 +81,95 @@ data:
       elasticsearch:
         env:
           java_opts: "-Xms2g -Xmx2g"
+      curator:
+        #run every 6th hour
+        schedule:  "0 */6 * * *"
+        action_file:
+          # Remember, leave a key empty if there is no value.  None will be a string,
+          # not a Python "NoneType"
+          #
+          # Also remember that all examples have 'disable_action' set to True.  If you
+          # want to use this action as a template, be sure to set this to False after
+          # copying it.
+          actions:
+            1:
+              action: delete_indices
+              description: >-
+                "Delete indices older than 7 days"
+              options:
+                timeout_override:
+                continue_if_exception: False
+                ignore_empty_list: True
+                disable_action: False
+              filters:
+              - filtertype: pattern
+                kind: prefix
+                value: logstash-
+              - filtertype: age
+                source: name
+                direction: older
+                timestring: '%Y.%m.%d'
+                unit: days
+                unit_count: 7
+            2:
+              action: delete_indices
+              description: >-
+                "Delete indices by age if available disk space is
+                 less than 80% total disk"
+              options:
+                timeout_override: 600
+                continue_if_exception: False
+                ignore_empty_list: True
+                disable_action: False
+              filters:
+              - filtertype: pattern
+                kind: prefix
+                value: logstash-
+              - filtertype: space
+                source: creation_date
+                use_age: True
+                disk_space: 24
+            3:
+              action: snapshot
+              description: >-
+                "Snapshot indices older than one day"
+              options:
+                repository: default_repo
+                # Leaving this blank results in the default name format
+                name:
+                wait_for_completion: True
+                max_wait: 3600
+                wait_interval: 10
+                timeout_override: 600
+                ignore_empty_list: True
+                continue_if_exception: False
+                disable_action: True
+              filters:
+              - filtertype: age
+                source: name
+                direction: older
+                timestring: '%Y.%m.%d'
+                unit: days
+                unit_count: 1
+            4:
+              action: delete_snapshots
+              description: >-
+                "Delete snapshots older than 30 days"
+              options:
+                repository: default_repo
+                disable_action: True
+                timeout_override: 600
+                ignore_empty_list: True
+              filters:
+              - filtertype: pattern
+                kind: prefix
+                value: curator-
+                exclude:
+              - filtertype: age
+                source: creation_date
+                direction: older
+                unit: days
+                unit_count: 30
     storage:
       elasticsearch:
         requests:
