@@ -53,11 +53,15 @@ data:
       create: []
   values:
     labels:
-      node_selector_key: openstack-control-plane
-      node_selector_value: enabled
+      prometheus:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      job:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
     pod:
       replicas:
-        prometheus: 2
+        prometheus: 3
     storage:
       requests:
         storage: 10Gi
