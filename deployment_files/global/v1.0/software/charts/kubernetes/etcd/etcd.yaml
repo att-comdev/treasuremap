@@ -35,6 +35,13 @@ metadata:
         path: .kubernetes.etcd_service_ip
       dest:
         path: .values.service.ip
+    -
+      src:
+        schema: pegleg/CommonAddresses/v1
+        name: common-addresses
+        path: .kubernetes.etcd_service_ip
+      dest:
+        path: .values.anchor.etcdctl_endpoint
 
     # CAs
     -
