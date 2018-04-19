@@ -116,52 +116,52 @@ data:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: 7757400edc24a97d5a25df20c89e2f7d4ee402c2
+        reference: f059e9a6df2c390dd5a83415fdca1796dae626df
       elasticsearch:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: elasticsearch
-        reference: 7757400edc24a97d5a25df20c89e2f7d4ee402c2
+        reference: f059e9a6df2c390dd5a83415fdca1796dae626df
       fluent_logging:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: fluent-logging
-        reference: 7757400edc24a97d5a25df20c89e2f7d4ee402c2
+        reference: f059e9a6df2c390dd5a83415fdca1796dae626df
       kibana:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: kibana
-        reference: 7757400edc24a97d5a25df20c89e2f7d4ee402c2
+        reference: f059e9a6df2c390dd5a83415fdca1796dae626df
       prometheus:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus
-        reference: 7757400edc24a97d5a25df20c89e2f7d4ee402c2
+        reference: f059e9a6df2c390dd5a83415fdca1796dae626df
       prometheus_node_exporter:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-node-exporter
-        reference: 7757400edc24a97d5a25df20c89e2f7d4ee402c2
+        reference: f059e9a6df2c390dd5a83415fdca1796dae626df
       prometheus_kube_state_metrics:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-kube-state-metrics
-        reference: 7757400edc24a97d5a25df20c89e2f7d4ee402c2
+        reference: f059e9a6df2c390dd5a83415fdca1796dae626df
       prometheus_alertmanager:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-alertmanager
-        reference: 7757400edc24a97d5a25df20c89e2f7d4ee402c2
+        reference: f059e9a6df2c390dd5a83415fdca1796dae626df
       grafana:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: grafana
-        reference: 7757400edc24a97d5a25df20c89e2f7d4ee402c2
+        reference: f059e9a6df2c390dd5a83415fdca1796dae626df
       prometheus_openstack_exporter:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-openstack-exporter
-        reference: 7757400edc24a97d5a25df20c89e2f7d4ee402c2
+        reference: f059e9a6df2c390dd5a83415fdca1796dae626df
     osh:
       helm_toolkit:
         type: git
