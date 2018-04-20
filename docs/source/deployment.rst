@@ -108,7 +108,7 @@ Disk
 
    - Two-disk RAID-1 mirror for operating system
    - Remaining disks need to be configured according to the host profile target
-     for each given server (e.g., RAID-6).
+     for each given server (e.g., RAID-6; no Ceph).
 
 BIOS and IPMI
 ^^^^^^^^^^^^^
@@ -207,7 +207,7 @@ Move the secrets to your $NEW_SITE's location for passphrase secrets::
     mv secrets_tools/*.yaml site/$NEW_SITE/secrets/passphrases
 
 Public SSH keys for environment access are stored under
-``site/$NEW_SITE/secrets/publickey/``. Make copies of ``ca846m_ssh_public_key.yaml``
+``global/common/secrets/publickey/``. Make copies of ``ca846m_ssh_public_key.yaml``
 and name the copies according to each ssh key you wish to specify that will have
 bare metal SSH acess. Delete any unneeded keys leftover from ``atl-lab1``.
 Modify the contents of each remaining file as follows:
@@ -434,8 +434,10 @@ site/$NEW_SITE/baremetal/bootactions.yaml
 File containing defined tasks to run after PXE boot (boot actions), so that
 newly provisioned bare metal can retrieve their ``join-<NODE>.sh`` scripts and
 run them, without a manual execution. (This script will join the node to the UCP
-kubernetes cluster.) Setting highlights:
+kubernetes cluster.) Setting highlights for ``promjoin`` bootaction:
 
+- data/node_filter/filter_set/node_names: A list of hostnames for all bare metal
+  nodes aside from genesis node. Update according to your environment.
 - data/assets/location: URL where ``join-<NODE>.sh`` script will be found.
   Replace ``rack06_mgmt`` with the name of your management network, if different.
 
@@ -571,10 +573,135 @@ both tls peer and tls client, e.g.::
 
 and substituting node hostnames where prompted by environment variable syntax.
 
-OSH
----
+site/$NEW_SITE/software/charts/ucp/ceph/ceph.yaml
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-TBD
+File containing site-level settings for Ceph. Ceph is deployed on control plane
+nodes. Setting highlights:
+
+- data/values/conf/storage/osd[*]/data/location: The block device that will be
+  formatted by the Ceph chart and used as a Ceph OSD disk
+- data/values/conf/storage/osd[*]/journal/type: ``block-logical`` if a block
+  device will be used for journal, or ``directory`` for a directory mounted
+  through Drydock (specified in control plane host profile). Refer to journal
+  paradigms below.
+- data/values/conf/storage/osd[*]/journal/location: The block device or
+  directory backing the ceph journal used by this OSD. Refer to the journal
+  paradigms below.
+- data/values/conf/pool/target/osd: Set this to match the number of OSD disks
+  belonging to this bare metal node.
+
+Assumptions:
+
+1. Ceph disks are configured for JBOD
+2. Ceph disk mapping and disk layout is the same across Ceph nodes (i.e. only
+   one control plane host profile and hardware profile)
+3. If doing a fresh install, disk are unlabeled or not labeled from a previous
+   Ceph install, so that Ceph chart will not fail disk initialization
+
+This document covers two Ceph journal deployment paradigms:
+
+1. Servers with SSD/HDD mix (disregarding operating system disks).
+2. Servers with no SSDs (disregarding operating system disks). In other words,
+   exclusively spinning disk HDDs available for Ceph.
+
+If you have an operating system available on the target hardware, you can
+determine HDD and SSD layout with::
+
+    lsblk -d -o name,rota
+
+where a ``rota`` (rotational) value of ``1`` indicates a spinning HDD, and where
+a value of ``0`` indicates non-spinning disk (i.e. SSD). (Note - Some SSDs still
+report a value of ``1``, so it is best to go by your server specifications).
+
+In case #1, configure the chart to use the entire disk (unpartitioned block
+device). This applies both to the Ceph OSD disks and the Ceph journal disks.
+Divide the number of journal disks as evenly as possible between the OSD disks.
+Consider the follow example where:
+
+- /dev/sda is the operating system RAID-1 device
+- /dev/sdb and /dev/sdc are SSDs
+- /dev/sd[defg] are HDDs
+
+Then, the data section of this file would look like::
+
+    data:
+      values:
+        conf:
+          storage:
+            osd:
+              - data:
+                  type: block-logical
+                  location: /dev/sdd
+                journal:
+                  type: block-logical
+                  location: /dev/sdb
+              - data:
+                  type: block-logical
+                  location: /dev/sde
+                journal:
+                  type: block-logical
+                  location: /dev/sdb
+              - data:
+                  type: block-logical
+                  location: /dev/sdf
+                journal:
+                  type: block-logical
+                  location: /dev/sdc
+              - data:
+                  type: block-logical
+                  location: /dev/sdg
+                journal:
+                  type: block-logical
+                  location: /dev/sdc
+          pool:
+            target:
+              osd: 4
+
+In case #2, Ceph best practice is to allocate journal space on all OSD disks.
+The Ceph chart assumes this partitioning has been done beforehand. Ensure that
+your control plane host profile is partitioning each disk between the Ceph OSD
+and Ceph journal, and that it is mounting the journal partitions. (Drydock will
+drive these disk layouts via MaaS provisioning). Note the mountpoints for the
+journals and the partition mappings. Consider the following example where:
+
+- /dev/sda is the operating system RAID-1 device
+- /dev/sd[bcde] are HDDs
+
+Then, the data section of this file will look similar to the following::
+
+    data:
+      values:
+        conf:
+          storage:
+            osd:
+              - data:
+                  type: block-logical
+                  location: /dev/sdb2
+                journal:
+                  type: directory
+                  location: /var/lib/openstack-helm/ceph/journal-sdb1
+              - data:
+                  type: block-logical
+                  location: /dev/sdc2
+                journal:
+                  type: directory
+                  location: /var/lib/openstack-helm/ceph/journal-sdc1
+              - data:
+                  type: block-logical
+                  location: /dev/sdd2
+                journal:
+                  type: directory
+                  location: /var/lib/openstack-helm/ceph/journal-sdd1
+              - data:
+                  type: block-logical
+                  location: /dev/sde2
+                journal:
+                  type: directory
+                  location: /var/lib/openstack-helm/ceph/journal-sde1
+          pool:
+            target:
+              osd: 4
 
 Generating site YAML files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -660,6 +787,58 @@ specify a local NTP server instead of using ``ntp.ubuntu.com``.
 
 Do not install an NTP client on the genesis host. This would conflict with the
 NTP client running in the MaaS chart on this node.
+
+Setup Ceph Journals
+^^^^^^^^^^^^^^^^^^^
+
+Note - **This section is only required** in the Ceph journaling scenario where
+the OSDs and journals are two different partitions on the same disks (the all-HDD
+scenario described in the `site/$NEW_SITE/software/charts/ucp/ceph/ceph.yaml`_ section).
+
+Until genesis node reprovisioning is implemented, it is necessary to manually
+perform host-level disk partitioning and mounting on the genesis node, for
+activites that would otherwise have been addressed by a bare metal node
+provision via Drydock host profile data and MaaS.
+
+Assuming your genesis HW matches the HW used in your control plane host profile,
+you should manually apply to the genesis node the same Ceph partitioning (OSDs &
+journals) and formatting + mounting (journals only) as defined in the control
+plane host profile. See
+``treasuremap/deployment_files/global/v1.0/profiles/host/base_control_plane.yaml``.
+
+In this example, there are two Ceph journals defined, each of which is 60g in
+size on ``/dev/sdb`` and ``/dev/sdc``. The following steps assume that disks
+are not partitioned, that you have no data stored there requiring backup, and
+that the disk's sector size is 512 bytes::
+
+    sudo fdisk /dev/sdb <<EOF
+    g
+    n
+    1
+    2048
+    125831168
+    w
+    EOF
+
+where ``125831168`` is 60gb in bytes, divided by the sector size (512) plus the
+starting sector number (2048). Repeat for ``/dev/sdc``. Then, format partitions
+with XFS::
+
+    sudo mkfs.ext4 /dev/sdb1
+    sudo mkfs.ext4 /dev/sdc1
+
+Create mount directories to match those defined in the same host profile ceph
+journals::
+
+    sudo mkdir -p /var/lib/openstack-helm/ceph/journal-sdb1
+    sudo mkdir -p /var/lib/openstack-helm/ceph/journal-sdc1
+
+Use the ``blkid`` command to get the UUIDs for ``/dev/sdb1`` and ``/dev/sdc1``,
+then populate ``/etc/fstab`` accordingly and mount. Ex::
+
+    sudo sh -c 'echo "UUID=01234567-ffff-aaaa-bbbb-abcdef012345 /var/lib/openstack-helm/ceph/journal0 ext4 defaults 0 0" >> /etc/fstab'
+    sudo sh -c 'echo "UUID=12345678-abcd-abcd-abcd-abcdef123456 /var/lib/openstack-helm/ceph/journal1 ext4 defaults 0 0" >> /etc/fstab'
+    sudo mount -a
 
 Promenade bootstrap
 ^^^^^^^^^^^^^^^^^^^
