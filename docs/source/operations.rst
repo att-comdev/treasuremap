@@ -93,6 +93,8 @@ To troulbeshoot a Kubernetes issue with the pod, use the following command::
 
 This will provide details as to any Kubernetes related failures.
 
+.. _operationsNTP:
+
 Troubleshooting time sync issues
 --------------------------------
 
