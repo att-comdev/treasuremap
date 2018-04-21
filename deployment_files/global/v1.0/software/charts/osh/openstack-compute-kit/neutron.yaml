@@ -204,7 +204,7 @@ data:
     post:
       create: []
   values:
-    pods:
+    pod:
       replicas:
         server: 2
     labels:

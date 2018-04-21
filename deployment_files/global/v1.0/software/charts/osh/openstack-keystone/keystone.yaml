@@ -142,7 +142,7 @@ data:
     post:
       create: []
   values:
-    pods:
+    pod:
       replicas:
         api: 2
     labels:

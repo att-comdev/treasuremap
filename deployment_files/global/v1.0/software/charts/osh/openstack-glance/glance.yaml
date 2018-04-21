@@ -191,7 +191,7 @@ data:
     post:
       create: []
   values:
-    pods:
+    pod:
       replicas:
         api: 2
         registry: 2
