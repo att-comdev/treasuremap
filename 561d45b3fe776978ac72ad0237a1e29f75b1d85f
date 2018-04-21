@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c63bf102_5e441939",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1012094
+      },
+      "writtenOn": "2018-04-21T00:26:01Z",
+      "side": 1,
+      "message": "I\u0027m not sure - I thought that OSDs shared the same journal? Or only shared the same disk (and require partitioning?). @portdirect do you know?",
+      "parentUuid": "504637d2_4dd3b4b6",
+      "range": {
+        "startLine": 642,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 36
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "04cb3d93_1a7e2a02",
         "filename": "docs/source/deployment.rst",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-20T17:06:43Z",
       "side": 1,
       "message": "can we do this more cleanly (sgdisk perhaps?)",
+      "range": {
+        "startLine": 814,
+        "startChar": 1,
+        "endLine": 821,
+        "endChar": 7
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f65dc21_013f892f",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1012094
+      },
+      "writtenOn": "2018-04-21T00:26:01Z",
+      "side": 1,
+      "message": "Good point, will look into it",
+      "parentUuid": "04cb3d93_1a7e2a02",
       "range": {
         "startLine": 814,
         "startChar": 1,
