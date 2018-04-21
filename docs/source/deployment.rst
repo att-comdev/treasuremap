@@ -349,8 +349,9 @@ highlights:
   plane nodes).
 - data/workers: Designate nodes that will not run kubernetes master services and
   will be used for hosting user workloads (e.g., compute nodes)
-- data/ntp/servers_joined: Upstream NTP servers. You may specify corporate NTP
-  servers here if available.
+- data/ntp/servers_joined: Upstream NTP servers. Use local NTP sources if
+  available, or corporate or other reachable external sources where local NTP is
+  not available.
 - data/storage/ceph/cluster_cidr: CIDR(s) for Ceph internal traffic. Set this to
   the list of all management networks used in the environment that will host
   Ceph services. In practice, this means the list of the management networks
@@ -658,8 +659,19 @@ proceeding::
 If your network policy does not allow time sync with external time sources,
 specify a local NTP server instead of using ``ntp.ubuntu.com``.
 
-Do not install an NTP client on the genesis host. This would conflict with the
-NTP client running in the MaaS chart on this node.
+Then, install the NTP client::
+
+    sudo apt -y install ntp
+
+Add the list of NTP servers specified in ``data/ntp/servers_joined`` in file
+``site/$NEW_SITE/networks/common-address.yaml`` to ``/etc/ntp.conf``, then
+restart the NTP service::
+
+    sudo service ntp restart
+
+Refer to `operationsNTP`_ to ensure that the NTP stats are healthy on genesis
+node before proceeding. If you cannot get good time to your selected time
+servers, consider selecting alternate time sources.
 
 Promenade bootstrap
 ^^^^^^^^^^^^^^^^^^^
