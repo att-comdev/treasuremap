@@ -184,7 +184,9 @@ data:
         proxy:
           proxy_enabled: 'false'
         ntp:
-          use_external_only: 'false'
+          use_external_only: 'true'
+          disable_ntpd_region: 'true'
+          disable_ntpd_rack: 'true'
         dns:
           require_dnssec: 'no'
   dependencies:
