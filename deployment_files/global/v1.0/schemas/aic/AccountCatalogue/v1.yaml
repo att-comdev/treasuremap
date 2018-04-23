@@ -656,7 +656,7 @@ data:
               properties:
                 username:
                   type: string
-        kibana:
+        nagios:
           type: object
           properties:
             admin:
