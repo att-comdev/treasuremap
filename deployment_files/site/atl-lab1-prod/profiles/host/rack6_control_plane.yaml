@@ -1,0 +1,43 @@
+---
+schema: drydock/HostProfile/v1
+metadata:
+    schema: metadata/Document/v1
+    name: rack6_control_plane
+    storagePolicy: cleartext
+    layeringDefinition:
+        abstract: false
+        layer: site
+        parentSelector:
+            hosttype: base_control_plane
+        actions:
+            - method: merge
+              path: .
+data:
+  hardware_profile: DELL_HP_Generic
+  oob:
+        type: 'ipmi'
+        network: 'rack06-oob'
+        account: 'root'
+  primary_network: 'rack06-pxe'
+  interfaces:
+    eno1:
+      device_link: 'rack06-pxe'
+      slaves:
+        - eno1
+      networks:
+        - 'rack06-pxe'
+    bond0:
+      device_link: rack06-general
+      slaves:
+        - enp67s0f0
+        - enp67s0f1
+        - enp68s0f0
+        - enp68s0f1
+      networks:
+        - rack06_mgmt
+        - rack06-calico
+        - rack06-storage
+        - rack06-ossdn
+        - rack06-contrail
+        - rack06-public
+...
