@@ -559,6 +559,21 @@ data:
           default: 80
         discovery:
           default: 9300
+    nagios:
+      name: nagios
+      namespace: null
+      hosts:
+        default: nagios-metrics
+        public: nagios
+      host_fqdn_override:
+        default: null
+      path:
+        default: null
+      scheme:
+        default: http
+      port:
+        http:
+          default: 80
     prometheus_elasticsearch_exporter:
       namespace: null
       hosts:
