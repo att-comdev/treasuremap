@@ -345,6 +345,17 @@ data:
                   type: string
                 reference:
                   type: string
+            nagios:
+              type: object
+              properties:
+                type:
+                  type: string
+                location:
+                  type: string
+                subpath:
+                  type: string
+                reference:
+                  type: string
         osh:
           type: object
           properties:
@@ -1106,6 +1117,15 @@ data:
                 grafana_db_session_sync:
                   type: string
                 image_repo_sync:
+                  type: string
+            nagios:
+              type: object
+              properties:
+                nagios:
+                  type: string
+                image_repo_sync:
+                  type: string
+                dep_check:
                   type: string
         ucp:
           type: object

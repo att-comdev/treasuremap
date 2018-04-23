@@ -116,52 +116,57 @@ data:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: 330f1787a4ee991d3d32fcc60a0ceb14955906f0
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       elasticsearch:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: elasticsearch
-        reference: 330f1787a4ee991d3d32fcc60a0ceb14955906f0
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       fluent_logging:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: fluent-logging
-        reference: 330f1787a4ee991d3d32fcc60a0ceb14955906f0
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       kibana:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: kibana
-        reference: 330f1787a4ee991d3d32fcc60a0ceb14955906f0
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       prometheus:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus
-        reference: 330f1787a4ee991d3d32fcc60a0ceb14955906f0
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       prometheus_node_exporter:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-node-exporter
-        reference: 330f1787a4ee991d3d32fcc60a0ceb14955906f0
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       prometheus_kube_state_metrics:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-kube-state-metrics
-        reference: 330f1787a4ee991d3d32fcc60a0ceb14955906f0
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       prometheus_alertmanager:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-alertmanager
-        reference: 330f1787a4ee991d3d32fcc60a0ceb14955906f0
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       grafana:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: grafana
-        reference: 330f1787a4ee991d3d32fcc60a0ceb14955906f0
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       prometheus_openstack_exporter:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-openstack-exporter
-        reference: 330f1787a4ee991d3d32fcc60a0ceb14955906f0
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
+      nagios:
+        type: git
+        location: https://github.com/openstack/openstack-helm-infra
+        subpath: nagios
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
     osh:
       helm_toolkit:
         type: git
@@ -711,6 +716,10 @@ data:
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
         db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         grafana_db_session_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
+      nagios:
+        nagios: artifacts-aic.atlantafoundry.com/attcomdev/nagios:931116b88c54931c616dfa66f424be38f74d8ad2
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
     ceph:
       ceph:
