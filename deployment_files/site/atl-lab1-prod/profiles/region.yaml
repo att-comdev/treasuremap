@@ -1,0 +1,26 @@
+---
+schema: 'drydock/Region/v1'
+metadata:
+  schema: 'metadata/Document/v1'
+  name: atl-lab1
+  layeringDefinition:
+    abstract: false
+    layer: site
+  storagePolicy: cleartext
+  substitutions:
+    - dest:
+        path: .authorized_keys[0]
+      src:
+        schema: deckhand/PublicKey/v1
+        name: sb464f_ssh_public_key
+        path: .
+    - dest:
+        path: .authorized_keys[1]
+      src:
+        schema: deckhand/PublicKey/v1
+        name: cab24_ssh_public_key
+        path: .
+data:
+  tag_definitions: []
+  authorized_keys: []
+...

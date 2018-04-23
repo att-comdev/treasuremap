@@ -1,0 +1,132 @@
+---
+schema: drydock/HostProfile/v1
+metadata:
+    schema: metadata/Document/v1
+    name: base_control_plane
+    storagePolicy: cleartext
+    labels:
+        hosttype: base_control_plane
+    layeringDefinition:
+        abstract: true
+        layer: global
+    substitutions:
+        - dest:
+            path: .oob.credential
+          src:
+            schema: deckhand/Passphrase/v1
+            name: ipmi_admin_password
+            path: .
+data:
+    oob:
+        type: 'ipmi'
+        network: 'oob'
+        account: 'root'
+    storage:
+        physical_devices:
+            sda:
+                labels:
+                    bootdrive: 'true'
+                partitions:
+                    - name: 'root'
+                      size: '30g'
+                      bootable: true
+                      filesystem:
+                        mountpoint: '/'
+                        fstype: 'ext4'
+                        mount_options: 'defaults'
+                    - name: 'boot'
+                      size: '1g'
+                      filesystem:
+                        mountpoint: '/boot'
+                        fstype: 'ext4'
+                        mount_options: 'defaults'
+                    # ceph journals
+                    - name: 'cephj01'
+                      size: '5g'
+                    - name: 'cephj02'
+                      size: '5g'
+                    - name: 'cephj03'
+                      size: '5g'
+                    - name: 'cephj04'
+                      size: '5g'
+                    - name: 'cephj05'
+                      size: '5g'
+                    - name: 'cephj06'
+                      size: '5g'
+                    - name: 'cephj07'
+                      size: '5g'
+                    - name: 'cephj08'
+                      size: '5g'
+                    - name: 'cephj09'
+                      size: '5g'
+                    - name: 'cephj10'
+                      size: '5g'
+                    # the rest for /var
+                    - name: 'var'
+                      size: '>100g'
+                      filesystem:
+                        mountpoint: '/var'
+                        fstype: 'ext4'
+                        mount_options: 'defaults'
+    platform:
+        image: 'xenial'
+        kernel: 'ga-16.04'
+        kernel_params:
+            console: 'ttyS1,115200n8'
+    metadata:
+        owner_data:
+            control-plane: enabled
+            ucp-control-plane: enabled
+            openstack-control-plane: enabled
+            openstack-heat: enabled
+            openstack-keystone: enabled
+            openstack-rabbitmq: enabled
+            openstack-dns-helper: enabled
+            openstack-mariadb: enabled
+            openstack-nova-control: enabled
+            openstack-etcd: enabled
+            openstack-mistral: enabled
+            openstack-memcached: enabled
+            openstack-glance: enabled
+            openstack-horizon: enabled
+            openstack-cinder-control: enabled
+            openstack-cinder-volume: control
+            openstack-neutron: enabled
+            openstack-l3-agent: enabled
+            openvswitch: enabled
+            ucp-barbican: enabled
+            ceph-bootstrap: enabled
+            ceph-mon: enabled
+            ceph-osd: enabled
+            ceph-mds: enabled
+            ceph-mgr: enabled
+            ceph-rgw: enabled
+            ceph-mon: enabled
+            ucp-maas: enabled
+            kubernetes-apiserver: enabled
+            kubernetes-dns: enabled
+            kubernetes-proxy: enabled
+            kubernetes-scheduler: enabled
+            kubernetes-controller-manager: enabled
+            tiller-helm: enabled
+            kube-etcd: enabled
+            calico-policy: enabled
+            calico-node: enabled
+            calico-etcd: enabed
+            ucp-armada: enabled
+            ucp-drydock: enabled
+            ucp-deckhand: enabled
+            ucp-shipyard: enabled
+            IAM: enabled
+            ucp-promenade: enabled
+            prometheus-server: enabled
+            prometheus-client: enabled
+            fluentd: enabled
+            influxdb: enabled
+            kibana: enabled
+            elasticsearch-client: enabled
+            elasticsearch-master: enabled
+            elasticsearch-data: enabled
+            postgresql: enabled
+            kube-ingress: enabled
+...

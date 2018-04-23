@@ -1,0 +1,179 @@
+---
+schema: armada/Chart/v1
+metadata:
+  schema: metadata/Document/v1
+  name: elasticsearch
+  layeringDefinition:
+    abstract: false
+    layer: global
+  storagePolicy: cleartext
+  substitutions:
+    # Chart source
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .charts.osh_infra.elasticsearch
+      dest:
+        path: .source
+
+    # Images
+    - src:
+        schema: pegleg/SoftwareVersions/v1
+        name: software-versions
+        path: .images.osh_infra.elasticsearch
+      dest:
+        path: .values.images.tags
+
+    # Endpoints
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_infra_endpoints
+        path: .osh_infra.elasticsearch
+      dest:
+        path: .values.endpoints.elasticsearch
+    - src:
+        schema: pegleg/EndpointCatalogue/v1
+        name: osh_infra_endpoints
+        path: .osh_infra.prometheus_elasticsearch_exporter
+      dest:
+        path: .values.endpoints.prometheus_elasticsearch_exporter
+    # Accounts
+    - src:
+        schema: pegleg/AccountCatalogue/v1
+        name: osh_infra_service_accounts
+        path: .osh_infra.elasticsearch.admin
+      dest:
+        path: .values.endpoints.elasticsearch.auth.admin
+
+    # Secrets
+    - dest:
+        path: .values.endpoints.elasticsearch.auth.admin.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_infra_elasticsearch_admin_password
+        path: .
+
+data:
+  chart_name: elasticsearch
+  release: elasticsearch
+  namespace: osh-infra
+  install:
+    no_hooks: false
+  upgrade:
+    no_hooks: false
+    pre:
+      delete: []
+      create: []
+    post:
+      create: []
+  values:
+    labels:
+      elasticsearch:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+      job:
+        node_selector_key: openstack-control-plane
+        node_selector_value: enabled
+    monitoring:
+      prometheus:
+        enabled: true
+    conf:
+      elasticsearch:
+        env:
+          java_opts: "-Xms2g -Xmx2g"
+      curator:
+        #run every 6th hour
+        schedule:  "0 */6 * * *"
+        action_file:
+          # Remember, leave a key empty if there is no value.  None will be a string,
+          # not a Python "NoneType"
+          #
+          # Also remember that all examples have 'disable_action' set to True.  If you
+          # want to use this action as a template, be sure to set this to False after
+          # copying it.
+          actions:
+            1:
+              action: delete_indices
+              description: >-
+                "Delete indices older than 7 days"
+              options:
+                timeout_override:
+                continue_if_exception: False
+                ignore_empty_list: True
+                disable_action: False
+              filters:
+              - filtertype: pattern
+                kind: prefix
+                value: logstash-
+              - filtertype: age
+                source: name
+                direction: older
+                timestring: '%Y.%m.%d'
+                unit: days
+                unit_count: 7
+            2:
+              action: delete_indices
+              description: >-
+                "Delete indices by age if available disk space is
+                 less than 80% total disk"
+              options:
+                timeout_override: 600
+                continue_if_exception: False
+                ignore_empty_list: True
+                disable_action: False
+              filters:
+              - filtertype: pattern
+                kind: prefix
+                value: logstash-
+              - filtertype: space
+                source: creation_date
+                use_age: True
+                disk_space: 24
+            3:
+              action: snapshot
+              description: >-
+                "Snapshot indices older than one day"
+              options:
+                repository: default_repo
+                # Leaving this blank results in the default name format
+                name:
+                wait_for_completion: True
+                max_wait: 3600
+                wait_interval: 10
+                timeout_override: 600
+                ignore_empty_list: True
+                continue_if_exception: False
+                disable_action: True
+              filters:
+              - filtertype: age
+                source: name
+                direction: older
+                timestring: '%Y.%m.%d'
+                unit: days
+                unit_count: 1
+            4:
+              action: delete_snapshots
+              description: >-
+                "Delete snapshots older than 30 days"
+              options:
+                repository: default_repo
+                disable_action: True
+                timeout_override: 600
+                ignore_empty_list: True
+              filters:
+              - filtertype: pattern
+                kind: prefix
+                value: curator-
+                exclude:
+              - filtertype: age
+                source: creation_date
+                direction: older
+                unit: days
+                unit_count: 30
+    storage:
+      elasticsearch:
+        requests:
+          storage: 10Gi
+  dependencies:
+    - osh-infra-helm-toolkit
+...

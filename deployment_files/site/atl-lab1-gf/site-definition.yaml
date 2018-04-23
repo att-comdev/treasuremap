@@ -1,6 +1,6 @@
 ---
 data:
-  revision: v1.0
+  revision: v0.8.0
   site_type: cicd
 metadata:
   layeringDefinition: {abstract: false, layer: site}
