@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "15150cae_0d7e3d95",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1012094
+      },
+      "writtenOn": "2018-04-24T21:24:41Z",
+      "side": 1,
+      "message": "I will clarify that the JBOD configure only applies to disks connected through a RAID controller - though I think this would be the case for just about all of our deployment environments. I can say that the disks \"should not be configured for any type of RAID\"",
+      "parentUuid": "eb625856_15044435",
+      "range": {
+        "startLine": 596,
+        "startChar": 0,
+        "endLine": 596,
+        "endChar": 37
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "504637d2_4dd3b4b6",
         "filename": "docs/source/deployment.rst",
         "patchSetId": 3
@@ -155,6 +179,30 @@
       "writtenOn": "2018-04-24T20:21:53Z",
       "side": 1,
       "message": "do we usually have 2 here? (2nd part)?",
+      "range": {
+        "startLine": 680,
+        "startChar": 36,
+        "endLine": 680,
+        "endChar": 37
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74d06ca4_58cd02a8",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1012094
+      },
+      "writtenOn": "2018-04-24T21:24:41Z",
+      "side": 1,
+      "message": "For the all-HDD scenario, yes this is what the Ceph docs recommend, because that say that journal space should be carved out on each disk, and the journal is allocated to the first partition on the device.",
+      "parentUuid": "4e015660_6ababd16",
       "range": {
         "startLine": 680,
         "startChar": 36,
