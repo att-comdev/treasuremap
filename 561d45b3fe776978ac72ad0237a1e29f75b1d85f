@@ -192,6 +192,30 @@
     },
     {
       "key": {
+        "uuid": "1238ed54_5b91f774",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1012094
+      },
+      "writtenOn": "2018-04-24T21:33:44Z",
+      "side": 1,
+      "message": "Ok, makes sense. In this case the directory approach probably makes the most sense for journals, since the whole disk can be partitioned up front, without having to add more later if more OSDs were ever added (which we can only do at PXE time with MaaS).",
+      "parentUuid": "01667e63_99f1c227",
+      "range": {
+        "startLine": 642,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 36
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e015660_6ababd16",
         "filename": "docs/source/deployment.rst",
         "patchSetId": 3
