@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "eb625856_15044435",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1012098
+      },
+      "writtenOn": "2018-04-24T20:21:53Z",
+      "side": 1,
+      "message": "raid-card specific nomenclature, needed?",
+      "range": {
+        "startLine": 596,
+        "startChar": 0,
+        "endLine": 596,
+        "endChar": 37
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "504637d2_4dd3b4b6",
         "filename": "docs/source/deployment.rst",
         "patchSetId": 3
@@ -42,6 +65,77 @@
         "startChar": 0,
         "endLine": 644,
         "endChar": 36
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d199ae9_2360da80",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1012098
+      },
+      "writtenOn": "2018-04-24T20:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "504637d2_4dd3b4b6",
+      "range": {
+        "startLine": 642,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 36
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e36707d5_30533de6",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1012098
+      },
+      "writtenOn": "2018-04-24T20:21:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c63bf102_5e441939",
+      "range": {
+        "startLine": 642,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 36
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e015660_6ababd16",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1012098
+      },
+      "writtenOn": "2018-04-24T20:21:53Z",
+      "side": 1,
+      "message": "do we usually have 2 here? (2nd part)?",
+      "range": {
+        "startLine": 680,
+        "startChar": 36,
+        "endLine": 680,
+        "endChar": 37
       },
       "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
