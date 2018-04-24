@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "8896f984_0f0cdba6",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1014185
+      },
+      "writtenOn": "2018-04-24T20:47:51Z",
+      "side": 1,
+      "message": "What does \"Done\" represent here? \nI also have same question as Craig. It is my understanding that for Journals, you could use same disk but has to have different partition.",
+      "parentUuid": "e36707d5_30533de6",
+      "range": {
+        "startLine": 642,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 36
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e015660_6ababd16",
         "filename": "docs/source/deployment.rst",
         "patchSetId": 3
