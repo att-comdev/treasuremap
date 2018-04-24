@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "01667e63_99f1c227",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1010324
+      },
+      "writtenOn": "2018-04-24T21:28:50Z",
+      "side": 1,
+      "message": "Renis is correct here, you cannot share block devices here, the chart is, however, capable of taking partitioned devices if desired.\n\nSo perhaps adb1 and sdb2 would be appropriate examples?",
+      "parentUuid": "8896f984_0f0cdba6",
+      "range": {
+        "startLine": 642,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 36
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e015660_6ababd16",
         "filename": "docs/source/deployment.rst",
         "patchSetId": 3
