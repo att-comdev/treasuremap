@@ -21,3 +21,5 @@ data:
     - --eviction-max-pod-grace-period=-1
     - --network-plugin=cni
     - --node-status-update-frequency=5s
+    - --max-pods=200
+    - --pods-per-core=10
