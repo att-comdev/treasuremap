@@ -134,6 +134,11 @@ node have been suspended or evacuated)::
     sudo ntpdate ntp.ubuntu.com  # Or use a local NTP server if this fails
     sudo service ntp start
 
+TLS Certificates Placement
+--------------------------
+
+.. image:: diagrams/certificates.png
+
 Troubleshooting IPMI issues
 ---------------------------
 
