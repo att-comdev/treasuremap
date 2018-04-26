@@ -91,6 +91,11 @@ data:
               cache 30
           }
 
+    labels:
+      coredns:
+        node_selector_key: kube-dns
+        node_selector_value: enabled
+
   dependencies:
     - coredns-htk
 ---
