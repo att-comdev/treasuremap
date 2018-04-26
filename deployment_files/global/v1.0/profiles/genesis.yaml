@@ -72,8 +72,7 @@ data:
       - ceph-osd=enabled
       - ceph-rgw=enabled
       - ceph-mgr=enabled
-      - coredns=enabled
-      - etcd-example=enabled
+      - kube-dns=enabled
       - kube-ingress=enabled
       - kubernetes-apiserver=enabled
       - kubernetes-controller-manager=enabled

@@ -1,23 +1,20 @@
 ---
 schema: drydock/HostProfile/v1
 metadata:
-    schema: metadata/Document/v1
-    name: rack6_control_plane
-    storagePolicy: cleartext
-    layeringDefinition:
-        abstract: false
-        layer: site
-        parentSelector:
-            hosttype: base_control_plane
-        actions:
-            - method: merge
-              path: .
+  schema: metadata/Document/v1
+  name: rack6_control_plane
+  storagePolicy: cleartext
+  layeringDefinition:
+    abstract: false
+    layer: site
+    parentSelector:
+      hosttype: base_control_plane_master
+    actions:
+      - method: merge
+        path: .
 data:
-  hardware_profile: DELL_HP_Generic
   oob:
-        type: 'ipmi'
-        network: 'rack06-oob'
-        account: 'root'
+    network: 'rack06-oob'
   primary_network: 'rack06-pxe'
   interfaces:
     eno1:
