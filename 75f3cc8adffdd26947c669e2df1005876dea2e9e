@@ -16,6 +16,24 @@
       "revId": "75f3cc8adffdd26947c669e2df1005876dea2e9e",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14fcd4f9_e38ec656",
+        "filename": "deployment_files/site/atl-lab1/secrets/passphrases/osh_infra_nagios_admin_password.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1012474
+      },
+      "writtenOn": "2018-04-30T14:17:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d3f3a0a_453fdee2",
+      "revId": "75f3cc8adffdd26947c669e2df1005876dea2e9e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
