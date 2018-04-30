@@ -293,7 +293,7 @@ data:
         type: git
         location: https://github.com/att-comdev/drydock
         subpath: charts/drydock
-        reference: e4ef91b51a15cedbc59e8a524d461c564f0f4260
+        reference: refs/changes/45/409345/3
       drydock-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -323,7 +323,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/promenade
-        reference: c1e7a74c1ef5862e485d3a3a241edee0b18de969
+        reference: ad638fe453135f90e3fc500ef6482fae76e6e1eb
       promenade-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -343,7 +343,7 @@ data:
         type: git
         location: https://github.com/att-comdev/maas
         subpath: charts/maas
-        reference: 6d3cd4e6ac6405bc62222dcfa39c76a82712d669
+        reference: refs/changes/49/409349/6
       maas-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -414,9 +414,9 @@ data:
         helm: artifacts-aic.atlantafoundry.com/lachlanevenson/k8s-helm@sha256:ce1986ec1a44480708f1bbc2b81a7d4fb89e178fb92bf08ec38ccf46f62020f0
         tiller: artifacts-aic.atlantafoundry.com/kubernetes-helm/tiller@sha256:1becf867016f6e7652908518729e140845107c5344afc237718e3ed3b6ca63c7
       promenade:
-        # git c1e7a74c1ef5862e485d3a3a241edee0b18de969
+        # git ad638fe453135f90e3fc500ef6482fae76e6e1eb
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
-        promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:e08b077c5d75f725120dfa1900dffbde790661b8815af90083ff19c6edcfbc2d
+        promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:9c4229a4889fbca1d796824864ee67909306c292ba8fc48c269d8da5940221f6
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
@@ -444,14 +444,14 @@ data:
       divingbell:
         divingbell: artifacts-aic.atlantafoundry.com/ubuntu:16.04
       drydock:
-        # git e4ef91b51a15cedbc59e8a524d461c564f0f4260
-        drydock: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:6f241296a138c12daf256403f31fb2967b4861b5b4b7e40ec00ccd50f97e0746
+        # git refs/changes/45/409345/3
+        drydock: artifacts-aic.atlantafoundry.com/att-comdev/drydock:68b301becbeb73f46ca5b296eba1cd5163091f46
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         drydock_db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
-        drydock_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:6f241296a138c12daf256403f31fb2967b4861b5b4b7e40ec00ccd50f97e0746
+        drydock_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/drydock:68b301becbeb73f46ca5b296eba1cd5163091f46
       ingress:
         entrypoint: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         ingress: artifacts-aic.atlantafoundry.com/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
