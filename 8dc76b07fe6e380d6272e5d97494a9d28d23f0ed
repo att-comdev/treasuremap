@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4cd818e2_01f7b5be",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1011939
+      },
+      "writtenOn": "2018-05-01T21:48:06Z",
+      "side": 1,
+      "message": "Is it worth considering using the apparmour tools [0] to do this?\n\n[0] http://manpages.ubuntu.com/manpages/xenial/man8/aa-disable.8.html",
+      "revId": "8dc76b07fe6e380d6272e5d97494a9d28d23f0ed",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a143e12_49b2fd61",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1011939
+      },
+      "writtenOn": "2018-05-01T21:48:06Z",
+      "side": 1,
+      "message": "denied",
+      "range": {
+        "startLine": 710,
+        "startChar": 0,
+        "endLine": 710,
+        "endChar": 6
+      },
+      "revId": "8dc76b07fe6e380d6272e5d97494a9d28d23f0ed",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
