@@ -701,6 +701,15 @@ Refer to `operationsNTP`_ to ensure that the NTP stats are healthy on genesis
 node before proceeding. If you cannot get good time to your selected time
 servers, consider using alternate time sources for your deployment.
 
+Disable the apparmor profile for ntpd::
+
+    sudo ln -s /etc/apparmor.d/usr.sbin.ntpd /etc/apparmor.d/disable/
+    sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.ntpd
+
+This prevents an issue with the MaaS containers, which otherwise get permission
+denied errors from apparmor when the MaaS container tries to leverage libc6 for
+/bin/sh when MaaS container ntpd is forcefully disabled.
+
 Promenade bootstrap
 ^^^^^^^^^^^^^^^^^^^
 
