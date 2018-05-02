@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f6558ad4_513cda05",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1012094
+      },
+      "writtenOn": "2018-05-02T22:29:29Z",
+      "side": 1,
+      "message": "Could go either way on this - given that it\u0027s a one-off, I\u0027m thinking we should keep the current procedure since it does the same thing as aa-disable, and doesn\u0027t require installing a new package on genesis which other nodes won\u0027t have (just from a package consistency POV, at least until we are able to redeploy genesis at which point it won\u0027t matter)",
+      "parentUuid": "4cd818e2_01f7b5be",
+      "revId": "8dc76b07fe6e380d6272e5d97494a9d28d23f0ed",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a143e12_49b2fd61",
         "filename": "docs/source/deployment.rst",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2018-05-01T21:48:06Z",
       "side": 1,
       "message": "denied",
+      "range": {
+        "startLine": 710,
+        "startChar": 0,
+        "endLine": 710,
+        "endChar": 6
+      },
+      "revId": "8dc76b07fe6e380d6272e5d97494a9d28d23f0ed",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab4704d4_71347f1c",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1012094
+      },
+      "writtenOn": "2018-05-02T22:29:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a143e12_49b2fd61",
       "range": {
         "startLine": 710,
         "startChar": 0,
