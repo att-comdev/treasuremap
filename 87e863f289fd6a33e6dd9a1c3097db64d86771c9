@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff570e10_be328b0e",
+        "filename": "deployment_files/global/v1.0/profiles/host/base_control_plane_master.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1011942
+      },
+      "writtenOn": "2018-05-02T17:16:49Z",
+      "side": 1,
+      "message": "This is almost identical to base_control_plane_worker.yaml. Is it not possible to leverage layering here?",
+      "revId": "87e863f289fd6a33e6dd9a1c3097db64d86771c9",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
