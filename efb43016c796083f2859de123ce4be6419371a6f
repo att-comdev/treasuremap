@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93108d5a_05de1582",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1011939
+      },
+      "writtenOn": "2018-05-07T15:48:52Z",
+      "side": 1,
+      "message": "This is not needed. Just don\u0027t define a filter and by default all nodes will be selected.",
+      "revId": "efb43016c796083f2859de123ce4be6419371a6f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "43aa7294_9ba24b52",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1011939
+      },
+      "writtenOn": "2018-05-07T15:48:52Z",
+      "side": 1,
+      "message": "What is \u0027this\u0027 here?",
+      "range": {
+        "startLine": 593,
+        "startChar": 15,
+        "endLine": 593,
+        "endChar": 35
+      },
+      "revId": "efb43016c796083f2859de123ce4be6419371a6f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
