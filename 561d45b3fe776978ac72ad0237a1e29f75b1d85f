@@ -49,6 +49,54 @@
     },
     {
       "key": {
+        "uuid": "bddc0e98_f73c08b3",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1013975
+      },
+      "writtenOn": "2018-05-08T19:08:10Z",
+      "side": 1,
+      "message": "For servers with drives hooked up via RAID card, we went with 1 RAID0 virtual dev per OSD, with raid cache turned \"ON\", and set the write cache to \"writeback\".",
+      "parentUuid": "eb625856_15044435",
+      "range": {
+        "startLine": 596,
+        "startChar": 0,
+        "endLine": 596,
+        "endChar": 37
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1305643_48a3abdd",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1013975
+      },
+      "writtenOn": "2018-05-08T19:08:10Z",
+      "side": 1,
+      "message": "Given the purleys and 730xd\u0027s/740\u0027s i\u0027ve used don\u0027t explicity support jbod, i would actually want what to do in that case described in detail above. I get raid0 per OSD + raid cache on + writeback from here https://ceph.com/geen-categorie/ceph-performance-part-1-disk-controller-write-throughput/",
+      "parentUuid": "15150cae_0d7e3d95",
+      "range": {
+        "startLine": 596,
+        "startChar": 0,
+        "endLine": 596,
+        "endChar": 37
+      },
+      "revId": "561d45b3fe776978ac72ad0237a1e29f75b1d85f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "504637d2_4dd3b4b6",
         "filename": "docs/source/deployment.rst",
         "patchSetId": 3
