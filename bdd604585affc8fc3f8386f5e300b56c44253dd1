@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70245817_24e072a4",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1014185
+      },
+      "writtenOn": "2018-05-08T17:48:19Z",
+      "side": 1,
+      "message": "Should we mention about OSD Type as well (similar to journal type)?\ndata/values/conf/storage/osd[*]/data/type:",
+      "revId": "bdd604585affc8fc3f8386f5e300b56c44253dd1",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
