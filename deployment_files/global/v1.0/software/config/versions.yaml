@@ -413,37 +413,37 @@ data:
         # git 331b443e586aa5db5eb559ef3ed146f5abecfb09
         api: artifacts-aic.atlantafoundry.com/att-comdev/armada@sha256:63a1b76d605e23a5179f0be8826a306bc9a422298aef92b81404967873512e74
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         helm: artifacts-aic.atlantafoundry.com/lachlanevenson/k8s-helm@sha256:ce1986ec1a44480708f1bbc2b81a7d4fb89e178fb92bf08ec38ccf46f62020f0
         tiller: artifacts-aic.atlantafoundry.com/kubernetes-helm/tiller@sha256:1becf867016f6e7652908518729e140845107c5344afc237718e3ed3b6ca63c7
       promenade:
         # git 8af28d12d75a9a3381ddd5dc52b710db8efb5e27
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:e8a6d6e671fa330e63a91b978757c3cde241aad81f2166aebc9a0880702c0f7c
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
       deckhand:
         # git 35f15ee601ebf89b93d657a1b78fedb3a8ebbe38
         deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:de3600481a9921c4943ae73eb0e0e9e771ec4333f1628926b6e014badb0131ea
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         db_sync: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:de3600481a9921c4943ae73eb0e0e9e771ec4333f1628926b6e014badb0131ea
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
       barbican:
-        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
-        scripted_test: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        scripted_test: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         barbican_db_sync: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-barbican-api:3.0.3
-        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         barbican_api: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-barbican-api:3.0.3
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
       divingbell:
@@ -452,9 +452,9 @@ data:
         # git 3b4186880246cdc9ace304d5b2608dd017b03dc4
         drydock: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:2fe9bcdefe39022c15114bcc0285e88c74c50bb7358d6ddd5e73b9c3df7751ac
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         drydock_db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         drydock_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/drydock@sha256:2fe9bcdefe39022c15114bcc0285e88c74c50bb7358d6ddd5e73b9c3df7751ac
       ingress:
@@ -471,9 +471,9 @@ data:
         shipyard_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/shipyard@sha256:c22540033e52bce6d7f1cd0ae57f3ca6e5baad446679123d8bc35cebbc432db4
         airflow_db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         airflow_db_sync: artifacts-aic.atlantafoundry.com/att-comdev/airflow@sha256:7abecb1f18dfac974626c8050aa5877b6a7824945bb61b3b94557e72d3469eae
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
       maas:
         # git 791e49c5193a3c69f23052acb17673fc3e59d0e2
         db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
@@ -485,18 +485,18 @@ data:
         maas_cache: artifacts-aic.atlantafoundry.com/att-comdev/sstream-cache@sha256:a4786a24473c381aa7a37004d392df180f3bb5994fd61fa0ac6e7a2c0c2c67ce
         dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       keystone:
-        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         test: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-rally:4.0.0
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        keystone_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        keystone_fernet_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        keystone_fernet_rotate: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        keystone_credential_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        keystone_credential_rotate: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        keystone_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        keystone_domain_manage: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        keystone_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        keystone_fernet_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        keystone_fernet_rotate: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        keystone_credential_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        keystone_credential_rotate: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        keystone_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        keystone_domain_manage: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
       tiller:
@@ -518,70 +518,70 @@ data:
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         memcached: artifacts-aic.atlantafoundry.com/memcached:1.5.5
       barbican:
-        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
-        scripted_test: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        scripted_test: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         barbican_db_sync: artifacts-aic.atlantafoundry.com/openstackhelm/barbican:ocata
-        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         barbican_api: artifacts-aic.atlantafoundry.com/openstackhelm/barbican:ocata
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
       cinder:
         test: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-rally:4.0.0
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        cinder_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:5a30e01b2a1d83a02617f211773f09ccf063fdf5155635fbebdefb40e2f91b64
-        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        cinder_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:5a30e01b2a1d83a02617f211773f09ccf063fdf5155635fbebdefb40e2f91b64
-        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        cinder_scheduler: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:5a30e01b2a1d83a02617f211773f09ccf063fdf5155635fbebdefb40e2f91b64
-        cinder_volume: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:5a30e01b2a1d83a02617f211773f09ccf063fdf5155635fbebdefb40e2f91b64
-        cinder_volume_usage_audit: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:5a30e01b2a1d83a02617f211773f09ccf063fdf5155635fbebdefb40e2f91b64
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        cinder_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:f31f7cf4264cc3f412319a46cb888ec2c295fb99e85fd4bbdb1a97f1177eb465
+        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        cinder_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:f31f7cf4264cc3f412319a46cb888ec2c295fb99e85fd4bbdb1a97f1177eb465
+        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        cinder_scheduler: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:f31f7cf4264cc3f412319a46cb888ec2c295fb99e85fd4bbdb1a97f1177eb465
+        cinder_volume: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:f31f7cf4264cc3f412319a46cb888ec2c295fb99e85fd4bbdb1a97f1177eb465
+        cinder_volume_usage_audit: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:f31f7cf4264cc3f412319a46cb888ec2c295fb99e85fd4bbdb1a97f1177eb465
         cinder_storage_init: artifacts-aic.atlantafoundry.com/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
-        cinder_backup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:5a30e01b2a1d83a02617f211773f09ccf063fdf5155635fbebdefb40e2f91b64
+        cinder_backup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-cinder@sha256:f31f7cf4264cc3f412319a46cb888ec2c295fb99e85fd4bbdb1a97f1177eb465
         cinder_backup_storage_init: artifacts-aic.atlantafoundry.com/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
       glance:
         test: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-rally:4.0.0
         glance_storage_init: artifacts-aic.atlantafoundry.com/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        glance_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-glance@sha256:fb8f823f22b7f4319f5a9e83bbd31d2f8ec30ae169b415f5a197a3c605ab2430
-        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        glance_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-glance@sha256:fb8f823f22b7f4319f5a9e83bbd31d2f8ec30ae169b415f5a197a3c605ab2430
-        glance_registry: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-glance@sha256:fb8f823f22b7f4319f5a9e83bbd31d2f8ec30ae169b415f5a197a3c605ab2430
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        glance_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-glance@sha256:25d02bc33990933bd339e169eb68ac54b3c5c4ec33b9e398fb3c5528a22ca351
+        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        glance_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-glance@sha256:25d02bc33990933bd339e169eb68ac54b3c5c4ec33b9e398fb3c5528a22ca351
+        glance_registry: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-glance@sha256:25d02bc33990933bd339e169eb68ac54b3c5c4ec33b9e398fb3c5528a22ca351
         # Bootstrap image requires curl
-        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
       heat:
-        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        heat_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        heat_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        heat_cfn: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        heat_cloudwatch: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        heat_engine: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        heat_engine_cleaner: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        heat_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        heat_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        heat_cfn: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        heat_cloudwatch: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        heat_engine: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        heat_engine_cleaner: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
       horizon:
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        horizon_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-horizon@sha256:3a7e1b5f0358e74fca7e4b8f84fde73e992ae7ce3cc51cf1f6f3446f382cd4ac
-        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        horizon: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-horizon@sha256:3a7e1b5f0358e74fca7e4b8f84fde73e992ae7ce3cc51cf1f6f3446f382cd4ac
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        horizon_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-horizon@sha256:2c0fdab76e706875441914e1f90478f203ed9623f6b4899f14aad202df9beeb0
+        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        horizon: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-horizon@sha256:2c0fdab76e706875441914e1f90478f203ed9623f6b4899f14aad202df9beeb0
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       ingress:
         entrypoint: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
@@ -589,18 +589,18 @@ data:
         error_pages: artifacts-aic.atlantafoundry.com/google_containers/defaultbackend:1.0
         dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       keystone:
-        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         test: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-rally:4.0.0
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        keystone_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        keystone_fernet_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        keystone_fernet_rotate: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        keystone_credential_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        keystone_credential_rotate: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        keystone_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
-        keystone_domain_manage: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:1cf05309d9f6b444a1a63e62b2277c0d882657f7a718c99777d23c14240bf5aa
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        keystone_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        keystone_fernet_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        keystone_fernet_rotate: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        keystone_credential_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        keystone_credential_rotate: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        keystone_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
+        keystone_domain_manage: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-keystone@sha256:0a5d6ab134230e00c6953a9bee337c32bbdce7d17eb61be8ee820bf40cf9e614
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
       libvirt:
@@ -610,47 +610,47 @@ data:
         mariadb: artifacts-aic.atlantafoundry.com/mariadb:10.1.23
         prometheus_create_mysql_user: artifacts-aic.atlantafoundry.com/mariadb:10.1.23
         prometheus_mysql_exporter: artifacts-aic.atlantafoundry.com/prom/mysqld-exporter:v0.10.0
-        prometheus_mysql_exporter_helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        prometheus_mysql_exporter_helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       neutron:
-        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         test: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-rally:4.0.0
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        neutron_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ced99f89db0072d9d443cc3f026e1dba9d2030af41e1a331b41b6c4377f65aa5
-        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        neutron_server: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ced99f89db0072d9d443cc3f026e1dba9d2030af41e1a331b41b6c4377f65aa5
-        neutron_dhcp: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ced99f89db0072d9d443cc3f026e1dba9d2030af41e1a331b41b6c4377f65aa5
-        neutron_metadata: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ced99f89db0072d9d443cc3f026e1dba9d2030af41e1a331b41b6c4377f65aa5
-        neutron_l3: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ced99f89db0072d9d443cc3f026e1dba9d2030af41e1a331b41b6c4377f65aa5
-        neutron_openvswitch_agent: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ced99f89db0072d9d443cc3f026e1dba9d2030af41e1a331b41b6c4377f65aa5
-        neutron_linuxbridge_agent: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:ced99f89db0072d9d443cc3f026e1dba9d2030af41e1a331b41b6c4377f65aa5
-        neutron_sriov_agent: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron-sriov@sha256:ffe866f10f4328bfd6df277438359e918a421fa9b0abfc6b6de2bcd2fa19bac5
-        neutron_sriov_agent_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron-sriov@sha256:ffe866f10f4328bfd6df277438359e918a421fa9b0abfc6b6de2bcd2fa19bac5
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        neutron_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:fb31b66a51ada60d1dd6ba21fa1e96ef226a39893d12c59b2a652a94e6057e73
+        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        neutron_server: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:fb31b66a51ada60d1dd6ba21fa1e96ef226a39893d12c59b2a652a94e6057e73
+        neutron_dhcp: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:fb31b66a51ada60d1dd6ba21fa1e96ef226a39893d12c59b2a652a94e6057e73
+        neutron_metadata: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:fb31b66a51ada60d1dd6ba21fa1e96ef226a39893d12c59b2a652a94e6057e73
+        neutron_l3: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:fb31b66a51ada60d1dd6ba21fa1e96ef226a39893d12c59b2a652a94e6057e73
+        neutron_openvswitch_agent: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:fb31b66a51ada60d1dd6ba21fa1e96ef226a39893d12c59b2a652a94e6057e73
+        neutron_linuxbridge_agent: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron@sha256:fb31b66a51ada60d1dd6ba21fa1e96ef226a39893d12c59b2a652a94e6057e73
+        neutron_sriov_agent: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron-sriov@sha256:95db52b7bb0995abfac5d872ea95db1c1cf9942a4c14db4f0c80c18df039be2e
+        neutron_sriov_agent_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-neutron-sriov@sha256:95db52b7bb0995abfac5d872ea95db1c1cf9942a4c14db4f0c80c18df039be2e
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
       nova:
-        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        bootstrap: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        db_drop: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        nova_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:4b5b618ddb7dfb74e88760bc39c024d8ab6c3c8835b0547f4a8208be33d93fb9
-        nova_cell_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:4b5b618ddb7dfb74e88760bc39c024d8ab6c3c8835b0547f4a8208be33d93fb9
-        nova_compute: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova-1804@sha256:eed1424f576a538320063af9c555fbc5a197e41946857b08190e309f8e5c06cb
-        nova_compute_ssh: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:4b5b618ddb7dfb74e88760bc39c024d8ab6c3c8835b0547f4a8208be33d93fb9
-        nova_conductor: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:4b5b618ddb7dfb74e88760bc39c024d8ab6c3c8835b0547f4a8208be33d93fb9
-        nova_consoleauth: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:4b5b618ddb7dfb74e88760bc39c024d8ab6c3c8835b0547f4a8208be33d93fb9
-        nova_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:4b5b618ddb7dfb74e88760bc39c024d8ab6c3c8835b0547f4a8208be33d93fb9
-        nova_novncproxy: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:4b5b618ddb7dfb74e88760bc39c024d8ab6c3c8835b0547f4a8208be33d93fb9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        nova_api: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:daf75781ff1cabf59fa63e0446a0489148e0f1a8e0e160f57cba1bd06e341a78
+        nova_cell_setup: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:daf75781ff1cabf59fa63e0446a0489148e0f1a8e0e160f57cba1bd06e341a78
+        nova_compute: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova-1804@sha256:626a030df530866fb7ed5e5b6c69e392c182ae2e66f14d4608cf376368d7e12e
+        nova_compute_ssh: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:daf75781ff1cabf59fa63e0446a0489148e0f1a8e0e160f57cba1bd06e341a78
+        nova_conductor: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:daf75781ff1cabf59fa63e0446a0489148e0f1a8e0e160f57cba1bd06e341a78
+        nova_consoleauth: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:daf75781ff1cabf59fa63e0446a0489148e0f1a8e0e160f57cba1bd06e341a78
+        nova_db_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:daf75781ff1cabf59fa63e0446a0489148e0f1a8e0e160f57cba1bd06e341a78
+        nova_novncproxy: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:daf75781ff1cabf59fa63e0446a0489148e0f1a8e0e160f57cba1bd06e341a78
         nova_novncproxy_assets: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-nova-novncproxy:3.0.3
-        nova_placement: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:4b5b618ddb7dfb74e88760bc39c024d8ab6c3c8835b0547f4a8208be33d93fb9
-        nova_scheduler: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:4b5b618ddb7dfb74e88760bc39c024d8ab6c3c8835b0547f4a8208be33d93fb9
-        nova_spiceproxy: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:4b5b618ddb7dfb74e88760bc39c024d8ab6c3c8835b0547f4a8208be33d93fb9
+        nova_placement: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:daf75781ff1cabf59fa63e0446a0489148e0f1a8e0e160f57cba1bd06e341a78
+        nova_scheduler: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:daf75781ff1cabf59fa63e0446a0489148e0f1a8e0e160f57cba1bd06e341a78
+        nova_spiceproxy: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-nova@sha256:daf75781ff1cabf59fa63e0446a0489148e0f1a8e0e160f57cba1bd06e341a78
         nova_spiceproxy_assets: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-nova-spicehtml5proxy:3.0.3
         test: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-rally:4.0.0
         rabbit_init: artifacts-aic.atlantafoundry.com/rabbitmq:3.7-management
@@ -660,27 +660,27 @@ data:
         dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
       rabbitmq:
         prometheus_rabbitmq_exporter: artifacts-aic.atlantafoundry.com/kbudde/rabbitmq-exporter:v0.21.0
-        prometheus_rabbitmq_exporter_helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        prometheus_rabbitmq_exporter_helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         rabbitmq: artifacts-aic.atlantafoundry.com/rabbitmq@sha256:cc7015cf1084fa0a18b356cc38e254e2633770c78c60a6f8d86d5dbe79034f4d
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
     osh_infra:
       elasticsearch:
         apache_proxy: artifacts-aic.atlantafoundry.com/httpd:2.4
-        memory_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        memory_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         curator:  artifacts-aic.atlantafoundry.com/bobrik/curator:5.2.0
         elasticsearch: artifacts-aic.atlantafoundry.com/elasticsearch:5.6.4
-        helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         prometheus_elasticsearch_exporter: artifacts-aic.atlantafoundry.com/justwatch/elasticsearch_exporter:1.0.1
         dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
-        snapshot_repository: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        snapshot_repository: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       fluent_logging:
         fluentbit: artifacts-aic.atlantafoundry.com/fluent/fluent-bit:0.12.14
         fluentd: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-fluentd:ocata
         prometheus_fluentd_exporter: artifacts-aic.atlantafoundry.com/srwilkers/fluentd_exporter:v0.1
         dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
-        helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        elasticsearch_template: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        elasticsearch_template: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       kibana:
         apache_proxy: artifacts-aic.atlantafoundry.com/httpd:2.4
@@ -689,7 +689,7 @@ data:
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       prometheus:
         prometheus: artifacts-aic.atlantafoundry.com/prom/prometheus:v2.0.0
-        helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
         dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
@@ -709,13 +709,13 @@ data:
         prometheus_openstack_exporter: artifacts-aic.atlantafoundry.com/rakeshpatnaik/prometheus-openstack-exporter:v0.1
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
       grafana:
         grafana: artifacts-aic.atlantafoundry.com/grafana/grafana:4.5.2
-        datasource: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        datasource: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        grafana_db_session_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        grafana_db_session_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       nagios:
         nagios: artifacts-aic.atlantafoundry.com/attcomdev/nagios:931116b88c54931c616dfa66f424be38f74d8ad2
@@ -723,9 +723,9 @@ data:
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
     ceph:
       ceph:
-        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
-        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
+        ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         ceph_bootstrap: artifacts-aic.atlantafoundry.com/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
         dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         ceph_daemon: artifacts-aic.atlantafoundry.com/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
