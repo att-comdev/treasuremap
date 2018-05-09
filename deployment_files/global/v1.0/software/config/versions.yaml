@@ -15,7 +15,7 @@ data:
           type: git
           location: https://github.com/att-comdev/promenade
           subpath: charts/etcd
-          reference: 393fd5cff0b8f522c6b3f5cb06290b85d9869027
+          reference: 309f1d2959935a63952002b3b2e22e3618304c09
         etcd-htk:
           type: git
           location: https://github.com/openstack/openstack-helm
@@ -35,7 +35,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/apiserver
-        reference: 393fd5cff0b8f522c6b3f5cb06290b85d9869027
+        reference: 309f1d2959935a63952002b3b2e22e3618304c09
       apiserver-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -45,7 +45,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/controller_manager
-        reference: 393fd5cff0b8f522c6b3f5cb06290b85d9869027
+        reference: 309f1d2959935a63952002b3b2e22e3618304c09
       controller-manager-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -55,7 +55,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/coredns
-        reference: 393fd5cff0b8f522c6b3f5cb06290b85d9869027
+        reference: 309f1d2959935a63952002b3b2e22e3618304c09
       coredns-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -65,7 +65,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/haproxy
-        reference: 393fd5cff0b8f522c6b3f5cb06290b85d9869027
+        reference: 309f1d2959935a63952002b3b2e22e3618304c09
       haproxy-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -75,7 +75,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/etcd
-        reference: 393fd5cff0b8f522c6b3f5cb06290b85d9869027
+        reference: 309f1d2959935a63952002b3b2e22e3618304c09
       etcd-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -95,7 +95,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/proxy
-        reference: 393fd5cff0b8f522c6b3f5cb06290b85d9869027
+        reference: 309f1d2959935a63952002b3b2e22e3618304c09
       proxy-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -105,7 +105,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/scheduler
-        reference: 393fd5cff0b8f522c6b3f5cb06290b85d9869027
+        reference: 309f1d2959935a63952002b3b2e22e3618304c09
       scheduler-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -328,7 +328,7 @@ data:
         type: git
         location: https://github.com/att-comdev/promenade
         subpath: charts/promenade
-        reference: 8af28d12d75a9a3381ddd5dc52b710db8efb5e27
+        reference: 309f1d2959935a63952002b3b2e22e3618304c09
       promenade-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -405,7 +405,7 @@ data:
         subpath: helm-toolkit
         reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
   files:
-    kubelet: https://artifacts-aic.atlantafoundry.com/artifactory/generic-dependencies/kubernetes/v1.8.6/kubernetes-node-linux-amd64.tar.gz
+    kubelet: https://artifacts-aic.atlantafoundry.com/artifactory/k8s.io/v1.10.2/kubernetes-node-linux-amd64.tar.gz
 
   images:
     ucp:
@@ -419,9 +419,9 @@ data:
         helm: artifacts-aic.atlantafoundry.com/lachlanevenson/k8s-helm@sha256:ce1986ec1a44480708f1bbc2b81a7d4fb89e178fb92bf08ec38ccf46f62020f0
         tiller: artifacts-aic.atlantafoundry.com/kubernetes-helm/tiller@sha256:1becf867016f6e7652908518729e140845107c5344afc237718e3ed3b6ca63c7
       promenade:
-        # git 8af28d12d75a9a3381ddd5dc52b710db8efb5e27
+        # git 309f1d2959935a63952002b3b2e22e3618304c09
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
-        promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:e8a6d6e671fa330e63a91b978757c3cde241aad81f2166aebc9a0880702c0f7c
+        promenade: artifacts-aic.atlantafoundry.com/att-comdev/promenade@sha256:4edfa80f0c993b49be00a7ecece9bbbad3970d833a921d3f43ab6d9057c4718a
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:9c728a7a200b15c0f997ef4ef7fad6c3178d0b1ecb6c478820e565ca3d7a1fd8
@@ -734,19 +734,19 @@ data:
         ceph_cephfs_provisioner: artifacts-aic.atlantafoundry.com/external_storage/cephfs-provisioner:v0.1.1
     kubernetes:
       apiserver:
-        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
-        apiserver: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:badd2b1da29d4d530b10b920f64bf66a1b41150db46c3c99b49d56f3f18a82db
+        apiserver: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:badd2b1da29d4d530b10b920f64bf66a1b41150db46c3c99b49d56f3f18a82db
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
       controller-manager:
-        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
-        controller_manager: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:badd2b1da29d4d530b10b920f64bf66a1b41150db46c3c99b49d56f3f18a82db
+        controller_manager: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:badd2b1da29d4d530b10b920f64bf66a1b41150db46c3c99b49d56f3f18a82db
         dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
       coredns:
         coredns: artifacts-aic.atlantafoundry.com/coredns/coredns:1.1.2
         test: artifacts-aic.atlantafoundry.com/coredns/coredns:1.1.2
       haproxy:
         haproxy: artifacts-aic.atlantafoundry.com/haproxy:1.8.3
-        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:badd2b1da29d4d530b10b920f64bf66a1b41150db46c3c99b49d56f3f18a82db
       etcd:
         etcd: artifacts-aic.atlantafoundry.com/coreos/etcd:v3.2.14
         etcdctl: artifacts-aic.atlantafoundry.com/coreos/etcd:v3.2.14
@@ -755,13 +755,13 @@ data:
         ingress: artifacts-aic.atlantafoundry.com/kubernetes-ingress-controller/nginx-ingress-controller:0.9.0
         error_pages: artifacts-aic.atlantafoundry.com/google_containers/defaultbackend:1.0
         dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
-      kubectl: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+      kubectl: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:badd2b1da29d4d530b10b920f64bf66a1b41150db46c3c99b49d56f3f18a82db
       pause: artifacts-aic.atlantafoundry.com/google_containers/pause-amd64@sha256:3b3a29e3c90ae7762bdf587d19302e62485b6bef46e114b741f7d75dba023bd3
       scheduler:
-        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
-        scheduler: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+        anchor: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:badd2b1da29d4d530b10b920f64bf66a1b41150db46c3c99b49d56f3f18a82db
+        scheduler: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:badd2b1da29d4d530b10b920f64bf66a1b41150db46c3c99b49d56f3f18a82db
       proxy:
-        proxy: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:0cabbc65ca445b1f96e91c1bfda0db985f9fb9952038dcb85237282549691e3e
+        proxy: artifacts-aic.atlantafoundry.com/google_containers/hyperkube-amd64@sha256:badd2b1da29d4d530b10b920f64bf66a1b41150db46c3c99b49d56f3f18a82db
     calico:
       etcd:
         etcd: artifacts-aic.atlantafoundry.com/coreos/etcd:v3.2.14
