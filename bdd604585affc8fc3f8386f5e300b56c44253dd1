@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e026c4f6_968e88fb",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1012094
+      },
+      "writtenOn": "2018-05-09T23:31:17Z",
+      "side": 1,
+      "message": "I left it out since we wouldn\u0027t expect to have to change it during a deployment. I\u0027ll remove this from the journal section for consistency since we no longer need it there either.",
+      "parentUuid": "70245817_24e072a4",
+      "revId": "bdd604585affc8fc3f8386f5e300b56c44253dd1",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c721951_3d669e07",
         "filename": "docs/source/deployment.rst",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2018-05-08T19:08:10Z",
       "side": 1,
       "message": "In the case where jbod isn\u0027t explicitly supported, i\u0027ve been setting up each OSD as an independent virtual disk/raid0 with cache enabled and writeback turned on. https://ceph.com/geen-categorie/ceph-performance-part-1-disk-controller-write-throughput/",
+      "revId": "bdd604585affc8fc3f8386f5e300b56c44253dd1",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baa5b91a_4b492419",
+        "filename": "docs/source/deployment.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1012094
+      },
+      "writtenOn": "2018-05-09T23:31:17Z",
+      "side": 1,
+      "message": "Thanks, I\u0027ll update with this clarifiaction",
+      "parentUuid": "1c721951_3d669e07",
       "revId": "bdd604585affc8fc3f8386f5e300b56c44253dd1",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
