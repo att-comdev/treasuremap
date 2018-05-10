@@ -288,7 +288,7 @@ data:
         type: git
         location: https://github.com/att-comdev/divingbell
         subpath: divingbell
-        reference: 73e7437b9bbecbcdd006b8ee33460843d2baa593
+        reference: fcd97ef51c77e867b61426e1ba765fb8633b6297
       divingbell-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
