@@ -856,6 +856,21 @@ This prevents an issue with the MaaS containers, which otherwise get permission
 denied errors from apparmor when the MaaS container tries to leverage libc6 for
 /bin/sh when MaaS container ntpd is forcefully disabled.
 
+Disable password-based login
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before proceeding, verify that your SSH access to the Genesis node is working
+with your SSH key (i.e., not using password-based authentication).
+
+Then, disable password-based SSH authentication in ``/etc/ssh/sshd_config`` by
+uncommenting the ``PasswordAuthentication`` setting its value to ``no``. Ex::
+
+    PasswordAuthentication no
+
+Then, restart the ssh service::
+
+    sudo systemctl restart ssh
+
 Setup Ceph Journals
 ^^^^^^^^^^^^^^^^^^^
 
