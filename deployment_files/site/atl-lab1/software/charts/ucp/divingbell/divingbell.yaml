@@ -14,13 +14,19 @@ metadata:
   storagePolicy: cleartext
   substitutions:
     - dest:
-        path: .values.conf.uamlite.users[0].user_sshkeys[0]
+        path: .values.conf.uamlite.users[0].user_crypt_passwd
+      src:
+        schema: deckhand/Passphrase/v1
+        name: ubuntu_crypt_password
+        path: .
+    - dest:
+        path: .values.conf.uamlite.users[1].user_sshkeys[0]
       src:
         schema: deckhand/PublicKey/v1
         name: sb464f_ssh_public_key
         path: .
     - dest:
-        path: .values.conf.uamlite.users[1].user_sshkeys[0]
+        path: .values.conf.uamlite.users[2].user_sshkeys[0]
       src:
         schema: deckhand/PublicKey/v1
         name: cab24_ssh_public_key
@@ -30,6 +36,8 @@ data:
     conf:
       uamlite:
         users:
+          - user_name: ubuntu
+            user_sshkeys: [ Unmanaged ]
           - user_name: sb464f
             user_sudo: true
             user_sshkeys: []
