@@ -989,3 +989,18 @@ The message ``Site Successfully Deployed`` is the expected output at the end of 
 successful deployment. In this example, this means that UCP and OSH should be
 fully deployed.
 
+Disable password-based login on Genesis
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before proceeding, verify that your SSH access to the Genesis node is working
+with your SSH key (i.e., not using password-based authentication).
+
+Then, disable password-based SSH authentication on Genesis in
+``/etc/ssh/sshd_config`` by uncommenting the ``PasswordAuthentication`` and
+setting its value to ``no``. Ex::
+
+    PasswordAuthentication no
+
+Then, restart the ssh service::
+
+    sudo systemctl restart ssh
