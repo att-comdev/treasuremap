@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4868bc44_70f406ea",
+        "filename": "docs/source/operations.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1012094
+      },
+      "writtenOn": "2018-05-10T16:17:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "436bb509_2856c453",
+      "range": {
+        "startLine": 181,
+        "startChar": 34,
+        "endLine": 181,
+        "endChar": 48
+      },
+      "revId": "3ca4b3ba1fc42418da2e2bf5c47a8d0dd1dedcee",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8ed3296_1488d973",
         "filename": "docs/source/operations.rst",
         "patchSetId": 8
@@ -36,6 +60,24 @@
       "writtenOn": "2018-05-10T16:04:31Z",
       "side": 1,
       "message": "Do we also want to include the command for resetting iDrac/iLo?",
+      "revId": "3ca4b3ba1fc42418da2e2bf5c47a8d0dd1dedcee",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8160383e_37e2c50c",
+        "filename": "docs/source/operations.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1012094
+      },
+      "writtenOn": "2018-05-10T16:17:23Z",
+      "side": 1,
+      "message": "If you know the command offhand, we can. This is pretty uncommon and would just be done through the iDrac GUI.",
+      "parentUuid": "d8ed3296_1488d973",
       "revId": "3ca4b3ba1fc42418da2e2bf5c47a8d0dd1dedcee",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
