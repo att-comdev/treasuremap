@@ -134,5 +134,5 @@ data:
       client_secrets: false
       rgw_keystone_user_and_endpoints: true
   dependencies:
-    - osh-helm-toolkit
+    - ceph-htk
 ...
