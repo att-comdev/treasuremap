@@ -18,9 +18,9 @@ data:
           reference: 309f1d2959935a63952002b3b2e22e3618304c09
         etcd-htk:
           type: git
-          location: https://github.com/openstack/openstack-helm
+          location: https://github.com/openstack/openstack-helm-infra
           subpath: helm-toolkit
-          reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+          reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
         calico:
           type: git
           location: https://github.com/openstack/openstack-helm-infra
@@ -30,7 +30,7 @@ data:
           type: git
           location: https://github.com/openstack/openstack-helm-infra
           subpath: helm-toolkit
-          reference: f28ef6ded25c63812f58ddc51a83a5f20516a8e3
+          reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       apiserver:
         type: git
         location: https://github.com/att-comdev/promenade
@@ -38,9 +38,9 @@ data:
         reference: 309f1d2959935a63952002b3b2e22e3618304c09
       apiserver-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       controller-manager:
         type: git
         location: https://github.com/att-comdev/promenade
@@ -48,9 +48,9 @@ data:
         reference: 309f1d2959935a63952002b3b2e22e3618304c09
       controller-manager-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       coredns:
         type: git
         location: https://github.com/att-comdev/promenade
@@ -58,9 +58,9 @@ data:
         reference: 309f1d2959935a63952002b3b2e22e3618304c09
       coredns-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       haproxy:
         type: git
         location: https://github.com/att-comdev/promenade
@@ -68,9 +68,9 @@ data:
         reference: 309f1d2959935a63952002b3b2e22e3618304c09
       haproxy-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       etcd:
         type: git
         location: https://github.com/att-comdev/promenade
@@ -78,9 +78,9 @@ data:
         reference: 309f1d2959935a63952002b3b2e22e3618304c09
       etcd-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       ingress:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -88,9 +88,9 @@ data:
         reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
       ingress-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       proxy:
         type: git
         location: https://github.com/att-comdev/promenade
@@ -98,9 +98,9 @@ data:
         reference: 309f1d2959935a63952002b3b2e22e3618304c09
       proxy-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       scheduler:
         type: git
         location: https://github.com/att-comdev/promenade
@@ -108,9 +108,9 @@ data:
         reference: 309f1d2959935a63952002b3b2e22e3618304c09
       scheduler-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
     osh_infra:
       helm_toolkit:
         type: git
@@ -170,9 +170,9 @@ data:
     osh:
       helm_toolkit:
         type: git
-        location: https://git.openstack.org/openstack/openstack-helm
+        location: https://git.openstack.org/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       barbican:
         type: git
         location: https://git.openstack.org/openstack/openstack-helm
@@ -251,9 +251,9 @@ data:
         reference: 331b443e586aa5db5eb559ef3ed146f5abecfb09
       armada-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       barbican:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -261,9 +261,9 @@ data:
         reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
       barbican-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       ceph:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -271,9 +271,9 @@ data:
         reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
       ceph-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       deckhand:
         type: git
         location: https://github.com/att-comdev/deckhand
@@ -281,9 +281,9 @@ data:
         reference: 35f15ee601ebf89b93d657a1b78fedb3a8ebbe38
       deckhand-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       divingbell:
         type: git
         location: https://github.com/att-comdev/divingbell
@@ -291,9 +291,9 @@ data:
         reference: 73e7437b9bbecbcdd006b8ee33460843d2baa593
       divingbell-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       drydock:
         type: git
         location: https://github.com/att-comdev/drydock
@@ -301,9 +301,9 @@ data:
         reference: e4ef91b51a15cedbc59e8a524d461c564f0f4260
       drydock-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       ingress:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -311,9 +311,9 @@ data:
         reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
       ingress-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       postgresql:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -321,9 +321,9 @@ data:
         reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
       postgresql-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       promenade:
         type: git
         location: https://github.com/att-comdev/promenade
@@ -331,9 +331,9 @@ data:
         reference: 309f1d2959935a63952002b3b2e22e3618304c09
       promenade-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       keystone:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -341,9 +341,9 @@ data:
         reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
       keystone-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       maas:
         type: git
         location: https://github.com/att-comdev/maas
@@ -351,9 +351,9 @@ data:
         reference: 791e49c5193a3c69f23052acb17673fc3e59d0e2
       maas-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       mariadb:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -361,9 +361,9 @@ data:
         reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
       mariadb-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       memcached:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -371,9 +371,9 @@ data:
         reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
       memcached-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       rabbitmq:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -381,9 +381,9 @@ data:
         reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
       rabbitmq-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       shipyard:
         type: git
         location: https://github.com/att-comdev/shipyard
@@ -391,9 +391,9 @@ data:
         reference: 83d91689aad8b1b63386b982d0959ac578cf9749
       shipyard-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
       tiller:
         type: git
         location: https://github.com/att-comdev/armada
@@ -401,9 +401,9 @@ data:
         reference: b5d5c2dfd599978546d1825685bdad49aedbfb10
       tiller-htk:
         type: git
-        location: https://github.com/openstack/openstack-helm
+        location: https://github.com/openstack/openstack-helm-infra
         subpath: helm-toolkit
-        reference: f902cd14fac7de4c4c9f7d019191268a6b4e9601
+        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
   files:
     kubelet: https://artifacts-aic.atlantafoundry.com/artifactory/k8s.io/v1.10.2/kubernetes-node-linux-amd64.tar.gz
 
