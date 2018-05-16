@@ -29,6 +29,7 @@ data:
     - ucp-shipyard
     - osh-infra-ingress-controller
     - osh-infra-ceph-config
+    - osh-infra-ldap
     - osh-infra-logging
     - osh-infra-monitoring
     - osh-infra-mariadb
