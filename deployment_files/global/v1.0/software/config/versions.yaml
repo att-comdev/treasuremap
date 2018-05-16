@@ -121,52 +121,52 @@ data:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: elasticsearch
-        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
+        reference: 42569b7aaa5ee772766dc50fd8d9baf8883fc1d2
       fluent_logging:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: fluent-logging
-        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
+        reference: 42569b7aaa5ee772766dc50fd8d9baf8883fc1d2
       kibana:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: kibana
-        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
+        reference: 42569b7aaa5ee772766dc50fd8d9baf8883fc1d2
       prometheus:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus
-        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
+        reference: 42569b7aaa5ee772766dc50fd8d9baf8883fc1d2
       prometheus_node_exporter:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-node-exporter
-        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
+        reference: 42569b7aaa5ee772766dc50fd8d9baf8883fc1d2
       prometheus_kube_state_metrics:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-kube-state-metrics
-        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
+        reference: 42569b7aaa5ee772766dc50fd8d9baf8883fc1d2
       prometheus_alertmanager:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-alertmanager
-        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
+        reference: 42569b7aaa5ee772766dc50fd8d9baf8883fc1d2
       grafana:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: grafana
-        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
+        reference: 42569b7aaa5ee772766dc50fd8d9baf8883fc1d2
       prometheus_openstack_exporter:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: prometheus-openstack-exporter
-        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
+        reference: 42569b7aaa5ee772766dc50fd8d9baf8883fc1d2
       nagios:
         type: git
         location: https://github.com/openstack/openstack-helm-infra
         subpath: nagios
-        reference: cc06b57b426f7883a256e8bfc3d46fc120f84c81
+        reference: 42569b7aaa5ee772766dc50fd8d9baf8883fc1d2
     osh:
       helm_toolkit:
         type: git
@@ -671,55 +671,59 @@ data:
         elasticsearch: artifacts-aic.atlantafoundry.com/elasticsearch:5.6.4
         helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:5e2b04f8ee4b61f771326089bc9cd5ee47e1d45b19f91071a05da7b8e6cca554
         prometheus_elasticsearch_exporter: artifacts-aic.atlantafoundry.com/justwatch/elasticsearch_exporter:1.0.1
-        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
-        snapshot_repository: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:5e2b04f8ee4b61f771326089bc9cd5ee47e1d45b19f91071a05da7b8e6cca554
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.3.1
+        snapshot_repository: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       fluent_logging:
         fluentbit: artifacts-aic.atlantafoundry.com/fluent/fluent-bit:0.12.14
         fluentd: artifacts-aic.atlantafoundry.com/kolla/ubuntu-source-fluentd:ocata
         prometheus_fluentd_exporter: artifacts-aic.atlantafoundry.com/srwilkers/fluentd_exporter:v0.1
-        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
-        helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:5e2b04f8ee4b61f771326089bc9cd5ee47e1d45b19f91071a05da7b8e6cca554
-        elasticsearch_template: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:5e2b04f8ee4b61f771326089bc9cd5ee47e1d45b19f91071a05da7b8e6cca554
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.3.1
+        helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        elasticsearch_template: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       kibana:
         apache_proxy: artifacts-aic.atlantafoundry.com/httpd:2.4
         kibana: artifacts-aic.atlantafoundry.com/kibana:5.6.4
-        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.3.1
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       prometheus:
         prometheus: artifacts-aic.atlantafoundry.com/prom/prometheus:v2.0.0
-        helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:5e2b04f8ee4b61f771326089bc9cd5ee47e1d45b19f91071a05da7b8e6cca554
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
-        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        helm_tests: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.3.1
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       prometheus_node_exporter:
         node_exporter: artifacts-aic.atlantafoundry.com/prom/node-exporter:v0.15.0
-        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.3.1
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       prometheus_kube_state_metrics:
         kube_state_metrics: artifacts-aic.atlantafoundry.com/coreos/kube-state-metrics:v1.2.0
-        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.3.1
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       prometheus_alertmanager:
         alertmanager: artifacts-aic.atlantafoundry.com/prom/alertmanager:v0.11.0
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.3.1
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       prometheus_openstack_exporter:
         prometheus_openstack_exporter: artifacts-aic.atlantafoundry.com/rakeshpatnaik/prometheus-openstack-exporter:v0.1
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.3.1
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
         ks_user: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:5e2b04f8ee4b61f771326089bc9cd5ee47e1d45b19f91071a05da7b8e6cca554
       grafana:
         grafana: artifacts-aic.atlantafoundry.com/grafana/grafana:4.5.2
-        datasource: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:5e2b04f8ee4b61f771326089bc9cd5ee47e1d45b19f91071a05da7b8e6cca554
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
-        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:5e2b04f8ee4b61f771326089bc9cd5ee47e1d45b19f91071a05da7b8e6cca554
-        grafana_db_session_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:5e2b04f8ee4b61f771326089bc9cd5ee47e1d45b19f91071a05da7b8e6cca554
+        datasource: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.3.1
+        db_init: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
+        grafana_db_session_sync: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
       nagios:
         nagios: artifacts-aic.atlantafoundry.com/attcomdev/nagios:931116b88c54931c616dfa66f424be38f74d8ad2
-        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.2.1
+        dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.3.1
+        image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
+      ldap:
+        bootstrap: "artifacts-aic.atlantafoundry.com/osixia/openldap:1.2.0"
+        ldap: "artifacts-aic.atlantafoundry.com/osixia/openldap:1.2.0"
+        dep_check: artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint:v0.3.1
         image_repo_sync: artifacts-aic.atlantafoundry.com/docker:17.07.0
     ceph:
       ceph:

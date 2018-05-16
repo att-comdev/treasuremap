@@ -727,3 +727,15 @@ data:
       port:
         exporter:
           default: 9103
+    ldap:
+      hosts:
+        default: ldap
+      host_fqdn_override:
+        default: null
+      path:
+        default: /LDAP_PATH
+      scheme:
+        default: ldap
+      port:
+        ldap:
+          default: 389
