@@ -16,6 +16,24 @@
       "revId": "48e1c914a54fb2516bb34195c4bb7bb3a435e40b",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb928087_9c60d6b3",
+        "filename": "deployment_files/global/v1.0/software/config/versions.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1013122
+      },
+      "writtenOn": "2018-05-18T17:55:30Z",
+      "side": 1,
+      "message": "Or maybe this is the one that should stay and the helm_toolkit under \"osh\" could go away?",
+      "parentUuid": "9c17fafd_cd88fbf0",
+      "revId": "48e1c914a54fb2516bb34195c4bb7bb3a435e40b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
