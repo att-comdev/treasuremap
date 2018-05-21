@@ -127,6 +127,12 @@ metadata:
         name: osh_neutron_password
         path: .
     - dest:
+        path: .values.endpoints.identity.auth.nova.password
+      src:
+        schema: deckhand/Passphrase/v1
+        name: osh_nova_password
+        path: .
+    - dest:
         path: .values.endpoints.oslo_messaging.auth.admin.password
       src:
         schema: deckhand/Passphrase/v1

@@ -184,7 +184,7 @@ data:
           default: 8776
           public: 80
     volumev2:
-      name: cinder
+      name: cinderv2
       hosts:
         default: cinder-api
         public: cinder
@@ -199,7 +199,7 @@ data:
           default: 8776
           public: 80
     volumev3:
-      name: cinder
+      name: cinderv3
       hosts:
         default: cinder-api
         public: cinder

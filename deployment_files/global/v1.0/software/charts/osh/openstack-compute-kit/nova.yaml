@@ -353,10 +353,6 @@ data:
         consoleauth: 2
         scheduler: 2
         novncproxy: 1
-    conf:
-      nova:
-        libvirt:
-          virt_type: qemu
   dependencies:
     - osh-helm-toolkit
 ...
