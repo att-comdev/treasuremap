@@ -278,7 +278,7 @@ data:
         type: git
         location: https://github.com/att-comdev/deckhand
         subpath: charts/deckhand
-        reference: 35f15ee601ebf89b93d657a1b78fedb3a8ebbe38
+        reference: 177675e96fffcda9799c68bbce831424c1167020
       deckhand-htk:
         type: git
         location: https://github.com/openstack/openstack-helm
@@ -426,8 +426,8 @@ data:
         ks_service: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
         ks_endpoints: docker-aic.atlantafoundry.com/openstack/ocata/loci/mos/mos-heat@sha256:0871881cef7cb8e975e2d08246a3ef4e3c6620af8ea3363dddf470825d4b82e9
       deckhand:
-        # git 35f15ee601ebf89b93d657a1b78fedb3a8ebbe38
-        deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:de3600481a9921c4943ae73eb0e0e9e771ec4333f1628926b6e014badb0131ea
+        # git 177675e96fffcda9799c68bbce831424c1167020
+        deckhand: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:dd72c1073ffc35ddc3164bb696d265313d9587871a4003bc8fa13f9b5d69e5f0
         dep_check:  artifacts-aic.atlantafoundry.com/stackanetes/kubernetes-entrypoint@sha256:0df5fd7407e0449a4e7af62de702efe459f1961e38bc37cca75cd3de66c6db30
         db_init: artifacts-aic.atlantafoundry.com/postgres@sha256:5736fa431d8c9eed8a6a9c70e7bca94d05b5f4e2ea200cbf4c581d91d1a11a23
         db_sync: artifacts-aic.atlantafoundry.com/att-comdev/deckhand@sha256:de3600481a9921c4943ae73eb0e0e9e771ec4333f1628926b6e014badb0131ea
