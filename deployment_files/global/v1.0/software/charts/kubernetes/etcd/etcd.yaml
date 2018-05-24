@@ -78,11 +78,19 @@ data:
   chart_name: etcd
   release: kubernetes-etcd
   namespace: kube-system
-  timeout: 600
   wait:
     timeout: 600
+    labels:
+      application: kubernetes
+      component: anchor
   upgrade:
-    no_hooks: true
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: kubernetes
+            component: anchor
   values:
     labels:
       anchor:
@@ -124,7 +132,8 @@ data:
   chart_name: kubernetes-etcd-htk
   release: kubernetes-etcd-htk
   namespace: kubernetes-etcd-htk
-  timeout: 100
+  wait:
+    timeout: 100
   values: {}
   dependencies: []
 ...
