@@ -65,11 +65,19 @@ data:
   chart_name: coredns
   release: coredns
   namespace: kube-system
-  timeout: 600
   wait:
     timeout: 600
+    labels:
+      application: kubernetes
+      component: coredns
   upgrade:
-    no_hooks: true
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            application: kubernetes
+            component: coredns
   values:
     conf:
       coredns:
@@ -113,7 +121,11 @@ data:
   chart_name: coredns-htk
   release: coredns-htk
   namespace: coredns-htk
-  timeout: 100
+  wait:
+    timeout: 100
+    labels:
+      application: kubernetes
+      component: ks-user
   values: {}
   dependencies: []
 ...
