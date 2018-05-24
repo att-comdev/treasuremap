@@ -118,12 +118,41 @@ data:
   chart_name: ucp-deckhand
   release: ucp-deckhand
   namespace: ucp
+  wait:
+    timeout: 600
+    labels:
+      application: deckhand
+      component: api
   install:
     no_hooks: false
   upgrade:
     no_hooks: false
     pre:
-      delete: []
+      delete:
+        - type: job
+          labels:
+            application: deckhand
+            component: api
+        - type: job
+          labels:
+            application: deckhand
+            component: ks-service
+        - type: job
+          labels:
+            application: deckhand
+            component: ks-endpoints
+        - type: job
+          labels:
+            application: deckhand
+            component: ks-user
+        - type: job
+          labels:
+            application: deckhand
+            component: db-init
+        - type: job
+          labels:
+            application: deckhand
+            component: db-sync
       create: []
     post:
       create: []
@@ -162,7 +191,10 @@ data:
   chart_name: deckhand-htk
   release: deckhand-htk
   namespace: deckhand-htk
-  timeout: 100
+  wait:
+    timeout: 100
+    labels:
+      release_group: deckhand-htk
   values: {}
   dependencies: []
 ...
