@@ -96,7 +96,10 @@ data:
   chart_name: osh-infra-ceph-config
   release: osh-infra-ceph-config
   namespace: osh-infra
-  timeout: 3600
+  wait:
+    timeout: 3600
+    labels:
+      release_group: clcp-osh-infra-ceph-config
   install:
     no_hooks: false
   upgrade:

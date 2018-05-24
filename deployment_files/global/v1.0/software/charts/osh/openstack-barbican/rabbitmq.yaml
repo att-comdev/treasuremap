@@ -63,10 +63,19 @@ data:
   chart_name: barbican-rabbitmq
   release: barbican-rabbitmq
   namespace: openstack
+  wait:
+    timeout: 600
+    labels:
+      release_group: clcp-barbican-rabbitmq
   install:
     no_hooks: false
   upgrade:
     no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            release_group: clcp-barbican-rabbitmq
   values:
     labels:
       server:

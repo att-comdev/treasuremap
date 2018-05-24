@@ -26,7 +26,10 @@ data:
   chart_name: openstack-ingress-controller
   release: openstack-ingress-controller
   namespace: openstack
-  timeout: 300
+  wait:
+    timeout: 300
+    labels:
+      release_group: clcp-openstack-ingress-controller
   install:
     no_hooks: false
   upgrade:

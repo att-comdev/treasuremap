@@ -77,11 +77,17 @@ data:
   chart_name: calico
   release: kubernetes-calico
   namespace: kube-system
-  timeout: 600
   wait:
     timeout: 600
+    labels:
+      release_group: clcp-kubernetes-calico
   upgrade:
-    no_hooks: true
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            release_group: clcp-kubernetes-calico
   values:
     calico:
       ctl:

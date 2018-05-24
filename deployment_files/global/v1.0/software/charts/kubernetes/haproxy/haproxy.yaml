@@ -28,11 +28,17 @@ data:
   chart_name: haproxy
   release: haproxy
   namespace: kube-system
-  timeout: 600
   wait:
     timeout: 600
+    labels:
+      release_group: clcp-haproxy
   upgrade:
-    no_hooks: true
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            release_group: clcp-haproxy
   values:
     conf:
       anchor:
@@ -84,7 +90,6 @@ data:
   chart_name: haproxy-htk
   release: haproxy-htk
   namespace: haproxy-htk
-  timeout: 100
   values: {}
   dependencies: []
 ...

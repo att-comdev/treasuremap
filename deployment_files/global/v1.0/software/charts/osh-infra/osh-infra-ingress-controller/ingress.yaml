@@ -26,7 +26,10 @@ data:
   chart_name: osh-infra-ingress-controller
   release: osh-infra-ingress-controller
   namespace: osh-infra
-  timeout: 300
+  wait:
+    timeout: 300
+    labels:
+      release_group: clcp-osh-infra-ingress-controller
   install:
     no_hooks: false
   upgrade:
