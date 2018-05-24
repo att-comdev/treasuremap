@@ -113,6 +113,10 @@ data:
   chart_name: ucp-keystone
   release: ucp-keystone
   namespace: ucp
+  wait:
+    timeout: 600
+    labels:
+      release_group: clcp-ucp-keystone
   install:
     no_hooks: false
   upgrade:
@@ -121,10 +125,7 @@ data:
       delete:
         - type: job
           labels:
-            job-name: keystone-db-sync
-        - type: job
-          labels:
-            job-name: keystone-db-init
+            release_group: clcp-ucp-keystone
     post:
       create: []
   values:
@@ -163,7 +164,6 @@ data:
   chart_name: ucp-keystone-htk
   release: ucp-keystone-htk
   namespace: ucp-keystone-htk
-  timeout: 100
   values: {}
   dependencies: []
 ...

@@ -226,10 +226,19 @@ data:
   chart_name: shipyard
   release: ucp-shipyard
   namespace: ucp
+  wait:
+    timeout: 600
+    labels:
+      release_group: clcp-ucp-shipyard
   install:
     no_hooks: false
   upgrade:
     no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            release_group: clcp-ucp-shipyard
   values:
     endpoints:
       postgresql_airflow_db:
@@ -300,7 +309,6 @@ data:
   chart_name: shipyard-htk
   release: shipyard-htk
   namespace: shipyard-htk
-  timeout: 100
   values: {}
   dependencies: []
 ...

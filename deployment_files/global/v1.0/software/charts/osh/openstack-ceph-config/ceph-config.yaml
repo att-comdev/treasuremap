@@ -96,7 +96,10 @@ data:
   chart_name: openstack-ceph-config
   release: openstack-ceph-config
   namespace: openstack
-  timeout: 3600
+  wait:
+    timeout: 3600
+    labels:
+      release_group: clcp-openstack-ceph-config
   install:
     no_hooks: false
   upgrade:

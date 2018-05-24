@@ -118,12 +118,19 @@ data:
   chart_name: ucp-deckhand
   release: ucp-deckhand
   namespace: ucp
+  wait:
+    timeout: 600
+    labels:
+      release_group: clcp-ucp-deckhand
   install:
     no_hooks: false
   upgrade:
     no_hooks: false
     pre:
-      delete: []
+      delete:
+        - type: job
+          labels:
+            release_group: clcp-ucp-deckhand
       create: []
     post:
       create: []
@@ -162,7 +169,6 @@ data:
   chart_name: deckhand-htk
   release: deckhand-htk
   namespace: deckhand-htk
-  timeout: 100
   values: {}
   dependencies: []
 ...

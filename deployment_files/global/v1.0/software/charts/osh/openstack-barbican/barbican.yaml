@@ -136,6 +136,10 @@ data:
   chart_name: barbican
   release: barbican
   namespace: openstack
+  wait:
+    timeout: 600
+    labels:
+      release_group: clcp-barbican
   install:
     no_hooks: false
   upgrade:
@@ -144,28 +148,7 @@ data:
       delete:
         - type: job
           labels:
-            application: barbican
-            component: db-init
-        - type: job
-          labels:
-            application: barbican
-            component: db-sync
-        - type: job
-          labels:
-            application: barbican
-            component: ks-user
-        - type: job
-          labels:
-            application: barbican
-            component: ks-service
-        - type: job
-          labels:
-            application: barbican
-            component: ks-endpoints
-        - type: job
-          labels:
-            application: barbican
-            component: rabbit-init
+            release_group: clcp-barbican
     post:
       create: []
   values:

@@ -34,7 +34,10 @@ data:
   chart_name: openvswitch
   release: openvswitch
   namespace: openstack
-  timeout: 300
+  wait:
+    timeout: 300
+    labels:
+      release_group: clcp-openvswitch
   install:
     no_hooks: false
   upgrade:

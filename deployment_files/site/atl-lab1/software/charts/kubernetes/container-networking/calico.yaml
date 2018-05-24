@@ -58,7 +58,10 @@ data:
   chart_name: calico
   release: calico
   namespace: kube-system
-  timeout: 600
+  wait:
+    timeout: 600
+    labels:
+      release_group: clcp-calico
   upgrade:
     no_hooks: true
   values:
@@ -126,7 +129,6 @@ data:
   chart_name: calico-htk
   release: calico-htk
   namespace: calico-htk
-  timeout: 600
   values: {}
   dependencies: []
 ...
