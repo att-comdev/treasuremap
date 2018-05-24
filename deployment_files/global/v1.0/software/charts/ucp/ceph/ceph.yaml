@@ -93,15 +93,10 @@ data:
   chart_name: ceph
   release: ucp-ceph
   namespace: ceph
-  # NOTE(alanmeadows): Armada seems to wait forever for ceph
-  # requiring the operator to wait for the timeout or kill
-  # armada to re-run it
-  #
-  # as far as I can tell, its "up" and ready after a few
-  # minutes
-  timeout: 900
   wait:
     timeout: 900
+    labels:
+      release_group: clcp-ucp-ceph
   install:
     no_hooks: false
   upgrade:
@@ -110,29 +105,7 @@ data:
       delete:
         - type: job
           labels:
-            application: ceph
-            component: bootstrap
-        - type: job
-          labels:
-            application: ceph
-            component: mds-keyring-generator
-        - type: job
-          labels:
-            application: ceph
-            component: mon-keyring-generator
-        - type: job
-          labels:
-            application: ceph
-            component: rgw-keyring-generator
-        - type: job
-          labels:
-            application: ceph
-            component: storage-keys-generator
-        - type: job
-          labels:
-            application: ceph
-            component: osd-keyring-generator
-
+            release_group: clcp-ucp-ceph
   # TODO(alanmeadows) we do not pass network
   values:
     labels:
@@ -226,7 +199,6 @@ data:
   chart_name: ceph-htk
   release: ceph-htk
   namespace: ceph-htk
-  timeout: 100
   values: {}
   dependencies: []
 ...
