@@ -80,7 +80,7 @@ data:
     conf:
       elasticsearch:
         env:
-          java_opts: "-Xms2g -Xmx2g"
+          java_opts: "-Xms4g -Xmx4g"
       curator:
         #run every 6th hour
         schedule:  "0 */6 * * *"
