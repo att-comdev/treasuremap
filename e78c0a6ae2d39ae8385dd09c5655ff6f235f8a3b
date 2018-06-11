@@ -1,0 +1,395 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "090b4639_b64369f6",
+        "filename": "deployment_files/global/v1.0/software/charts/kubernetes/container-networking/etcd.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "you should apply wait labels here to target the specific items to wait",
+      "range": {
+        "startLine": 82,
+        "startChar": 2,
+        "endLine": 83,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2fb112a_9fe07b46",
+        "filename": "deployment_files/global/v1.0/software/charts/kubernetes/container-networking/etcd.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "should add labels, or remove wait",
+      "range": {
+        "startLine": 137,
+        "startChar": 2,
+        "endLine": 138,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24467972_88f6f55b",
+        "filename": "deployment_files/global/v1.0/software/charts/kubernetes/core/apiserver.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 143,
+        "startChar": 2,
+        "endLine": 144,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c87fddb_c5e69e59",
+        "filename": "deployment_files/global/v1.0/software/charts/kubernetes/core/controller-manager.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 118,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b73ca7b_7b1e6a85",
+        "filename": "deployment_files/global/v1.0/software/charts/kubernetes/core/scheduler.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 95,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "92cab3f4_b88bed62",
+        "filename": "deployment_files/global/v1.0/software/charts/kubernetes/dns/coredns.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 69,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e20b0cda_92246eb4",
+        "filename": "deployment_files/global/v1.0/software/charts/kubernetes/dns/coredns.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 121,
+        "startChar": 2,
+        "endLine": 122,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afb0cde8_a1225ee4",
+        "filename": "deployment_files/global/v1.0/software/charts/kubernetes/etcd/etcd.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 141,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebaca63a_94d1c02e",
+        "filename": "deployment_files/global/v1.0/software/charts/kubernetes/haproxy/haproxy.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 95,
+        "startChar": 2,
+        "endLine": 96,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e5486b8_a661a6c9",
+        "filename": "deployment_files/global/v1.0/software/charts/kubernetes/proxy/kubernetes-proxy.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 77,
+        "startChar": 2,
+        "endLine": 78,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7414493e_7b0c6033",
+        "filename": "deployment_files/global/v1.0/software/charts/ucp/core/postgresql.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 101,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a0954ea_08e584a2",
+        "filename": "deployment_files/global/v1.0/software/charts/ucp/deckhand/deckhand.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 194,
+        "startChar": 2,
+        "endLine": 195,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f73a0c50_49b82ef9",
+        "filename": "deployment_files/global/v1.0/software/charts/ucp/divingbell/divingbell.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 97,
+        "startChar": 2,
+        "endLine": 98,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ed33fc6c_d38fcab8",
+        "filename": "deployment_files/global/v1.0/software/charts/ucp/drydock/drydock.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 210,
+        "startChar": 2,
+        "endLine": 211,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48414648_542090da",
+        "filename": "deployment_files/global/v1.0/software/charts/ucp/drydock/maas.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 250,
+        "startChar": 2,
+        "endLine": 251,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b96d8082_a2dcda9a",
+        "filename": "deployment_files/global/v1.0/software/charts/ucp/promenade/promenade.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 129,
+        "startChar": 2,
+        "endLine": 130,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ce45044_4e0b80b7",
+        "filename": "deployment_files/global/v1.0/software/charts/ucp/shipyard/shipyard.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-11T20:11:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 358,
+        "startChar": 2,
+        "endLine": 359,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
