@@ -838,8 +838,13 @@ Then, install the NTP client::
     sudo apt -y install ntp
 
 Add the list of NTP servers specified in ``data/ntp/servers_joined`` in file
-``site/$NEW_SITE/networks/common-address.yaml`` to ``/etc/ntp.conf``, then
-restart the NTP service::
+``site/$NEW_SITE/networks/common-address.yaml`` to ``/etc/ntp.conf`` as follows::
+
+    pool NTP_SERVER1 iburst
+    pool NTP_SERVER2 iburst
+    (repeat for each NTP server with correct NTP IP or FQDN)
+
+Then, restart the NTP service::
 
     sudo service ntp restart
 
