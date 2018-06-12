@@ -390,6 +390,30 @@
       "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "469bdbf2_79a57f8c",
+        "filename": "deployment_files/global/v1.0/software/charts/ucp/shipyard/shipyard.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1013049
+      },
+      "writtenOn": "2018-06-12T14:49:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ce45044_4e0b80b7",
+      "range": {
+        "startLine": 358,
+        "startChar": 2,
+        "endLine": 359,
+        "endChar": 16
+      },
+      "revId": "e78c0a6ae2d39ae8385dd09c5655ff6f235f8a3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
