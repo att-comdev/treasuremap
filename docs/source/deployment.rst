@@ -156,7 +156,7 @@ HW Sizing and minimum requirements
 Establishing build node environment
 -----------------------------------
 
-1. On the machine you wish to sue to generate deployment files, install required
+1. On the machine you wish to use to generate deployment files, install required
    tooling::
 
     sudo apt -y install docker.io git
