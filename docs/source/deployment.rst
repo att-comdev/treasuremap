@@ -14,7 +14,7 @@
       License for the specific language governing permissions and limitations
       under the License.
 
-OOK Deployment
+Airship Deployment
 ==============
 
 Terminology
@@ -33,13 +33,13 @@ on kubernetes.
 top of the other. In this implementation, OSH (overcloud) is deployed on top of
 UCP (underlcoud).
 
-**OOK**: (OpenStack on Kubernetes) refers to the specific implementation of
+**Airship**: (OpenStack on Kubernetes) refers to the specific implementation of
 OpenStack Helm charts onto UCP kubernetes that is documented in this project.
 
 **Control Plane**: From the point of view of the cloud service provider, the
 control plane refers to the set of resources (hardware, network, storage, etc).
 sourced to run cloud services.
-The reference deployment of OOK does not distinguish between UCP and OSH
+The reference deployment of Airship does not distinguish between UCP and OSH
 control planes, as it assumes the hardware is the same for both.
 
 **Data Plane**: From the point of view of the cloud service provider, the data
@@ -820,6 +820,78 @@ Ensure that the hostname matches the hostname specified in the Genesis.yaml file
 used in the previously generated configuration. If it does not, then either
 change the hostname of the node to match the configuration documents, or re-
 generate the configuration with the correct hostname.
+
+Installing matching kernel version
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Install the same kernel version on the Genesis host that MaaS will use to deploy
+new baremetal nodes.
+
+In order to do this, first you must determine the kernel version that will be
+deployed to those nodes. Start by looking at the host profile definition used to
+deploy other control plane nodes by searching for ``control-plane: enabled``.
+Most likely this will be a file under ``global/v1.0/profiles/host``. In this
+file, find the kernel info - e.g.::
+
+    platform:
+        image: 'xenial'
+        kernel: 'hwe-16.04'
+
+In this case, it is the hardware enablement kernel for 16.04. To find the exact
+kernel version that will be deployed, we must look into the simple-stream image
+cache that will be used by MaaS to deploy nodes with. Locate the ``data/images/ucp/maas/maas_cache``
+key in within ``global/v1.0/software/config/versions.yaml``. This is the image
+that you will need to fetch, using a node with docker installed that has access
+and can reach the site/location hosting the image. For example, from the **build
+node**, the command would take the form::
+
+    sudo docker pull YOUR_SSTREAM_IMAGE
+
+Then, create a container from that image::
+
+    sudo sh -c "$(docker images | grep sstream | head -1 | awk '{print $1}' > image_name)"
+    sudo docker create --name sstream $(cat image_name)
+
+Then use the container ID returned from the last command as follows::
+
+    sudo docker start sstream
+    sudo docker exec -it sstream /bin/bash
+
+In the container, install the ``file`` package. Define any proxy environment
+variables needed for your environment to reach public ubuntu package repos::
+
+    sudo apt-get update
+    sudo apt-get -y install file
+
+In the container, ``cd`` to the following location (substituting for the platform
+image and platform kernel identified in the host profile previously, and choosing
+the folder corresponding to the most current date if more than one are available)
+and run the ``file`` command on the ``boot-kernel`` file::
+
+    cd /var/www/html/maas/images/ephemeral-v3/daily/PLATFORM_IMAGE/amd64/LATEST_DATE/PLATFORM_KERNEL/generic
+    file boot-kernel
+
+This will produce the complete kernel version. E.g.::
+
+    Linux kernel x86 boot executable bzImage, version 4.13.0-43-generic (buildd@lcy01-amd64-029) #48~16.04.1-Ubuntu S, RO-rootFS, swap_dev 0x7, Normal VGA
+
+In this example, the kernel version is ``4.13.0-43-generic``. Now install the
+matching kernel on the Genesis host (make sure to run on Genesis host, not the
+build host)::
+
+    sudo apt-get install 4.13.0-43-generic
+
+Check the installed packages on the genesis host with ``dpkg --list``. If there
+are any later kernel versions installed, remove them with ``sudo apt-get remove``,
+so that the newly install kernel is the latest available.
+
+Lastly if you wish to cleanup your build node, you may run the following::
+
+    exit # (to quit the container)
+    sudo docker stop sstream
+    sudo docker rm sstream
+    sudo docker image rm $(cat image_name)
+    sudo rm image_name
 
 Install ntpdate/ntp
 ^^^^^^^^^^^^^^^^^^^
