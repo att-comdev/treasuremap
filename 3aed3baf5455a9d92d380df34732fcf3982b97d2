@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cbc26b92_10fffab0",
+        "filename": "deployment_files/global/v1.0/software/charts/osh-infra/dependencies.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-18T20:47:15Z",
+      "side": 1,
+      "message": "Does HTK need a wait?",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 48
+      },
+      "revId": "3aed3baf5455a9d92d380df34732fcf3982b97d2",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5eb0cb75_3414089d",
+        "filename": "deployment_files/global/v1.0/software/charts/osh/dependencies.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-06-18T20:47:15Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 42
+      },
+      "revId": "3aed3baf5455a9d92d380df34732fcf3982b97d2",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
