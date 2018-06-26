@@ -964,19 +964,18 @@ Then:
 5. If scenario #2 applies, create a second partition that takes up all of the
    remaining disk space. This will be used as the OSD partition (``/dev/sdb2``).
 
-Then, format the journal partition with XFS::
+Then, construct an XFS filesystem on the journal partition::
 
-    sudo mkfs.ext4 /dev/sdb1
+    sudo mkfs.xfs /dev/sdb1
 
-Create mount a directory to match those defined in the same host profile ceph
-journals::
+Create a directory as mount point for ``/dev/sdb1`` to match those defined in the same host profile ceph journals::
 
     sudo mkdir -p /var/lib/openstack-helm/ceph/journal0/journal-sdb1
 
 Use the ``blkid`` command to get the UUID for ``/dev/sdb1``, then populate
 ``/etc/fstab`` accordingly. Ex::
 
-    sudo sh -c 'echo "UUID=01234567-ffff-aaaa-bbbb-abcdef012345 /var/lib/openstack-helm/ceph/journal0 ext4 defaults 0 0" >> /etc/fstab'
+    sudo sh -c 'echo "UUID=01234567-ffff-aaaa-bbbb-abcdef012345 /var/lib/openstack-helm/ceph/journal0/journal-sdb1 xfs defaults 0 0" >> /etc/fstab'
 
 Repeat all preceeding steps in this section for each journal device in the Ceph
 cluster. After this is completed for all journals, mount the partitions::
