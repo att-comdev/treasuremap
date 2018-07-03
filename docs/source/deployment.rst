@@ -81,7 +81,17 @@ Bugs may be followed against components as follows:
   However, if you know the root issue, then the more expedient path to issue
   resolution is to file bugs against OSH and specific UCP projects as follows:
 
-  - UCP: Bugs may be filed using `github issues <https://github.com/att-comdev>`_ for specific UCP projects
+  - UCP: Bugs may be filed using OpenStack Storyboard for specific projects in `Airship group <https://storyboard.openstack.org/#!/project_group/85>`_:
+    - `Airship Armada <https://storyboard.openstack.org/#!/project/1002>`_
+    - `Airship Berth <https://storyboard.openstack.org/#!/project/1003>`_
+    - `Airship Deckhand <https://storyboard.openstack.org/#!/project/1004>`_
+    - `Airship Divingbell <https://storyboard.openstack.org/#!/project/1001>`_
+    - `Airship Drydock <https://storyboard.openstack.org/#!/project/1005>`_
+    - `Airship MaaS <https://storyboard.openstack.org/#!/project/1007>`_
+    - `Airship Pegleg <https://storyboard.openstack.org/#!/project/1008>`_
+    - `Airship Promenade <https://storyboard.openstack.org/#!/project/1009>`_
+    - `Airship Shipyard <https://storyboard.openstack.org/#!/project/1010>`_
+    - `Airship in a Bottle <https://storyboard.openstack.org/#!/project/1006>`_
   - OSH: Bugs may be filed against OpenStack Helm in `launchpad <https://bugs.launchpad.net/openstack-helm/>`_.
 
 Pre-req
@@ -164,7 +174,7 @@ Establishing build node environment
 2. Clone and link the required git repos as follows::
 
     cd ~
-    git clone https://github.com/att-comdev/pegleg
+    git clone https://github.com/openstack/airship-pegleg pegleg
     git clone https://github.com/att-comdev/treasuremap
 
 Building Site documents
@@ -207,7 +217,7 @@ Move the secrets to your $NEW_SITE's location for passphrase secrets::
     mv secrets_tools/*.yaml site/$NEW_SITE/secrets/passphrases
 
 Public SSH keys for environment access are stored under
-``global/common/secrets/publickey/``. Make copies of ``ca846m_ssh_public_key.yaml``
+``global/common/secrets/publickey/``. Make copies of ``sb464f_ssh_public_key.yaml``
 and name the copies according to each ssh key you wish to specify that will have
 bare metal SSH acess. Delete any unneeded keys leftover from ``atl-lab1``.
 Modify the contents of each remaining file as follows:
@@ -766,7 +776,7 @@ Building the Promenade bundle
 Clone the Promenade repo::
 
     cd ~
-    git clone https://github.com/att-comdev/promenade.git
+    git clone https://github.com/openstack/airship-promenade.git promenade
 
 Refer to the ``data/charts/ucp/promenade/reference`` field in
 ``treasuremap/deployment_files/global/v1.0/software/config/versions.yaml``. If
@@ -1007,7 +1017,7 @@ Deploy Site with Shipyard
 
 Start by cloning the shipyard repository to the Genesis node::
 
-    git clone https://review.gerrithub.io/att-comdev/shipyard
+    git clone https://github.com/openstack/airship-shipyard shipyard
 
 Refer to the ``data/charts/ucp/shipyard/reference`` field in
 ``treasuremap/deployment_files/global/v1.0/software/config/versions.yaml``. If
@@ -1038,7 +1048,7 @@ for any of the site-defined users will work. For example, we can use the
     export OS_USERNAME=shipyard
     export OS_PASSWORD=46a75e4...
 
-(Note: Default auth variables are defined `here <https://github.com/att-comdev/shipyard/blob/master/tools/shipyard_docker_base_command.sh>`_, and should otherwise be
+(Note: Default auth variables are defined `here <https://github.com/openstack/airship-shipyard/blob/master/tools/shipyard_docker_base_command.sh>`_, and should otherwise be
 correct, barring any customizations of these site parameters).
 
 Next, run the deckhand_load_yaml.sh script as follows::
