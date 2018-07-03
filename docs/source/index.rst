@@ -37,7 +37,7 @@ Component Projects
 
 Shipyard
 --------
-`Shipyard <https://github.com/att-comdev/shipyard>`_ is the directed acyclic
+`Shipyard <https://github.com/openstack/airship-shipyard>`_ is the directed acyclic
 graph controller for Kubernetes and OpenStack control plane life cycle
 management.
 
@@ -62,7 +62,7 @@ monitor and control the execution of the workflow.
 
 Drydock
 -------
-`Drydock <https://github.com/att-comdev/drydock>`_ is a provisioning orchestrator
+`Drydock <https://github.com/openstack/airship-drydock>`_ is a provisioning orchestrator
 for baremetal servers that translates a YAML-based declaritive site topology into a
 physical undercloud that can be used for building out a enterprise Kubernetes cluster.
 It uses plugins to leverage existing provisioning systems to build the servers allowing
@@ -82,7 +82,7 @@ Capabilities
 
 Divingbell
 ----------
-`Divingbell <https://github.com/att-comdev/divingbell>`_ is a lightweight
+`Divingbell <https://github.com/openstack/airship-divingbell>`_ is a lightweight
 solution for:
 
 1. Bare metal configuration management for a few very targeted use cases
@@ -98,7 +98,7 @@ The needs identified for Divingbell were:
 
 Deckhand
 --------
-`Deckhand <https://github.com/att-comdev/deckhand>`_ is a document-based
+`Deckhand <https://github.com/openstack/airship-deckhand>`_ is a document-based
 configuration storage service built with auditability and validation in mind.
 
 Core Responsibilities
@@ -119,7 +119,7 @@ Core Responsibilities
 
 Armada
 ------
-`Armada <https://github.com/att-comdev/armada>`_ is a tool for managing multiple
+`Armada <https://github.com/openstack/airship-armada>`_ is a tool for managing multiple
 Helm charts with dependencies by centralizing all configurations in a single
 Armada YAML and providing life-cycle hooks for all Helm releases.
 
@@ -139,7 +139,7 @@ basic mechanisms for deployment, maintenance, and scaling of applications.
 
 Promenade
 ---------
-`Promenade <https://github.com/att-comdev/promenade>`_ is a tool for
+`Promenade <https://github.com/openstack/airship-promenade>`_ is a tool for
 bootstrapping a resilient, self-hosted Kubernetes cluster and managing its
 life-cycle.
 
@@ -190,12 +190,12 @@ OpenStack applications into a cloud-native model.
 
 Berth
 -----
-`Berth <https://github.com/att-comdev/berth>`_ is a deliberately minimalist VM
+`Berth <https://github.com/openstack/airship-berth>`_ is a deliberately minimalist VM
 runner for Kubernetes.
 
 Divingbell
 ----------
-`Divingbell <https://github.com/att-comdev/divingbell>`_ is a bare bones
+`Divingbell <https://github.com/openstack/airship-divingbell>`_ is a bare bones
 containerized configuration management solution for bare metal.
 
 Process Flows
