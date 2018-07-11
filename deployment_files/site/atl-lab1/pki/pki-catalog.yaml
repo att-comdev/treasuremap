@@ -106,24 +106,6 @@ data:
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
             - 10.96.0.2
-        - document_name: kubernetes-etcd-worker01
-          common_name: kubernetes-etcd-worker01
-          hosts:
-            - worker01
-            - 10.23.21.13
-            - 127.0.0.1
-            - localhost
-            - kubernetes-etcd.kube-system.svc.cluster.local
-            - 10.96.0.2
-        - document_name: kubernetes-etcd-worker02
-          common_name: kubernetes-etcd-worker02
-          hosts:
-            - worker02
-            - 10.23.21.14
-            - 127.0.0.1
-            - localhost
-            - kubernetes-etcd.kube-system.svc.cluster.local
-            - 10.96.0.2
     kubernetes-etcd-peer:
       certificates:
         - document_name: kubernetes-etcd-genesis-peer
@@ -149,24 +131,6 @@ data:
           hosts:
             - controller02
             - 10.23.21.12
-            - 127.0.0.1
-            - localhost
-            - kubernetes-etcd.kube-system.svc.cluster.local
-            - 10.96.0.2
-        - document_name: kubernetes-etcd-worker01-peer
-          common_name: kubernetes-etcd-worker01-peer
-          hosts:
-            - worker01
-            - 10.23.21.13
-            - 127.0.0.1
-            - localhost
-            - kubernetes-etcd.kube-system.svc.cluster.local
-            - 10.96.0.2
-        - document_name: kubernetes-etcd-worker02-peer
-          common_name: kubernetes-etcd-worker02-peer
-          hosts:
-            - worker02
-            - 10.23.21.14
             - 127.0.0.1
             - localhost
             - kubernetes-etcd.kube-system.svc.cluster.local
@@ -201,22 +165,6 @@ data:
             - 127.0.0.1
             - localhost
             - 10.96.232.136
-        - document_name: calico-etcd-worker01
-          common_name: calico-etcd-worker01
-          hosts:
-            - worker01
-            - 10.23.21.13
-            - 127.0.0.1
-            - localhost
-            - 10.96.232.136
-        - document_name: calico-etcd-worker02
-          common_name: calico-etcd-worker02
-          hosts:
-            - worker02
-            - 10.23.21.14
-            - 127.0.0.1
-            - localhost
-            - 10.96.232.136
         - document_name: calico-node
           common_name: calcico-node
     calico-etcd-peer:
@@ -243,22 +191,6 @@ data:
           hosts:
             - controller02
             - 10.23.21.12
-            - 127.0.0.1
-            - localhost
-            - 10.96.232.136
-        - document_name: calico-etcd-worker01-peer
-          common_name: calico-etcd-worker01-peer
-          hosts:
-            - worker01
-            - 10.23.21.13
-            - 127.0.0.1
-            - localhost
-            - 10.96.232.136
-        - document_name: calico-etcd-worker02-peer
-          common_name: calico-etcd-worker02-peer
-          hosts:
-            - worker02
-            - 10.23.21.14
             - 127.0.0.1
             - localhost
             - 10.96.232.136

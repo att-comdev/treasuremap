@@ -96,12 +96,14 @@ data:
   chart_name: radosgw
   release: radosgw
   namespace: openstack
-  timeout: 3600
+  wait:
+    timeout: 3600
+    labels:
+      release_group: clcp-radosgw
   install:
     no_hooks: false
   upgrade:
     no_hooks: false
-    pre:
     pre:
       delete:
         - type: job
@@ -134,5 +136,5 @@ data:
       client_secrets: false
       rgw_keystone_user_and_endpoints: true
   dependencies:
-    - osh-helm-toolkit
+    - ceph-htk
 ...

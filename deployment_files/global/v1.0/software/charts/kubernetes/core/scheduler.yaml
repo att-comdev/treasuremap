@@ -53,11 +53,17 @@ data:
   chart_name: scheduler
   release: kubernetes-scheduler
   namespace: kube-system
-  timeout: 600
   wait:
     timeout: 600
+    labels:
+      release_group: clcp-kubernetes-scheduler
   upgrade:
-    no_hooks: true
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            release_group: clcp-kubernetes-scheduler
   values:
     network:
       kubernetes_netloc: 127.0.0.1:6553
@@ -83,7 +89,6 @@ data:
   chart_name: kubernetes-scheduler-htk
   release: kubernetes-scheduler-htk
   namespace: kubernetes-scheduler-htk
-  timeout: 100
   values: {}
   dependencies: []
 ...

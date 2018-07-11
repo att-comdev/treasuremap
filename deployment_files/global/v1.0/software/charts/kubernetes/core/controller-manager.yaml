@@ -34,7 +34,7 @@ metadata:
     - src:
         schema: pegleg/CommonAddresses/v1
         name: common-addresses
-        path: .values.kubernetes.service_cidr
+        path: .kubernetes.service_cidr
       dest:
         path: .values.network.service_cidr
 
@@ -76,11 +76,17 @@ data:
   chart_name: controller-manager
   release: kubernetes-controller-manager
   namespace: kube-system
-  timeout: 600
   wait:
     timeout: 600
+    labels:
+      release_group: clcp-kubernetes-controller-manager
   upgrade:
-    no_hooks: true
+    no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            release_group: clcp-kubernetes-controller-manager
   values:
     network:
       kubernetes_netloc: 127.0.0.1:6553
@@ -106,7 +112,6 @@ data:
   chart_name: kubernetes-controller-manager-htk
   release: kubernetes-controller-manager-htk
   namespace: kubernetes-controller-manager-htk
-  timeout: 100
   values: {}
   dependencies: []
 ...

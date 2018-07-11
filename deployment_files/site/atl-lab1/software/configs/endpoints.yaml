@@ -28,7 +28,7 @@ data:
         default: keystone-rabbitmq
       host_fqdn_override:
         default: null
-      path: /
+      path: /keystone
       scheme: rabbit
       port:
         amqp:
@@ -80,7 +80,7 @@ data:
         default: glance-rabbitmq
       host_fqdn_override:
         default: null
-      path: /
+      path: /glance
       scheme: rabbit
       port:
         amqp:
@@ -140,7 +140,7 @@ data:
         default: cinder-rabbitmq
       host_fqdn_override:
         default: null
-      path: /
+      path: /cinder
       scheme: rabbit
       port:
         amqp:
@@ -184,7 +184,7 @@ data:
           default: 8776
           public: 80
     volumev2:
-      name: cinder
+      name: cinderv2
       hosts:
         default: cinder-api
         public: cinder
@@ -199,7 +199,7 @@ data:
           default: 8776
           public: 80
     volumev3:
-      name: cinder
+      name: cinderv3
       hosts:
         default: cinder-api
         public: cinder
@@ -241,7 +241,7 @@ data:
         default: heat-rabbitmq
       host_fqdn_override:
         default: null
-      path: /
+      path: /heat
       scheme: rabbit
       port:
         amqp:
@@ -311,7 +311,7 @@ data:
         default: neutron-rabbitmq
       host_fqdn_override:
         default: null
-      path: /
+      path: /neutron
       scheme: rabbit
       port:
         amqp:
@@ -358,7 +358,7 @@ data:
         default: nova-rabbitmq
       host_fqdn_override:
         default: null
-      path: /
+      path: /nova
       scheme: rabbit
       port:
         amqp:
@@ -485,7 +485,7 @@ data:
         default: barbican-rabbitmq
       host_fqdn_override:
         default: null
-      path: /
+      path: /barbican
       scheme: rabbit
       port:
         amqp:

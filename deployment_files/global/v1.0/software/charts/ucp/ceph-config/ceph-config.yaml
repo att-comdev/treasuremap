@@ -96,7 +96,10 @@ data:
   chart_name: ucp-ceph-config
   release: ucp-ceph-config
   namespace: ucp
-  timeout: 3600
+  wait:
+    timeout: 3600
+    labels:
+      release_group: clcp-ucp-ceph-config
   install:
     no_hooks: false
   upgrade:
@@ -105,8 +108,7 @@ data:
       delete:
         - type: job
           labels:
-            application: ceph
-            component: namespace-client-key-generator
+            release_group: clcp-ucp-ceph-config
   values:
     labels:
       job:

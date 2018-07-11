@@ -26,11 +26,19 @@ data:
   chart_name: ingress
   release: ingress
   namespace: ucp
-  timeout: 300
+  wait:
+    timeout: 300
+    labels:
+      release_group: clcp-ingress
   install:
     no_hooks: false
   upgrade:
     no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            release_group: clcp-ingress
   values:
     labels:
       server:
@@ -69,6 +77,5 @@ data:
   chart_name: ucp-ingress-htk
   release: ucp-ingress-htk
   namespace: ucp-ingress-htk
-  timeout: 100
   values: {}
   dependencies: []

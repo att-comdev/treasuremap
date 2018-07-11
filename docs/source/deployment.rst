@@ -14,7 +14,7 @@
       License for the specific language governing permissions and limitations
       under the License.
 
-OOK Deployment
+Airship Deployment
 ==============
 
 Terminology
@@ -33,13 +33,13 @@ on kubernetes.
 top of the other. In this implementation, OSH (overcloud) is deployed on top of
 UCP (underlcoud).
 
-**OOK**: (OpenStack on Kubernetes) refers to the specific implementation of
+**Airship**: (OpenStack on Kubernetes) refers to the specific implementation of
 OpenStack Helm charts onto UCP kubernetes that is documented in this project.
 
 **Control Plane**: From the point of view of the cloud service provider, the
 control plane refers to the set of resources (hardware, network, storage, etc).
 sourced to run cloud services.
-The reference deployment of OOK does not distinguish between UCP and OSH
+The reference deployment of Airship does not distinguish between UCP and OSH
 control planes, as it assumes the hardware is the same for both.
 
 **Data Plane**: From the point of view of the cloud service provider, the data
@@ -156,7 +156,7 @@ HW Sizing and minimum requirements
 Establishing build node environment
 -----------------------------------
 
-1. On the machine you wish to sue to generate deployment files, install required
+1. On the machine you wish to use to generate deployment files, install required
    tooling::
 
     sudo apt -y install docker.io git
@@ -821,6 +821,78 @@ used in the previously generated configuration. If it does not, then either
 change the hostname of the node to match the configuration documents, or re-
 generate the configuration with the correct hostname.
 
+Installing matching kernel version
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Install the same kernel version on the Genesis host that MaaS will use to deploy
+new baremetal nodes.
+
+In order to do this, first you must determine the kernel version that will be
+deployed to those nodes. Start by looking at the host profile definition used to
+deploy other control plane nodes by searching for ``control-plane: enabled``.
+Most likely this will be a file under ``global/v1.0/profiles/host``. In this
+file, find the kernel info - e.g.::
+
+    platform:
+        image: 'xenial'
+        kernel: 'hwe-16.04'
+
+In this case, it is the hardware enablement kernel for 16.04. To find the exact
+kernel version that will be deployed, we must look into the simple-stream image
+cache that will be used by MaaS to deploy nodes with. Locate the ``data/images/ucp/maas/maas_cache``
+key in within ``global/v1.0/software/config/versions.yaml``. This is the image
+that you will need to fetch, using a node with docker installed that has access
+and can reach the site/location hosting the image. For example, from the **build
+node**, the command would take the form::
+
+    sudo docker pull YOUR_SSTREAM_IMAGE
+
+Then, create a container from that image::
+
+    sudo sh -c "$(docker images | grep sstream | head -1 | awk '{print $1}' > image_name)"
+    sudo docker create --name sstream $(cat image_name)
+
+Then use the container ID returned from the last command as follows::
+
+    sudo docker start sstream
+    sudo docker exec -it sstream /bin/bash
+
+In the container, install the ``file`` package. Define any proxy environment
+variables needed for your environment to reach public ubuntu package repos::
+
+    sudo apt-get update
+    sudo apt-get -y install file
+
+In the container, ``cd`` to the following location (substituting for the platform
+image and platform kernel identified in the host profile previously, and choosing
+the folder corresponding to the most current date if more than one are available)
+and run the ``file`` command on the ``boot-kernel`` file::
+
+    cd /var/www/html/maas/images/ephemeral-v3/daily/PLATFORM_IMAGE/amd64/LATEST_DATE/PLATFORM_KERNEL/generic
+    file boot-kernel
+
+This will produce the complete kernel version. E.g.::
+
+    Linux kernel x86 boot executable bzImage, version 4.13.0-43-generic (buildd@lcy01-amd64-029) #48~16.04.1-Ubuntu S, RO-rootFS, swap_dev 0x7, Normal VGA
+
+In this example, the kernel version is ``4.13.0-43-generic``. Now install the
+matching kernel on the Genesis host (make sure to run on Genesis host, not the
+build host)::
+
+    sudo apt-get install 4.13.0-43-generic
+
+Check the installed packages on the genesis host with ``dpkg --list``. If there
+are any later kernel versions installed, remove them with ``sudo apt-get remove``,
+so that the newly install kernel is the latest available.
+
+Lastly if you wish to cleanup your build node, you may run the following::
+
+    exit # (to quit the container)
+    sudo docker stop sstream
+    sudo docker rm sstream
+    sudo docker image rm $(cat image_name)
+    sudo rm image_name
+
 Install ntpdate/ntp
 ^^^^^^^^^^^^^^^^^^^
 
@@ -838,8 +910,13 @@ Then, install the NTP client::
     sudo apt -y install ntp
 
 Add the list of NTP servers specified in ``data/ntp/servers_joined`` in file
-``site/$NEW_SITE/networks/common-address.yaml`` to ``/etc/ntp.conf``, then
-restart the NTP service::
+``site/$NEW_SITE/networks/common-address.yaml`` to ``/etc/ntp.conf`` as follows::
+
+    pool NTP_SERVER1 iburst
+    pool NTP_SERVER2 iburst
+    (repeat for each NTP server with correct NTP IP or FQDN)
+
+Then, restart the NTP service::
 
     sudo service ntp restart
 
@@ -887,19 +964,18 @@ Then:
 5. If scenario #2 applies, create a second partition that takes up all of the
    remaining disk space. This will be used as the OSD partition (``/dev/sdb2``).
 
-Then, format the journal partition with XFS::
+Then, construct an XFS filesystem on the journal partition::
 
-    sudo mkfs.ext4 /dev/sdb1
+    sudo mkfs.xfs /dev/sdb1
 
-Create mount a directory to match those defined in the same host profile ceph
-journals::
+Create a directory as mount point for ``/dev/sdb1`` to match those defined in the same host profile ceph journals::
 
     sudo mkdir -p /var/lib/openstack-helm/ceph/journal0/journal-sdb1
 
 Use the ``blkid`` command to get the UUID for ``/dev/sdb1``, then populate
 ``/etc/fstab`` accordingly. Ex::
 
-    sudo sh -c 'echo "UUID=01234567-ffff-aaaa-bbbb-abcdef012345 /var/lib/openstack-helm/ceph/journal0 ext4 defaults 0 0" >> /etc/fstab'
+    sudo sh -c 'echo "UUID=01234567-ffff-aaaa-bbbb-abcdef012345 /var/lib/openstack-helm/ceph/journal0/journal-sdb1 xfs defaults 0 0" >> /etc/fstab'
 
 Repeat all preceeding steps in this section for each journal device in the Ceph
 cluster. After this is completed for all journals, mount the partitions::
@@ -989,3 +1065,18 @@ The message ``Site Successfully Deployed`` is the expected output at the end of 
 successful deployment. In this example, this means that UCP and OSH should be
 fully deployed.
 
+Disable password-based login on Genesis
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before proceeding, verify that your SSH access to the Genesis node is working
+with your SSH key (i.e., not using password-based authentication).
+
+Then, disable password-based SSH authentication on Genesis in
+``/etc/ssh/sshd_config`` by uncommenting the ``PasswordAuthentication`` and
+setting its value to ``no``. Ex::
+
+    PasswordAuthentication no
+
+Then, restart the ssh service::
+
+    sudo systemctl restart ssh

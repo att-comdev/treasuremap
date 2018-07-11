@@ -96,7 +96,10 @@ data:
   chart_name: openstack-ceph-config
   release: openstack-ceph-config
   namespace: openstack
-  timeout: 3600
+  wait:
+    timeout: 3600
+    labels:
+      release_group: clcp-openstack-ceph-config
   install:
     no_hooks: false
   upgrade:
@@ -125,5 +128,5 @@ data:
       client_secrets: true
       rgw_keystone_user_and_endpoints: false
   dependencies:
-    - osh-helm-toolkit
+    - ceph-htk
 ...

@@ -28,11 +28,19 @@ data:
   chart_name: tiller
   release: ucp-tiller
   namespace: kube-system
-  timeout: 100
+  wait:
+    timeout: 100
+    labels:
+      release_group: clcp-ucp-tiller
   install:
     no_hooks: false
   upgrade:
     no_hooks: false
+    pre:
+      delete:
+        - type: job
+          labels:
+            release_group: clcp-ucp-tiller
   values:
     conf:
       tiller:

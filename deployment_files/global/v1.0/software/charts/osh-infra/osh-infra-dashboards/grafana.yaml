@@ -71,8 +71,8 @@ metadata:
         path: .values.endpoints.oslo_db.auth.user
     - src:
         schema: pegleg/AccountCatalogue/v1
-        name: osh_service_accounts
-        path: .osh.grafana.oslo_db.database
+        name: osh_infra_service_accounts
+        path: .osh_infra.grafana.oslo_db.database
       dest:
         path: .values.endpoints.oslo_db.path
         pattern: DB_NAME
@@ -84,7 +84,7 @@ metadata:
         path: .values.endpoints.oslo_db_session.auth.user
     - src:
         schema: pegleg/AccountCatalogue/v1
-        name: osh_service_accounts
+        name: osh_infra_service_accounts
         path: .osh_infra.grafana.oslo_db_session.database
       dest:
         path: .values.endpoints.oslo_db_session.path
