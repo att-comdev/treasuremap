@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bfc6ab27_19c0ddff",
+        "filename": "deployment_files/global/v1.0/schemas/shipyard/DeploymentConfiguration/v1.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1011942
+      },
+      "writtenOn": "2018-07-11T22:40:33Z",
+      "side": 1,
+      "message": "This path doesn\u0027t exist given the current reference that is used: https://github.com/openstack/airship-shipyard/tree/83d91689aad8b1b63386b982d0959ac578cf9749/shipyard_airflow/schemas",
+      "revId": "23381900606932f9cd187f2b6edce908f4cf9887",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40aa5176_cda05fd0",
+        "filename": "deployment_files/global/v1.0/software/config/versions.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1011942
+      },
+      "writtenOn": "2018-07-11T22:40:33Z",
+      "side": 1,
+      "message": "Do these revisions contain the schema location updates? I checked and doesn\u0027t look like it: https://github.com/openstack/airship-shipyard/tree/83d91689aad8b1b63386b982d0959ac578cf9749/shipyard_airflow/schemas\n\nThe path doesn\u0027t match the src/bin update Shipyard made post-refactor of its directory layout.",
+      "range": {
+        "startLine": 391,
+        "startChar": 19,
+        "endLine": 391,
+        "endChar": 59
+      },
+      "revId": "23381900606932f9cd187f2b6edce908f4cf9887",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    }
+  ]
+}
