@@ -82,6 +82,7 @@ Bugs may be followed against components as follows:
   resolution is to file bugs against OSH and specific UCP projects as follows:
 
   - UCP: Bugs may be filed using OpenStack Storyboard for specific projects in `Airship group <https://storyboard.openstack.org/#!/project_group/85>`_:
+
     - `Airship Armada <https://storyboard.openstack.org/#!/project/1002>`_
     - `Airship Berth <https://storyboard.openstack.org/#!/project/1003>`_
     - `Airship Deckhand <https://storyboard.openstack.org/#!/project/1004>`_
@@ -92,6 +93,7 @@ Bugs may be followed against components as follows:
     - `Airship Promenade <https://storyboard.openstack.org/#!/project/1009>`_
     - `Airship Shipyard <https://storyboard.openstack.org/#!/project/1010>`_
     - `Airship in a Bottle <https://storyboard.openstack.org/#!/project/1006>`_
+
   - OSH: Bugs may be filed against OpenStack Helm in `launchpad <https://bugs.launchpad.net/openstack-helm/>`_.
 
 Pre-req
