@@ -17,4 +17,4 @@
 Treasuremap
 ===========
 
-Refer to documentation `here <https://treasuremap.readthedocs.io>`_.
+`Refer to Airshipit.org for more information about Airship <https://airshipit.org>`_.
